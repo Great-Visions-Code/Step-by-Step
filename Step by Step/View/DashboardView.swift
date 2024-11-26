@@ -12,84 +12,83 @@ struct DashboardView: View {
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 5000
     @State private var currentEnergyPoints: Int = 0
+    @State private var selectedTab: Int = 1
     
     var body: some View {
-        VStack {
+        // MARK: TabView for bottom navigation
+        TabView(selection: $selectedTab) {
             
-            // MARK: currentStepsTakenProgressView.swift GV 11/23/24
-            /*
-             TODO: Circular progress bar GV 11/22/24
-                - Total should be totalStepsGoal
-                - Progress should be tracked based on currentStepsTaken
-            */
-            // Display Steps Taken
-            Text("Steps Taken:")
-                .font(.title)
-                .bold()
-                .padding(.bottom, 2)
-            // NOTE: Temporary display of steps taken out of goal in place of circular progress bar GV 11/22/24
-            Text("\(currentStepsTaken) out of a goal of \(totalStepsGoal)")
-                .font(.headline)
-                .padding(.bottom)
-            
-            // MARK: convertToEnergyButtonView.swift GV 11/23/24
-            // TODO: Add a simple scaling animation when a user taps on the button GV 11/24/24
-            // Button to convert currentStepsTaken to currentEnergyPoints
-            Button(action: {
-                convertCurrentStepsTakenToCurrentEnergyPoints()
-            }) {
-                // Text for button
-                Text("Convert to Energy")
+            // MARK: Achievements Tab
+            AchievementsView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Achievements")
+                }
+                .tag(0)
+            // MARK: Dashboard (Home) Tab
+            VStack {
+// MARK: CurrentStepsTakenProgress.swift GV 11/25/24
+                CurrentStepsTakenProgressView(
+                    currentStepsTaken: currentStepsTaken,
+                    totalStepsGoal: totalStepsGoal
+                )
+// MARK: ConvertToEnergyButtonView.swift GV 11/25/24
+                ConvertToEnergyButtonView(
+                    currentStepsTaken: $currentStepsTaken,
+                    totalStepsGoal: $totalStepsGoal,
+                    currentEnergyPoints: $currentEnergyPoints
+                )
+                
+                // Displays currentEnergyPoints
+                Text("Current Energy: \(currentEnergyPoints)")
+                    .font(.headline)
+                    .padding(.top)
+                
+                // MARK: GV 11/24/24
+                // H. Scroll View for Title Cards
+                // Display Choose Your Adventure
+                Text("Choose Your Adventure:")
                     .font(.title2)
                     .bold()
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundStyle(.white)
-                    .cornerRadius(20)
-            }
-            // Displays currentEnergyPoints
-            Text("Current Energy: \(currentEnergyPoints)")
-                .font(.headline)
-                .padding(.top)
-            
-            // MARK: GV 11/24/24
-                // H. Scroll View for Title Cards
-            // Display Choose Your Adventure
-            Text("Choose Your Adventure:")
-                .font(.title2)
-                .bold()
-                .padding(.top)
-            // Horizontal scroll section for story title cards
-            ScrollView(.horizontal, showsIndicators: true) {
-                HStack(spacing: 15) {
-                    // ForEach loop to generate title cards
-                    ForEach(stories, id: \.title) { story in
-                        StoryCardView(
-                            title: "\(story.title)\n\nComplete: \(story.completion)%",
-                            color: story.color
-                        )
+                    .padding(.top)
+                // Horizontal scroll section for story title cards
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(spacing: 15) {
+                        // ForEach loop to generate title cards
+                        ForEach(stories, id: \.title) { story in
+                            StoryCardView(
+                                title: "\(story.title)\n\nComplete: \(story.completion)%",
+                                color: story.color
+                            )
+                        }
                     }
+                    // Center Title Cards
+                    .padding(.horizontal, 27)
                 }
-                // Center Title Cards
-                .padding(.horizontal, 27)
+                .padding(.top)
+                
             }
-            .padding(.top)
+            .padding()
+            // MARK: Home Tab
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("Home")
+            }
+            .tag(1)
+            
+            // MARK: Settings Tab
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
+                }
+                .tag(2)
         }
-        .padding()
     }
     
-    // MARK: Function goes with convertToEnergyButtonView.swift GV 11/23/24
-    // Function to convert currentStepsTaken to currentEnergyPoints
-    private func convertCurrentStepsTakenToCurrentEnergyPoints() {
-        // Calculate the energy based on the ratio
-        let energyRatio = Double(currentStepsTaken) / Double(totalStepsGoal)
-        let calculatedEnergy = Int(energyRatio * 10)
-        // Updates currentEnergyPoints ensuring max of 10 energyPoints
-        currentEnergyPoints = min(calculatedEnergy, 10)
-        // Reset currentStepsTaken
-        currentStepsTaken = 0
-    }
+
 }
+
 // MARK: GV 11/24/24
 // Reusable view for story title cards
 struct StoryCardView: View {
@@ -141,6 +140,26 @@ let stories = [
     Story(title: "Survive Step by Step", color: Color.green, completion: 15),
     Story(title: "Future Adventures", color: Color.gray, completion: 0)
 ]
+
+// MARK: Achievements placeholder view
+struct AchievementsView: View {
+    var body: some View {
+        Text("Achievements Page")
+            .font(.title)
+            .padding()
+    }
+}
+
+// MARK: Settings placeholder view
+struct SettingsView: View {
+    var body: some View {
+        Text("Settings Page")
+            .font(.title)
+            .padding()
+    }
+}
+
+
 #Preview {
     DashboardView()
 }
