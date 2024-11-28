@@ -10,7 +10,7 @@ import SwiftUI
 // ViewModel for managing the data displayed in the "Choose Your Adventure" section.
 class StoriesTitleCardViewModel: ObservableObject {
     // A published array of `StoryTitleCard` objects representing the available stories.
-    // - `@Published`: Ensures any changes to the `stories` array trigger updates in the views observing this ViewModel.
+    // Ensures any changes to the `stories` array trigger updates in the views observing this ViewModel.
     @Published var stories: [StoryTitleCard] = [
         // Example stories displayed in "Choose Your Adventure" section
         StoryTitleCard(
