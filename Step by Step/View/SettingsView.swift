@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
+        // TODO: Implement Settings View
         Text("Settings Page")
             .font(.title)
             .padding()
