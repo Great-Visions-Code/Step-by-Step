@@ -47,6 +47,6 @@ struct StoryTitleCardView: View {
 
 #Preview {
     StoryTitleCardView(
-        title: "Survive Step by Step",
+        title: "Survive Step by Step\n\nCompleted: 10%",
         color: .green)
 }
