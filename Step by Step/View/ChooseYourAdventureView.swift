@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+// Sample data FOR PREVIEW
+let stories = [
+    StoryTitleCard(title: "Survive Step by Step",
+                   color: Color.green,
+                   completion: 10),
+    StoryTitleCard(title: "Future Adventures",
+                   color: Color.gray,
+                   completion: 0)
+]
+
 struct ChooseYourAdventureView: View {
     // Array from StoryTitleCardModel.swift
     var stories: [StoryTitleCard]
@@ -35,16 +45,6 @@ struct ChooseYourAdventureView: View {
         .padding(.top)
     }
 }
-
-// Sample data FOR PREVIEW
-let stories = [
-    StoryTitleCard(title: "Survive Step by Step",
-                   color: Color.green,
-                   completion: 10),
-    StoryTitleCard(title: "Future Adventures",
-                   color: Color.gray,
-                   completion: 0)
-]
 
 #Preview {
     ChooseYourAdventureView(stories: stories)
