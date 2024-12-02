@@ -10,9 +10,10 @@ import SwiftUI
 struct StoryDetailSheetView: View {
     // Selected story to display details
     var story: StoryTitleCard
+    // Closure to notify parent when Enter Story button is tapped
+    var onEnterStory: () -> Void
         
     var body: some View {
-        NavigationStack {
             VStack(spacing: 20) {
                 // Push text to middle of screen
                 Spacer()
@@ -38,9 +39,9 @@ struct StoryDetailSheetView: View {
                 
                 // MARK: Story's Home Button GV 12/1/24
                 // Navigate to the story's home page
-                NavigationLink(
-                    destination: StoryHomeView()
-                ) {
+                Button(action: {
+                    onEnterStory()
+                }) {
                         Text("Enter Story")
                             .font(.title2)
                             .bold()
@@ -52,9 +53,8 @@ struct StoryDetailSheetView: View {
                 }
             }
             .padding()
-        }
-        // Control adjustable sheet height
-        .presentationDetents([.medium, .large])
+            // Control adjustable sheet height
+            .presentationDetents([.medium, .large])
     }
 }
 
@@ -65,6 +65,7 @@ struct StoryDetailSheetView: View {
             title: "Survive",
             color: .green,
             completion: 100
-        )
+        ),
+        onEnterStory: {}
     )
 }
