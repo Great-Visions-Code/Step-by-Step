@@ -10,6 +10,8 @@ import SwiftUI
 struct ChooseYourAdventureView: View {
     // Array from StoryTitleCardModel.swift
     var stories: [StoryTitleCard]
+    // Closure to notify parent when to navigate
+    var onEnterStory: () -> Void
     
     // State to manage the selected story and Sheet presentation
     @State private var selectedStory: StoryTitleCard? = nil
@@ -43,7 +45,10 @@ struct ChooseYourAdventureView: View {
         // MARK: Sheet presentation GV 12/1/24
         .sheet(isPresented: $isSheetPresented) {
             if let story = selectedStory {
-                StoryDetailSheetView(story: story)
+                StoryDetailSheetView(
+                    story: story,
+                    onEnterStory: onEnterStory
+                )
             }
         }
     }
@@ -61,5 +66,8 @@ let stories = [
 ]
 
 #Preview {
-    ChooseYourAdventureView(stories: stories)
+    ChooseYourAdventureView(
+        stories: stories,
+        onEnterStory: {}
+    )
 }
