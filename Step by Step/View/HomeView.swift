@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     // ViewModel for managing stories
     @StateObject var viewModel: StoriesTitleCardViewModel
+    // Pass navigation control from DashboardView.swift
+    @Binding var navigateToStoryHome: Bool
     
     // Variables used for testing with default values
     @State private var totalStepsGoal: Int = 10000
@@ -18,7 +20,6 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            
             // MARK: CurrentStepsTakenProgress.swift GV 11/25/24
             CurrentStepsTakenProgressView(
                 currentStepsTaken: currentStepsTaken,
@@ -39,12 +40,18 @@ struct HomeView: View {
             
             // MARK: ChooseYourAdventureView.swift GV 11/27/24
             ChooseYourAdventureView(
-                stories: viewModel.stories
+                stories: viewModel.stories,
+                onEnterStory: {
+                    navigateToStoryHome = true
+                }
             )
         }
         .padding()    }
 }
 
 #Preview {
-    HomeView(viewModel: StoriesTitleCardViewModel())
+    HomeView(
+        viewModel: StoriesTitleCardViewModel(),
+        navigateToStoryHome: .constant(false)
+    )
 }
