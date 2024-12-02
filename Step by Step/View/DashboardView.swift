@@ -12,6 +12,7 @@ struct DashboardView: View {
 
     var body: some View {
         // MARK: TabView for bottom navigation
+        
         TabView(selection: $selectedTab) {
             
             // MARK: Achievements Tab
