@@ -22,12 +22,13 @@ struct StoryTitleCardView: View {
             // Title cards format
             // Display story title
             Text(story.title)
-                .font(.headline)
+                .font(.title2)
+                .bold()
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white)
                 .lineLimit(2)
                 // Scales longer story titles
-                .minimumScaleFactor(0.8)
+                .minimumScaleFactor(0.6)
                 .padding()
             
             // Display completion %
