@@ -41,6 +41,7 @@ struct StoryTitleCardView: View {
         .frame(width: 150, height: 150)
         .background(story.color)
         .cornerRadius(20)
+        .shadow(radius: 5)
         // MARK: Press gesture animation GV 12/1/24
         .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
