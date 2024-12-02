@@ -14,9 +14,9 @@ class StoriesTitleCardViewModel: ObservableObject {
     @Published var stories: [StoryTitleCard] = [
         // Example stories displayed in "Choose Your Adventure" section
         StoryTitleCard(
-            title: "Survive Step by Step",
+            title: "Survive",
             color: Color.green,
-            completion: 15
+            completion: 10
         ),
         StoryTitleCard(
             title: "Future Adventures",
