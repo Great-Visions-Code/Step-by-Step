@@ -36,8 +36,8 @@ struct ChooseYourAdventureView: View {
                         )
                     }
                 }
-                // Center title cards IN DashboardView.swift
-                .padding(.horizontal, 28)
+                // Center title cards
+                .padding(.horizontal, 40)
             }
             .padding(.top)
         }
