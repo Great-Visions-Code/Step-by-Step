@@ -19,8 +19,7 @@ struct StoryTitleCardView: View {
     
     var body: some View {
         VStack {
-            // Title cards format
-            // Display story title
+            // MARK: Display story title
             Text(story.title)
                 .font(.title2)
                 .bold()
@@ -31,17 +30,19 @@ struct StoryTitleCardView: View {
                 .minimumScaleFactor(0.6)
                 .padding()
             
-            // Display completion %
+            // MARK: Display completion %
             Text("Completed: \(story.completion)%")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.8))
         }
         .padding()
+        
         // MARK: Frame for gesture actions GV 12/1/24
         .frame(width: 150, height: 150)
         .background(story.color)
         .cornerRadius(20)
         .shadow(radius: 5)
+        
         // MARK: Press gesture animation GV 12/1/24
         .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
@@ -55,6 +56,7 @@ struct StoryTitleCardView: View {
                 withAnimation {
                     isPressed.toggle()
             }
+                
                 // MARK: Present Sheet with selected story GV 12/1/24
                 selectedStory = story
                 isSheetPresented = true
@@ -68,7 +70,8 @@ struct StoryTitleCardView: View {
         story: StoryTitleCard(
             title: "Future Adventures",
             color: .green,
-            completion: 100),
+            completion: 100,
+        details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."),
         // Sheet will NOT present IN PREVIEW
         selectedStory: .constant(nil),
         isSheetPresented: .constant(false)
