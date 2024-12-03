@@ -28,17 +28,16 @@ struct StoryDetailSheetView: View {
                     .font(.headline)
                 
                 // MARK: Story details GV 12/1/24
-                // TODO: Create story.details in StoryTitleCard.swift GV 12/01/24
-                // Display details about the story
-                Text("More details about the story will go here. This can include a description, goals, or additional context.")
+                Text(story.details)
                     .font(.body)
                     .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
                 
                 // Push button down
                 Spacer()
                 
                 // MARK: Story's Home Button GV 12/1/24
-                // Navigate to the story's home page
                 Button(action: {
                     onEnterStory()
                 }) {
@@ -61,10 +60,10 @@ struct StoryDetailSheetView: View {
 #Preview {
     StoryDetailSheetView(
         story: StoryTitleCard(
-            // Sample data to show IN PREVIEW
             title: "Survive",
             color: .green,
-            completion: 100
+            completion: 100,
+            details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."
         ),
         onEnterStory: {}
     )
