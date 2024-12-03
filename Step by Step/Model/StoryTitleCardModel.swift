@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-// Represents a story title card in the "Choose Your Adventure" section.
+// Properties to story options
 struct StoryTitleCard {
     let title: String
     let color: Color
     let completion: Int
+    // Displayed in StoryDetailSheetView()
+    let details: String
 }
