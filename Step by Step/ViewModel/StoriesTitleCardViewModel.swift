@@ -12,16 +12,18 @@ class StoriesTitleCardViewModel: ObservableObject {
     // A published array of `StoryTitleCard` objects representing the available stories.
     // Ensures any changes to the `stories` array trigger updates in the views observing this ViewModel.
     @Published var stories: [StoryTitleCard] = [
-        // Example stories displayed in "Choose Your Adventure" section
+        // Story's data displayed in "Choose Your Adventure" section
         StoryTitleCard(
             title: "Survive",
             color: Color.green,
-            completion: 10
+            completion: 10,
+            details: "In 'Survive - Step by Step', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."
         ),
         StoryTitleCard(
             title: "Future Adventures",
             color: Color.gray,
-            completion: 0
+            completion: 0,
+            details: "Stay tuned for upcoming thrilling adventures that will test your strategy and creativity!"
         )
     ]
 }
