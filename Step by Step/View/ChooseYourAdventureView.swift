@@ -13,19 +13,18 @@ struct ChooseYourAdventureView: View {
     // Closure to notify parent when to navigate
     var onEnterStory: () -> Void
     
-    // State to manage the selected story and Sheet presentation
     @State private var selectedStory: StoryTitleCard? = nil
     @State private var isSheetPresented: Bool = false
     
     var body: some View {
         VStack {
-            // Display Title
+            // MARK: Display Title
             Text("Choose Your Adventure:")
                 .font(.title2)
                 .bold()
                 .padding(.top)
             
-            // MARK: Horizontal scroll section for story title cards
+            // MARK: H. Scroll section for story title cards
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 15) {
                     // ForEach loop to generate title cards
@@ -55,14 +54,20 @@ struct ChooseYourAdventureView: View {
 }
 
 
-// Sample data FOR PREVIEW
+// Sample data for testing IN PREVIEW
 let stories = [
-    StoryTitleCard(title: "Survive",
-                   color: Color.green,
-                   completion: 100),
-    StoryTitleCard(title: "Future Adventures",
-                   color: Color.gray,
-                   completion: 0)
+    StoryTitleCard(
+        title: "Survive",
+        color: Color.green,
+        completion: 100,
+        details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."
+    ),
+    StoryTitleCard(
+        title: "Future Adventures",
+        color: Color.gray,
+        completion: 0,
+        details: "Stay tuned for upcoming thrilling adventures that will test your strategy and creativity!"
+    )
 ]
 
 #Preview {
