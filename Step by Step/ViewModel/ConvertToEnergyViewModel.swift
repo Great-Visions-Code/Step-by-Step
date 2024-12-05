@@ -12,7 +12,7 @@ struct ConvertToEnergyViewModel {
         currentStepsTaken: Int,
         totalStepsGoal: Int) -> Int {
             // totalStepsGoal cannot be zero to prevent division by zero errors.
-            //guard totalStepsGoal > 0 else { return 0 }
+            guard totalStepsGoal > 0 else { return 0 }
             // Calculate the energy based on the ratio
             let energyRatio = Double(currentStepsTaken) / Double(totalStepsGoal)
             let calculatedEnergy = Int(energyRatio * 10)
