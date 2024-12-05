@@ -17,7 +17,12 @@ struct ConvertToEnergyButtonView: View {
         // Button to convert currentStepsTaken to currentEnergyPoints
         Button(action: {
             // Private function (currentStepsTaken / totalStepsGoal)
-            convertCurrentStepsTakenToCurrentEnergyPoints()
+            currentEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
+                currentStepsTaken: currentStepsTaken,
+                totalStepsGoal: totalStepsGoal
+            )
+            // Reset steps
+            currentStepsTaken = 0
         }) {
             // Text for button
             Text("Convert to Energy")
@@ -28,17 +33,6 @@ struct ConvertToEnergyButtonView: View {
                 .foregroundStyle(.white)
                 .cornerRadius(20)
         }
-    }
-    
-    // MARK: Function to convert currentStepsTaken to currentEnergyPoints
-    private func convertCurrentStepsTakenToCurrentEnergyPoints() {
-        // Calculate the energy based on the ratio
-        let energyRatio = Double(currentStepsTaken) / Double(totalStepsGoal)
-        let calculatedEnergy = Int(energyRatio * 10)
-        // Updates currentEnergyPoints ensuring max of 10 energyPoints
-        currentEnergyPoints = min(calculatedEnergy, 10)
-        // Reset currentStepsTaken
-        currentStepsTaken = 0
     }
 }
 
