@@ -16,7 +16,7 @@ struct StoryHomeView: View {
             
             Spacer()
                         
-            // MARK: Story title GV 12/5/24
+            // MARK: StoryTitleView() GV 12/5/24
             StoryTitleView(
                 title: story.title
             )
