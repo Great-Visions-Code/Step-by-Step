@@ -62,16 +62,17 @@ struct ChooseYourAdventureView: View {
 // Sample data for testing IN PREVIEW
 let stories = [
     StoryTitleCard(
-        title: "Survive",
+        title: "Story Title 1",
         color: Color.green,
         completion: 100,
-        details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."
+        details: "SAMPLE: 'Story Title 1', this is where we would show the details of the story."
     ),
     StoryTitleCard(
-        title: "Future Adventures",
+        // NOTE: On 100% completion, Story Title will scale down
+        title: "Story Title 2",
         color: Color.gray,
         completion: 0,
-        details: "Stay tuned for upcoming thrilling adventures that will test your strategy and creativity!"
+        details: "SAMPLE: 'Story Title 2', this is where we would show the details of the story."
     )
 ]
 

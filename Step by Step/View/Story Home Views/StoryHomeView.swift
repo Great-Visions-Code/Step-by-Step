@@ -128,6 +128,6 @@ struct StoryHomeView: View {
             title: "Story Title",
             color: .green,
             completion: 100,
-            details: "Details")
+            details: "")
     )
 }

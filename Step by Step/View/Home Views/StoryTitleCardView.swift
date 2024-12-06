@@ -68,12 +68,11 @@ struct StoryTitleCardView: View {
 #Preview {
     StoryTitleCardView(
         story: StoryTitleCard(
-            title: "Future Adventures",
+            title: "Story Title",
             color: .green,
             completion: 100,
-        details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."),
-        // Sheet will NOT present IN PREVIEW
-        selectedStory: .constant(nil),
-        isSheetPresented: .constant(false)
+            details: ""),
+            selectedStory: .constant(nil),
+            isSheetPresented: .constant(false)
     )
 }

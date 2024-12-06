@@ -60,10 +60,10 @@ struct StoryDetailSheetView: View {
 #Preview {
     StoryDetailSheetView(
         story: StoryTitleCard(
-            title: "Survive",
+            title: "Story Title in sheet",
             color: .green,
             completion: 100,
-            details: "In 'Survive', navigate a post-apocalyptic world while battling zombies and managing resources. Your choices shape your fate."
+            details: "SAMPLE: 'Story Title', this is where we would show the details of the story."
         ),
         onEnterStory: {}
     )
