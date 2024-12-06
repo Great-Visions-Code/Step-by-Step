@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct StoryHomeView: View {
+    // Selected story to display details
+    var story: StoryTitleCard
+    
     var body: some View {
         VStack {
             
             Spacer()
                         
-            // MARK: Story title
-            Text("Survive")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 55)
+            // MARK: Story title GV 12/5/24
+            StoryTitleView(
+                title: story.title
+            )
             
             // Health/Energy Progress Bar Section
             VStack(spacing: 10) {
@@ -49,7 +51,7 @@ struct StoryHomeView: View {
                     .fontWeight(.medium)
                 
                 Spacer()
-                    .frame(width: 50 ,height: 20)
+                    .frame(width: 50 ,height: 50)
                 
                 // New Attempt tracker
                 Text("Attempt # 3")
@@ -59,7 +61,7 @@ struct StoryHomeView: View {
             .padding()
             
             Spacer()
-                .frame(width: 10 ,height: 70)
+                .frame(width: 10 ,height: 30)
             
             // Navigation Section
             VStack(spacing: 20) {
@@ -121,5 +123,11 @@ struct StoryHomeView: View {
 }
 
 #Preview {
-    StoryHomeView()
+    StoryHomeView(
+        story: StoryTitleCard(
+            title: "Story Title",
+            color: .green,
+            completion: 100,
+            details: "Details")
+    )
 }
