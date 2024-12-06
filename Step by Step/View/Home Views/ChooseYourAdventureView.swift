@@ -12,6 +12,8 @@ struct ChooseYourAdventureView: View {
     var stories: [StoryTitleCard]
     // Closure to notify parent when to navigate
     var onEnterStory: () -> Void
+    // Selected story passed to the parent view
+    var onStorySelected: (StoryTitleCard) -> Void
     
     @State private var selectedStory: StoryTitleCard? = nil
     @State private var isSheetPresented: Bool = false
@@ -46,7 +48,10 @@ struct ChooseYourAdventureView: View {
             if let story = selectedStory {
                 StoryDetailSheetView(
                     story: story,
-                    onEnterStory: onEnterStory
+                    onEnterStory: {
+                        onStorySelected(story)
+                        onEnterStory()
+                    }
                 )
             }
         }
@@ -73,6 +78,7 @@ let stories = [
 #Preview {
     ChooseYourAdventureView(
         stories: stories,
-        onEnterStory: {}
+        onEnterStory: {},
+        onStorySelected: { _ in }
     )
 }
