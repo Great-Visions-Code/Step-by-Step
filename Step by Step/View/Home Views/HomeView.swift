@@ -18,6 +18,9 @@ struct HomeView: View {
     @State private var currentStepsTaken: Int = 7000
     @State private var currentEnergyPoints: Int = 0
     
+    // Selected story passed to the parent view
+    var onStorySelected: (StoryTitleCard) -> Void
+    
     var body: some View {
         VStack {
             // MARK: CurrentStepsTakenProgress.swift GV 11/25/24
@@ -43,7 +46,8 @@ struct HomeView: View {
                 stories: viewModel.stories,
                 onEnterStory: {
                     navigateToStoryHome = true
-                }
+                },
+                onStorySelected: onStorySelected
             )
         }
         .padding()    }
@@ -52,6 +56,7 @@ struct HomeView: View {
 #Preview {
     HomeView(
         viewModel: StoriesTitleCardViewModel(),
-        navigateToStoryHome: .constant(false)
+        navigateToStoryHome: .constant(false),
+        onStorySelected: { _ in }
     )
 }
