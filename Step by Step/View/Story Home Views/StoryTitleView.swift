@@ -15,11 +15,12 @@ struct StoryTitleView: View {
         Text(title)
             .font(.largeTitle)
             .fontWeight(.bold)
-            .padding(.bottom, 55)    }
+            .padding(.bottom, 55)
+    }
 }
 
 #Preview {
     StoryTitleView(
-        title: "Survive"
+        title: "Story Title"
     )
 }
