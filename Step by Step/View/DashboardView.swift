@@ -12,6 +12,8 @@ struct DashboardView: View {
     @State private var selectedTab: Int = 1
     // State to control navigation
     @State private var navigationToStoryHome: Bool = false
+    // State to control current story selected
+    @State private var selectedStory: StoryTitleCard? = nil
     
     var body: some View {
         NavigationStack {
@@ -29,7 +31,10 @@ struct DashboardView: View {
                 // MARK: Home Tab
                 HomeView(
                     viewModel: StoriesTitleCardViewModel(),
-                    navigateToStoryHome: $navigationToStoryHome
+                    navigateToStoryHome: $navigationToStoryHome,
+                    onStorySelected: { story in
+                        selectedStory = story
+                    }
                 )
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -46,7 +51,11 @@ struct DashboardView: View {
                     .tag(2)
                 }
                 .navigationDestination(isPresented: $navigationToStoryHome) {
-                    StoryHomeView()
+                    if let story = selectedStory {
+                        StoryHomeView(story: story)
+                    } else {
+                        DashboardView()
+                }
             }
         }
     }
