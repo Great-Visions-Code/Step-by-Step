@@ -23,7 +23,7 @@ struct StoryHomeView: View {
             
             // Health/Energy Progress Bar Section
             VStack(spacing: 10) {
-                // MARK: StoryHealthBar() GV 12/5/24
+                // MARK: StoryHealthBarView() GV 12/5/24
                 StoryHealthBarView(currentHealthPoints: 3)
                 
                 // MARK: StoryEnergyBar() GV 12/3/24
