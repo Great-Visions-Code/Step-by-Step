@@ -28,7 +28,7 @@ struct StoryHealthBarView: View {
                     
                     // Foreground bar showing health progress
                     Capsule()
-                        .fill(Color.green)
+                        .fill(Color.red)
                         .frame(width: geometry.size.width * CGFloat(currentHealthPoints) / CGFloat(maxHealthPoints), height: 20)
                     
                     // Tick marks
