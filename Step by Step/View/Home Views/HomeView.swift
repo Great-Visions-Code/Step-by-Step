@@ -10,13 +10,14 @@ import SwiftUI
 struct HomeView: View {
     // ViewModel for managing stories
     @StateObject var viewModel: StoriesTitleCardViewModel
+    
     // Pass navigation control from DashboardView.swift
     @Binding var navigateToStoryHome: Bool
+    @Binding var currentEnergyPoints: Int
     
     // Variables used for testing with default values
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
-    @State private var currentEnergyPoints: Int = 0
     
     // Selected story passed to the parent view
     var onStorySelected: (StoryTitleCard) -> Void
@@ -57,6 +58,7 @@ struct HomeView: View {
     HomeView(
         viewModel: StoriesTitleCardViewModel(),
         navigateToStoryHome: .constant(false),
+        currentEnergyPoints: .constant(0),
         onStorySelected: { _ in }
     )
 }

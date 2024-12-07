@@ -14,12 +14,13 @@ struct DashboardView: View {
     @State private var navigationToStoryHome: Bool = false
     // State to control current story selected
     @State private var selectedStory: StoryTitleCard? = nil
+    // Track current energy points across the app
+    @State private var currentEnergyPoints: Int = 0
     
     var body: some View {
         NavigationStack {
             // MARK: TabView for bottom navigation
             TabView(selection: $selectedTab) {
-                
                 // MARK: Achievements Tab
                 AchievementsView()
                     .tabItem {
@@ -32,6 +33,7 @@ struct DashboardView: View {
                 HomeView(
                     viewModel: StoriesTitleCardViewModel(),
                     navigateToStoryHome: $navigationToStoryHome,
+                    currentEnergyPoints: $currentEnergyPoints,
                     onStorySelected: { story in
                         selectedStory = story
                     }
@@ -53,7 +55,8 @@ struct DashboardView: View {
                 .navigationDestination(isPresented: $navigationToStoryHome) {
                     if let story = selectedStory {
                         StoryHomeView(
-                            story: story
+                            story: story,
+                            currentEnergyPoints: currentEnergyPoints
                         )
                     } else {
                         DashboardView()

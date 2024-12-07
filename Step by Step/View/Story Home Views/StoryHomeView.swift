@@ -10,6 +10,7 @@ import SwiftUI
 struct StoryHomeView: View {
     // Selected story to display details
     var story: StoryTitleCard
+    var currentEnergyPoints: Int
     
     var body: some View {
         VStack {
@@ -34,7 +35,7 @@ struct StoryHomeView: View {
                 
                 // Story EP Bar
                 StoryHPAndEPBarView(
-                    currentPoints: 5,
+                    currentPoints: currentEnergyPoints,
                     maxPoints: 10,
                     barColor: .blue,
                     labelText: "Energy")
@@ -59,7 +60,7 @@ struct StoryHomeView: View {
                 Spacer()
                     .frame(width: 50 ,height: 50)
                 
-                // New Attempt tracker
+                // MARK: New Attempt tracker
                 Text("Attempt # 3")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -134,6 +135,8 @@ struct StoryHomeView: View {
             title: "Story Title",
             color: .green,
             completion: 100,
-            details: "")
+            details: ""
+        ),
+        currentEnergyPoints: 5
     )
 }
