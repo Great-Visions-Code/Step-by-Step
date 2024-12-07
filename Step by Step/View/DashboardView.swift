@@ -52,7 +52,9 @@ struct DashboardView: View {
                 }
                 .navigationDestination(isPresented: $navigationToStoryHome) {
                     if let story = selectedStory {
-                        StoryHomeView(story: story)
+                        StoryHomeView(
+                            story: story
+                        )
                     } else {
                         DashboardView()
                 }
