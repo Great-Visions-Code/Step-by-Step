@@ -23,13 +23,21 @@ struct StoryHomeView: View {
             
             // Health/Energy Progress Bar Section
             VStack(spacing: 10) {
-                // MARK: StoryHealthBarView() GV 12/5/24
-                StoryHealthBarView(currentHealthPoints: 3)
+                // MARK: StoryHPAndEPBarView() GV 12/5/24
+                // Story HP Bar
+                StoryHPAndEPBarView(
+                    currentPoints: 3,
+                    maxPoints: 10,
+                    barColor: .red,
+                    labelText: "Health"
+                )
                 
-                // MARK: StoryCurrentEnergyBar() GV 12/3/24
-                Text("5/10 Energy")
-                    .font(.title3)
-                    .fontWeight(.heavy)
+                // Story EP Bar
+                StoryHPAndEPBarView(
+                    currentPoints: 5,
+                    maxPoints: 10,
+                    barColor: .blue,
+                    labelText: "Energy")
             }
             .padding()
             
