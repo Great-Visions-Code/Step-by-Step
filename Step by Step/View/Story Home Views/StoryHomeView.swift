@@ -26,7 +26,7 @@ struct StoryHomeView: View {
                 // MARK: StoryHealthBarView() GV 12/5/24
                 StoryHealthBarView(currentHealthPoints: 3)
                 
-                // MARK: StoryEnergyBar() GV 12/3/24
+                // MARK: StoryCurrentEnergyBar() GV 12/3/24
                 Text("5/10 Energy")
                     .font(.title3)
                     .fontWeight(.heavy)
