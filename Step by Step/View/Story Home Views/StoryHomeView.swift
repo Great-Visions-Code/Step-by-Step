@@ -12,11 +12,16 @@ struct StoryHomeView: View {
     var story: StoryTitleCard
     var currentEnergyPoints: Int
     
+    // Button text
+    let buttons: [String] = [
+        "Resume Story",
+        "Start New Story",
+        "Achievements",
+        "Return to Dashboard"
+    ]
+    
     var body: some View {
         VStack {
-            
-            Spacer()
-                        
             // MARK: StoryTitleView() GV 12/5/24
             StoryTitleView(
                 title: story.title
@@ -34,7 +39,6 @@ struct StoryHomeView: View {
                     barColor: .red,
                     labelText: "Health"
                 )
-                
                 // Story EP Bar
                 StoryHPAndEPBarView(
                     currentPoints: currentEnergyPoints,
@@ -63,56 +67,11 @@ struct StoryHomeView: View {
 
             // Navigation Section
             VStack(spacing: 20) {
-                Button(action: {
-                    // Resume Story Action
-                }) {
-                    Text("Resume Story")
-                        .font(.title3)
-                        .bold()
-                        .padding()
-                        .frame(width: 250)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
-                }
-                
-                Button(action: {
-                    // Start Story Action
-                }) {
-                    Text("Start Story")
-                        .font(.title3)
-                        .bold()
-                        .padding()
-                        .frame(width: 250)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
-                }
-                
-                Button(action: {
-                    // Achievements Action
-                }) {
-                    Text("Achievements")
-                        .font(.title3)
-                        .bold()
-                        .padding()
-                        .frame(width: 250)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
-                }
-                
-                Button(action: {
-                    // Return to Dashboard Action
-                }) {
-                    Text("Return to Dashboard")
-                        .font(.title3)
-                        .bold()
-                        .padding()
-                        .frame(width: 250)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
+                ForEach(buttons, id: \.self) { button in
+                        StoryHomeNavigationButtonView(
+                            buttonText: button,
+                            buttonAction: nil
+                    )
                 }
             }
         }
