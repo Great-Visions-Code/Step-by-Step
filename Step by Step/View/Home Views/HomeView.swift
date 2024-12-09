@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     // ViewModel for managing stories
-    @StateObject var viewModel: StoriesTitleCardViewModel
+    @StateObject var viewModel: StoryTitleCardViewModel
     
     // Pass navigation control from DashboardView.swift
     @Binding var navigateToStoryHome: Bool
@@ -56,7 +56,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView(
-        viewModel: StoriesTitleCardViewModel(),
+        viewModel: StoryTitleCardViewModel(),
         navigateToStoryHome: .constant(false),
         currentEnergyPoints: .constant(0),
         onStorySelected: { _ in }
