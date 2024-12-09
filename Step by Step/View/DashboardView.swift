@@ -31,7 +31,7 @@ struct DashboardView: View {
                 
                 // MARK: Home Tab
                 HomeView(
-                    viewModel: StoriesTitleCardViewModel(),
+                    viewModel: StoryTitleCardViewModel(),
                     navigateToStoryHome: $navigationToStoryHome,
                     currentEnergyPoints: $currentEnergyPoints,
                     onStorySelected: { story in
