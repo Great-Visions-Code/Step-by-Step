@@ -21,11 +21,13 @@ struct StoryHomeView: View {
             StoryTitleView(
                 title: story.title
             )
-            
+            .padding(.bottom, 25)
+
             // Health/Energy Progress Bar Section
-            VStack(spacing: 10) {
+            VStack(spacing: 20) {
                 // MARK: StoryHPAndEPBarView() GV 12/5/24
                 // Story HP Bar
+                // NOTE: Possible loop here? GV 12/8/24
                 StoryHPAndEPBarView(
                     currentPoints: 3,
                     maxPoints: 10,
@@ -42,34 +44,23 @@ struct StoryHomeView: View {
             }
             .padding()
             
-            Spacer()
-                .frame(width: 10 ,height: 20)
+            VStack {
+                // MARK: StoryDayAndChapterView() GV 12/8/24
+                StoryDayAndChapterView(
+                    storyDay: 3,
+                    storyTotalDays: 10,
+                    storyChapter: "Found Shelter"
+                )
+                .padding(.bottom, 20)
             
-            // MARK: Day/Chapter Tracker
-            VStack(spacing: 5) {
-                // Day tracker
-                Text("Day 3 out of 10")
-                    .font(.title)
-                    .fontWeight(.medium)
-                
-                // Current Chapter Title
-                Text("\"Found Shelter\"")
-                    .font(.title2)
-                    .fontWeight(.medium)
-                
-                Spacer()
-                    .frame(width: 50 ,height: 50)
-                
-                // MARK: New Attempt tracker
-                Text("Attempt # 3")
-                    .font(.title2)
-                    .fontWeight(.bold)
+                // MARK: AttemptTrackerView() GV 12/8/24
+                AttemptTrackerView(
+                    newStoryAttempt: 3
+                )
+                .padding(.vertical, 20)
             }
             .padding()
-            
-            Spacer()
-                .frame(width: 10 ,height: 30)
-            
+
             // Navigation Section
             VStack(spacing: 20) {
                 Button(action: {
