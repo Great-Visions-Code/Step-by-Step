@@ -65,7 +65,7 @@ struct StoryHomeView: View {
             }
             .padding()
 
-            // Navigation Section
+            // MARK: StoryHomeNavigationButtonView() GV 12/8/24
             VStack(spacing: 20) {
                 ForEach(buttons, id: \.self) { button in
                         StoryHomeNavigationButtonView(
