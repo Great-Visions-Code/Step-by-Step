@@ -11,16 +11,15 @@ struct HomeView: View {
     // ViewModel for managing stories
     @StateObject var viewModel: StoryTitleCardViewModel
     
-    // Pass navigation control from DashboardView.swift
-    @Binding var navigateToStoryHome: Bool
+    // Binding current EP
     @Binding var currentEnergyPoints: Int
+    
+    // Closure to handle selected story
+    var onStorySelected: (StoryTitleCard) -> Void
     
     // Variables used for testing with default values
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
-    
-    // Selected story passed to the parent view
-    var onStorySelected: (StoryTitleCard) -> Void
     
     var body: some View {
         VStack {
@@ -45,19 +44,16 @@ struct HomeView: View {
             // MARK: ChooseYourAdventureView.swift GV 11/27/24
             ChooseYourAdventureView(
                 stories: viewModel.stories,
-                onEnterStory: {
-                    navigateToStoryHome = true
-                },
                 onStorySelected: onStorySelected
             )
         }
-        .padding()    }
+        .padding()
+    }
 }
 
 #Preview {
     HomeView(
         viewModel: StoryTitleCardViewModel(),
-        navigateToStoryHome: .constant(false),
         currentEnergyPoints: .constant(0),
         onStorySelected: { _ in }
     )
