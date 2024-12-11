@@ -91,7 +91,7 @@ struct StoryHomeView: View {
             title: "Story Title",
             color: .green,
             completion: 100,
-            details: ""
+            details: "DETAILS NOT SHOWN"
         ),
         currentEnergyPoints: 5,
         onNavigate: { _ in }

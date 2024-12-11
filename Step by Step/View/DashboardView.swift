@@ -35,7 +35,7 @@ struct DashboardView: View {
                     currentEnergyPoints: $currentEnergyPoints,
                     onStorySelected: { story in
                         selectedStory = story
-                        path.append("StoryDetailSheetView")
+                        path.append("StoryDetailsView")
                     }
                 )
                 .tabItem {
@@ -54,11 +54,11 @@ struct DashboardView: View {
             }
             .navigationDestination(for: String.self) { destination in
                 switch destination {
-                case "StoryDetailSheetView":
+                case "StoryDetailsView":
                     if let story = selectedStory {
-                        StoryDetailSheetView(
+                        StoryDetailsView(
                             story: story,
-                            onEnterStory: {
+                            onEnterStoryButton: {
                                 path.append("StoryHomeView")
                             }
                         )

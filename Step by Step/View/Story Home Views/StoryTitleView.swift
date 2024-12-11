@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StoryTitleView: View {
-    // Story title passed to this view
     var title: String
     
     var body: some View {

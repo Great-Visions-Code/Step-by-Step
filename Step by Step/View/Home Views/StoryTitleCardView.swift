@@ -10,13 +10,14 @@ import SwiftUI
 struct StoryTitleCardView: View {
     // Story data to display
     var story: StoryTitleCard
-    var onSelected: () -> Void
+    var onTitleCardSelected: () -> Void
 
     // State variable for scaling animation
     @State private var isPressed = false
     
     var body: some View {
         VStack {
+            
             // MARK: Display story title
             Text(story.title)
                 .font(.title2)
@@ -54,7 +55,7 @@ struct StoryTitleCardView: View {
                 withAnimation {
                     isPressed.toggle()
                 }
-                onSelected()
+                onTitleCardSelected()
             }
         }
     }
@@ -68,6 +69,6 @@ struct StoryTitleCardView: View {
             completion: 100,
             details: ""
         ),
-        onSelected: {}
+        onTitleCardSelected: {}
     )
 }

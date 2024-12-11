@@ -12,6 +12,5 @@ struct StoryTitleCard: Hashable {
     let title: String
     let color: Color
     let completion: Int
-    // Displayed in StoryDetailSheetView()
     let details: String
 }

@@ -28,7 +28,7 @@ struct ChooseYourAdventureView: View {
                     ForEach(stories, id: \.title) { story in
                         StoryTitleCardView(
                             story: story,
-                            onSelected: {
+                            onTitleCardSelected: {
                                 onStorySelected(story)
                             }
                         )
@@ -49,14 +49,14 @@ let stories = [
         title: "Story Title 1",
         color: Color.green,
         completion: 100,
-        details: "SAMPLE: 'Story Title 1', this is where we would show the details of the story."
+        details: "DETAILS NOT SHOWN"
     ),
     StoryTitleCard(
         // NOTE: On 100% completion, Story Title will scale down
         title: "Story Title 2",
         color: Color.gray,
         completion: 0,
-        details: "SAMPLE: 'Story Title 2', this is where we would show the details of the story."
+        details: "DETAILS NOT SHOWN"
     )
 ]
 

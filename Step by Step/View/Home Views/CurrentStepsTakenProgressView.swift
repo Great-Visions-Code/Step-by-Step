@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CurrentStepsTakenProgressView: View {
-    // Properties (To be passed in DashboardView.swift)
     var currentStepsTaken: Int
     var totalStepsGoal: Int
     
@@ -21,8 +20,6 @@ struct CurrentStepsTakenProgressView: View {
                 .padding(.bottom, 2)
             
             // TODO: Circular progress bar GV 11/22/24
-            // - Total should be totalStepsGoal
-            // - Progress should be tracked based on currentStepsTaken
             // Temporary placeholder for circular progress bar
             Text("\(currentStepsTaken) out of a goal of \(totalStepsGoal)")
                 .font(.headline)

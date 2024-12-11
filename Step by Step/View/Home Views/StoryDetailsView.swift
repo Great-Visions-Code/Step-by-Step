@@ -1,5 +1,5 @@
 //
-//  StoryDetailSheetView.swift
+//  StoryDetailsView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 12/1/24.
@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct StoryDetailSheetView: View {
+struct StoryDetailsView: View {
     // Selected story to display details
     var story: StoryTitleCard
     // Closure to notify parent when Enter Story button is tapped
-    var onEnterStory: () -> Void
+    var onEnterStoryButton: () -> Void
         
     var body: some View {
             VStack(spacing: 20) {
-                // Push text to middle of screen
                 Spacer()
                 
                 // MARK: Story Title GV 12/1/24
@@ -34,12 +33,11 @@ struct StoryDetailSheetView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                // Push button down
                 Spacer()
                 
-                // MARK: Story's Home Button GV 12/1/24
+                // MARK: Enter Story Button GV 12/1/24
                 Button(action: {
-                    onEnterStory()
+                    onEnterStoryButton()
                 }) {
                     Text("Enter Story")
                         .font(.title2)
@@ -56,13 +54,13 @@ struct StoryDetailSheetView: View {
 }
 
 #Preview {
-    StoryDetailSheetView(
+    StoryDetailsView(
         story: StoryTitleCard(
-            title: "Story Title in sheet",
+            title: "Story Title",
             color: .green,
             completion: 100,
             details: "SAMPLE: 'Story Title', this is where we would show the details of the story."
         ),
-        onEnterStory: {}
+        onEnterStoryButton: {}
     )
 }
