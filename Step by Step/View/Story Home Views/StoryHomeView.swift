@@ -12,12 +12,15 @@ struct StoryHomeView: View {
     var story: StoryTitleCard
     var currentEnergyPoints: Int
     
-    // Button text
-    let buttons: [String] = [
-        "Resume Story",
-        "Start New Story",
-        "Achievements",
-        "Return to Dashboard"
+    // Closure to handle navigation actions
+    var onNavigate: (String) -> Void
+    
+    // Button text and corresponding actions
+    let buttonActions: [(title: String, action: String)] = [
+        ("Resume Story", "ResumeStoryView"),
+        ("Start New Story", "SurviveStoryView"),
+        ("Achievements", "StoryAchievementsView"),
+        ("Return to Dashboard", "DashboardView")
     ]
     
     var body: some View {
@@ -44,7 +47,8 @@ struct StoryHomeView: View {
                     currentPoints: currentEnergyPoints,
                     maxPoints: 10,
                     barColor: .blue,
-                    labelText: "Energy")
+                    labelText: "Energy"
+                )
             }
             .padding()
             
@@ -67,10 +71,12 @@ struct StoryHomeView: View {
 
             // MARK: StoryHomeNavigationButtonView() GV 12/8/24
             VStack(spacing: 20) {
-                ForEach(buttons, id: \.self) { button in
+                ForEach(buttonActions, id: \.title) { button in
                         StoryHomeNavigationButtonView(
-                            buttonText: button,
-                            buttonAction: nil
+                            buttonText: button.title,
+                            buttonAction: {
+                                onNavigate(button.action)
+                        }
                     )
                 }
             }
@@ -87,6 +93,7 @@ struct StoryHomeView: View {
             completion: 100,
             details: ""
         ),
-        currentEnergyPoints: 5
+        currentEnergyPoints: 5,
+        onNavigate: { _ in }
     )
 }
