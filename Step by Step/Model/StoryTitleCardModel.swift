@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Properties to story options
-struct StoryTitleCard {
+struct StoryTitleCard: Hashable {
     let title: String
     let color: Color
     let completion: Int
