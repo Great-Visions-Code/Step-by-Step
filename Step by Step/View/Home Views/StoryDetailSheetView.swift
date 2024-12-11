@@ -52,8 +52,6 @@ struct StoryDetailSheetView: View {
                 }
             }
             .padding()
-            // Control adjustable sheet height
-            .presentationDetents([.medium, .large])
     }
 }
 

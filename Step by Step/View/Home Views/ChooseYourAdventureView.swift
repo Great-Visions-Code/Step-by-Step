@@ -13,9 +13,6 @@ struct ChooseYourAdventureView: View {
     // Closure to notify parent about the selected story
     var onStorySelected: (StoryTitleCard) -> Void
     
-    @State private var selectedStory: StoryTitleCard? = nil
-    @State private var isSheetPresented: Bool = false
-    
     var body: some View {
         VStack {
             // MARK: Display Title
@@ -31,8 +28,9 @@ struct ChooseYourAdventureView: View {
                     ForEach(stories, id: \.title) { story in
                         StoryTitleCardView(
                             story: story,
-                            selectedStory: $selectedStory,
-                            isSheetPresented: $isSheetPresented
+                            onSelected: {
+                                onStorySelected(story)
+                            }
                         )
                     }
                 }
@@ -40,20 +38,6 @@ struct ChooseYourAdventureView: View {
                 .padding(.horizontal, 40)
             }
             .padding(.top)
-        }
-        // MARK: Sheet presentation GV 12/1/24
-        .sheet(isPresented: $isSheetPresented) {
-            if let story = selectedStory {
-                StoryDetailSheetView(
-                    story: story,
-                    onEnterStory: {
-                        isSheetPresented = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            onStorySelected(story)
-                        }
-                    }
-                )
-            }
         }
     }
 }

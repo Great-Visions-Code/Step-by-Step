@@ -16,8 +16,6 @@ struct DashboardView: View {
     @State private var currentEnergyPoints: Int = 0
     // Track the selected tab, defaulting to Home
     @State private var selectedTab: Int = 1
-    // Track if the sheet is presented
-    @State private var isSheetPresented: Bool = false
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -37,7 +35,7 @@ struct DashboardView: View {
                     currentEnergyPoints: $currentEnergyPoints,
                     onStorySelected: { story in
                         selectedStory = story
-                        isSheetPresented = true
+                        path.append("StoryDetailSheetView")
                     }
                 )
                 .tabItem {
@@ -56,12 +54,22 @@ struct DashboardView: View {
             }
             .navigationDestination(for: String.self) { destination in
                 switch destination {
+                case "StoryDetailSheetView":
+                    if let story = selectedStory {
+                        StoryDetailSheetView(
+                            story: story,
+                            onEnterStory: {
+                                path.append("StoryHomeView")
+                            }
+                        )
+                    }
                 case "StoryHomeView":
                     if let story = selectedStory {
                         StoryHomeView(
                             story: story,
                             currentEnergyPoints: currentEnergyPoints,
-                            onNavigate: { path.append($0) }
+                            onNavigate: { path.append($0)
+                            }
                         )
                     }
                 case "SurviveStoryView":
@@ -70,19 +78,6 @@ struct DashboardView: View {
                     StoryAchievementsView()
                 default:
                     EmptyView()
-                }
-            }
-            .sheet(isPresented: $isSheetPresented) {
-                if let story = selectedStory {
-                    StoryDetailSheetView(
-                        story: story,
-                        onEnterStory: {
-                            isSheetPresented = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                path.append("StoryHomeView")
-                            }
-                        }
-                    )
                 }
             }
         }

@@ -10,10 +10,8 @@ import SwiftUI
 struct StoryTitleCardView: View {
     // Story data to display
     var story: StoryTitleCard
-    // Selected story to show in Sheet
-    @Binding var selectedStory: StoryTitleCard?
-    @Binding var isSheetPresented: Bool
-    
+    var onSelected: () -> Void
+
     // State variable for scaling animation
     @State private var isPressed = false
     
@@ -55,11 +53,8 @@ struct StoryTitleCardView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation {
                     isPressed.toggle()
-            }
-                
-                // MARK: Present Sheet with selected story GV 12/1/24
-                selectedStory = story
-                isSheetPresented = true
+                }
+                onSelected()
             }
         }
     }
@@ -71,8 +66,8 @@ struct StoryTitleCardView: View {
             title: "Story Title",
             color: .green,
             completion: 100,
-            details: ""),
-            selectedStory: .constant(nil),
-            isSheetPresented: .constant(false)
+            details: ""
+        ),
+        onSelected: {}
     )
 }
