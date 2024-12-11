@@ -41,14 +41,14 @@ struct StoryDetailSheetView: View {
                 Button(action: {
                     onEnterStory()
                 }) {
-                        Text("Enter Story")
-                            .font(.title2)
-                            .bold()
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .foregroundStyle(.white)
-                            .cornerRadius(20)
+                    Text("Enter Story")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(20)
                 }
             }
             .padding()
