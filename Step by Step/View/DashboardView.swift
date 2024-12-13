@@ -72,8 +72,8 @@ struct DashboardView: View {
                             }
                         )
                     }
-                case "SurviveStoryView":
-                    SurviveStoryView()
+                case "StoryView":
+                    StoryView()
                 case "StoryAchievementsView":
                     StoryAchievementsView()
                 default:

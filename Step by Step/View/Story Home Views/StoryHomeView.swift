@@ -18,7 +18,7 @@ struct StoryHomeView: View {
     // Button text and corresponding actions
     let buttonActions: [(title: String, action: String)] = [
         ("Resume Story", "ResumeStoryView"),
-        ("Start New Story", "SurviveStoryView"),
+        ("Start New Story", "StoryView"),
         ("Achievements", "StoryAchievementsView"),
         ("Return to Dashboard", "DashboardView")
     ]

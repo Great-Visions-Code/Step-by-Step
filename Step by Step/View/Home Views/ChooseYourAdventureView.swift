@@ -42,25 +42,24 @@ struct ChooseYourAdventureView: View {
     }
 }
 
-
-// Sample data for testing IN PREVIEW
-let stories = [
-    StoryTitleCard(
-        title: "Story Title 1",
-        color: Color.green,
-        completion: 100,
-        details: "DETAILS NOT SHOWN"
-    ),
-    StoryTitleCard(
-        // NOTE: On 100% completion, Story Title will scale down
-        title: "Story Title 2",
-        color: Color.gray,
-        completion: 0,
-        details: "DETAILS NOT SHOWN"
-    )
-]
-
 #Preview {
+    // Sample data for testing IN PREVIEW
+    let stories = [
+        StoryTitleCard(
+            title: "Story Title 1",
+            color: Color.green,
+            completion: 100,
+            details: "DETAILS NOT SHOWN"
+        ),
+        StoryTitleCard(
+            // NOTE: On 100% completion, Story Title will scale down
+            title: "Story Title 2",
+            color: Color.gray,
+            completion: 0,
+            details: "DETAILS NOT SHOWN"
+        )
+    ]
+    
     ChooseYourAdventureView(
         stories: stories,
         onStorySelected: { _ in }
