@@ -31,7 +31,7 @@ struct ConvertToEnergyButtonView: View {
                 .padding()
                 .background(Color.blue)
                 .foregroundStyle(.white)
-                .cornerRadius(20)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
 }
