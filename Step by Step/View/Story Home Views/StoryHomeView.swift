@@ -19,8 +19,7 @@ struct StoryHomeView: View {
     let buttonActions: [(title: String, action: String)] = [
         ("Resume Story", "ResumeStoryView"),
         ("Start New Story", "StoryView"),
-        ("Achievements", "StoryAchievementsView"),
-        ("Return to Dashboard", "DashboardView")
+        ("Story Achievements", "StoryAchievementsView"),
     ]
     
     var body: some View {
