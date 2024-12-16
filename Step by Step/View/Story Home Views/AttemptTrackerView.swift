@@ -13,7 +13,8 @@ struct AttemptTrackerView: View {
     var body: some View {
         Text("Attempt #\(newStoryAttempt)")
             .font(.title2)
-            .fontWeight(.bold)    }
+            .fontWeight(.bold)
+    }
 }
 
 #Preview {
