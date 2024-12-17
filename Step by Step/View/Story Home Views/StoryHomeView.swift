@@ -81,6 +81,7 @@ struct StoryHomeView: View {
             }
         }
         .padding()
+        .navigationBarBackButtonHidden(true)
     }
 }
 
