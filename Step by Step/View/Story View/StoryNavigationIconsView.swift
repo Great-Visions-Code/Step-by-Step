@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct StoryNavigationIconsView: View {
+    // Closure to handle the navigation action
+    var onHomeTap: () -> Void
+    var onAchievementsTap: () -> Void
+    var onMapTap: () -> Void
+    
     var body: some View {
         HStack {
             // Navigation icons
             Button(action: {
-                // Navigate back to DashboardView()
+                onHomeTap() // Navigate back to StoryHomeView()
             }) {
                 Image(systemName: "house.fill")
                     .font(.title2)
@@ -21,22 +26,27 @@ struct StoryNavigationIconsView: View {
             Spacer()
             HStack(spacing: 20) {
                 Button(action: {
-                    // Navigate to StoryAchievementsView()
+                    onAchievementsTap() // Navigate to StoryAchievementsView()
                 }) {
                     Image(systemName: "trophy.fill")
                         .font(.title2)
                 }
                 Button(action: {
-                    // Navigate to StoryMapView()
+                    onMapTap() // Navigate to StoryMapView()
                 }) {
                     Image(systemName: "map.fill")
                         .font(.title2)
                 }
             }
             .padding()
-        }    }
+        }
+    }
 }
 
 #Preview {
-    StoryNavigationIconsView()
+    StoryNavigationIconsView(
+        onHomeTap: {},
+        onAchievementsTap: {},
+        onMapTap: {}
+    )
 }
