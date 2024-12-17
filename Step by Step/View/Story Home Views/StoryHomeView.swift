@@ -13,7 +13,7 @@ struct StoryHomeView: View {
     var currentEnergyPoints: Int
     
     // Closure to handle navigation actions
-    var onNavigate: (String) -> Void
+    var onNavigateButton: (String) -> Void
     
     // Button text and corresponding actions
     let buttonActions: [(title: String, action: String)] = [
@@ -74,7 +74,7 @@ struct StoryHomeView: View {
                         StoryHomeNavigationButtonView(
                             buttonText: button.title,
                             buttonAction: {
-                                onNavigate(button.action)
+                                onNavigateButton(button.action)
                         }
                     )
                 }
@@ -94,6 +94,6 @@ struct StoryHomeView: View {
             details: "DETAILS NOT SHOWN"
         ),
         currentEnergyPoints: 5,
-        onNavigate: { _ in }
+        onNavigateButton: { _ in }
     )
 }
