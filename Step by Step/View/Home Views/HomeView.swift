@@ -16,20 +16,23 @@ struct HomeView: View {
     @State private var path = NavigationPath()
     // Track selected story
     @State private var selectedStory: StoryTitleCard? = nil
+    
+    @State private var totalStepsGoal: Int = 10000
+    @State private var currentStepsTaken: Int = 7000
 
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
                 // MARK: CurrentStepsTakenProgress.swift GV 11/25/24
                 CurrentStepsTakenProgressView(
-                    currentStepsTaken: 7000,
-                    totalStepsGoal: 10000
+                    currentStepsTaken: currentStepsTaken,
+                    totalStepsGoal: totalStepsGoal
                 )
                 
                 // MARK: ConvertToEnergyButtonView.swift GV 11/25/24
                 ConvertToEnergyButtonView(
-                    currentStepsTaken: .constant(7000),
-                    totalStepsGoal: .constant(10000),
+                    currentStepsTaken: $currentStepsTaken,
+                    totalStepsGoal: $totalStepsGoal,
                     currentEnergyPoints: $currentEnergyPoints
                 )
                 
@@ -48,6 +51,7 @@ struct HomeView: View {
                 )
             }
             .padding()
+            // Hide TabView conditionally when navigating
             .navigationDestination(for: String.self) { destination in
                 switch destination {
                 case "StoryDetailsView":
@@ -66,11 +70,17 @@ struct HomeView: View {
                             currentEnergyPoints: currentEnergyPoints,
                             onNavigate: { path.append($0) }
                         )
+                        // Hide TabView here
+                        .toolbar(.hidden, for: .tabBar)
                     }
                 case "StoryView":
                     StoryView()
+                        // Hide TabView here
+                        .toolbar(.hidden, for: .tabBar)
                 case "StoryAchievementsView":
                     StoryAchievementsView()
+                        // Hide TabView here
+                        .toolbar(.hidden, for: .tabBar)
                 default:
                     EmptyView()
                 }
