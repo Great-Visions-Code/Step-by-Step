@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConvertToEnergyButtonView: View {
-    // Binding variables to allow 2-way data flow with DashboardView.swift
+    // Binding variables to allow 2-way data flow
     @Binding var currentStepsTaken: Int
     @Binding var totalStepsGoal: Int
     @Binding var currentEnergyPoints: Int
@@ -38,7 +38,6 @@ struct ConvertToEnergyButtonView: View {
 
 struct ConvertToEnergyButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        // State variables to simulate bindings for preview
         @State var stepsTaken = 5000
         @State var stepGoal = 10000
         @State var energyPoints = 0

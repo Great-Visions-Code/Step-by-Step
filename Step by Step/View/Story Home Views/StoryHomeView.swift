@@ -15,7 +15,7 @@ struct StoryHomeView: View {
     // Closure to handle navigation actions
     var onNavigateButton: (String) -> Void
     
-    // Button text and corresponding actions
+    // Button text and corresponding actions/values
     let buttonActions: [(title: String, action: String)] = [
         ("Resume Story", "ResumeStoryView"),
         ("Start New Story", "StoryView"),

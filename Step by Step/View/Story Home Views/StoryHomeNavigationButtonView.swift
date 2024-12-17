@@ -29,7 +29,7 @@ struct StoryHomeNavigationButtonView: View {
 
 #Preview {
     StoryHomeNavigationButtonView(
-        buttonText: "Return to Dashboard",
+        buttonText: "Start New Story",
         buttonAction: {}
     )
 }

@@ -50,6 +50,7 @@ struct StoryDetailsView: View {
                 }
             }
             .padding()
+            // Hide navigation back button since TabView is visible
             .navigationBarBackButtonHidden(true)
     }
 }
@@ -60,7 +61,11 @@ struct StoryDetailsView: View {
             title: "Story Title",
             color: .green,
             completion: 100,
-            details: "SAMPLE: 'Story Title', this is where we would show the details of the story."
+            details: """
+                    SAMPLE: 'Story Title', this is where we would show the details of the story.
+                    
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
+                    """
         ),
         onEnterStoryButton: {}
     )

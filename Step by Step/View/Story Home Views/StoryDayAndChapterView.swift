@@ -13,13 +13,13 @@ struct StoryDayAndChapterView: View {
     var storyChapter: String
     
     var body: some View {
-        // Day tracker
+        // MARK: Current Day
         VStack(spacing: 10) {
             Text("Day \(storyDay) out of \(storyTotalDays)")
                 .font(.title)
                 .fontWeight(.medium)
             
-            // Current Chapter Title
+            // MARK: Current Chapter Title
             Text("\"\(storyChapter)\"")
                 .font(.title2)
                 .fontWeight(.medium)

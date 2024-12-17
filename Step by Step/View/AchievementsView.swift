@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AchievementsView: View {
     var body: some View {
-        // TODO: The entire page
         Text("Achievements Page")
             .font(.title)
             .padding()

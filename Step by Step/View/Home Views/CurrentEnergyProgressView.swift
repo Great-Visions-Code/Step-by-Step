@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CurrentEnergyProgressView: View {
-    // Variable to be passed in DashboardView.swift
     var currentEnergyPoints: Int
     
     var body: some View {
@@ -20,7 +19,6 @@ struct CurrentEnergyProgressView: View {
 
 #Preview {
     CurrentEnergyProgressView(
-        // Sample data
         currentEnergyPoints: 5
     )
 }

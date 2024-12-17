@@ -17,6 +17,7 @@ struct HomeView: View {
     // Track selected story
     @State private var selectedStory: StoryTitleCard? = nil
     
+    // Placeholder values
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
 
@@ -51,41 +52,66 @@ struct HomeView: View {
                 )
             }
             .padding()
+            // MARK: Navigation Destinations
             .navigationDestination(for: String.self) { destination in
                 switch destination {
+                    
+                // Navigate to StoryDetailsView()
                 case "StoryDetailsView":
                     if let story = selectedStory {
                         StoryDetailsView(
                             story: story,
                             onEnterStoryButton: {
+                                // When "Enter Story" is pressed, navigate to StoryHomeView()
                                 path.append("StoryHomeView")
                             }
                         )
                     }
+                    
+                // Navigate to StoryHomeView()
                 case "StoryHomeView":
                     if let story = selectedStory {
                         StoryHomeView(
                             story: story,
                             currentEnergyPoints: currentEnergyPoints,
-                            onNavigateButton: { path.append($0) }
-                        )
-                    }
-                case "StoryView":
-                    StoryView(
-                            onNavigateHomeInStoryIcon: {
-                                // Navigate back to StoryHomeView
-                                path.removeLast()
-                            },
-                            onNavigateAchievements: {
-                                path.append("StoryAchievementsView")
+                            onNavigateButton: {
+                                // Append navigation destination dynamically
+                                path.append($0)
                             }
                         )
-                        // Hide TabView here
+                    }
+                    
+                // Navigate to StoryView()
+                case "StoryView":
+                    StoryView(
+                            onNavigateStoryHomeIcon: {
+                                // When Home icon is pressed in StoryView(), navigate back to StoryHomeView by removing last navigation destination
+                                path.removeLast()
+                            },
+                            onNavigateStoryAchievementsIcon: {
+                                // When Achievements icon is pressed, navigate to StoryAchievementsView()
+                                path.append("StoryAchievementsView")
+                            },
+                            onNavigateStoryMapIcon: {
+                                // When Map icon is pressed, navigate to StoryMapView()
+                                path.append(("StoryMapView"))
+                            }
+                        )
+                        // Hide TabView here for a more immersive experience in StoryView()
                         .toolbar(.hidden, for: .tabBar)
+                    
+                // Navigate to StoryAchievementsView()
                 case "StoryAchievementsView":
                     StoryAchievementsView()
-                        // Hide TabView here
+                        // Hide TabView here for cleaner look
                         .toolbar(.hidden, for: .tabBar)
+                    
+                // Navigate to StoryMapView()
+                case "StoryMapView":
+                    StoryMapView()
+                    // Hide TabView here to maintain immersive feel in StoryView()
+                    .toolbar(.hidden, for: .tabBar)
+                    
                 default:
                     EmptyView()
                 }

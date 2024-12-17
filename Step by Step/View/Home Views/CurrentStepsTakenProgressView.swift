@@ -13,7 +13,6 @@ struct CurrentStepsTakenProgressView: View {
     
     var body: some View {
         VStack {
-            // Display Steps Taken
             Text("Steps Taken:")
                 .font(.title)
                 .bold()
@@ -30,7 +29,6 @@ struct CurrentStepsTakenProgressView: View {
 
 #Preview {
     CurrentStepsTakenProgressView(
-        // Sample data for preview
         currentStepsTaken: 5000,
         totalStepsGoal: 10000
     )

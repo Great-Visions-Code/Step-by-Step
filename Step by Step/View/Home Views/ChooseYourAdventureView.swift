@@ -21,7 +21,7 @@ struct ChooseYourAdventureView: View {
                 .bold()
                 .padding(.top)
             
-            // MARK: H. Scroll section for story title cards
+            // MARK: HScroll section for StoryTitleCard
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 15) {
                     // ForEach loop to generate title cards
@@ -43,7 +43,6 @@ struct ChooseYourAdventureView: View {
 }
 
 #Preview {
-    // Sample data for testing IN PREVIEW
     let stories = [
         StoryTitleCard(
             title: "Story Title 1",
@@ -52,14 +51,13 @@ struct ChooseYourAdventureView: View {
             details: "DETAILS NOT SHOWN"
         ),
         StoryTitleCard(
-            // NOTE: On 100% completion, Story Title will scale down
+            // NOTE: On 100% completion, 'title' will scale down
             title: "Story Title 2",
             color: Color.gray,
             completion: 0,
             details: "DETAILS NOT SHOWN"
         )
     ]
-    
     ChooseYourAdventureView(
         stories: stories,
         onStorySelected: { _ in }
