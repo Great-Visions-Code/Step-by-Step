@@ -67,11 +67,14 @@ struct HomeView: View {
                         StoryHomeView(
                             story: story,
                             currentEnergyPoints: currentEnergyPoints,
-                            onNavigate: { path.append($0) }
+                            onNavigateButton: { path.append($0) }
                         )
                     }
                 case "StoryView":
-                    StoryView()
+                    StoryView(onNavigateHomeInStoryIcon: {
+                        // Add navigation logic to return to StoryHomeView
+                        path.removeLast() // Or use a specific logic to pop the view
+                    })
                         // Hide TabView here
                         .toolbar(.hidden, for: .tabBar)
                 case "StoryAchievementsView":
