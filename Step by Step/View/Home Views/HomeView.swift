@@ -51,7 +51,6 @@ struct HomeView: View {
                 )
             }
             .padding()
-            // Hide TabView conditionally when navigating
             .navigationDestination(for: String.self) { destination in
                 switch destination {
                 case "StoryDetailsView":
@@ -70,8 +69,6 @@ struct HomeView: View {
                             currentEnergyPoints: currentEnergyPoints,
                             onNavigate: { path.append($0) }
                         )
-                        // Hide TabView here
-                        .toolbar(.hidden, for: .tabBar)
                     }
                 case "StoryView":
                     StoryView()
