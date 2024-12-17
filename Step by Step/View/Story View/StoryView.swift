@@ -18,13 +18,16 @@ struct StoryView: View {
             // MARK: StoryNavigationIconsView() GV 12/15/24
             StoryNavigationIconsView(
                 onHomeTap: {
-                    onNavigateHomeInStoryIcon() // Navigate back to StoryHomeView
+                    // Navigate back to StoryHomeView
+                    onNavigateHomeInStoryIcon()
                 },
                 onAchievementsTap: {
-                    onNavigateAchievements() // Navigate to StoryAchievementsView
+                    // Navigate to StoryAchievementsView
+                    onNavigateAchievements()
                 },
                 onMapTap: {
-                    print("Navigate to StoryMapView") // Placeholder for map navigation
+                    // Placeholder for map navigation
+                    print("Navigate to StoryMapView")
                 }
             )
             

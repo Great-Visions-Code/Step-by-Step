@@ -73,10 +73,11 @@ struct HomeView: View {
                 case "StoryView":
                     StoryView(
                             onNavigateHomeInStoryIcon: {
-                                path.removeLast() // Navigate back to StoryHomeView
+                                // Navigate back to StoryHomeView
+                                path.removeLast()
                             },
                             onNavigateAchievements: {
-                                path.append("StoryAchievementsView") // Navigate to StoryAchievementsView
+                                path.append("StoryAchievementsView")
                             }
                         )
                         // Hide TabView here

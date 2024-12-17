@@ -17,7 +17,8 @@ struct StoryNavigationIconsView: View {
         HStack {
             // Navigation icons
             Button(action: {
-                onHomeTap() // Navigate back to StoryHomeView()
+                // Navigate back to StoryHomeView()
+                onHomeTap()
             }) {
                 Image(systemName: "house.fill")
                     .font(.title2)
@@ -26,13 +27,15 @@ struct StoryNavigationIconsView: View {
             Spacer()
             HStack(spacing: 20) {
                 Button(action: {
-                    onAchievementsTap() // Navigate to StoryAchievementsView()
+                    // Navigate to StoryAchievementsView()
+                    onAchievementsTap()
                 }) {
                     Image(systemName: "trophy.fill")
                         .font(.title2)
                 }
                 Button(action: {
-                    onMapTap() // Navigate to StoryMapView()
+                    // Navigate to StoryMapView()
+                    onMapTap()
                 }) {
                     Image(systemName: "map.fill")
                         .font(.title2)
