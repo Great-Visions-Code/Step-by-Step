@@ -9,33 +9,39 @@ import SwiftUI
 
 struct StoryNavigationIconsView: View {
     // Closure to handle the navigation action
-    var onHomeTap: () -> Void
-    var onAchievementsTap: () -> Void
-    var onMapTap: () -> Void
+    var onStoryHomeIconTap: () -> Void
+    var onStoryAchievementsIconTap: () -> Void
+    var onStoryMapIconTap: () -> Void
     
     var body: some View {
+        // Navigation icons
         HStack {
-            // Navigation icons
+            // House Icon
             Button(action: {
                 // Navigate back to StoryHomeView()
-                onHomeTap()
+                onStoryHomeIconTap()
             }) {
                 Image(systemName: "house.fill")
                     .font(.title2)
                     .padding()
             }
+            
             Spacer()
             HStack(spacing: 20) {
+                
+                // Trophy Icon
                 Button(action: {
                     // Navigate to StoryAchievementsView()
-                    onAchievementsTap()
+                    onStoryAchievementsIconTap()
                 }) {
                     Image(systemName: "trophy.fill")
                         .font(.title2)
                 }
+                
+                // Map Icon
                 Button(action: {
                     // Navigate to StoryMapView()
-                    onMapTap()
+                    onStoryMapIconTap()
                 }) {
                     Image(systemName: "map.fill")
                         .font(.title2)
@@ -48,8 +54,8 @@ struct StoryNavigationIconsView: View {
 
 #Preview {
     StoryNavigationIconsView(
-        onHomeTap: {},
-        onAchievementsTap: {},
-        onMapTap: {}
+        onStoryHomeIconTap: {},
+        onStoryAchievementsIconTap: {},
+        onStoryMapIconTap: {}
     )
 }

@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct StoryView: View {
-    // Closure to navigate back to StoryHomeView
-    var onNavigateHomeInStoryIcon: () -> Void
-    // Closure to navigate to StoryAchievementsView
-    var onNavigateAchievements: () -> Void
+    // Closures to navigate based on icon
+    var onNavigateStoryHomeIcon: () -> Void
+    var onNavigateStoryAchievementsIcon: () -> Void
+    var onNavigateStoryMapIcon: () -> Void
 
     var body: some View {
         VStack {
             // MARK: StoryNavigationIconsView() GV 12/15/24
             StoryNavigationIconsView(
-                onHomeTap: {
-                    // Navigate back to StoryHomeView
-                    onNavigateHomeInStoryIcon()
+                onStoryHomeIconTap: {
+                    // Navigate back to StoryHomeView()
+                    onNavigateStoryHomeIcon()
                 },
-                onAchievementsTap: {
-                    // Navigate to StoryAchievementsView
-                    onNavigateAchievements()
+                onStoryAchievementsIconTap: {
+                    // Navigate to StoryAchievementsView()
+                    onNavigateStoryAchievementsIcon()
                 },
-                onMapTap: {
-                    // Placeholder for map navigation
-                    print("Navigate to StoryMapView")
+                onStoryMapIconTap: {
+                    // Navigate to StoryMapView()
+                    onNavigateStoryMapIcon()
                 }
             )
             
@@ -40,13 +40,15 @@ struct StoryView: View {
             // MARK: StoryChapterContentView() GV 12/15/24
             StoryChapterContentView()
         }
+        // Hide navigation bar back button for a more immersive experience
         .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
     StoryView(
-        onNavigateHomeInStoryIcon: {},
-        onNavigateAchievements: {}
+        onNavigateStoryHomeIcon: {},
+        onNavigateStoryAchievementsIcon: {},
+        onNavigateStoryMapIcon: {}
     )
 }
