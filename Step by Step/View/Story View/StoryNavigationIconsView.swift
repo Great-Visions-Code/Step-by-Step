@@ -23,7 +23,7 @@ struct StoryNavigationIconsView: View {
                 Button(action: {
                     // Navigate to StoryAchievementsView()
                 }) {
-                    Image(systemName: "star.fill")
+                    Image(systemName: "trophy.fill")
                         .font(.title2)
                 }
                 Button(action: {
