@@ -10,19 +10,21 @@ import SwiftUI
 struct StoryView: View {
     // Closure to navigate back to StoryHomeView
     var onNavigateHomeInStoryIcon: () -> Void
+    // Closure to navigate to StoryAchievementsView
+    var onNavigateAchievements: () -> Void
 
     var body: some View {
         VStack {
             // MARK: StoryNavigationIconsView() GV 12/15/24
             StoryNavigationIconsView(
                 onHomeTap: {
-                    onNavigateHomeInStoryIcon() // Call parent-provided closure
+                    onNavigateHomeInStoryIcon() // Navigate back to StoryHomeView
                 },
                 onAchievementsTap: {
-                    print("Navigate to StoryAchievementsView")
+                    onNavigateAchievements() // Navigate to StoryAchievementsView
                 },
                 onMapTap: {
-                    print("Navigate to StoryMapView")
+                    print("Navigate to StoryMapView") // Placeholder for map navigation
                 }
             )
             
@@ -41,6 +43,7 @@ struct StoryView: View {
 
 #Preview {
     StoryView(
-        onNavigateHomeInStoryIcon: {}
+        onNavigateHomeInStoryIcon: {},
+        onNavigateAchievements: {}
     )
 }

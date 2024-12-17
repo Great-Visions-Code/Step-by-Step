@@ -71,10 +71,14 @@ struct HomeView: View {
                         )
                     }
                 case "StoryView":
-                    StoryView(onNavigateHomeInStoryIcon: {
-                        // Add navigation logic to return to StoryHomeView
-                        path.removeLast() // Or use a specific logic to pop the view
-                    })
+                    StoryView(
+                            onNavigateHomeInStoryIcon: {
+                                path.removeLast() // Navigate back to StoryHomeView
+                            },
+                            onNavigateAchievements: {
+                                path.append("StoryAchievementsView") // Navigate to StoryAchievementsView
+                            }
+                        )
                         // Hide TabView here
                         .toolbar(.hidden, for: .tabBar)
                 case "StoryAchievementsView":
