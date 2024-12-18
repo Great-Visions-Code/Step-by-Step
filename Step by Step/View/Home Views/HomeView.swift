@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    // ViewModel for managing stories
-    @StateObject var viewModel: StoryTitleCardViewModel
-    // Binding current EP
-    @Binding var currentEnergyPoints: Int
+    // ViewModels for managing stories and player stats
+    @StateObject var storyViewModel: StoryTitleCardViewModel
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    
     // Navigation path to track user navigation
     @State private var path = NavigationPath()
     // Track selected story
@@ -20,7 +20,6 @@ struct HomeView: View {
     // Placeholder values
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
-    @State private var currentHealthPoints: Int = 9
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -33,19 +32,19 @@ struct HomeView: View {
                 
                 // MARK: ConvertToEnergyButtonView.swift GV 11/25/24
                 ConvertToEnergyButtonView(
+                    playerStatsViewModel: playerStatsViewModel,
                     currentStepsTaken: $currentStepsTaken,
-                    totalStepsGoal: $totalStepsGoal,
-                    currentEnergyPoints: $currentEnergyPoints
+                    totalStepsGoal: $totalStepsGoal
                 )
                 
                 // MARK: CurrentEnergyProgressView.swift GV 11/27/24
                 CurrentEnergyProgressView(
-                    currentEnergyPoints: currentEnergyPoints
+                    playerStatsViewModel: playerStatsViewModel
                 )
                 
                 // MARK: ChooseYourAdventureView.swift GV 11/27/24
                 ChooseYourAdventureView(
-                    stories: viewModel.stories,
+                    stories: storyViewModel.stories,
                     onStorySelected: { story in
                         selectedStory = story
                         path.append("StoryDetailsView")
@@ -74,8 +73,7 @@ struct HomeView: View {
                     if let story = selectedStory {
                         StoryHomeView(
                             story: story,
-                            currentHealthPoints: currentHealthPoints,
-                            currentEnergyPoints: currentEnergyPoints,
+                            playerStatsViewModel: playerStatsViewModel,
                             onNavigateButton: {
                                 // Append navigation destination dynamically
                                 path.append($0)
@@ -98,8 +96,7 @@ struct HomeView: View {
                                 // When Map icon is pressed, navigate to StoryMapView()
                                 path.append(("StoryMapView"))
                             },
-                            currentHealthPoints: currentHealthPoints,
-                            currentEnergyPoints: currentEnergyPoints
+                            playerStatsViewModel: playerStatsViewModel
                         )
                         // Hide TabView here for a more immersive experience in StoryView()
                         .toolbar(.hidden, for: .tabBar)
@@ -126,7 +123,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView(
-        viewModel: StoryTitleCardViewModel(),
-        currentEnergyPoints: .constant(0)
+        storyViewModel: StoryTitleCardViewModel(),
+        playerStatsViewModel: PlayerStatsViewModel()
     )
 }

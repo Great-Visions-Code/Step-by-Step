@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct DashboardView: View {
-    // Track current energy points across the app
-    @State private var currentEnergyPoints: Int = 0
+    // ViewModel for player stats
+    @StateObject private var playerStatsViewModel = PlayerStatsViewModel()
     // Track the selected tab, defaulting to Home
     @State private var selectedTab: Int = 1
 
@@ -26,8 +26,8 @@ struct DashboardView: View {
             
             // MARK: Home Tab
             HomeView(
-                viewModel: StoryTitleCardViewModel(),
-                currentEnergyPoints: $currentEnergyPoints
+                storyViewModel: StoryTitleCardViewModel(),
+                playerStatsViewModel: playerStatsViewModel
             )
             .tabItem {
                 Image(systemName: "house.fill")

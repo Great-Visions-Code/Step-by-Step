@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ConvertToEnergyButtonView: View {
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+
     // Binding variables to allow 2-way data flow
     @Binding var currentStepsTaken: Int
     @Binding var totalStepsGoal: Int
-    @Binding var currentEnergyPoints: Int
     
     var body: some View {
         // Button to convert currentStepsTaken to currentEnergyPoints
         Button(action: {
             // Function call [current EP = (currentStepsTaken / totalStepsGoal)]
-            currentEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
+            playerStatsViewModel.currentEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
                 currentStepsTaken: currentStepsTaken,
                 totalStepsGoal: totalStepsGoal
             )
@@ -40,12 +41,12 @@ struct ConvertToEnergyButtonView_Previews: PreviewProvider {
     static var previews: some View {
         @State var stepsTaken = 5000
         @State var stepGoal = 10000
-        @State var energyPoints = 0
-        
+        let playerStatsViewModel = PlayerStatsViewModel()
+            
         return ConvertToEnergyButtonView(
+            playerStatsViewModel: playerStatsViewModel,
             currentStepsTaken: $stepsTaken,
-            totalStepsGoal: $stepGoal,
-            currentEnergyPoints: $energyPoints
+            totalStepsGoal: $stepGoal
         )
     }
 }

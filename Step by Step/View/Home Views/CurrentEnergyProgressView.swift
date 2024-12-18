@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct CurrentEnergyProgressView: View {
-    var currentEnergyPoints: Int
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     var body: some View {
-        Text("Current Energy: \(currentEnergyPoints)")
+        Text("Current Energy: \(playerStatsViewModel.currentEnergyPoints)")
             .font(.headline)
             .padding(.top)
     }
 }
 
 #Preview {
-    CurrentEnergyProgressView(
-        currentEnergyPoints: 5
+    let playerStatsViewModel = PlayerStatsViewModel()
+    
+    return CurrentEnergyProgressView(
+        playerStatsViewModel: playerStatsViewModel
     )
 }

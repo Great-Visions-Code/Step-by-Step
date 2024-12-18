@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct PlayerStatsView: View {
-    var currentHealthPoints: Int
-    var currentEnergyPoints: Int
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     var body: some View {
         HStack {
@@ -17,7 +16,7 @@ struct PlayerStatsView: View {
                 // MARK: currentHealthPoints (HP)
                 Image(systemName: "heart.fill")
                     .foregroundStyle(.red)
-                Text("\(currentHealthPoints) / 10")
+                Text("\(playerStatsViewModel.currentHealthPoints) / 10")
                     .font(.headline)
             }
             Spacer()
@@ -25,7 +24,7 @@ struct PlayerStatsView: View {
                 // MARK: currentEnergyPoints (EP)
                 Image(systemName: "bolt.fill")
                     .foregroundStyle(.blue)
-                Text("\(currentEnergyPoints) / 10")
+                Text("\(playerStatsViewModel.currentEnergyPoints) / 10")
                     .font(.headline)
             }
             Spacer()
@@ -38,7 +37,6 @@ struct PlayerStatsView: View {
 
 #Preview {
     PlayerStatsView(
-        currentHealthPoints: 9,
-        currentEnergyPoints: 5
+        playerStatsViewModel: PlayerStatsViewModel()
     )
 }

@@ -10,8 +10,7 @@ import SwiftUI
 struct StoryHomeView: View {
     // Selected story to display details
     var story: StoryTitleCard
-    var currentHealthPoints: Int
-    var currentEnergyPoints: Int
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     // Closure to handle navigation actions
     var onNavigateButton: (String) -> Void
@@ -37,14 +36,14 @@ struct StoryHomeView: View {
                 // Story HP Bar
                 // NOTE: Possible loop here? GV 12/8/24
                 StoryHPAndEPBarView(
-                    currentPoints: currentHealthPoints,
+                    currentPoints: playerStatsViewModel.currentHealthPoints,
                     maxPoints: 10,
                     barColor: .red,
                     labelText: "Health"
                 )
                 // Story EP Bar
                 StoryHPAndEPBarView(
-                    currentPoints: currentEnergyPoints,
+                    currentPoints: playerStatsViewModel.currentEnergyPoints,
                     maxPoints: 10,
                     barColor: .blue,
                     labelText: "Energy"
@@ -94,8 +93,7 @@ struct StoryHomeView: View {
             completion: 100,
             details: "DETAILS NOT SHOWN"
         ),
-        currentHealthPoints: 9,
-        currentEnergyPoints: 5,
+        playerStatsViewModel: PlayerStatsViewModel(),
         onNavigateButton: { _ in }
     )
 }

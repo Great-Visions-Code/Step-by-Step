@@ -13,8 +13,7 @@ struct StoryView: View {
     var onNavigateStoryAchievementsIcon: () -> Void
     var onNavigateStoryMapIcon: () -> Void
     
-    var currentHealthPoints: Int
-    var currentEnergyPoints: Int
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
     var body: some View {
         VStack {
@@ -36,8 +35,7 @@ struct StoryView: View {
             
             // MARK: PlayerStatsView() GV 12/15/24
             PlayerStatsView(
-                currentHealthPoints: currentHealthPoints,
-                currentEnergyPoints: currentEnergyPoints
+                playerStatsViewModel: playerStatsViewModel
             )
             
             Divider()
@@ -56,7 +54,6 @@ struct StoryView: View {
         onNavigateStoryHomeIcon: {},
         onNavigateStoryAchievementsIcon: {},
         onNavigateStoryMapIcon: {},
-        currentHealthPoints: 9,
-        currentEnergyPoints: 5
+        playerStatsViewModel: PlayerStatsViewModel()
     )
 }
