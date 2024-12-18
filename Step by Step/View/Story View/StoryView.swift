@@ -13,6 +13,7 @@ struct StoryView: View {
     var onNavigateStoryAchievementsIcon: () -> Void
     var onNavigateStoryMapIcon: () -> Void
     
+    var currentHealthPoints: Int
     var currentEnergyPoints: Int
 
     var body: some View {
@@ -35,6 +36,7 @@ struct StoryView: View {
             
             // MARK: PlayerStatsView() GV 12/15/24
             PlayerStatsView(
+                currentHealthPoints: currentHealthPoints,
                 currentEnergyPoints: currentEnergyPoints
             )
             
@@ -54,6 +56,7 @@ struct StoryView: View {
         onNavigateStoryHomeIcon: {},
         onNavigateStoryAchievementsIcon: {},
         onNavigateStoryMapIcon: {},
+        currentHealthPoints: 9,
         currentEnergyPoints: 5
     )
 }

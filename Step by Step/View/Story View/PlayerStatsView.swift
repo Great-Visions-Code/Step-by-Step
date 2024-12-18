@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct PlayerStatsView: View {
+    var currentHealthPoints: Int
     var currentEnergyPoints: Int
     
     var body: some View {
         HStack {
             HStack(spacing: 5) {
-                // MARK: HP
+                // MARK: currentHealthPoints (HP)
                 Image(systemName: "heart.fill")
                     .foregroundStyle(.red)
-                // NOTE: Placeholder for dynamic HP
-                Text("10 / 10")
+                Text("\(currentHealthPoints) / 10")
                     .font(.headline)
             }
             Spacer()
             HStack(spacing: 5) {
-                // MARK: EP
+                // MARK: currentEnergyPoints (EP)
                 Image(systemName: "bolt.fill")
                     .foregroundStyle(.blue)
                 Text("\(currentEnergyPoints) / 10")
@@ -38,6 +38,7 @@ struct PlayerStatsView: View {
 
 #Preview {
     PlayerStatsView(
+        currentHealthPoints: 9,
         currentEnergyPoints: 5
     )
 }

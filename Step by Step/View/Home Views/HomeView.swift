@@ -20,6 +20,7 @@ struct HomeView: View {
     // Placeholder values
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
+    @State private var currentHealthPoints: Int = 9
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -73,6 +74,7 @@ struct HomeView: View {
                     if let story = selectedStory {
                         StoryHomeView(
                             story: story,
+                            currentHealthPoints: currentHealthPoints,
                             currentEnergyPoints: currentEnergyPoints,
                             onNavigateButton: {
                                 // Append navigation destination dynamically
@@ -96,6 +98,7 @@ struct HomeView: View {
                                 // When Map icon is pressed, navigate to StoryMapView()
                                 path.append(("StoryMapView"))
                             },
+                            currentHealthPoints: currentHealthPoints,
                             currentEnergyPoints: currentEnergyPoints
                         )
                         // Hide TabView here for a more immersive experience in StoryView()

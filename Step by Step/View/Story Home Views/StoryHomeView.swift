@@ -10,6 +10,7 @@ import SwiftUI
 struct StoryHomeView: View {
     // Selected story to display details
     var story: StoryTitleCard
+    var currentHealthPoints: Int
     var currentEnergyPoints: Int
     
     // Closure to handle navigation actions
@@ -36,7 +37,7 @@ struct StoryHomeView: View {
                 // Story HP Bar
                 // NOTE: Possible loop here? GV 12/8/24
                 StoryHPAndEPBarView(
-                    currentPoints: 3,
+                    currentPoints: currentHealthPoints,
                     maxPoints: 10,
                     barColor: .red,
                     labelText: "Health"
@@ -93,6 +94,7 @@ struct StoryHomeView: View {
             completion: 100,
             details: "DETAILS NOT SHOWN"
         ),
+        currentHealthPoints: 9,
         currentEnergyPoints: 5,
         onNavigateButton: { _ in }
     )
