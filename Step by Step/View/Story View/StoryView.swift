@@ -12,6 +12,8 @@ struct StoryView: View {
     var onNavigateStoryHomeIcon: () -> Void
     var onNavigateStoryAchievementsIcon: () -> Void
     var onNavigateStoryMapIcon: () -> Void
+    
+    var currentEnergyPoints: Int
 
     var body: some View {
         VStack {
@@ -32,7 +34,9 @@ struct StoryView: View {
             )
             
             // MARK: PlayerStatsView() GV 12/15/24
-            PlayerStatsView()
+            PlayerStatsView(
+                currentEnergyPoints: currentEnergyPoints
+            )
             
             Divider()
                 .padding(.vertical, 10)
@@ -49,6 +53,7 @@ struct StoryView: View {
     StoryView(
         onNavigateStoryHomeIcon: {},
         onNavigateStoryAchievementsIcon: {},
-        onNavigateStoryMapIcon: {}
+        onNavigateStoryMapIcon: {},
+        currentEnergyPoints: 5
     )
 }

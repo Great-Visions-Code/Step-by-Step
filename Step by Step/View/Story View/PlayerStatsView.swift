@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct PlayerStatsView: View {
+    var currentEnergyPoints: Int
+    
     var body: some View {
         HStack {
             HStack(spacing: 5) {
+                // MARK: HP
                 Image(systemName: "heart.fill")
                     .foregroundStyle(.red)
                 // NOTE: Placeholder for dynamic HP
@@ -19,14 +22,14 @@ struct PlayerStatsView: View {
             }
             Spacer()
             HStack(spacing: 5) {
+                // MARK: EP
                 Image(systemName: "bolt.fill")
                     .foregroundStyle(.blue)
-                // NOTE: Placeholder for dynamic EP
-                Text("10 / 10")
+                Text("\(currentEnergyPoints) / 10")
                     .font(.headline)
             }
             Spacer()
-            // NOTE: Placeholder for dynamic story day
+            // MARK: Day Count
             Text("Day 1 out of 10")
                 .font(.headline)
         }
@@ -34,5 +37,7 @@ struct PlayerStatsView: View {
 }
 
 #Preview {
-    PlayerStatsView()
+    PlayerStatsView(
+        currentEnergyPoints: 5
+    )
 }

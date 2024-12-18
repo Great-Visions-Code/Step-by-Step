@@ -95,7 +95,8 @@ struct HomeView: View {
                             onNavigateStoryMapIcon: {
                                 // When Map icon is pressed, navigate to StoryMapView()
                                 path.append(("StoryMapView"))
-                            }
+                            },
+                            currentEnergyPoints: currentEnergyPoints
                         )
                         // Hide TabView here for a more immersive experience in StoryView()
                         .toolbar(.hidden, for: .tabBar)
