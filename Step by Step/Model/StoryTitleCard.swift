@@ -5,6 +5,7 @@
 //  Created by Gustavo Vazquez on 11/27/24.
 //
 
+import Foundation
 import SwiftUI
 
 // Properties to StoryTitleCard
