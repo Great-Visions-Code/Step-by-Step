@@ -7,16 +7,21 @@
 
 import SwiftUI
 
+/// The main dashboard of the app, providing a tab-based navigation structure.
+///
+/// - Tabs:
+///   1. Achievements: Displays user achievements and progress.
+///   2. Home: The core gameplay and step-tracking interface.
+///   3. Settings: Allows users to manage app preferences and configurations.
 struct DashboardView: View {
-    // ViewModel for player stats
+    // ViewModel to manage player stats across the app.
     @StateObject private var playerStatsViewModel = PlayerStatsViewModel()
-    // Track the selected tab, defaulting to Home
+    // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
 
     var body: some View {
-        // MARK: TabView for bottom navigation
         TabView(selection: $selectedTab) {
-            // MARK: Achievements Tab
+            // Achievements tab for showcasing user accomplishments.
             AchievementsView()
                 .tabItem {
                     Image(systemName: "trophy.fill")
@@ -24,7 +29,7 @@ struct DashboardView: View {
                 }
                 .tag(0)
             
-            // MARK: Home Tab
+            // Home tab: Story selection and steps conversion.
             HomeView(
                 storyViewModel: StoryTitleCardViewModel(),
                 playerStatsViewModel: playerStatsViewModel
@@ -35,7 +40,7 @@ struct DashboardView: View {
             }
             .tag(1)
             
-            // MARK: Settings Tab
+            // Settings tab for app configuration and user preferences.
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")

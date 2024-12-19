@@ -19,6 +19,6 @@ struct StoryTitleView: View {
 
 #Preview {
     StoryTitleView(
-        title: "Story Title in StoryHomeView()"
+        title: "\"Story Title\" in StoryHomeView()"
     )
 }

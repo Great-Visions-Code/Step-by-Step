@@ -7,21 +7,24 @@
 
 import SwiftUI
 
+/// A view that displays the content of a chapter in the story.
+/// This includes a subchapter title, an image, narrative text, and a decision button for user interaction.
 struct StoryChapterContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // MARK: StoryDayAndChapterView() GV 12/14/24
+                // Displays the subchapter title for the current story section.
                 Text("SubChapterTitle")
                     .font(.title)
                     .bold()
                 
-                // NOTE: Placeholder for chapter images
+                // Placeholder image representing visual content for the chapter.
                 Image("placeholder-image")
                     .resizable()
                     .scaledToFit()
                 
-                // NOTE: Placeholder for chapter narrative
+                // Displays the narrative content for the chapter.
+                // Currently uses placeholder text for demonstration.
                 Text("""
                     Story Content Displayed Here:
                 
@@ -36,7 +39,7 @@ struct StoryChapterContentView: View {
                 
                 Spacer()
                 
-                // MARK: StoryDecisionButton() GV 12/15/24
+                // Button for user decisions related to the current chapter.
                 StoryDecisionButton()
             }
         }

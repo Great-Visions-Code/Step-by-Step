@@ -7,26 +7,32 @@
 
 import SwiftUI
 
+/// A button that converts the user's current steps into energy points.
+///
+/// This view encourages user activity by converting real-world steps into
+/// game energy, rewarding progress toward their daily step goal.
 struct ConvertToEnergyButtonView: View {
+    /// ViewModel for managing player stats, such as health and energy points.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
-    // Binding variables to allow 2-way data flow
+    /// Binding to track the current steps taken by the user.
     @Binding var currentStepsTaken: Int
+    /// Binding to track the user's total step goal.
     @Binding var totalStepsGoal: Int
     
     var body: some View {
-        // Button to convert currentStepsTaken to currentEnergyPoints
+        // A button that performs the steps-to-energy conversion and resets steps.
         Button(action: {
-            // Function call [current EP = (currentStepsTaken / totalStepsGoal)]
+            // Calculate energy points based on the user's progress toward their step goal.
             let newEnergy = ConvertToEnergyViewModel.calculateStepsToEnergy(
                 currentStepsTaken: currentStepsTaken,
                 totalStepsGoal: totalStepsGoal
             )
+            // Update the energy points in the player stats ViewModel.
             playerStatsViewModel.updateEnergy(to: newEnergy)
-            // Reset steps
+            // Reset the current steps to zero after conversion.
             currentStepsTaken = 0
         }) {
-            // Text for button
             Text("Convert to Energy")
                 .font(.title2)
                 .bold()
@@ -43,7 +49,7 @@ struct ConvertToEnergyButtonView_Previews: PreviewProvider {
         @State var stepsTaken = 5000
         @State var stepGoal = 10000
         let playerStatsViewModel = PlayerStatsViewModel()
-            
+        
         return ConvertToEnergyButtonView(
             playerStatsViewModel: playerStatsViewModel,
             currentStepsTaken: $stepsTaken,

@@ -7,47 +7,49 @@
 
 import SwiftUI
 
+/// A reusable view that provides navigation icons for the Story view.
+/// Allows users to navigate to different sections, such as the home, achievements, or map views.
 struct StoryNavigationIconsView: View {
-    // Closure to handle the navigation action
+    // Closure executed when the home icon is tapped
     var onStoryHomeIconTap: () -> Void
+    // Closure executed when the achievements icon is tapped
     var onStoryAchievementsIconTap: () -> Void
+    // Closure executed when the map icon is tapped
     var onStoryMapIconTap: () -> Void
     
     var body: some View {
-        // Navigation icons
+        // Horizontal stack for navigation icons
         HStack {
-            // House Icon
+            // Home navigation button
             Button(action: {
-                // Navigate back to StoryHomeView()
                 onStoryHomeIconTap()
             }) {
                 Image(systemName: "house.fill")
                     .font(.title2)
-                    .padding()
+                    .padding() // Adds touchable area around the icon
             }
             
-            Spacer()
+            Spacer() // Pushes the next group of buttons to the right
+            
+            // Horizontal group for achievements and map icons
             HStack(spacing: 20) {
-                
-                // Trophy Icon
+                // Achievements navigation button
                 Button(action: {
-                    // Navigate to StoryAchievementsView()
                     onStoryAchievementsIconTap()
                 }) {
                     Image(systemName: "trophy.fill")
                         .font(.title2)
                 }
                 
-                // Map Icon
+                // Map navigation button
                 Button(action: {
-                    // Navigate to StoryMapView()
                     onStoryMapIconTap()
                 }) {
                     Image(systemName: "map.fill")
                         .font(.title2)
                 }
             }
-            .padding()
+            .padding() // Adds spacing around the button group
         }
     }
 }

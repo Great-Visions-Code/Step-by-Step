@@ -7,15 +7,18 @@
 
 import SwiftUI
 
+/// Displays the main hub for a selected story, including the player's progress, current health and energy,
+/// and options for resuming, restarting, or viewing achievements.
+/// Provides navigational buttons to various sections of the app.
 struct StoryHomeView: View {
-    // Selected story to display details
+    // The story object containing title, color, completion, and details to be displayed
     var story: StoryTitleCard
+    // ViewModel to manage and observe the player's stats, such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
-    
-    // Closure to handle navigation actions
+    // Closure to handle navigation to other sections, such as resuming or starting a new story
     var onNavigateButton: (String) -> Void
     
-    // Button text and corresponding actions/values
+    /// Configuration for navigation buttons with their titles and corresponding actions.
     let buttonActions: [(title: String, action: String)] = [
         ("Resume Story", "ResumeStoryView"),
         ("Start New Story", "StoryView"),
@@ -24,24 +27,22 @@ struct StoryHomeView: View {
     
     var body: some View {
         VStack {
-            // MARK: StoryTitleView() GV 12/5/24
+            Spacer() // Spacer to push content towards the center of the screen
+            
+            // Display the title of the current story
             StoryTitleView(
                 title: story.title
             )
             .padding(.bottom, 25)
 
-            // Health/Energy Progress Bar Section
+            // Show the player's current health and energy levels
             VStack(spacing: 20) {
-                // MARK: StoryHPAndEPBarView() GV 12/5/24
-                // Story HP Bar
-                // NOTE: Possible loop here? GV 12/8/24
                 StoryHPAndEPBarView(
                     currentPoints: playerStatsViewModel.playerStats.health,
                     maxPoints: 10,
                     barColor: .red,
                     labelText: "Health"
                 )
-                // Story EP Bar
                 StoryHPAndEPBarView(
                     currentPoints: playerStatsViewModel.playerStats.energy,
                     maxPoints: 10,
@@ -51,36 +52,38 @@ struct StoryHomeView: View {
             }
             .padding()
             
+            // Display the current day and chapter of the story, along with the number of attempts
             VStack {
-                // MARK: StoryDayAndChapterView() GV 12/8/24
                 StoryDayAndChapterView(
-                    storyDay: 3,
+                    storyDay: 3, // Placeholder for the current day
                     storyTotalDays: 10,
-                    storyChapter: "Found Shelter"
+                    storyChapter: "Found Shelter" // Placeholder for the chapter name
                 )
                 .padding(.bottom, 20)
             
-                // MARK: AttemptTrackerView() GV 12/8/24
                 AttemptTrackerView(
-                    newStoryAttempt: 3
+                    newStoryAttempt: 3 // Placeholder for the number of attempts
                 )
                 .padding(.vertical, 20)
             }
             .padding()
 
-            // MARK: StoryHomeNavigationButtonView() GV 12/8/24
+            // Provide navigation buttons to resume, start a new story, or view achievements
             VStack(spacing: 20) {
                 ForEach(buttonActions, id: \.title) { button in
-                        StoryHomeNavigationButtonView(
-                            buttonText: button.title,
-                            buttonAction: {
-                                onNavigateButton(button.action)
+                    StoryHomeNavigationButtonView(
+                        buttonText: button.title,
+                        buttonAction: {
+                            onNavigateButton(button.action) // Trigger navigation based on button action
                         }
                     )
                 }
             }
+            
+            Spacer() // Spacer to balance layout and push buttons toward the bottom
         }
         .padding()
+        // Hide the default navigation back button since this is a top-level view
         .navigationBarBackButtonHidden(true)
     }
 }

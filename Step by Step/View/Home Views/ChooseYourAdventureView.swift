@@ -7,35 +7,37 @@
 
 import SwiftUI
 
+/// A view that displays a horizontal list of story cards, allowing users to select a story.
 struct ChooseYourAdventureView: View {
-    // Array from StoryTitleCard
+    /// An array of `StoryTitleCard` objects representing the available stories.
     var stories: [StoryTitleCard]
-    // Closure to notify parent about the selected story
+    
+    /// Closure to handle the selection of a story, notifying the parent view.
     var onStorySelected: (StoryTitleCard) -> Void
     
     var body: some View {
         VStack {
-            // MARK: Display Title
+            // Display the section title to prompt users to choose a story.
             Text("Choose Your Adventure:")
                 .font(.title2)
                 .bold()
                 .padding(.top)
             
-            // MARK: HScroll section for StoryTitleCard
+            // Horizontal scroll view displaying a collection of story cards.
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 15) {
-                    // ForEach loop to generate title cards
+                    // Dynamically generate a card for each story in the `stories` array.
                     ForEach(stories, id: \.title) { story in
                         StoryTitleCardView(
                             story: story,
                             onTitleCardSelected: {
+                                // Notify the parent view when a story card is selected.
                                 onStorySelected(story)
                             }
                         )
                     }
                 }
-                // Center title cards
-                .padding(.horizontal, 40)
+                .padding(.horizontal, 40) // Center the story cards within the scroll view.
             }
             .padding(.top)
         }
@@ -51,7 +53,6 @@ struct ChooseYourAdventureView: View {
             details: "DETAILS NOT SHOWN"
         ),
         StoryTitleCard(
-            // NOTE: On 100% completion, 'title' will scale down
             title: "Story Title 2",
             color: Color.gray,
             completion: 0,

@@ -7,114 +7,114 @@
 
 import SwiftUI
 
+/// The main view of the app's dashboard, providing an overview of the player's energy,
+/// step tracking progress, and available stories.
 struct HomeView: View {
-    // ViewModels for managing stories and player stats
+    // ViewModel for managing available story cards
     @StateObject var storyViewModel: StoryTitleCardViewModel
+    
+    // ViewModel for managing player stats such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
-    // Navigation path to track user navigation
+    // Tracks the navigation path for transitioning between views
     @State private var path = NavigationPath()
-    // Track selected story
+    
+    // Holds the story selected by the user, enabling navigation to its details
     @State private var selectedStory: StoryTitleCard? = nil
     
-    // Placeholder values
+    // Placeholder values for step tracking
     @State private var totalStepsGoal: Int = 10000
     @State private var currentStepsTaken: Int = 7000
 
     var body: some View {
+        // NavigationStack manages the navigation flow and associated destinations
         NavigationStack(path: $path) {
             VStack {
-                // MARK: CurrentStepsTakenProgress.swift GV 11/25/24
+                // Displays the user's progress toward their daily step goal
                 CurrentStepsTakenProgressView(
                     currentStepsTaken: currentStepsTaken,
                     totalStepsGoal: totalStepsGoal
                 )
                 
-                // MARK: ConvertToEnergyButtonView.swift GV 11/25/24
+                // Button to convert steps into energy points for use in the game
                 ConvertToEnergyButtonView(
                     playerStatsViewModel: playerStatsViewModel,
                     currentStepsTaken: $currentStepsTaken,
                     totalStepsGoal: $totalStepsGoal
                 )
                 
-                // MARK: CurrentEnergyProgressView.swift GV 11/27/24
+                // Displays the player's current energy level
                 CurrentEnergyProgressView(
                     playerStatsViewModel: playerStatsViewModel
                 )
                 
-                // MARK: ChooseYourAdventureView.swift GV 11/27/24
+                // A horizontal scrollable list of available adventures for the player to choose from
                 ChooseYourAdventureView(
                     stories: storyViewModel.stories,
                     onStorySelected: { story in
                         selectedStory = story
-                        path.append("StoryDetailsView")
+                        path.append("StoryDetailsView") // Navigate to the story details
                     }
                 )
             }
             .padding()
+            
             // MARK: Navigation Destinations
+            // Handles navigation to various destinations based on the path value
             .navigationDestination(for: String.self) { destination in
                 switch destination {
                     
-                // Navigate to StoryDetailsView()
                 case "StoryDetailsView":
+                    // Show details about the selected story
                     if let story = selectedStory {
                         StoryDetailsView(
                             story: story,
                             onEnterStoryButton: {
-                                // When "Enter Story" is pressed, navigate to StoryHomeView()
-                                path.append("StoryHomeView")
+                                path.append("StoryHomeView") // Navigate to the story's main view
                             }
                         )
                     }
                     
-                // Navigate to StoryHomeView()
                 case "StoryHomeView":
+                    // Show the main view for the selected story
                     if let story = selectedStory {
                         StoryHomeView(
                             story: story,
                             playerStatsViewModel: playerStatsViewModel,
-                            onNavigateButton: {
-                                // Append navigation destination dynamically
-                                path.append($0)
+                            onNavigateButton: { nextView in
+                                path.append(nextView) // Navigate to the specified next view
                             }
                         )
                     }
                     
-                // Navigate to StoryView()
                 case "StoryView":
+                    // Show the interactive view of the story
                     StoryView(
-                            onNavigateStoryHomeIcon: {
-                                // When Home icon is pressed in StoryView(), navigate back to StoryHomeView by removing last navigation destination
-                                path.removeLast()
-                            },
-                            onNavigateStoryAchievementsIcon: {
-                                // When Achievements icon is pressed, navigate to StoryAchievementsView()
-                                path.append("StoryAchievementsView")
-                            },
-                            onNavigateStoryMapIcon: {
-                                // When Map icon is pressed, navigate to StoryMapView()
-                                path.append(("StoryMapView"))
-                            },
-                            playerStatsViewModel: playerStatsViewModel
-                        )
-                        // Hide TabView here for a more immersive experience in StoryView()
-                        .toolbar(.hidden, for: .tabBar)
+                        onNavigateStoryHomeIcon: {
+                            path.removeLast() // Return to last view
+                        },
+                        onNavigateStoryAchievementsIcon: {
+                            path.append("StoryAchievementsView") // Navigate to story achievements
+                        },
+                        onNavigateStoryMapIcon: {
+                            path.append("StoryMapView") // Navigate to the story map
+                        },
+                        playerStatsViewModel: playerStatsViewModel
+                    )
+                    .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience
                     
-                // Navigate to StoryAchievementsView()
                 case "StoryAchievementsView":
+                    // Show achievements related to the current story
                     StoryAchievementsView()
-                        // Hide TabView here for cleaner look
-                        .toolbar(.hidden, for: .tabBar)
+                        .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience
                     
-                // Navigate to StoryMapView()
                 case "StoryMapView":
+                    // Show the map view for the current story
                     StoryMapView()
-                    // Hide TabView here to maintain immersive feel in StoryView()
-                    .toolbar(.hidden, for: .tabBar)
+                        .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience
                     
                 default:
-                    EmptyView()
+                    EmptyView() // Handle unexpected or invalid destinations
                 }
             }
         }

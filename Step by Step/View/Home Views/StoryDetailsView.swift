@@ -7,51 +7,54 @@
 
 import SwiftUI
 
+/// Displays detailed information about a selected story, including its title, completion percentage, and description.
+/// Provides an option for the user to "Enter Story," which navigates to the main story view.
 struct StoryDetailsView: View {
-    // Selected story to display details
+    // The story object containing title, color, completion, and details to be displayed
     var story: StoryTitleCard
-    // Closure to notify parent when Enter Story button is tapped
+    // Closure to handle the action when the "Enter Story" button is pressed
     var onEnterStoryButton: () -> Void
         
     var body: some View {
-            VStack(spacing: 20) {
-                Spacer()
-                
-                // MARK: Story Title GV 12/1/24
-                Text(story.title)
-                    .font(.largeTitle)
-                    .bold()
-                
-                // MARK: Completion percentage GV 12/1/24
-                Text("Completion: \(story.completion)%")
-                    .font(.headline)
-                
-                // MARK: Story details GV 12/1/24
+        VStack(spacing: 20) {
+            Spacer() // Spacer to push content towards the center of the screen
+            
+            // Display the story title prominently
+            Text(story.title)
+                .font(.largeTitle)
+                .bold()
+            
+            // Show the completion percentage of the story
+            Text("Completion: \(story.completion)%")
+                .font(.headline)
+            
+            // Scrollable section for the story's detailed description
+            ScrollView(.vertical, showsIndicators: true) {
                 Text(story.details)
                     .font(.body)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .padding()
-                
-                Spacer()
-                
-                // MARK: Enter Story Button GV 12/1/24
-                Button(action: {
-                    onEnterStoryButton()
-                }) {
-                    Text("Enter Story")
-                        .font(.title2)
-                        .bold()
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
-                }
             }
-            .padding()
-            // Hide navigation back button since TabView is visible
-            .navigationBarBackButtonHidden(true)
+            .frame(height: 450) // Adjust the height as needed
+                        
+            // A button allowing the user to enter the selected story
+            Button(action: {
+                onEnterStoryButton() // Trigger the closure to navigate to the main story view
+            }) {
+                Text("Enter Story")
+                    .font(.title2)
+                    .bold()
+                    .padding()
+                    .frame(maxWidth: .infinity) // Make the button span the full width
+                    .background(Color.blue)
+                    .foregroundStyle(.white)
+                    .cornerRadius(20)
+            }
+        }
+        .padding()
+        // Hide the default navigation back button as the TabView is visible for navigation
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -63,6 +66,8 @@ struct StoryDetailsView: View {
             completion: 100,
             details: """
                     SAMPLE: 'Story Title', this is where we would show the details of the story.
+                    
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
                     
                     Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
                     """
