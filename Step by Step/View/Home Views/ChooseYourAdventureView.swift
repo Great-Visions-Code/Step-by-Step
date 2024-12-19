@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChooseYourAdventureView: View {
-    // Array from StoryTitleCardModel.swift
+    // Array from StoryTitleCard
     var stories: [StoryTitleCard]
     // Closure to notify parent about the selected story
     var onStorySelected: (StoryTitleCard) -> Void
