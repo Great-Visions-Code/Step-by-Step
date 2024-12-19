@@ -8,22 +8,27 @@
 import SwiftUI
 
 class PlayerStatsViewModel: ObservableObject {
-    @Published var currentHealthPoints: Int
-    @Published var currentEnergyPoints: Int
+    @Published private(set) var playerStats: PlayerStats
     
-    // Default values
+    // Initialize with default values
     init(health: Int = 9, energy: Int = 0) {
-        self.currentHealthPoints = health
-        self.currentEnergyPoints = energy
+        self.playerStats = PlayerStats(
+            health: health,
+            energy: energy
+        )
     }
     
     // Method to decrease health
     func decreaseHealth(by amount: Int) {
-        currentHealthPoints = max(currentHealthPoints - amount, 0)
+        playerStats.decreaseHealth(by: amount)
     }
     
     // Method to increase health
     func increaseHealth(by amount: Int) {
-        currentHealthPoints = min(currentHealthPoints + amount, 10)
+        playerStats.increaseHealth(by: amount)
+    }
+    
+    func updateEnergy(to newEnergy: Int) {
+        playerStats.energy = min(newEnergy, 10)
     }
 }

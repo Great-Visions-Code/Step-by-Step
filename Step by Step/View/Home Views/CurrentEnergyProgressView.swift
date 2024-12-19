@@ -11,7 +11,7 @@ struct CurrentEnergyProgressView: View {
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     var body: some View {
-        Text("Current Energy: \(playerStatsViewModel.currentEnergyPoints)")
+        Text("Current Energy: \(playerStatsViewModel.playerStats.energy)")
             .font(.headline)
             .padding(.top)
     }

@@ -16,7 +16,7 @@ struct PlayerStatsView: View {
                 // MARK: currentHealthPoints (HP)
                 Image(systemName: "heart.fill")
                     .foregroundStyle(.red)
-                Text("\(playerStatsViewModel.currentHealthPoints) / 10")
+                Text("\(playerStatsViewModel.playerStats.health) / 10")
                     .font(.headline)
             }
             Spacer()
@@ -24,7 +24,7 @@ struct PlayerStatsView: View {
                 // MARK: currentEnergyPoints (EP)
                 Image(systemName: "bolt.fill")
                     .foregroundStyle(.blue)
-                Text("\(playerStatsViewModel.currentEnergyPoints) / 10")
+                Text("\(playerStatsViewModel.playerStats.energy) / 10")
                     .font(.headline)
             }
             Spacer()

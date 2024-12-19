@@ -18,10 +18,11 @@ struct ConvertToEnergyButtonView: View {
         // Button to convert currentStepsTaken to currentEnergyPoints
         Button(action: {
             // Function call [current EP = (currentStepsTaken / totalStepsGoal)]
-            playerStatsViewModel.currentEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
+            let newEnergy = ConvertToEnergyViewModel.calculateStepsToEnergy(
                 currentStepsTaken: currentStepsTaken,
                 totalStepsGoal: totalStepsGoal
             )
+            playerStatsViewModel.updateEnergy(to: newEnergy)
             // Reset steps
             currentStepsTaken = 0
         }) {

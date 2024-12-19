@@ -36,14 +36,14 @@ struct StoryHomeView: View {
                 // Story HP Bar
                 // NOTE: Possible loop here? GV 12/8/24
                 StoryHPAndEPBarView(
-                    currentPoints: playerStatsViewModel.currentHealthPoints,
+                    currentPoints: playerStatsViewModel.playerStats.health,
                     maxPoints: 10,
                     barColor: .red,
                     labelText: "Health"
                 )
                 // Story EP Bar
                 StoryHPAndEPBarView(
-                    currentPoints: playerStatsViewModel.currentEnergyPoints,
+                    currentPoints: playerStatsViewModel.playerStats.energy,
                     maxPoints: 10,
                     barColor: .blue,
                     labelText: "Energy"
