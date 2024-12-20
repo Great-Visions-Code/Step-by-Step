@@ -15,23 +15,20 @@ struct ConvertToEnergyButtonView: View {
     /// ViewModel for managing player stats, such as health and energy points.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
-    /// Binding to track the current steps taken by the user.
-    @Binding var currentStepsTaken: Int
-    /// Binding to track the user's total step goal.
-    @Binding var totalStepsGoal: Int
+    /// ViewModel for managing steps taken and goals.
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
     var body: some View {
         // A button that performs the steps-to-energy conversion and resets steps.
         Button(action: {
-            // Calculate energy points based on the user's progress toward their step goal.
-            let newEnergy = ConvertToEnergyViewModel.calculateStepsToEnergy(
-                currentStepsTaken: currentStepsTaken,
-                totalStepsGoal: totalStepsGoal
-            )
+            // Calculate energy points based on the user's progress toward their step goal in ViewModel.
+            let newEnergy = stepTrackerViewModel.calculateEnergyPoints()
+            
             // Update the energy points in the player stats ViewModel.
             playerStatsViewModel.updateEnergy(to: newEnergy)
-            // Reset the current steps to zero after conversion.
-            currentStepsTaken = 0
+            
+            // Reset the current steps in ViewModel.
+            stepTrackerViewModel.resetSteps()
         }) {
             Text("Convert to Energy")
                 .font(.title2)
@@ -46,14 +43,12 @@ struct ConvertToEnergyButtonView: View {
 
 struct ConvertToEnergyButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        @State var stepsTaken = 5000
-        @State var stepGoal = 10000
         let playerStatsViewModel = PlayerStatsViewModel()
+        let stepTrackerViewModel = StepTrackerViewModel()
         
         return ConvertToEnergyButtonView(
             playerStatsViewModel: playerStatsViewModel,
-            currentStepsTaken: $stepsTaken,
-            totalStepsGoal: $stepGoal
+            stepTrackerViewModel: stepTrackerViewModel
         )
     }
 }

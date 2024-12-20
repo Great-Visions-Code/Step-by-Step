@@ -16,6 +16,10 @@ import SwiftUI
 struct DashboardView: View {
     // ViewModel to manage player stats across the app.
     @StateObject private var playerStatsViewModel = PlayerStatsViewModel()
+    
+    // ViewModel to manage step tracking across the app.
+    @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
+    
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
 
@@ -32,7 +36,8 @@ struct DashboardView: View {
             // Home tab: Story selection and steps conversion.
             HomeView(
                 storyViewModel: StoryTitleCardViewModel(),
-                playerStatsViewModel: playerStatsViewModel
+                playerStatsViewModel: playerStatsViewModel,
+                stepTrackerViewModel: stepTrackerViewModel
             )
             .tabItem {
                 Image(systemName: "house.fill")

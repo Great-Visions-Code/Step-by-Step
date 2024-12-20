@@ -13,10 +13,8 @@ import SwiftUI
 /// encouraging them to stay active and reach their step goal for the day.
 /// Future enhancements will include a circular progress bar.
 struct CurrentStepsTakenProgressView: View {
-    /// The number of steps the user has taken so far.
-    var currentStepsTaken: Int
-    /// The user's total daily step goal.
-    var totalStepsGoal: Int
+    /// The ViewModel for managing step tracking data and logic.
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
     var body: some View {
         VStack {
@@ -28,7 +26,7 @@ struct CurrentStepsTakenProgressView: View {
             
             // Placeholder text showing the current steps taken versus the total goal.
             // To be replaced with a circular progress bar.
-            Text("\(currentStepsTaken) out of a goal of \(totalStepsGoal)")
+            Text("\(stepTrackerViewModel.stepTracker.currentStepsTaken) out of a goal of \(stepTrackerViewModel.stepTracker.totalStepsGoals)")
                 .font(.headline)
                 .padding(.bottom)
         }
@@ -36,8 +34,9 @@ struct CurrentStepsTakenProgressView: View {
 }
 
 #Preview {
+    let stepTrackerViewModel = StepTrackerViewModel()
+    
     CurrentStepsTakenProgressView(
-        currentStepsTaken: 5000,
-        totalStepsGoal: 10000
+        stepTrackerViewModel: stepTrackerViewModel
     )
 }

@@ -16,15 +16,14 @@ struct HomeView: View {
     // ViewModel for managing player stats such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
+    // ViewModel for managing step tracking data.
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    
     // Tracks the navigation path for transitioning between views
     @State private var path = NavigationPath()
     
     // Holds the story selected by the user, enabling navigation to its details
     @State private var selectedStory: StoryTitleCard? = nil
-    
-    // Placeholder values for step tracking
-    @State private var totalStepsGoal: Int = 10000
-    @State private var currentStepsTaken: Int = 7000
 
     var body: some View {
         // NavigationStack manages the navigation flow and associated destinations
@@ -32,15 +31,13 @@ struct HomeView: View {
             VStack {
                 // Displays the user's progress toward their daily step goal
                 CurrentStepsTakenProgressView(
-                    currentStepsTaken: currentStepsTaken,
-                    totalStepsGoal: totalStepsGoal
+                    stepTrackerViewModel: stepTrackerViewModel
                 )
                 
                 // Button to convert steps into energy points for use in the game
                 ConvertToEnergyButtonView(
                     playerStatsViewModel: playerStatsViewModel,
-                    currentStepsTaken: $currentStepsTaken,
-                    totalStepsGoal: $totalStepsGoal
+                    stepTrackerViewModel: stepTrackerViewModel
                 )
                 
                 // Displays the player's current energy level
@@ -124,6 +121,7 @@ struct HomeView: View {
 #Preview {
     HomeView(
         storyViewModel: StoryTitleCardViewModel(),
-        playerStatsViewModel: PlayerStatsViewModel()
+        playerStatsViewModel: PlayerStatsViewModel(),
+        stepTrackerViewModel: StepTrackerViewModel()
     )
 }
