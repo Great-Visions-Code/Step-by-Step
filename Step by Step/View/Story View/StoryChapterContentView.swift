@@ -40,7 +40,19 @@ struct StoryChapterContentView: View {
                 Spacer()
                 
                 // Button for user decisions related to the current chapter.
-                StoryDecisionButton()
+                StoryDecisionButton (
+                    options: [
+                        (title: "Option 1",
+                         action: {
+                             // Placeholder action for option 1
+                         }),
+                        
+                        (title: "Option 2",
+                         action: {
+                             // Placeholder action for option 2
+                         }),
+                    ]
+                )
             }
         }
     }
