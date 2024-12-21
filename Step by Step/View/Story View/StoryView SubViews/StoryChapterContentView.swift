@@ -14,7 +14,7 @@ struct StoryChapterContentView: View {
         ScrollView {
             VStack(spacing: 20) {
                 // Displays the subchapter title for the current story section.
-                Text("SubChapterTitle")
+                Text("ChapterTitle")
                     .font(.title)
                     .bold()
                 

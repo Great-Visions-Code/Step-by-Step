@@ -19,7 +19,7 @@ class StoryTitleCardViewModel: ObservableObject {
         StoryTitleCard(
             title: "Survive",
             color: Color.green,
-            completion: 10,
+            completion: 0,
             details: """
             In 'Survive,' you wake up to find your city plunged into chaos overnight. 
             A zombie apocalypse has turned your once-familiar world into a dangerous and unpredictable battleground.
@@ -39,7 +39,7 @@ class StoryTitleCardViewModel: ObservableObject {
         StoryTitleCard(
             title: "Future Adventures",
             color: Color.gray,
-            completion: 0,
+            completion: 100,
             details: """
             Stay tuned for upcoming thrilling adventures that will test your strategy!
             """
