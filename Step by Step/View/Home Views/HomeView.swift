@@ -15,13 +15,13 @@ struct HomeView: View {
     
     // ViewModel for managing player stats such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
-    
     // ViewModel for managing step tracking data.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    // ViewModel for managing achievements data.
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
     
     // Tracks the navigation path for transitioning between views
     @State private var path = NavigationPath()
-    
     // Holds the story selected by the user, enabling navigation to its details
     @State private var selectedStory: StoryTitleCard? = nil
 
@@ -33,18 +33,15 @@ struct HomeView: View {
                 CurrentStepsTakenProgressView(
                     stepTrackerViewModel: stepTrackerViewModel
                 )
-                
                 // Button to convert steps into energy points for use in the game
                 ConvertToEnergyButtonView(
                     playerStatsViewModel: playerStatsViewModel,
                     stepTrackerViewModel: stepTrackerViewModel
                 )
-                
                 // Displays the player's current energy level
                 CurrentEnergyProgressView(
                     playerStatsViewModel: playerStatsViewModel
                 )
-                
                 // A horizontal scrollable list of available adventures for the player to choose from
                 ChooseYourAdventureView(
                     stories: storyViewModel.stories,
@@ -78,6 +75,7 @@ struct HomeView: View {
                         StoryHomeView(
                             story: story,
                             playerStatsViewModel: playerStatsViewModel,
+                            achievementsViewModel: achievementsViewModel,
                             onNavigateButton: { nextView in
                                 path.append(nextView) // Navigate to the specified next view
                             }
@@ -122,6 +120,7 @@ struct HomeView: View {
     HomeView(
         storyViewModel: StoryTitleCardViewModel(),
         playerStatsViewModel: PlayerStatsViewModel(),
-        stepTrackerViewModel: StepTrackerViewModel()
+        stepTrackerViewModel: StepTrackerViewModel(),
+        achievementsViewModel: AchievementsViewModel()
     )
 }

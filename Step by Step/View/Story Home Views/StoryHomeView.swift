@@ -13,8 +13,11 @@ import SwiftUI
 struct StoryHomeView: View {
     // The story object containing title, color, completion, and details to be displayed
     var story: StoryTitleCard
+    
     // ViewModel to manage and observe the player's stats, such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
+    
     // Closure to handle navigation to other sections, such as resuming or starting a new story
     var onNavigateButton: (String) -> Void
     
@@ -60,9 +63,10 @@ struct StoryHomeView: View {
                     storyChapter: "Found Shelter" // Placeholder for the chapter name
                 )
                 .padding(.bottom, 20)
-            
+                
+                // Display Attempts taken
                 AttemptTrackerView(
-                    newStoryAttempt: 3 // Placeholder for the number of attempts
+                    achievementsViewModel: achievementsViewModel
                 )
                 .padding(.vertical, 20)
             }
@@ -97,6 +101,7 @@ struct StoryHomeView: View {
             details: "DETAILS NOT SHOWN"
         ),
         playerStatsViewModel: PlayerStatsViewModel(),
+        achievementsViewModel: AchievementsViewModel(),
         onNavigateButton: { _ in }
     )
 }
