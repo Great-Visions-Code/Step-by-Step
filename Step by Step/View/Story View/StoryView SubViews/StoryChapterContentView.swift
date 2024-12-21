@@ -13,6 +13,10 @@ struct StoryChapterContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
+                // Displays the Day progression
+                Text("Day 1 out of 10")
+                    .font(.title)
+                
                 // Displays the subchapter title for the current story section.
                 Text("ChapterTitle")
                     .font(.title)
