@@ -58,7 +58,7 @@ struct StoryHomeView: View {
             // Display the current day and chapter of the story, along with the number of attempts
             VStack {
                 StoryDayAndChapterView(
-                    storyDay: 3, // Placeholder for the current day
+                    storyDay: 1, // Placeholder for the current day
                     storyTotalDays: 10,
                     storyChapter: "Found Shelter" // Placeholder for the chapter name
                 )
