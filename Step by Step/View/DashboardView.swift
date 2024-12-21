@@ -20,6 +20,8 @@ struct DashboardView: View {
     @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
     // ViewModel to manage achievements across the app.
     @StateObject private var achievementsViewModel = AchievementsViewModel()
+    // ViewModel to manage story content across the app.
+    @StateObject private var storyContentViewModel = StoryContentViewModel()
     
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
@@ -39,7 +41,8 @@ struct DashboardView: View {
                 storyViewModel: StoryTitleCardViewModel(),
                 playerStatsViewModel: playerStatsViewModel,
                 stepTrackerViewModel: stepTrackerViewModel,
-                achievementsViewModel: achievementsViewModel
+                achievementsViewModel: achievementsViewModel,
+                storyContentViewModel: storyContentViewModel
             )
             .tabItem {
                 Image(systemName: "house.fill")

@@ -19,6 +19,8 @@ struct StoryView: View {
     
     // The player's stats, including health and energy, managed through the view model
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    // The story's content, including chapters and decisions, managed through the view model
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
 
     var body: some View {
         VStack {
@@ -37,7 +39,8 @@ struct StoryView: View {
             
             // Displays the player's current health and energy
             PlayerStatsView(
-                playerStatsViewModel: playerStatsViewModel
+                playerStatsViewModel: playerStatsViewModel,
+                storyContentViewModel: storyContentViewModel
             )
             
             // Separator for visual clarity
@@ -45,7 +48,9 @@ struct StoryView: View {
                 .padding(.vertical, 10)
             
             // Displays the current chapter's title, content, and options
-            StoryChapterContentView()
+            StoryChapterContentView(
+                storyContentViewModel: storyContentViewModel
+            )
         }
         // Hides the default navigation back button for a more immersive experience
         .navigationBarBackButtonHidden(true)
@@ -57,6 +62,7 @@ struct StoryView: View {
         onNavigateStoryHomeIcon: {},
         onNavigateStoryAchievementsIcon: {},
         onNavigateStoryMapIcon: {},
-        playerStatsViewModel: PlayerStatsViewModel()
+        playerStatsViewModel: PlayerStatsViewModel(),
+        storyContentViewModel: StoryContentViewModel()
     )
 }

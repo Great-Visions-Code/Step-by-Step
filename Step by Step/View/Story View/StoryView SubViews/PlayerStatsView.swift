@@ -12,6 +12,8 @@ import SwiftUI
 struct PlayerStatsView: View {
     /// ViewModel to manage and observe player stats, such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    /// ViewModel to track story content and progress, including the current day.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     var body: some View {
         HStack {
@@ -31,9 +33,14 @@ struct PlayerStatsView: View {
                     .font(.headline)
             }
             Spacer()
-            // Placeholder to show the current story day progress.
-            Text("Day 1 out of 10")
-                .font(.headline)
+            // Displays the current story day progress dynamically based on the StoryContentViewModel.
+            if let currentChapter = storyContentViewModel.currentChapter {
+                Text("Day \(currentChapter.storyDay) out of 10")
+                    .font(.headline)
+            } else {
+                Text("Day 1 out of 10") // Default placeholder if no chapter is loaded
+                    .font(.headline)
+            }
         }
         .padding([.leading, .trailing])
     }
@@ -41,6 +48,7 @@ struct PlayerStatsView: View {
 
 #Preview {
     PlayerStatsView(
-        playerStatsViewModel: PlayerStatsViewModel()
+        playerStatsViewModel: PlayerStatsViewModel(),
+        storyContentViewModel: StoryContentViewModel()
     )
 }

@@ -25,7 +25,7 @@ class StoryContentViewModel: ObservableObject {
             StoryContent(
                 storyDay: 1,
                 chapterTitle: "The Beginning",
-                chapterImages: ["placeholderdashimage"],
+                chapterImages: ["survive-day1-beginning-bedroomView-image"],
                 chapterText: """
                     You wake up to chaos. The world outside your window is unrecognizable, with fires burning and eerie silence in the streets.
                     What will you do first?
@@ -38,7 +38,7 @@ class StoryContentViewModel: ObservableObject {
             StoryContent(
                 storyDay: 1,
                 chapterTitle: "Outside Chaos",
-                chapterImages: ["day1-outside-chaos-imagenamedashimage"],
+                chapterImages: ["survive-day1-outsideChaos-imagename"],
                 chapterText: """
                     The streets are deserted, but danger lurks around every corner. You spot a figure stumbling toward you.
                     """,

@@ -19,6 +19,8 @@ struct HomeView: View {
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     // ViewModel for managing achievements data.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
+    // ViewModel for managing story content data.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     // Tracks the navigation path for transitioning between views
     @State private var path = NavigationPath()
@@ -76,6 +78,7 @@ struct HomeView: View {
                             story: story,
                             playerStatsViewModel: playerStatsViewModel,
                             achievementsViewModel: achievementsViewModel,
+                            storyContentViewModel: storyContentViewModel,
                             onNavigateButton: { nextView in
                                 path.append(nextView) // Navigate to the specified next view
                             }
@@ -94,7 +97,8 @@ struct HomeView: View {
                         onNavigateStoryMapIcon: {
                             path.append("StoryMapView") // Navigate to the story map
                         },
-                        playerStatsViewModel: playerStatsViewModel
+                        playerStatsViewModel: playerStatsViewModel,
+                        storyContentViewModel: storyContentViewModel
                     )
                     .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience
                     
@@ -121,6 +125,7 @@ struct HomeView: View {
         storyViewModel: StoryTitleCardViewModel(),
         playerStatsViewModel: PlayerStatsViewModel(),
         stepTrackerViewModel: StepTrackerViewModel(),
-        achievementsViewModel: AchievementsViewModel()
+        achievementsViewModel: AchievementsViewModel(),
+        storyContentViewModel: StoryContentViewModel()
     )
 }

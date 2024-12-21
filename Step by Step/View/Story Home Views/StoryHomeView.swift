@@ -16,7 +16,10 @@ struct StoryHomeView: View {
     
     // ViewModel to manage and observe the player's stats, such as health and energy
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    // ViewModel to manage achievements
     @ObservedObject var achievementsViewModel: AchievementsViewModel
+    // ViewModel to manage the story content
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     // Closure to handle navigation to other sections, such as resuming or starting a new story
     var onNavigateButton: (String) -> Void
@@ -58,9 +61,7 @@ struct StoryHomeView: View {
             // Display the current day and chapter of the story, along with the number of attempts
             VStack {
                 StoryDayAndChapterView(
-                    storyDay: 1, // Placeholder for the current day
-                    storyTotalDays: 10,
-                    storyChapter: "Found Shelter" // Placeholder for the chapter name
+                    storyContentViewModel: storyContentViewModel
                 )
                 .padding(.bottom, 20)
                 
@@ -102,6 +103,7 @@ struct StoryHomeView: View {
         ),
         playerStatsViewModel: PlayerStatsViewModel(),
         achievementsViewModel: AchievementsViewModel(),
+        storyContentViewModel: StoryContentViewModel(),
         onNavigateButton: { _ in }
     )
 }
