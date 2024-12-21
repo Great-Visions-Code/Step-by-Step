@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-/// Represents the player's statistics in the game, including health and energy.
+/// Model representing the player's statistics in the game, including health and energy.
 struct PlayerStats {
     /// The current health points of the player.
     var health: Int

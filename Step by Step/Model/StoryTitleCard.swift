@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-/// Represents a single story card in the game, containing metadata and visual properties.
+/// Model representing a single story card in the game, containing metadata and visual properties.
 struct StoryTitleCard: Hashable {
     /// The title of the story.
     let title: String

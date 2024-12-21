@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A view model responsible for managing the player's stats (health and energy) in the app.
+/// ViewModel responsible for managing the player's stats (health and energy) in the app.
 class PlayerStatsViewModel: ObservableObject {
     /// Published player stats model containing health and energy.
     /// The `private(set)` access ensures that the stats can only be modified through this view model's methods.
