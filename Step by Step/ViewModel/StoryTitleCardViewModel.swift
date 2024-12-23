@@ -21,15 +21,13 @@ class StoryTitleCardViewModel: ObservableObject {
             color: Color.green,
             completion: 0,
             details: """
-            In 'Survive,' you wake up to find your city plunged into chaos overnight. 
-            A zombie apocalypse has turned your once-familiar world into a dangerous and unpredictable battleground.
-            
-            Your goal is to survive for 10 days and reach the evacuation center at the city's edge, where safety awaits.
-            
-            Over the course of 10 real-world days, you’ll face tough choices and limited resources.
-            Expect a thrilling, high-stakes adventure where death lurks at every corner, from zombie attacks to starvation, 
-            accidents, and hostile survivors. With multiple pathways to explore and few routes to ultimate survival, the 
-            challenge will test your resolve and encourage you to take steps—both in-game and in real life—to make it out alive.
+            In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
+
+            Your goal is simple yet daunting: survive for 10 in-game days and reach the evacuation center at the city's edge, where safety awaits. Each day presents new challenges, from scavenging for supplies to fending off zombies and navigating the unpredictable dangers of a collapsing society.
+
+            This story is not just about survival—it's about taking steps to secure your fate. Literally. Your real-life steps fuel your progress in the game. The more steps you take, the more energy you earn to make critical decisions and advance through the story. But beware: impulsive choices may cost you dearly, whether it’s starvation, accidents, or hostile survivors.
+
+            Will you make it to safety, or will you succumb to the chaos? Step into the story and find out!
             """
         ),
 
