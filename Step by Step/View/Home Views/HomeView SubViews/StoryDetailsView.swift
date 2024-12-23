@@ -28,6 +28,8 @@ struct StoryDetailsView: View {
             Text("Completion: \(story.completion)%")
                 .font(.headline)
             
+            Divider()
+            
             // Scrollable section for the story's detailed description.
             ScrollView(.vertical, showsIndicators: true) {
                 Text(story.details)

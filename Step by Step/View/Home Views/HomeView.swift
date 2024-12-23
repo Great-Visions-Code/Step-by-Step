@@ -30,6 +30,7 @@ struct HomeView: View {
     var body: some View {
         // NavigationStack manages the navigation flow and associated destinations.
         NavigationStack(path: $path) {
+            Spacer()
             VStack {
                 // Displays the user's progress toward their daily step goal.
                 CurrentStepsTakenProgressView(
@@ -54,6 +55,8 @@ struct HomeView: View {
                 )
             }
             .padding()
+            Spacer()
+            Divider()
             
             // MARK: Navigation Destinations.
             // Handles navigation to various destinations based on the path value.
