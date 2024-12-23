@@ -11,8 +11,6 @@ import SwiftUI
 struct StoryMapView: View {
     var body: some View {
         Text("Story Map View Placeholder")
-            .font(.title)
-            .padding()
     }
 }
 
