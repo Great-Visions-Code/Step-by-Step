@@ -17,7 +17,7 @@ struct StoryDayAndChapterView: View {
         VStack(spacing: 10) {
             if let currentChapter = storyContentViewModel.currentChapter {
                 // Display the current day and total days to track user progress.
-                Text("Day \(currentChapter.storyDay) out of 10")
+                Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
                     .font(.title)
                     .fontWeight(.medium)
                 

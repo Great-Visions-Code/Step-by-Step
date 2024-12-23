@@ -111,4 +111,10 @@ class StoryContentViewModel: ObservableObject {
             currentChapter = nextChapter
         }
     }
+    
+    /// A computed property to get the total number of unique story days.
+    var totalDays: Int {
+        let uniqueDays = Set(chapters.map { $0.storyDay }).filter { $0 > 0 }
+        return uniqueDays.count
+    }
 }

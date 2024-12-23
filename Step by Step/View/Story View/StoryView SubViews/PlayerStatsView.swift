@@ -35,7 +35,7 @@ struct PlayerStatsView: View {
             Spacer()
             // Displays the current story day progress dynamically based on the StoryContentViewModel.
             if let currentChapter = storyContentViewModel.currentChapter {
-                Text("Day \(currentChapter.storyDay) out of 10")
+                Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
                     .font(.headline)
             } else {
                 Text("Day 1 out of 10") // Default placeholder if no chapter is loaded
