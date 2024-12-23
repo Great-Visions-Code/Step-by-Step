@@ -98,6 +98,11 @@ class StoryContentViewModel: ObservableObject {
         // Start with the first chapter.
         currentChapter = chapters.first
     }
+    
+    /// Resets the story to Day 1 Chapter 1.
+    func resetStory() {
+        currentChapter = chapters.first
+    }
 
     /// Updates the current chapter based on the player's decision.
     /// - Parameter nextChapterID: The ID of the next chapter.

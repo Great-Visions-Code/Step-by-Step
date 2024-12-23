@@ -79,6 +79,7 @@ struct StoryHomeView: View {
                     StoryHomeNavigationButtonView(
                         buttonText: button.title,
                         buttonAction: {
+                            storyContentViewModel.resetStory() // Reset the story to Day 1 Chapter 1.
                             onNavigateButton(button.action) // Trigger navigation based on button action
                         }
                     )
