@@ -59,7 +59,7 @@ class StoryContentViewModel: ObservableObject {
                 chapterID: 3,
                 storyDay: 2,
                 chapterTitle: "New Day",
-                chapterImages: ["survive-day2-shelter-image"],
+                chapterImages: ["survive-day2-newDay-shelter-image"],
                 chapterText: """
                     You find shelter for the night, but you’re unsure how to proceed. Will you take shelter or explore?
                     """,
