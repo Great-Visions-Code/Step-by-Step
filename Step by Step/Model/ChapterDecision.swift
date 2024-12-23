@@ -12,5 +12,5 @@ import SwiftUI
 struct ChapterDecision {
     let decisionText: String
     /// The ID of the next chapter this decision leads to.
-    let nextChapterID: Int
+    let nextChapterID: Int?
 }
