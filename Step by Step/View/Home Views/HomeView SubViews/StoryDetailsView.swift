@@ -10,25 +10,25 @@ import SwiftUI
 /// Displays detailed information about a selected story, including its title, completion percentage, and description.
 /// Provides an option for the user to "Enter Story," which navigates to the main story view.
 struct StoryDetailsView: View {
-    // The story object containing title, color, completion, and details to be displayed
+    // The story object containing title, color, completion, and details to be displayed.
     var story: StoryTitleCard
-    // Closure to handle the action when the "Enter Story" button is pressed
+    // Closure to handle the action when the "Enter Story" button is pressed.
     var onEnterStoryButton: () -> Void
         
     var body: some View {
         VStack(spacing: 20) {
-            Spacer() // Spacer to push content towards the center of the screen
+            Spacer() // Spacer to push content towards the center of the screen.
             
-            // Display the story title prominently
+            // Display the story title prominently.
             Text(story.title)
                 .font(.largeTitle)
                 .bold()
             
-            // Show the completion percentage of the story
+            // Show the completion percentage of the story.
             Text("Completion: \(story.completion)%")
                 .font(.headline)
             
-            // Scrollable section for the story's detailed description
+            // Scrollable section for the story's detailed description.
             ScrollView(.vertical, showsIndicators: true) {
                 Text(story.details)
                     .font(.body)
@@ -36,24 +36,24 @@ struct StoryDetailsView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
-            .frame(height: 450) // Adjust the height as needed
+            .frame(height: 450) // Adjust the height as needed.
                         
-            // A button allowing the user to enter the selected story
+            // A button allowing the user to enter the selected story.
             Button(action: {
-                onEnterStoryButton() // Trigger the closure to navigate to the main story view
+                onEnterStoryButton() // Trigger the closure to navigate to the main story view.
             }) {
                 Text("Enter Story")
                     .font(.title2)
                     .bold()
                     .padding()
-                    .frame(maxWidth: .infinity) // Make the button span the full width
+                    .frame(maxWidth: .infinity) // Make the button span the full width.
                     .background(Color.blue)
                     .foregroundStyle(.white)
                     .cornerRadius(20)
             }
         }
         .padding()
-        // Hide the default navigation back button as the TabView is visible for navigation
+        // Hide the default navigation back button as the TabView is visible for navigation.
         .navigationBarBackButtonHidden(true)
     }
 }

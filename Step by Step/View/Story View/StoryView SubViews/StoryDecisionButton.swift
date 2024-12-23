@@ -19,15 +19,15 @@ struct StoryDecisionButton: View {
                 Button(action: option.action) {
                     Text(option.title)
                         .bold()
-                        .frame(maxWidth: .infinity) // Ensures the button stretches across the available width
+                        .frame(maxWidth: .infinity) // Ensures the button stretches across the available width.
                         .padding()
                         .background(Color.orange)
                         .foregroundColor(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 20)) // Adds rounded corners to the button
+                        .clipShape(RoundedRectangle(cornerRadius: 20)) // Adds rounded corners to the button.
                 }
             }
         }
-        .padding() // Adds padding around the entire VStack
+        .padding() // Adds padding around the entire VStack.
     }
 }
 
@@ -36,7 +36,7 @@ struct StoryDecisionButton: View {
         options: [
             (title: "Option 1", action: { print("Option 1 Selected") }),
             (title: "Option 2", action: { print("Option 2 Selected") }),
-            (title: "Option 3", action: { print("Option 3 Selected") }) // Example of scalability
+            (title: "Option 3", action: { print("Option 3 Selected") }) // Example of scalability.
         ]
     )
 }

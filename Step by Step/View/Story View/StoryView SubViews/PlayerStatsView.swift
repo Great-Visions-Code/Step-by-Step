@@ -38,7 +38,7 @@ struct PlayerStatsView: View {
                 Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
                     .font(.headline)
             } else {
-                Text("Day 1 out of 10") // Default placeholder if no chapter is loaded
+                Text("Day 1 out of 10") // Default placeholder if no chapter is loaded.
                     .font(.headline)
             }
         }

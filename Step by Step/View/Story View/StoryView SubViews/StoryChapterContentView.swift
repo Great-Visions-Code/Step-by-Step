@@ -48,7 +48,7 @@ struct StoryChapterContentView: View {
                     )
                 }
             } else {
-                // Fallback UI if no chapter is loaded
+                // Fallback UI if no chapter is loaded.
                 Text("No Chapter Available")
                     .font(.title)
                     .padding()
