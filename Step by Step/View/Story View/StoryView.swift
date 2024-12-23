@@ -48,9 +48,14 @@ struct StoryView: View {
                 .padding(.vertical, 10)
             
             // Displays the current chapter's title, content, and options.
-            StoryChapterContentView(
-                storyContentViewModel: storyContentViewModel
-            )
+            if storyContentViewModel.currentChapter != nil {
+                StoryChapterContentView(
+                    storyContentViewModel: storyContentViewModel
+                )
+            } else {
+                Text("No Chapter Available")
+                    .font(.headline)
+            }
         }
         // Hides the default navigation back button for a more immersive experience.
         .navigationBarBackButtonHidden(true)

@@ -13,6 +13,8 @@ class StoryContentViewModel: ObservableObject {
     @Published private(set) var chapters: [StoryContent] = []
     /// Tracks the current chapter being displayed.
     @Published private(set) var currentChapter: StoryContent?
+    /// Tracks the last viewed chapter's ID.
+    private var lastViewedChapterID: Int?
 
     /// Initializes the ViewModel with predefined chapters for the story.
     init() {
@@ -111,6 +113,15 @@ class StoryContentViewModel: ObservableObject {
             currentChapter = nextChapter
         }
     }
+    
+    /// Resumes the last viewed chapter.
+       func resumeStory() {
+           if let lastChapterID = lastViewedChapterID,
+              let lastChapter = chapters.first(where: { $0.chapterID == lastChapterID }) {
+               currentChapter = lastChapter
+           }
+       }
+
     
     /// A computed property to get the total number of unique story days.
     var totalDays: Int {
