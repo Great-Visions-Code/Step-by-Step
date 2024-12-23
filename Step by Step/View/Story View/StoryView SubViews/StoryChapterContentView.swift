@@ -38,9 +38,11 @@ struct StoryChapterContentView: View {
                     
                     // Buttons for user decisions related to the current chapter.
                     StoryDecisionButton(
-                        options: currentChapter.chapterDecisions.map { decision in
-                            (title: decision.decisionText, action: {
-                                storyContentViewModel.updateCurrentChapter(to: decision.nextChapterID)
+                        options: currentChapter.chapterDecisions.compactMap { decision in
+                            // Ensure the nextChapterID is non-nil before creating a button.
+                            guard let nextChapterID = decision.nextChapterID else { return nil }
+                            return (title: decision.decisionText, action: {
+                                storyContentViewModel.updateCurrentChapter(to: nextChapterID)
                             })
                         }
                     )
