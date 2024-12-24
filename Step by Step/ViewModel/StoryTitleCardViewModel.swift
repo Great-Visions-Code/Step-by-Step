@@ -37,7 +37,7 @@ class StoryTitleCardViewModel: ObservableObject {
         StoryTitleCard(
             title: "Future Adventures",
             color: Color.gray,
-            completion: 100,
+            completion: 0,
             details: """
             Stay tuned for upcoming thrilling adventures that will test your strategy!
             """
