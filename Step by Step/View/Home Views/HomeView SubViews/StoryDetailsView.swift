@@ -40,18 +40,20 @@ struct StoryDetailsView: View {
             }
             .frame(height: 450) // Adjust the height as needed.
                         
-            // A button allowing the user to enter the selected story.
-            Button(action: {
-                onEnterStoryButton() // Trigger the closure to navigate to the main story view.
-            }) {
-                Text("Enter Story")
-                    .font(.title2)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity) // Make the button span the full width.
-                    .background(Color.blue)
-                    .foregroundStyle(.white)
-                    .cornerRadius(20)
+            // Conditionally show the "Enter Story" button.
+            if story.title != "Future Adventures" {
+                Button(action: {
+                    onEnterStoryButton() // Trigger the closure to navigate to the main story view.
+                }) {
+                    Text("Enter Story")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity) // Make the button span the full width.
+                        .background(Color.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(20)
+                }
             }
         }
         .padding()
