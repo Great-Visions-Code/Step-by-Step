@@ -29,7 +29,9 @@ struct DashboardView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Achievements tab for showcasing user accomplishments.
-            AchievementsView()
+            AchievementsView(
+                achievementsViewModel: achievementsViewModel
+            )
                 .tabItem {
                     Image(systemName: "trophy.fill")
                     Text("Achievements")
