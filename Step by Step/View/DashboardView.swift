@@ -18,22 +18,13 @@ struct DashboardView: View {
     @StateObject private var playerStatsViewModel = PlayerStatsViewModel()
     // ViewModel to manage step tracking across the app.
     @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
-    // ViewModel to manage achievements across the app.
-    @StateObject private var achievementsViewModel = AchievementsViewModel()
-    // ViewModel to manage story content across the app.
-    @StateObject private var storyContentViewModel: StoryContentViewModel
+    // ViewModel to manage achievements.
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
+    // ViewModel to manage story content.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
 
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
-
-    /// Initializes the `DashboardView` with shared ViewModels.
-    init() {
-        let sharedAchievementsViewModel = AchievementsViewModel()
-        _achievementsViewModel = StateObject(wrappedValue: sharedAchievementsViewModel)
-        _storyContentViewModel = StateObject(
-            wrappedValue: StoryContentViewModel(achievementsViewModel: sharedAchievementsViewModel)
-        )
-    }
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -44,7 +35,7 @@ struct DashboardView: View {
                     Text("Achievements")
                 }
                 .tag(0)
-            
+
             // Home tab: Story selection and steps conversion.
             HomeView(
                 storyViewModel: StoryTitleCardViewModel(),
@@ -58,7 +49,7 @@ struct DashboardView: View {
                 Text("Home")
             }
             .tag(1)
-            
+
             // Settings tab for app configuration and user preferences.
             SettingsView()
                 .tabItem {
@@ -71,5 +62,11 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView()
+    // Shared instance of AchievementsViewModel for the preview.
+    let previewAchievementsViewModel = AchievementsViewModel()
+    
+    DashboardView(
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(achievementsViewModel: previewAchievementsViewModel)
+    )
 }

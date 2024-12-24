@@ -87,7 +87,7 @@ struct HomeView: View {
                         )
                     }
                     
-                case "StoryView", "ResumeStoryView": // Temporarily tying ResumeStoryView to StoryView.
+                case "StoryView", "ResumeStoryView":
                     // Show the interactive view of the story.
                     StoryView(
                         onNavigateStoryHomeIcon: {
