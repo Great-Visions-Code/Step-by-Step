@@ -78,7 +78,7 @@ class StoryContentViewModel: ObservableObject {
             // General: Death Chapter
             StoryContent(
                 chapterID: 99,
-                storyDay: 0,
+                storyDay: 0, // This will be dynamically updated.
                 chapterTitle: "Death",
                 chapterImages: ["survive-death-image"],
                 chapterText: """
@@ -90,7 +90,7 @@ class StoryContentViewModel: ObservableObject {
             // General: Survive Chapter
             StoryContent(
                 chapterID: 100,
-                storyDay: 0,
+                storyDay: 0, // This will be dynamically updated.
                 chapterTitle: "Survive",
                 chapterImages: ["survive-ending-image"],
                 chapterText: """
@@ -106,6 +106,11 @@ class StoryContentViewModel: ObservableObject {
         lastViewedChapterID = currentChapter?.chapterID
     }
 
+    /// A computed property to determine the last story day.
+    private var lastStoryDay: Int {
+        chapters.map { $0.storyDay }.max() ?? 0
+    }
+
     /// Resets the story to Day 1 Chapter 1 and increments the attempt counter.
     func resetStory() {
         currentChapter = chapters.first
@@ -116,7 +121,19 @@ class StoryContentViewModel: ObservableObject {
     /// Updates the current chapter based on the player's decision.
     /// - Parameter nextChapterID: The ID of the next chapter.
     func updateCurrentChapter(to nextChapterID: Int) {
-        if let nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
+        if var nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
+            // Update `storyDay` dynamically for special chapters.
+            if nextChapter.chapterID == 99 || nextChapter.chapterID == 100 {
+                nextChapter = StoryContent(
+                    chapterID: nextChapter.chapterID,
+                    storyDay: lastStoryDay, // Use the last story day.
+                    chapterTitle: nextChapter.chapterTitle,
+                    chapterImages: nextChapter.chapterImages,
+                    chapterText: nextChapter.chapterText,
+                    chapterDecisions: nextChapter.chapterDecisions,
+                    isFinalChapter: nextChapter.isFinalChapter
+                )
+            }
             currentChapter = nextChapter
             lastViewedChapterID = nextChapterID // Update last viewed chapter ID.
         }
