@@ -49,6 +49,8 @@ struct PlayerStatsView: View {
 #Preview {
     PlayerStatsView(
         playerStatsViewModel: PlayerStatsViewModel(),
-        storyContentViewModel: StoryContentViewModel()
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel()
+        )
     )
 }

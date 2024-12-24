@@ -108,7 +108,9 @@ struct StoryHomeView: View {
         ),
         playerStatsViewModel: PlayerStatsViewModel(),
         achievementsViewModel: AchievementsViewModel(),
-        storyContentViewModel: StoryContentViewModel(),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel()
+        ),
         onNavigateButton: { _ in }
     )
 }

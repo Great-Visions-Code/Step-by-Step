@@ -59,6 +59,8 @@ struct StoryChapterContentView: View {
 
 #Preview {
     StoryChapterContentView(
-        storyContentViewModel: StoryContentViewModel()
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel()
+        )
     )
 }

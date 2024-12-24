@@ -15,9 +15,13 @@ class StoryContentViewModel: ObservableObject {
     @Published private(set) var currentChapter: StoryContent?
     /// Tracks the last viewed chapter's ID.
     private var lastViewedChapterID: Int?
+    /// Reference to AchievementsViewModel for tracking attempts.
+    private let achievementsViewModel: AchievementsViewModel
 
     /// Initializes the ViewModel with predefined chapters for the story.
-    init() {
+    /// - Parameter achievementsViewModel: A reference to the achievements manager.
+    init(achievementsViewModel: AchievementsViewModel) {
+        self.achievementsViewModel = achievementsViewModel
         loadSurviveStory()
     }
 
@@ -99,11 +103,14 @@ class StoryContentViewModel: ObservableObject {
         ]
         // Start with the first chapter.
         currentChapter = chapters.first
+        lastViewedChapterID = currentChapter?.chapterID
     }
-    
-    /// Resets the story to Day 1 Chapter 1.
+
+    /// Resets the story to Day 1 Chapter 1 and increments the attempt counter.
     func resetStory() {
         currentChapter = chapters.first
+        lastViewedChapterID = currentChapter?.chapterID
+        achievementsViewModel.incrementAttempts() // Increment attempts here.
     }
 
     /// Updates the current chapter based on the player's decision.
@@ -111,18 +118,18 @@ class StoryContentViewModel: ObservableObject {
     func updateCurrentChapter(to nextChapterID: Int) {
         if let nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
             currentChapter = nextChapter
+            lastViewedChapterID = nextChapterID // Update last viewed chapter ID.
         }
     }
-    
-    /// Resumes the last viewed chapter.
-       func resumeStory() {
-           if let lastChapterID = lastViewedChapterID,
-              let lastChapter = chapters.first(where: { $0.chapterID == lastChapterID }) {
-               currentChapter = lastChapter
-           }
-       }
 
-    
+    /// Resumes the last viewed chapter.
+    func resumeStory() {
+        if let lastChapterID = lastViewedChapterID,
+           let lastChapter = chapters.first(where: { $0.chapterID == lastChapterID }) {
+            currentChapter = lastChapter
+        }
+    }
+
     /// A computed property to get the total number of unique story days.
     var totalDays: Int {
         let uniqueDays = Set(chapters.map { $0.storyDay }).filter { $0 > 0 }

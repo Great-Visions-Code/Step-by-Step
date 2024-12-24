@@ -21,10 +21,19 @@ struct DashboardView: View {
     // ViewModel to manage achievements across the app.
     @StateObject private var achievementsViewModel = AchievementsViewModel()
     // ViewModel to manage story content across the app.
-    @StateObject private var storyContentViewModel = StoryContentViewModel()
-    
+    @StateObject private var storyContentViewModel: StoryContentViewModel
+
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
+
+    /// Initializes the `DashboardView` with shared ViewModels.
+    init() {
+        let sharedAchievementsViewModel = AchievementsViewModel()
+        _achievementsViewModel = StateObject(wrappedValue: sharedAchievementsViewModel)
+        _storyContentViewModel = StateObject(
+            wrappedValue: StoryContentViewModel(achievementsViewModel: sharedAchievementsViewModel)
+        )
+    }
 
     var body: some View {
         TabView(selection: $selectedTab) {

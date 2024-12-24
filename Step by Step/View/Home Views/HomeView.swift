@@ -62,7 +62,6 @@ struct HomeView: View {
             // Handles navigation to various destinations based on the path value.
             .navigationDestination(for: String.self) { destination in
                 switch destination {
-                    
                 case "StoryDetailsView":
                     // Show details about the selected story.
                     if let story = selectedStory {
@@ -129,6 +128,8 @@ struct HomeView: View {
         playerStatsViewModel: PlayerStatsViewModel(),
         stepTrackerViewModel: StepTrackerViewModel(),
         achievementsViewModel: AchievementsViewModel(),
-        storyContentViewModel: StoryContentViewModel()
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel()
+        )
     )
 }
