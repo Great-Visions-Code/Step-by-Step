@@ -17,7 +17,13 @@ struct StoryDecisionButton: View {
             ForEach(0..<options.count, id: \.self) { index in
                 let option = options[index]
                 Button(action: option.action) {
-                    Text(option.title)
+                    VStack(spacing: 10) {
+                        HStack(spacing: 25) {
+                            Text("-1 Health")
+                            Text("-1 Energy")
+                        }
+                            Text(option.title)
+                    }
                         .bold()
                         .frame(maxWidth: .infinity) // Ensures the button stretches across the available width.
                         .padding()
@@ -27,16 +33,21 @@ struct StoryDecisionButton: View {
                 }
             }
         }
-        .padding() // Adds padding around the entire VStack.
+        .padding()
     }
 }
 
 #Preview {
     StoryDecisionButton(
         options: [
-            (title: "Option 1", action: { print("Option 1 Selected") }),
-            (title: "Option 2", action: { print("Option 2 Selected") }),
-            (title: "Option 3", action: { print("Option 3 Selected") }) // Example of scalability.
+            (title: "Go outside to investigate",
+             action: {
+                 print("Option 1 Selected")
+             }),
+            (title: "Stay inside and wait for someone to come rescue you",
+             action: {
+                 print("Option 2 Selected")
+             })
         ]
     )
 }
