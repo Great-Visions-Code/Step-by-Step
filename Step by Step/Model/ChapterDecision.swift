@@ -13,4 +13,8 @@ struct ChapterDecision {
     let decisionText: String
     /// The ID of the next chapter this decision leads to.
     let nextChapterID: Int?
+    /// The change in health points when this decision is made.
+    let HPChange: Int
+    /// The change in energy points when this decision is made.
+    let EPChange: Int
 }
