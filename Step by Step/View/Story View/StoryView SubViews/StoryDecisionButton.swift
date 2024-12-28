@@ -9,8 +9,8 @@ import SwiftUI
 
 /// A view that dynamically presents decision-making options to the user during the story.
 struct StoryDecisionButton: View {
-    /// An array of decision options, each with a title and an associated action.
-    var options: [(title: String, action: () -> Void)]
+    /// An array of decision options, each with a title, health/energy changes, and an associated action.
+    var options: [(title: String, HPChange: Int, EPChange: Int, action: () -> Void)]
     
     var body: some View {
         VStack(spacing: 10) {
@@ -19,9 +19,11 @@ struct StoryDecisionButton: View {
                 Button(action: option.action) {
                     VStack(spacing: 10) {
                         HStack(spacing: 25) {
-                            Text("-1 Health")
-                            Text("-1 Energy")
+                            // HP/EP changes.
+                            Text(option.HPChange > 0 ? "+\(option.HPChange) Health" : "\(option.HPChange) Health")
+                            Text(option.EPChange > 0 ? "+\(option.EPChange) Energy" : "\(option.EPChange) Energy")
                         }
+                            // Decision text.
                             Text(option.title)
                     }
                         .bold()
@@ -41,10 +43,14 @@ struct StoryDecisionButton: View {
     StoryDecisionButton(
         options: [
             (title: "Go outside to investigate",
+             HPChange: -2,
+             EPChange: -2,
              action: {
                  print("Option 1 Selected")
              }),
             (title: "Stay inside and wait for someone to come rescue you",
+             HPChange: 0,
+             EPChange: 0,
              action: {
                  print("Option 2 Selected")
              })
