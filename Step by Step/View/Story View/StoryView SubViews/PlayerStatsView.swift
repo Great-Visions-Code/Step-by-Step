@@ -50,7 +50,8 @@ struct PlayerStatsView: View {
     PlayerStatsView(
         playerStatsViewModel: PlayerStatsViewModel(),
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         )
     )
 }

@@ -129,7 +129,8 @@ struct HomeView: View {
         stepTrackerViewModel: StepTrackerViewModel(),
         achievementsViewModel: AchievementsViewModel(),
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         )
     )
 }

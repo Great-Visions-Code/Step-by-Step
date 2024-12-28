@@ -42,7 +42,8 @@ struct StoryDayAndChapterView: View {
 #Preview {
     StoryDayAndChapterView(
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         )
     )
 }

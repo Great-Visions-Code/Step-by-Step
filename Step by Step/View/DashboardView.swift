@@ -69,6 +69,9 @@ struct DashboardView: View {
     
     DashboardView(
         achievementsViewModel: previewAchievementsViewModel,
-        storyContentViewModel: StoryContentViewModel(achievementsViewModel: previewAchievementsViewModel)
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: PlayerStatsViewModel()
+        )
     )
 }

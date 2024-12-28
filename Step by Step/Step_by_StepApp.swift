@@ -26,7 +26,11 @@ struct StepByStepApp: App {
     init() {
         let sharedAchievementsViewModel = AchievementsViewModel()
         _achievementsViewModel = StateObject(wrappedValue: sharedAchievementsViewModel)
-        _storyContentViewModel = StateObject(wrappedValue: StoryContentViewModel(achievementsViewModel: sharedAchievementsViewModel))
+        _storyContentViewModel = StateObject(wrappedValue: StoryContentViewModel(
+            achievementsViewModel: sharedAchievementsViewModel,
+            playerStatsViewModel: PlayerStatsViewModel()
+            )
+        )
     }
 
     var body: some Scene {

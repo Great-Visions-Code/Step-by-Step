@@ -69,7 +69,8 @@ struct StoryView: View {
         onNavigateStoryMapIcon: {},
         playerStatsViewModel: PlayerStatsViewModel(),
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         )
     )
 }
