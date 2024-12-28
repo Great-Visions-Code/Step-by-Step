@@ -39,11 +39,24 @@ struct StoryChapterContentView: View {
                     // Buttons for user decisions related to the current chapter.
                     StoryDecisionButton(
                         options: currentChapter.chapterDecisions.compactMap { decision in
-                            // Ensure the nextChapterID is non-nil before creating a button.
-                            guard let nextChapterID = decision.nextChapterID else { return nil }
-                            return (title: decision.decisionText, action: {
-                                storyContentViewModel.updateCurrentChapter(to: nextChapterID)
-                            })
+                            if let nextChapterID = decision.nextChapterID {
+                                return (
+                                    title: decision.decisionText,
+                                    HPChange: decision.HPChange,
+                                    EPChange: decision.EPChange,
+                                    action: {
+                                        storyContentViewModel.updateCurrentChapter(
+                                            to: nextChapterID,
+                                            HPChange: decision.HPChange,
+                                            EPChange: decision.EPChange
+                                        )
+                                    }
+                                )
+                            } else {
+                                // Log an error for debugging.
+                                print("Invalid decision: Missing nextChapterID for \(decision.decisionText).")
+                                return nil // Exclude this decision from the resulting array.
+                            }
                         }
                     )
                 }
@@ -60,7 +73,8 @@ struct StoryChapterContentView: View {
 #Preview {
     StoryChapterContentView(
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         )
     )
 }
