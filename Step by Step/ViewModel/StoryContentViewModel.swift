@@ -21,10 +21,18 @@ class StoryContentViewModel: ObservableObject {
     private let playerStatsViewModel: PlayerStatsViewModel
 
     /// Initializes the ViewModel with predefined chapters for the story.
-    /// - Parameter achievementsViewModel: A reference to the achievements manager.
+    ///
+    /// This initializer sets up the required dependencies for managing story progress and interacts with other ViewModels such as `AchievementsViewModel` and `PlayerStatsViewModel`.
+    ///
+    /// - Parameters:
+    ///   - achievementsViewModel: A reference to the achievements manager for tracking story-related achievements and progress.
+    ///   - playerStatsViewModel: A reference to the player stats manager for updating health and energy values based on decisions.
     init(achievementsViewModel: AchievementsViewModel, playerStatsViewModel: PlayerStatsViewModel) {
+        // This enables tracking attempts and milestones throughout the story.
         self.achievementsViewModel = achievementsViewModel
+        // This ensures health and energy changes are managed across the app.
         self.playerStatsViewModel = playerStatsViewModel
+        
         loadSurviveStory()
     }
 
@@ -42,8 +50,8 @@ class StoryContentViewModel: ObservableObject {
                     What will you do first?
                     """,
                 chapterDecisions: [
-                    ChapterDecision(decisionText: "Go outside to investigate", nextChapterID: 99, HPChange: 0, EPChange: -1), // Death Chapter
-                    ChapterDecision(decisionText: "Stay inside and lock the door", nextChapterID: 2, HPChange: -1, EPChange: 0) // Day 1: Chapter 2
+                    ChapterDecision(decisionText: "Go outside to investigate", nextChapterID: 99, HPChange: -1, EPChange: -1), // Death Chapter
+                    ChapterDecision(decisionText: "Stay inside and lock the door", nextChapterID: 2, HPChange: -1, EPChange: -1) // Day 1: Chapter 2
                 ],
                 isFinalChapter: false
             ),
@@ -58,8 +66,8 @@ class StoryContentViewModel: ObservableObject {
                     Do you investigate or make a run for it?
                     """,
                 chapterDecisions: [
-                    ChapterDecision(decisionText: "Investigate the noise", nextChapterID: 99, HPChange: 0, EPChange: -2), // Death Chapter
-                    ChapterDecision(decisionText: "Make a run for it", nextChapterID: 3, HPChange: -2, EPChange: 0) // Day 2: Chapter 1
+                    ChapterDecision(decisionText: "Investigate the noise", nextChapterID: 99, HPChange: -2, EPChange: -2), // Death Chapter
+                    ChapterDecision(decisionText: "Make a run for it", nextChapterID: 3, HPChange: -2, EPChange: -2) // Day 2: Chapter 1
                 ],
                 isFinalChapter: false
             ),
@@ -73,8 +81,8 @@ class StoryContentViewModel: ObservableObject {
                     You find shelter for the night, but you’re unsure how to proceed. Will you take shelter or explore?
                     """,
                 chapterDecisions: [
-                    ChapterDecision(decisionText: "Explore the surroundings", nextChapterID: 99, HPChange: -3, EPChange: 0), // Death Chapter
-                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: 0, EPChange: -3) // Survive Chapter
+                    ChapterDecision(decisionText: "Explore the surroundings", nextChapterID: 99, HPChange: -3, EPChange: -3), // Death Chapter
+                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: -3, EPChange: -3) // Survive Chapter
                 ],
                 isFinalChapter: false
             ),
