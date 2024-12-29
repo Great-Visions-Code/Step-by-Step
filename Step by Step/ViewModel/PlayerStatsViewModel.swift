@@ -27,28 +27,35 @@ class PlayerStatsViewModel: ObservableObject {
     // MARK: - Health and Energy Management.
     
     /// Applies changes to the player's health and energy.
+    ///
+    /// This function adjusts the player's health and energy based on the provided values.
+    /// It handles both positive and negative changes, ensuring that updates are reflected across the app by reassigning the `playerStats` property to trigger SwiftUI updates.
+    ///
     /// - Parameters:
-    ///   - HPChange: The amount to adjust health by (positive or negative).
-    ///   - EPChange: The amount to adjust energy by (positive or negative).
+    ///   - HPChange: The amount to adjust health by.
+    ///   - EPChange: The amount to adjust energy by.
     func applyStatChanges(HPChange: Int, EPChange: Int) {
-        print("Applying stat changes: HPChange: \(HPChange), EPChange: \(EPChange)")
+        // Create a mutable copy of the current player stats.
+        // This ensures that modifications do not directly mutate the published property until explicitly reassigned.
+        var updatedStats = playerStats
 
-        var updatedStats = playerStats // Create a mutable copy of the current stats
-
+        // Apply the health change.
         if HPChange < 0 {
             updatedStats.decreaseHealth(by: abs(HPChange))
         } else {
             updatedStats.increaseHealth(by: HPChange)
         }
 
+        // Apply the energy change.
         if EPChange < 0 {
             updatedStats.decreaseEnergy(by: abs(EPChange))
         } else {
             updatedStats.increaseEnergy(by: EPChange)
         }
 
-        playerStats = updatedStats // Reassign to trigger SwiftUI updates
-        print("Updated stats: Health: \(playerStats.health), Energy: \(playerStats.energy)")
+        // Reassign the updated stats back to the `playerStats` property.
+        // This triggers SwiftUI to refresh any views observing this property.
+        playerStats = updatedStats
     }
     
     // MARK: - Individual Stat Management.
