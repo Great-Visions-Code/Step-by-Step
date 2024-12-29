@@ -142,8 +142,7 @@ class StoryContentViewModel: ObservableObject {
             }
             
             // Apply the decision's health and energy changes.
-            playerStatsViewModel.decreaseHealth(by: abs(HPChange))
-            playerStatsViewModel.decreaseEnergy(by: abs(EPChange))
+            playerStatsViewModel.applyStatChanges(HPChange: HPChange, EPChange: EPChange)
             
             currentChapter = nextChapter
             lastViewedChapterID = nextChapterID // Update last viewed chapter ID.
