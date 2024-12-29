@@ -87,7 +87,7 @@ struct StoryHomeView: View {
                                 storyContentViewModel.resumeStory()
                             } else if button.action == "StoryView" {
                                 // If the button is for starting a new story, reset the story to its initial state.
-                                storyContentViewModel.resetStory() // Start story from 1st chapter, day 1.
+                                storyContentViewModel.resetStory() // Start story from beginning.
                                 playerStatsViewModel.resetHealth() // Reset health to full.
                             }
                             // Trigger navigation to the appropriate view using the button's action property.
