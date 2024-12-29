@@ -11,29 +11,46 @@ import SwiftUI
 struct StoryDecisionButton: View {
     /// An array of decision options, each with a title, health/energy changes, and an associated action.
     var options: [(title: String, HPChange: Int, EPChange: Int, action: () -> Void)]
+    /// Current energy of the player.
+    var currentEnergy: Int
     
     var body: some View {
         VStack(spacing: 10) {
             // Loop through each option provided to create a button.
             ForEach(0..<options.count, id: \.self) { index in
                 let option = options[index] // Get the current option at the index.
-
-                // Create a button for each option with the specified action.
-                Button(action: option.action) {
-                    VStack(spacing: 10) {
-                        // Display health and energy changes for this decision.
-                        HStack(spacing: 25) {
-                            Text(formatStatChange(statChangeValue: option.HPChange, statType: "Health"))
-                            Text(formatStatChange(statChangeValue: option.EPChange, statType: "Energy"))
+                
+                // Check if the player has enough energy to make the decision.
+                if currentEnergy > 0 {
+                    // Create an active button for each decision with an action.
+                    Button(action: option.action) {
+                        VStack(spacing: 10) {
+                            // Display health and energy changes for this decision.
+                            HStack(spacing: 25) {
+                                Text(formatStatChange(statChangeValue: option.HPChange, statType: "Health"))
+                                Text(formatStatChange(statChangeValue: option.EPChange, statType: "Energy"))
+                            }
+                            // Display the decision title text below the HP/EP changes.
+                            Text(option.title)
                         }
-                        // Display the decision title text below the HP/EP changes.
-                        Text(option.title)
+                        .bold()
+                        .frame(maxWidth: .infinity) // Stretch the button to fill the available width.
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
-                    .bold()
-                    .frame(maxWidth: .infinity) // Stretch the button to fill the available width.
+                } else {
+                    // Create a disabled button with a message if energy is 0.
+                    VStack(spacing: 10) {
+                        Text("Feeling depleted... take more steps")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.orange)
-                    .foregroundColor(Color.white)
+                    .background(Color.gray.opacity(0.5))
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
             }
@@ -55,7 +72,8 @@ struct StoryDecisionButton: View {
              EPChange: 0,
              action: {}
             )
-        ]
+        ],
+        currentEnergy: 0 // < 1, to simulate a "depleted" state.
     )
 }
 
