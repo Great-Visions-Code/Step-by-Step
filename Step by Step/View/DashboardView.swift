@@ -64,7 +64,6 @@ struct DashboardView: View {
 }
 
 #Preview {
-    // Shared instance of AchievementsViewModel for the preview.
     let previewAchievementsViewModel = AchievementsViewModel()
     
     DashboardView(
