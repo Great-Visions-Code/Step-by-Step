@@ -58,7 +58,7 @@ class PlayerStatsViewModel: ObservableObject {
         playerStats = updatedStats
     }
     
-    // MARK: - Individual Stat Management.
+    // MARK: - HP Individual Stat Management.
     
     /// Decreases the player's health by a specified amount, ensuring it doesn't drop below zero.
     /// - Parameter amount: The amount to decrease the health by.
@@ -71,6 +71,16 @@ class PlayerStatsViewModel: ObservableObject {
     func increaseHealth(by amount: Int) {
         playerStats.increaseHealth(by: amount)
     }
+    
+    /// Resets the player's health to full (default: 10 health points).
+    /// This method reassigns the `health` property to its maximum value and triggers SwiftUI updates.
+    func resetHealth() {
+        var updatedStats = playerStats
+        updatedStats.health = 10
+        playerStats = updatedStats
+    }
+
+    // MARK: - EP Individual Stat Management.
         
     /// Decreases the player's energy by a specified amount, ensuring it doesn't drop below zero.
     /// - Parameter amount: The amount to decrease the energy by.
