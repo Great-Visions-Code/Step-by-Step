@@ -50,7 +50,8 @@ struct StoryView: View {
             // Displays the current chapter's title, content, and options.
             if storyContentViewModel.currentChapter != nil {
                 StoryChapterContentView(
-                    storyContentViewModel: storyContentViewModel
+                    storyContentViewModel: storyContentViewModel,
+                    playerStatsViewModel: playerStatsViewModel
                 )
             } else {
                 Text("No Chapter Available")
