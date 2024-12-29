@@ -39,23 +39,25 @@ struct StoryChapterContentView: View {
                     // Buttons for user decisions related to the current chapter.
                     StoryDecisionButton(
                         options: currentChapter.chapterDecisions.compactMap { decision in
+                            // Check if the decision has a valid nextChapterID.
                             if let nextChapterID = decision.nextChapterID {
+                                // Return a tuple containing the decision details to create a button.
                                 return (
-                                    title: decision.decisionText,
-                                    HPChange: decision.HPChange,
-                                    EPChange: decision.EPChange,
+                                    title: decision.decisionText, // The text describing the decision.
+                                    HPChange: decision.HPChange, // The health change associated with the decision.
+                                    EPChange: decision.EPChange, // The energy change associated with the decision.
                                     action: {
+                                        // Update the story chapter when the button is pressed.
                                         storyContentViewModel.updateCurrentChapter(
-                                            to: nextChapterID,
-                                            HPChange: decision.HPChange,
-                                            EPChange: decision.EPChange
+                                            to: nextChapterID, // The chapter to navigate to after making the decision.
+                                            HPChange: decision.HPChange, // Apply health change based on the decision.
+                                            EPChange: decision.EPChange // Apply energy change based on the decision.
                                         )
                                     }
                                 )
                             } else {
-                                // Log an error for debugging.
-                                print("Invalid decision: Missing nextChapterID for \(decision.decisionText).")
-                                return nil // Exclude this decision from the resulting array.
+                                // If the decision doesn't have a valid nextChapterID, exclude it.
+                                return nil
                             }
                         }
                     )

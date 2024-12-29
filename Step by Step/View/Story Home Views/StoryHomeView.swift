@@ -75,16 +75,22 @@ struct StoryHomeView: View {
 
             // Provide navigation buttons to resume, start a new story, or view achievements.
             VStack(spacing: 20) {
+                // Loop through each button configuration in `buttonActions`.
                 ForEach(buttonActions, id: \.title) { button in
+                    // Create a navigation button for each action.
                     StoryHomeNavigationButtonView(
-                        buttonText: button.title,
+                        buttonText: button.title, // The text displayed on the button.
                         buttonAction: {
+                            // Determine the action to take based on the button's `action` property.
                             if button.action == "ResumeStoryView" {
+                                // If the button is for resuming the story, call the resumeStory method.
                                 storyContentViewModel.resumeStory()
                             } else if button.action == "StoryView" {
-                                storyContentViewModel.resetStory() // Reset the story to Day 1 Chapter 1.
+                                // If the button is for starting a new story, reset the story to its initial state.
+                                storyContentViewModel.resetStory()
                             }
-                            onNavigateButton(button.action) // Trigger navigation based on button action.
+                            // Trigger navigation to the appropriate view using the button's action property.
+                            onNavigateButton(button.action)
                         }
                     )
                 }

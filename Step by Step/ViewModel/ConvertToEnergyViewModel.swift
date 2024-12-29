@@ -5,7 +5,7 @@
 //  Created by Gustavo Vazquez on 12/4/24.
 //
 
-import Foundation
+import SwiftUI
 
 /// ViewModel responsible for converting steps taken into energy points.
 /// Energy points are used in the app's mechanics and are capped at a maximum value.
@@ -13,8 +13,7 @@ struct ConvertToEnergyViewModel {
     
     /// Converts the user's current steps into energy points based on their step goal.
     ///
-    /// This function ensures that energy points are scaled to a range of 0 to 10,
-    /// providing a gamified incentive for users to achieve their step goals.
+    /// This function ensures that energy points are scaled to a range of 0 to 10, providing a gamified incentive for users to achieve their step goals.
     ///
     /// - Parameters:
     ///   - currentStepsTaken: The number of steps the user has taken so far.

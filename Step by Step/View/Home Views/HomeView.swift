@@ -77,12 +77,13 @@ struct HomeView: View {
                     // Show the main view for the selected story.
                     if let story = selectedStory {
                         StoryHomeView(
-                            story: story,
-                            playerStatsViewModel: playerStatsViewModel,
-                            achievementsViewModel: achievementsViewModel,
-                            storyContentViewModel: storyContentViewModel,
+                            story: story, // Pass the selected story object to the view.
+                            playerStatsViewModel: playerStatsViewModel, // Provide the player's stats (health, energy).
+                            achievementsViewModel: achievementsViewModel, // Provide the user's achievements data.
+                            storyContentViewModel: storyContentViewModel, // Provide the story content and progress data.
                             onNavigateButton: { nextView in
-                                path.append(nextView) // Navigate to the specified next view.
+                                // Handle navigation to the specified next view when a button is pressed.
+                                path.append(nextView) // Append the target view to the navigation path.
                             }
                         )
                     }
