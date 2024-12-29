@@ -14,14 +14,14 @@ import SwiftUI
 ///   2. Home: The core gameplay and step-tracking interface.
 ///   3. Settings: Allows users to manage app preferences and configurations.
 struct DashboardView: View {
-    // ViewModel to manage player stats across the app.
-    @StateObject private var playerStatsViewModel = PlayerStatsViewModel()
     // ViewModel to manage step tracking across the app.
     @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
     // ViewModel to manage achievements.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     // ViewModel to manage story content.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
+    // ViewModel to manage player stats across the app.
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
@@ -72,6 +72,7 @@ struct DashboardView: View {
         storyContentViewModel: StoryContentViewModel(
             achievementsViewModel: previewAchievementsViewModel,
             playerStatsViewModel: PlayerStatsViewModel()
-        )
+        ),
+        playerStatsViewModel: PlayerStatsViewModel()
     )
 }
