@@ -24,7 +24,34 @@ class PlayerStatsViewModel: ObservableObject {
         )
     }
     
-    // MARK: - Health Management
+    // MARK: - Health and Energy Management.
+    
+    /// Applies changes to the player's health and energy.
+    /// - Parameters:
+    ///   - HPChange: The amount to adjust health by (positive or negative).
+    ///   - EPChange: The amount to adjust energy by (positive or negative).
+    func applyStatChanges(HPChange: Int, EPChange: Int) {
+        print("Applying stat changes: HPChange: \(HPChange), EPChange: \(EPChange)")
+
+        var updatedStats = playerStats // Create a mutable copy of the current stats
+
+        if HPChange < 0 {
+            updatedStats.decreaseHealth(by: abs(HPChange))
+        } else {
+            updatedStats.increaseHealth(by: HPChange)
+        }
+
+        if EPChange < 0 {
+            updatedStats.decreaseEnergy(by: abs(EPChange))
+        } else {
+            updatedStats.increaseEnergy(by: EPChange)
+        }
+
+        playerStats = updatedStats // Reassign to trigger SwiftUI updates
+        print("Updated stats: Health: \(playerStats.health), Energy: \(playerStats.energy)")
+    }
+    
+    // MARK: - Individual Stat Management.
     
     /// Decreases the player's health by a specified amount, ensuring it doesn't drop below zero.
     /// - Parameter amount: The amount to decrease the health by.
@@ -37,9 +64,7 @@ class PlayerStatsViewModel: ObservableObject {
     func increaseHealth(by amount: Int) {
         playerStats.increaseHealth(by: amount)
     }
-    
-    // MARK: - Energy Management
-    
+        
     /// Decreases the player's energy by a specified amount, ensuring it doesn't drop below zero.
     /// - Parameter amount: The amount to decrease the energy by.
     func decreaseEnergy(by amount: Int) {
