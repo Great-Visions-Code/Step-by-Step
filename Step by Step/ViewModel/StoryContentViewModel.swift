@@ -67,7 +67,7 @@ class StoryContentViewModel: ObservableObject {
                     """,
                 chapterDecisions: [
                     ChapterDecision(decisionText: "Investigate the noise", nextChapterID: 99, HPChange: -2, EPChange: -2), // Death Chapter
-                    ChapterDecision(decisionText: "Make a run for it", nextChapterID: 3, HPChange: -2, EPChange: -2) // Day 2: Chapter 1
+                    ChapterDecision(decisionText: "Make a run for it", nextChapterID: 3, HPChange: -1, EPChange: -1) // Day 2: Chapter 1
                 ],
                 isFinalChapter: false
             ),
@@ -82,7 +82,7 @@ class StoryContentViewModel: ObservableObject {
                     """,
                 chapterDecisions: [
                     ChapterDecision(decisionText: "Explore the surroundings", nextChapterID: 99, HPChange: -3, EPChange: -3), // Death Chapter
-                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: -3, EPChange: -3) // Survive Chapter
+                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: -1, EPChange: -1) // Survive Chapter
                 ],
                 isFinalChapter: false
             ),
@@ -135,6 +135,20 @@ class StoryContentViewModel: ObservableObject {
     ///   - HPChange: The change in health points.
     ///   - EPChange: The change in energy points.
     func updateCurrentChapter(to nextChapterID: Int, HPChange: Int, EPChange: Int) {
+        // Apply the decision's health and energy changes first.
+        playerStatsViewModel.applyStatChanges(HPChange: HPChange, EPChange: EPChange)
+        
+        // Check if the player's health has dropped to 0.
+        if playerStatsViewModel.playerStats.health <= 0 {
+            // Automatically set the current chapter to the Death Chapter.
+            if let deathChapter = chapters.first(where: { $0.chapterID == 99 }) {
+                currentChapter = deathChapter
+                lastViewedChapterID = deathChapter.chapterID
+            }
+            return // Exit early since the player is dead.
+        }
+        
+        // Find the next chapter based on the decision.
         if var nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
             // Update `storyDay` dynamically for special chapters.
             if nextChapter.chapterID == 99 || nextChapter.chapterID == 100 {
@@ -148,10 +162,6 @@ class StoryContentViewModel: ObservableObject {
                     isFinalChapter: nextChapter.isFinalChapter
                 )
             }
-            
-            // Apply the decision's health and energy changes.
-            playerStatsViewModel.applyStatChanges(HPChange: HPChange, EPChange: EPChange)
-            
             currentChapter = nextChapter
             lastViewedChapterID = nextChapterID // Update last viewed chapter ID.
         }
