@@ -28,7 +28,7 @@ struct CurrentStepsTakenProgressView: View {
             // To be replaced with a circular progress bar.
             // TODO: Pass Health Kit CurrentStepsTaken
             Text("\(stepTrackerViewModel.stepTracker.healthKitImportedCurrentStepsTaken) out of a goal of \(stepTrackerViewModel.stepTracker.totalStepsGoals)")
-                .font(.headline)
+                .font(.title2)
                 .padding(.bottom)
         }
     }
