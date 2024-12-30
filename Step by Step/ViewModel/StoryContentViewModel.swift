@@ -63,6 +63,22 @@ class StoryContentViewModel: ObservableObject {
                 chapterImages: ["survive-day1-stayput-kitchenNoise-image"],
                 chapterText: """
                     You hear a noise in the kitchen. It’s unclear if it’s a person or something worse.
+                    Do you find a place to hide and wait or make a run for it?
+                    """,
+                chapterDecisions: [
+                    ChapterDecision(decisionText: "Find a place to rest", nextChapterID: 4, HPChange: 1, EPChange: -2), // Day 1: Chapter 4
+                    ChapterDecision(decisionText: "Make a run for it", nextChapterID: 3, HPChange: -1, EPChange: -1) // Day 2: Chapter 1
+                ],
+                isFinalChapter: false
+            ),
+            // Day 1: Chapter 2
+            StoryContent(
+                chapterID: 4,
+                storyDay: 1,
+                chapterTitle: "What Now?",
+                chapterImages: [""],
+                chapterText: """
+                    You hear a window break. It’s unclear if it’s a friendly person or something else.
                     Do you investigate or make a run for it?
                     """,
                 chapterDecisions: [
@@ -82,7 +98,7 @@ class StoryContentViewModel: ObservableObject {
                     """,
                 chapterDecisions: [
                     ChapterDecision(decisionText: "Explore the surroundings", nextChapterID: 99, HPChange: -3, EPChange: -3), // Death Chapter
-                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: -1, EPChange: -1) // Survive Chapter
+                    ChapterDecision(decisionText: "Take shelter and rest", nextChapterID: 100, HPChange: 0, EPChange: -1) // Survive Chapter
                 ],
                 isFinalChapter: false
             ),
