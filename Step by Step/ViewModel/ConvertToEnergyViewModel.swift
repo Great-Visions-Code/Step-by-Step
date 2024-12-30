@@ -16,11 +16,11 @@ struct ConvertToEnergyViewModel {
     /// This function ensures that energy points are scaled to a range of 0 to 10, providing a gamified incentive for users to achieve their step goals.
     ///
     /// - Parameters:
-    ///   - currentStepsTaken: The number of steps the user has taken so far.
+    ///   - stepsToConvert: The number of steps the user has taken so far.
     ///   - totalStepsGoal: The user's total step goal for the day.
     /// - Returns: An integer representing the calculated energy points (capped at 10).
     static func calculateStepsToEnergy(
-        currentStepsTaken: Int,
+        stepsToConvert: Int,
         totalStepsGoal: Int
     ) -> Int {
         // Step 1: Validate the total step goal.
@@ -31,7 +31,7 @@ struct ConvertToEnergyViewModel {
         
         // Step 2: Calculate the steps to completion ratio.
         // Divide the current steps taken by the total step goal to get a ratio.
-        let stepsToCompletionRatio = Double(currentStepsTaken) / Double(totalStepsGoal)
+        let stepsToCompletionRatio = Double(stepsToConvert) / Double(totalStepsGoal)
         
         // Step 3: Scale the steps to completion ratio to a maximum of 10 energy points.
         // Multiply the ratio by 10 to determine the energy points earned.
