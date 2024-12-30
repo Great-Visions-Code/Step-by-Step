@@ -22,7 +22,8 @@ struct ConvertToEnergyButtonView: View {
         // A button that performs the steps-to-energy conversion and resets steps.
         Button(action: {
             // Calculate energy points based on the user's progress toward their step goal in ViewModel.
-            let newEnergy = stepTrackerViewModel.calculateEnergyPoints()
+            // Add calculatedEnergyPoints to current energy.
+            let newEnergy = stepTrackerViewModel.calculateEnergyPoints() + playerStatsViewModel.playerStats.energy
             
             // Update the energy points in the player stats ViewModel.
             playerStatsViewModel.updateEnergy(to: newEnergy)
