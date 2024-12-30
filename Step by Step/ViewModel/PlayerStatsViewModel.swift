@@ -17,7 +17,7 @@ class PlayerStatsViewModel: ObservableObject {
     /// - Parameters:
     ///   - health: The player's initial health value (default is 10).
     ///   - energy: The player's initial energy value (default is 0).
-    init(health: Int = 10, energy: Int = 0) {
+    init(health: Int = 10, energy: Int = 2) {
         self.playerStats = PlayerStats(
             health: health,
             energy: energy
