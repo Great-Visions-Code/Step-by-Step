@@ -71,12 +71,12 @@ class StoryContentViewModel: ObservableObject {
                 ],
                 isFinalChapter: false
             ),
-            // Day 1: Chapter 2
+            // Day 1: Chapter 4
             StoryContent(
                 chapterID: 4,
                 storyDay: 1,
                 chapterTitle: "What Now?",
-                chapterImages: [""],
+                chapterImages: ["survive-day1-whatNow-brokenWindow-image"],
                 chapterText: """
                     You hear a window break. It’s unclear if it’s a friendly person or something else.
                     Do you investigate or make a run for it?
