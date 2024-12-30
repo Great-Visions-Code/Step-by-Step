@@ -23,12 +23,7 @@ class StepTrackerViewModel: ObservableObject {
         )
     }
     
-    /// Updates the current steps taken.
-    /// - Parameter steps: The new step count to set.
-    func updateCurrentSteps(to steps: Int) {
-        stepTracker.currentStepsTaken = steps
-    }
-    
+    // TODO: func will be used in SettingsView to update step goal.
     /// Updates the total steps goal.
     /// - Parameter goal: The new step goal to set.
     func updateStepGoal(to goal: Int) {
