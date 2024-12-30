@@ -18,7 +18,7 @@ final class ConvertToEnergyViewModelTests: XCTestCase {
         let stepsTaken = 5000
         let stepGoal = 10000
         let energyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: stepsTaken,
+            stepsToConvert: stepsTaken,
             totalStepsGoal: stepGoal
         )
         XCTAssertEqual(energyPoints, 5, "Energy points should be 5 when steps are half the goal.")
@@ -27,7 +27,7 @@ final class ConvertToEnergyViewModelTests: XCTestCase {
         // Verifies that energy points equal the maximum when the step goal is met.
         let fullStepsTaken = 10000
         let fullEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: fullStepsTaken,
+            stepsToConvert: fullStepsTaken,
             totalStepsGoal: stepGoal
         )
         XCTAssertEqual(fullEnergyPoints, 10, "Energy points should be 10 when steps meet the goal.")
@@ -36,7 +36,7 @@ final class ConvertToEnergyViewModelTests: XCTestCase {
         // Confirms that energy points are capped at the maximum even if steps exceed the goal.
         let extraStepsTaken = 15000
         let maxEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: extraStepsTaken,
+            stepsToConvert: extraStepsTaken,
             totalStepsGoal: stepGoal
         )
         XCTAssertEqual(maxEnergyPoints, 10, "Energy points should not exceed 10 even if steps exceed the goal.")
@@ -45,7 +45,7 @@ final class ConvertToEnergyViewModelTests: XCTestCase {
         // Ensures that zero steps result in zero energy points.
         let noStepsTaken = 0
         let zeroEnergyPoints = ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: noStepsTaken,
+            stepsToConvert: noStepsTaken,
             totalStepsGoal: stepGoal
         )
         XCTAssertEqual(zeroEnergyPoints, 0, "Energy points should be 0 when no steps are taken.")
@@ -54,7 +54,7 @@ final class ConvertToEnergyViewModelTests: XCTestCase {
         // Validates behavior when the step goal is zero, ensuring no energy points are awarded.
         let goalIsZero = 0
         let energyPointsWithZeroGoal = ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: stepsTaken,
+            stepsToConvert: stepsTaken,
             totalStepsGoal: goalIsZero
         )
         XCTAssertEqual(energyPointsWithZeroGoal, 0, "Energy points should be 0 when total steps goal is 0.")
