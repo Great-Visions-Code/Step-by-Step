@@ -16,12 +16,11 @@ struct StoryDecisionButton: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            // Loop through each option provided to create a button.
-            ForEach(0..<options.count, id: \.self) { index in
-                let option = options[index] // Get the current option at the index.
-                
-                // Check if the player has enough energy to make the decision.
-                if currentEnergy > 0 {
+            if currentEnergy > 0 {
+                // Loop through each option provided to create a button.
+                ForEach(0..<options.count, id: \.self) { index in
+                    let option = options[index] // Get the current option at the index.
+                    
                     // Create an active button for each decision with an action.
                     Button(action: option.action) {
                         VStack(spacing: 10) {
@@ -40,19 +39,19 @@ struct StoryDecisionButton: View {
                         .foregroundColor(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
-                } else {
-                    // Create a disabled button with a message if energy is 0.
-                    VStack(spacing: 10) {
-                        Text("Feeling depleted... take more steps")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.gray.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
+            } else {
+                // Display a single message when energy is 0.
+                VStack(spacing: 10) {
+                    Text("Feeling depleted... take more steps")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.gray.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
             }
         }
         .padding()
