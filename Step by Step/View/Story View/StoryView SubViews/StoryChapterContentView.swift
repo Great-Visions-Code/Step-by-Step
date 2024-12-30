@@ -12,6 +12,8 @@ import SwiftUI
 struct StoryChapterContentView: View {
     /// ViewModel to manage the current story content, including chapters and decisions.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
+    /// ViewModel to manage the player's stats, such as health and energy.
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
     var body: some View {
         ScrollView {
@@ -59,7 +61,8 @@ struct StoryChapterContentView: View {
                                 // If the decision doesn't have a valid nextChapterID, exclude it.
                                 return nil
                             }
-                        }
+                        },
+                        currentEnergy: playerStatsViewModel.playerStats.energy // Pass current energy directly
                     )
                 }
             } else {
@@ -77,6 +80,7 @@ struct StoryChapterContentView: View {
         storyContentViewModel: StoryContentViewModel(
             achievementsViewModel: AchievementsViewModel(),
             playerStatsViewModel: PlayerStatsViewModel()
-        )
+        ),
+        playerStatsViewModel: PlayerStatsViewModel() // Pass PlayerStatsViewModel to track active/disable decision buttons
     )
 }
