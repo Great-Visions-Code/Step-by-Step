@@ -14,12 +14,13 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Initializes the ViewModel with default or custom values.
     /// - Parameters:
-    ///   - currentStepsTaken: The initial number of steps taken (default is 0).
+    ///   - stepsToConvert: The initial number of steps taken (default is 0).
     ///   - totalStepsGoal: The initial step goal (default is 5,000).
-    init(currentStepsTaken: Int = 2500, totalStepsGoal: Int = 5000) {
+    init(stepsToConvert: Int = 2500, totalStepsGoal: Int = 5000, healthKitImportedCurrentStepsTaken: Int = 0) {
         self.stepTracker = StepTracker(
-            currentStepsTaken: currentStepsTaken,
-            totalStepsGoals: totalStepsGoal
+            stepsToConvert: stepsToConvert,
+            totalStepsGoals: totalStepsGoal,
+            healthKitImportedCurrentStepsTaken: healthKitImportedCurrentStepsTaken
         )
     }
     
@@ -39,7 +40,7 @@ class StepTrackerViewModel: ObservableObject {
     /// - Returns: The calculated energy points (capped at 10).
     func calculateEnergyPoints() -> Int {
         return ConvertToEnergyViewModel.calculateStepsToEnergy(
-            currentStepsTaken: stepTracker.currentStepsTaken,
+            stepsToConvert: stepTracker.stepsToConvert,
             totalStepsGoal: stepTracker.totalStepsGoals
         )
     }
