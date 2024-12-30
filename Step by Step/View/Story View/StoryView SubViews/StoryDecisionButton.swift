@@ -42,16 +42,9 @@ struct StoryDecisionButton: View {
                 }
             } else {
                 // Display a single message when energy is 0.
-                VStack(spacing: 10) {
-                    Text("Feeling depleted... take more steps")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.gray.opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                Text(". . . you feel tired, out of energy. But you need to keep going to survive. . . take it step by step.")
+                Text("Convert Steps to Energy from the Dashboard to continue . . .")
+                    .foregroundStyle(Color.blue)
             }
         }
         .padding()
