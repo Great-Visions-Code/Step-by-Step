@@ -31,13 +31,22 @@ struct ConvertToEnergyButtonView: View {
             // Reset the current steps in ViewModel.
             stepTrackerViewModel.resetSteps()
         }) {
-            Text("Convert to Energy")
-                .font(.title2)
-                .bold()
-                .padding()
-                .background(Color.blue)
-                .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+            VStack(spacing: 15) {
+                Text("Convert")
+                    .font(.title2)
+                HStack(spacing: 10) {
+                    Text("\(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
+                        .foregroundStyle(.yellow)
+                    Image(systemName: "arrow.right.circle.fill")
+                    Text("To Energy")
+                }
+            }
+            .font(.title3)
+            .bold()
+            .padding()
+            .background(Color.blue)
+            .foregroundStyle(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
 }
