@@ -6,15 +6,28 @@
 //
 
 import Foundation
-import SwiftUI
 
-/// Model representing a decision in a chapter, including tis description and the next chapter ID.
+/// A model representing a decision available within a chapter.
+///
+/// Each `ChapterDecision` defines the player's choice, its consequences
+/// (e.g., health and energy changes), and the next chapter it leads to.
 struct ChapterDecision {
+    /// The description of the decision displayed to the player.
     let decisionText: String
-    /// The ID of the next chapter this decision leads to.
+    
+    /// The ID of the next chapter this decision leads to, if any.
+    ///
+    /// A `nil` value indicates the decision does not lead to another chapter
+    /// (e.g., the end of the story or an invalid choice).
     let nextChapterID: Int?
-    /// The change in health points when this decision is made.
+    
+    /// The change in health points caused by making this decision.
+    ///
+    /// Positive values increase health, while negative values decrease it.
     let HPChange: Int
-    /// The change in energy points when this decision is made.
+    
+    /// The change in energy points caused by making this decision.
+    ///
+    /// Positive values increase energy, while negative values decrease it.
     let EPChange: Int
 }

@@ -33,7 +33,7 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Resets the current steps to zero.
     func resetSteps() {
-        stepTracker.resetSteps()
+        stepTracker.stepsToConvert = 0
     }
     
     /// Calculates the energy points based on steps taken and the step goal.
