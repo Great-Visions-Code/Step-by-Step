@@ -1,5 +1,5 @@
 //
-//  StoryTitleCardView.swift
+//  StoryCardView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/27/24.
@@ -11,9 +11,9 @@ import SwiftUI
 ///
 /// This view displays the title, completion percentage, and color associated with a story.
 /// Users can tap the card to trigger a callback, initiating navigation.
-struct StoryTitleCardView: View {
-    /// The `StoryTitleCard` model containing the data to display.
-    var story: StoryTitleCard
+struct StoryCardView: View {
+    /// The `StoryCard` model containing the data to display.
+    var story: StoryCard
     
     /// Closure triggered when the card is tapped.
     var onTitleCardSelected: () -> Void
@@ -62,8 +62,8 @@ struct StoryTitleCardView: View {
 }
 
 #Preview {
-    StoryTitleCardView(
-        story: StoryTitleCard(
+    StoryCardView(
+        story: StoryCard(
             title: "Story Title",
             color: .green,
             completion: 100,

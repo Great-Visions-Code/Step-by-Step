@@ -9,11 +9,11 @@ import SwiftUI
 
 /// A view that displays a horizontal list of story cards, allowing users to select a story.
 struct ChooseYourAdventureView: View {
-    /// An array of `StoryTitleCard` objects representing the available stories.
-    var stories: [StoryTitleCard]
+    /// An array of `StoryCard` objects representing the available stories.
+    var stories: [StoryCard]
     
     /// Closure to handle the selection of a story, notifying the parent view.
-    var onStorySelected: (StoryTitleCard) -> Void
+    var onStorySelected: (StoryCard) -> Void
     
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct ChooseYourAdventureView: View {
                 HStack(spacing: 15) {
                     // Dynamically generate a card for each story in the `stories` array.
                     ForEach(stories, id: \.title) { story in
-                        StoryTitleCardView(
+                        StoryCardView(
                             story: story,
                             onTitleCardSelected: {
                                 // Notify the parent view when a story card is selected.
@@ -46,13 +46,13 @@ struct ChooseYourAdventureView: View {
 
 #Preview {
     let stories = [
-        StoryTitleCard(
+        StoryCard(
             title: "Story Title 1",
             color: Color.green,
             completion: 100,
             details: "DETAILS NOT SHOWN"
         ),
-        StoryTitleCard(
+        StoryCard(
             title: "Story Title 2",
             color: Color.gray,
             completion: 0,

@@ -11,7 +11,7 @@ import SwiftUI
 /// step tracking progress, and available stories.
 struct HomeView: View {
     // ViewModel for managing available story cards.
-    @StateObject var storyViewModel: StoryTitleCardViewModel
+    @StateObject var storyViewModel: StoryCardViewModel
     
     // ViewModel for managing player stats such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
@@ -25,7 +25,7 @@ struct HomeView: View {
     // Tracks the navigation path for transitioning between views.
     @State private var path = NavigationPath()
     // Holds the story selected by the user, enabling navigation to its details.
-    @State private var selectedStory: StoryTitleCard? = nil
+    @State private var selectedStory: StoryCard? = nil
 
     var body: some View {
         // NavigationStack manages the navigation flow and associated destinations.
@@ -125,7 +125,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView(
-        storyViewModel: StoryTitleCardViewModel(),
+        storyViewModel: StoryCardViewModel(),
         playerStatsViewModel: PlayerStatsViewModel(),
         stepTrackerViewModel: StepTrackerViewModel(),
         achievementsViewModel: AchievementsViewModel(),

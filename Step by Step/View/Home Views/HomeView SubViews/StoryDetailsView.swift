@@ -11,7 +11,7 @@ import SwiftUI
 /// Provides an option for the user to "Enter Story," which navigates to the main story view.
 struct StoryDetailsView: View {
     // The story object containing title, color, completion, and details to be displayed.
-    var story: StoryTitleCard
+    var story: StoryCard
     // Closure to handle the action when the "Enter Story" button is pressed.
     var onEnterStoryButton: () -> Void
         
@@ -64,7 +64,7 @@ struct StoryDetailsView: View {
 
 #Preview {
     StoryDetailsView(
-        story: StoryTitleCard(
+        story: StoryCard(
             title: "Story Title",
             color: .green,
             completion: 100,

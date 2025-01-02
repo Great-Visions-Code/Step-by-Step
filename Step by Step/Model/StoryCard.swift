@@ -1,5 +1,5 @@
 //
-//  StoryTitleCard.swift
+//  StoryCard.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/27/24.
@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// This struct contains metadata and visual properties for a story card,
 /// including the title, background color, completion percentage, and description.
-struct StoryTitleCard: Hashable {
+struct StoryCard: Hashable {
     /// The title of the story displayed on the card.
     let title: String
     

@@ -1,5 +1,5 @@
 //
-//  StoryTitleCardViewModel.swift
+//  StoryCardViewModel.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/27/24.
@@ -8,15 +8,15 @@
 import SwiftUI
 
 /// ViewModel for managing the data displayed in the "Choose Your Adventure" section.
-class StoryTitleCardViewModel: ObservableObject {
-    /// A published array of `StoryTitleCard` objects representing the available stories.
+class StoryCardViewModel: ObservableObject {
+    /// A published array of `StoryCard` objects representing the available stories.
     /// Changes to this array will automatically update any views observing this ViewModel.
-    @Published var stories: [StoryTitleCard] = [
+    @Published var stories: [StoryCard] = [
         // MARK: - Predefined Stories
 
         /// "Survive" Story:
         /// A  zombie apocalypse adventure.
-        StoryTitleCard(
+        StoryCard(
             title: "Survive",
             color: Color.green,
             completion: 0,
@@ -34,7 +34,7 @@ class StoryTitleCardViewModel: ObservableObject {
         /// "Future Adventures" Placeholder:
         /// Represents upcoming stories yet to be added to the app.
         /// Encourages users to stay engaged and look forward to future updates.
-        StoryTitleCard(
+        StoryCard(
             title: "Future Adventures",
             color: Color.gray,
             completion: 0,

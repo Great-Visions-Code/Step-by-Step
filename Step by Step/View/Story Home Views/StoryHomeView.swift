@@ -12,7 +12,7 @@ import SwiftUI
 /// Provides navigational buttons to various sections of the app.
 struct StoryHomeView: View {
     // The story object containing title, color, completion, and details to be displayed.
-    var story: StoryTitleCard
+    var story: StoryCard
     
     // ViewModel to manage and observe the player's stats, such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
@@ -108,7 +108,7 @@ struct StoryHomeView: View {
 
 #Preview {
     StoryHomeView(
-        story: StoryTitleCard(
+        story: StoryCard(
             title: "Story Title",
             color: .green,
             completion: 100,

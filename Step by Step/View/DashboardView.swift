@@ -40,7 +40,7 @@ struct DashboardView: View {
 
             // Home tab: Story selection and steps conversion.
             HomeView(
-                storyViewModel: StoryTitleCardViewModel(),
+                storyViewModel: StoryCardViewModel(),
                 playerStatsViewModel: playerStatsViewModel,
                 stepTrackerViewModel: stepTrackerViewModel,
                 achievementsViewModel: achievementsViewModel,
