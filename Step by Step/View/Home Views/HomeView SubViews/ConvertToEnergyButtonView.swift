@@ -29,7 +29,7 @@ struct ConvertToEnergyButtonView: View {
             playerStatsViewModel.updateEnergy(to: newEnergy)
             
             // Reset the current steps in ViewModel.
-            stepTrackerViewModel.resetSteps()
+            stepTrackerViewModel.resetStepsToConvert()
         }) {
             VStack(spacing: 15) {
                 Text("Convert")
