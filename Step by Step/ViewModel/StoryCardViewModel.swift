@@ -8,14 +8,20 @@
 import SwiftUI
 
 /// ViewModel for managing the data displayed in the "Choose Your Adventure" section.
+///
+/// This ViewModel provides the list of available stories, including metadata like title,
+/// completion percentage, and details. It allows for dynamic updates to the story list and
+/// supports UI responsiveness.
 class StoryCardViewModel: ObservableObject {
     /// A published array of `StoryCard` objects representing the available stories.
+    ///
     /// Changes to this array will automatically update any views observing this ViewModel.
     @Published var stories: [StoryCard] = [
         // MARK: - Predefined Stories
 
         /// "Survive" Story:
-        /// A  zombie apocalypse adventure.
+        /// A  zombie apocalypse adventure where the player's goal is to survive 10 in-game days
+        /// and reach the evacuation center.
         StoryCard(
             title: "Survive",
             color: Color.green,
@@ -32,8 +38,8 @@ class StoryCardViewModel: ObservableObject {
         ),
 
         /// "Future Adventures" Placeholder:
-        /// Represents upcoming stories yet to be added to the app.
-        /// Encourages users to stay engaged and look forward to future updates.
+        /// Represents upcoming stories that will be added to the app in future updates.
+        /// This encourages user engagement by teasing additional content.
         StoryCard(
             title: "Future Adventures",
             color: Color.gray,

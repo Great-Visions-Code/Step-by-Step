@@ -8,37 +8,38 @@
 import SwiftUI
 
 /// ViewModel responsible for converting steps taken into energy points.
-/// Energy points are used in the app's mechanics and are capped at a maximum value.
+///
+/// This ViewModel provides a static utility method to calculate energy points
+/// based on the user's progress toward their daily step goals.
+/// Energy points are capped at a maximum value to encourage balanced progression.
 struct ConvertToEnergyViewModel {
-    
-    /// Converts the user's current steps into energy points based on their step goal.
+    /// Converts the user's current steps into energy points.
     ///
-    /// This function ensures that energy points are scaled to a range of 0 to 10, providing a gamified incentive for users to achieve their step goals.
+    /// This function translates real-world steps into a gamified energy system,
+    /// incentivizing users to achieve their step goals.
+    /// Energy points are calculated as a ration of steps taken to the total steps goal,
+    /// scaled to a maximum of 10 points.
     ///
     /// - Parameters:
-    ///   - stepsToConvert: The number of steps the user has taken so far.
+    ///   - stepsToConvert: The steps available to convert to energy points.
     ///   - totalStepsGoal: The user's total step goal for the day.
-    /// - Returns: An integer representing the calculated energy points (capped at 10).
+    /// - Returns: An integer representing the calculated energy points, capped at 10.
     static func calculateStepsToEnergy(
         stepsToConvert: Int,
         totalStepsGoal: Int
     ) -> Int {
-        // Step 1: Validate the total step goal.
-        // Prevent division by zero by returning 0 energy points if the goal is invalid.
+        // Validate the total step goal to prevent division by zero.
         guard totalStepsGoal > 0 else {
-            return 0
+            return 0 // Return 0 energy points if the goal is invalid.
         }
         
-        // Step 2: Calculate the steps to completion ratio.
-        // Divide the current steps taken by the total step goal to get a ratio.
+        // Calculate the ratio of steps taken to the total step goal.
         let stepsToCompletionRatio = Double(stepsToConvert) / Double(totalStepsGoal)
         
-        // Step 3: Scale the steps to completion ratio to a maximum of 10 energy points.
-        // Multiply the ratio by 10 to determine the energy points earned.
+        // Scale the ratio to a maximum of 10 energy points.
         let calculatedEnergy = Int(stepsToCompletionRatio * 10)
         
-        // Step 4: Cap the energy points at 10.
-        // Ensure the calculated energy points do not exceed the maximum allowed value.
+        // Cap the energy points at 10 to maintain balance in the game mechanics.
         return min(calculatedEnergy, 10)
     }
 }
