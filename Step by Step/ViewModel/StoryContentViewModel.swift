@@ -7,36 +7,41 @@
 
 import SwiftUI
 
-/// ViewModel for managing story content, including chapters and decisions.
+/// ViewModel for managing story content, including chapters, decisions, and player progress.
 class StoryContentViewModel: ObservableObject {
-    /// Stores all chapters for the current story.
+    /// All chapters available in the current story.
+    /// This is a read-only property to ensure chapters are only updated internally.
     @Published private(set) var chapters: [StoryContent] = []
-    /// Tracks the current chapter being displayed.
+    
+    /// The currently active chapter being displayed.
     @Published private(set) var currentChapter: StoryContent?
-    /// Tracks the last viewed chapter's ID.
+    
+    /// The ID of the last viewed chapter, used for resuming progress.
     private var lastViewedChapterID: Int?
-    /// Reference to AchievementsViewModel for tracking attempts.
+    
+    /// Reference to the `AchievementsViewModel` for tracking milestones like attempts.
     private let achievementsViewModel: AchievementsViewModel
-    /// Reference to PlayerStatsViewModel for managing health and energy changes.
+    
+    /// Reference to the `PlayerStatsViewModel` for managing health and energy point changes.
     private let playerStatsViewModel: PlayerStatsViewModel
-
-    /// Initializes the ViewModel with predefined chapters for the story.
-    ///
-    /// This initializer sets up the required dependencies for managing story progress and interacts with other ViewModels such as `AchievementsViewModel` and `PlayerStatsViewModel`.
+    
+    /// Initializes the ViewModel with required dependencies and preload story content.
     ///
     /// - Parameters:
-    ///   - achievementsViewModel: A reference to the achievements manager for tracking story-related achievements and progress.
-    ///   - playerStatsViewModel: A reference to the player stats manager for updating health and energy values based on decisions.
+    ///   - achievementsViewModel: Tracks story-related achievements and milestones.
+    ///   - playerStatsViewModel: Manages player health and energy points for story decisions.
     init(achievementsViewModel: AchievementsViewModel, playerStatsViewModel: PlayerStatsViewModel) {
-        // This enables tracking attempts and milestones throughout the story.
         self.achievementsViewModel = achievementsViewModel
-        // This ensures health and energy changes are managed across the app.
         self.playerStatsViewModel = playerStatsViewModel
-        
         loadSurviveStory()
     }
-
-    /// Loads the "Survive Step by Step" story content.
+    
+    // MARK: - Story Loading
+    
+    /// Loads the predefined chapters for the "Survive Step by Step" story.
+    ///
+    /// This function initialized the story structure, including key decisions, chapter metadata,
+    /// and special chapters (e.g., "Death" or "Survive").
     private func loadSurviveStory() {
         chapters = [
             // Day 1: Chapter 1
@@ -132,45 +137,40 @@ class StoryContentViewModel: ObservableObject {
         currentChapter = chapters.first
         lastViewedChapterID = currentChapter?.chapterID
     }
-
-    /// A computed property to determine the last story day.
-    private var lastStoryDay: Int {
-        chapters.map { $0.storyDay }.max() ?? 0
-    }
-
-    /// Resets the story to Day 1 Chapter 1 and increments the attempt counter.
-    func resetStory() {
-        currentChapter = chapters.first
-        lastViewedChapterID = currentChapter?.chapterID
-        achievementsViewModel.incrementAttempts() // Increment attempts here.
-    }
+    
+    // MARK: - Chapter Navigation
 
     /// Updates the current chapter based on the player's decision.
+    ///
+    /// This function adjusts player health and energy based on the decision's effects.
+    /// If health reaches zero, the player transitions to the "Death" chapter. Otherwise,
+    /// the function navigates to the specified next chapter and updates the progress.
+    ///
     /// - Parameters:
-    ///   - nextChapterID: The ID of the next chapter.
-    ///   - HPChange: The change in health points.
-    ///   - EPChange: The change in energy points.
+    ///   - nextChapterID: The ID of the chapter to navigate to.
+    ///   - HPChange: The health points adjustment caused by the decision.
+    ///   - EPChange: The energy points adjustment caused by the decision.
     func updateCurrentChapter(to nextChapterID: Int, HPChange: Int, EPChange: Int) {
-        // Apply the decision's health and energy changes first.
+        // Apply health and energy changes based on the decision.
         playerStatsViewModel.applyStatChanges(HPChange: HPChange, EPChange: EPChange)
         
-        // Check if the player's health has dropped to 0.
+        // Determine the current and next story day, ensuring it stays within valid bounds.
+        let currentStoryDay = currentChapter?.storyDay ?? 1
+        let nextStoryDay = min(currentStoryDay + 1, maxStoryDay)
+        
+        // Transition to the Death Chapter if health is zero or below.
         if playerStatsViewModel.playerStats.health <= 0 {
-            // Automatically set the current chapter to the Death Chapter.
-            if let deathChapter = chapters.first(where: { $0.chapterID == 99 }) {
-                currentChapter = deathChapter
-                lastViewedChapterID = deathChapter.chapterID
-            }
-            return // Exit early since the player is dead.
+            transitionToSpecialChapter(chapterID: 99, storyDay: max(currentStoryDay, nextStoryDay))
+            return
         }
         
-        // Find the next chapter based on the decision.
+        // Find and navigate to the next chapter.
         if var nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
-            // Update `storyDay` dynamically for special chapters.
-            if nextChapter.chapterID == 99 || nextChapter.chapterID == 100 {
+            // Adjust the story day for the Survive Chapter, if applicable.
+            if nextChapter.chapterID == 100 {
                 nextChapter = StoryContent(
                     chapterID: nextChapter.chapterID,
-                    storyDay: lastStoryDay, // Use the last story day.
+                    storyDay: max(currentStoryDay, nextStoryDay),
                     chapterTitle: nextChapter.chapterTitle,
                     chapterImages: nextChapter.chapterImages,
                     chapterText: nextChapter.chapterText,
@@ -179,11 +179,46 @@ class StoryContentViewModel: ObservableObject {
                 )
             }
             currentChapter = nextChapter
-            lastViewedChapterID = nextChapterID // Update last viewed chapter ID.
+            lastViewedChapterID = nextChapterID
         }
     }
 
+    /// Transitions to a special chapter (e.g., Death or Survive) and updates the story day.
+    ///
+    /// This helper function ensures the `storyDay` is dynamically adjusted for special chapters,
+    /// like the "Death" or "Survive" chapters, while maintaining consistency.
+    ///
+    /// - Parameters:
+    ///   - chapterID: The ID of the special chapter to transition to.
+    ///   - storyDay: The story day to assign to the special chapter.
+    private func transitionToSpecialChapter(chapterID: Int, storyDay: Int) {
+        if var specialChapter = chapters.first(where: { $0.chapterID == chapterID }) {
+            specialChapter = StoryContent(
+                chapterID: specialChapter.chapterID,
+                storyDay: storyDay,
+                chapterTitle: specialChapter.chapterTitle,
+                chapterImages: specialChapter.chapterImages,
+                chapterText: specialChapter.chapterText,
+                chapterDecisions: specialChapter.chapterDecisions,
+                isFinalChapter: specialChapter.isFinalChapter
+            )
+            currentChapter = specialChapter
+            lastViewedChapterID = specialChapter.chapterID
+        }
+    }
+
+    /// Resets the story to the first chapter and increments the attempt counter.
+    ///
+    /// This method is typically called when the player chooses to start a new game.
+    func resetStory() {
+        currentChapter = chapters.first
+        lastViewedChapterID = currentChapter?.chapterID
+        achievementsViewModel.incrementAttempts()
+    }
+
     /// Resumes the last viewed chapter.
+    ///
+    /// This method allows the player to continue the story from where they left off.
     func resumeStory() {
         if let lastChapterID = lastViewedChapterID,
            let lastChapter = chapters.first(where: { $0.chapterID == lastChapterID }) {
@@ -191,9 +226,20 @@ class StoryContentViewModel: ObservableObject {
         }
     }
 
-    /// A computed property to get the total number of unique story days.
+    // MARK: - Utility Methods
+
+    /// Computes the total number of unique story days in the current story.
+    ///
+    /// This property calculates the number of distinct `storyDay` values across
+    /// all chapters, excluding special chapters with `storyDay` set to 0.
     var totalDays: Int {
-        let uniqueDays = Set(chapters.map { $0.storyDay }).filter { $0 > 0 }
-        return uniqueDays.count
+        Set(chapters.map { $0.storyDay }).filter { $0 > 0 }.count
+    }
+
+    /// Determines the highest story day in the story.
+    ///
+    /// This property identifies the highest `storyDay` value present in the story.
+    private var maxStoryDay: Int {
+        chapters.map { $0.storyDay }.max() ?? 0
     }
 }
