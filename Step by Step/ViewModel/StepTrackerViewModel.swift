@@ -24,8 +24,8 @@ class StepTrackerViewModel: ObservableObject {
     ///   - healthKitImportedCurrentStepsTaken: The current number of steps taken,
     ///    as reported by HealthKit or similar services (default is 0).
     init(
-        stepsToConvert: Int = 2500,
-        totalStepsGoal: Int = 5000,
+        stepsToConvert: Int = 10000,
+        totalStepsGoal: Int = 10000,
         healthKitImportedCurrentStepsTaken: Int = 0
     ) {
         self.stepTracker = StepTracker(

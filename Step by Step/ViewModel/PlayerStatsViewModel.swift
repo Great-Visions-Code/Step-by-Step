@@ -23,7 +23,7 @@ class PlayerStatsViewModel: ObservableObject {
     /// - Parameters:
     ///   - health: The player's initial health value (default is 10).
     ///   - energy: The player's initial energy value (default is 0).
-    init(health: Int = 2, energy: Int = 2) {
+    init(health: Int = 10, energy: Int = 0) {
         self.playerStats = PlayerStats(
             health: health,
             energy: energy
@@ -82,7 +82,7 @@ class PlayerStatsViewModel: ObservableObject {
     /// This method is typically used to reset health points at the start of a new game or after a key milestone.
     func resetHealth() {
         var updatedStats = playerStats
-        updatedStats.health = 2
+        updatedStats.health = 10
         playerStats = updatedStats
     }
 
