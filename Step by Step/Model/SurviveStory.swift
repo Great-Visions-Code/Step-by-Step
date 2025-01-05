@@ -15,12 +15,12 @@ import Foundation
 struct SurviveStory {
     /// An array of `StoryContent` objects representing the chapters in the "Survive" story.
     static let chapters: [StoryContent] = [
-        // MARK: Day 1: Chapter 1 - The Beginning
+        // MARK: ChapterID: 11 - Awakening
         StoryContent(
             chapterID: 11,
             storyDay: 1,
-            chapterTitle: "The Beginning",
-            chapterImages: ["survive-day1-beginning-bedroomView-image"],
+            chapterTitle: "Awakening",
+            chapterImages: ["survive-11-bedroom-image"],
             chapterText: """
                     The sound pulls you violently from sleep—piercing, relentless, and unfamiliar. Not an alarm clock. Not a car horn. It’s something darker, sharper. The kind of noise that makes your chest clench and your pulse race before your mind even has time to process.
 
@@ -49,12 +49,54 @@ struct SurviveStory {
                     Your hands tremble as the weight of the moment presses down on you. What do you do?
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Open the front door to see if this is real", nextChapterID: 9, HPChange: 0, EPChange: 0),
-                ChapterDecision(decisionText: "Grab your phone or turn on the TV to seek comfort or answers", nextChapterID: 1, HPChange: 0, EPChange: 0)
+                ChapterDecision(decisionText: "Open the front door to see if this is real", nextChapterID: 9,
+                                HPChange: 0, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "Grab your phone or turn on the TV to seek comfort or answers", nextChapterID: 12,
+                                HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        
+        // MARK: ChapterID: 12 - Warning
+        StoryContent(
+            chapterID: 12,
+            storyDay: 1,
+            chapterTitle: "Warning",
+            chapterImages: ["survive-12-tvBroadcast-image"],
+            chapterText: """
+                    Your hands tremble as you snatch up the phone, its incessant buzzing vibrating against your fingertips. The screen is a blur of red and white—notifications flashing faster than you can process. You swipe at the screen, unlocking it as an emergency alert dominates the display:
+
+                    “EMERGENCY ALERT: UNKNOWN OUTBREAK. MILITARY CHECKPOINTS ESTABLISHED. SEEK NEAREST CHECKPOINT OR STAY INDOORS. AVOID CONTACT WITH INFECTED.”
+
+                    Your chest tightens, and your throat feels dry as you stare at the words. Military checkpoints? Outbreak? Infected? This can’t be real.
+
+                    The phone buzzes again, its battery indicator flashing: 4% Battery Remaining. You curse under your breath and toss it aside, your eyes darting toward the TV. You grab the remote with shaking hands, fumbling with the buttons until the screen flickers to life.
+
+                    The news anchor’s voice fills the room, trembling and unsteady:
+                    “…military forces have been deployed to the city. Checkpoints are being established at key locations for evacuation and containment. Residents are strongly urged to remain indoors unless a checkpoint is within immediate reach. Repeat: avoid contact with the infected at all costs.”
+
+                    The anchor looks off-camera, his eyes wide with fear, before a shaky video feed takes over the screen. It’s a cell phone recording—a street not unlike your own. Figures stumble into view, their jerky, unnatural movements filling you with a sense of dread. In the background, a military convoy barrels down the road, its rumble like thunder. A soldier waves people toward the vehicles, shouting over the chaos, as one of the figures lunges into the frame.
+
+                    The video cuts off abruptly, replaced by the anchor, his voice cracking. “Stay calm. Stay safe. Help is coming.”
+
+                    The words feel hollow as the TV screen flickers and dies, leaving the room in silence. You’re frozen in place, gripping the remote so tightly your knuckles ache.
+
+                    Your mind races. Checkpoints. Military. Containment. The words swirl in your head, but they don’t feel real. A cold sweat forms on your brow as you glance toward the door. The sirens outside seem louder now, pulsing like a heartbeat.
+
+                    What are you supposed to do? Stay here and wait for help? It feels safer inside… but is it really? What if the infected find you? What if you’re trapped?
+
+                    Your gaze shifts toward the window. The car sits there, motionless, a potential lifeline. If you could get to it, maybe you could reach one of those checkpoints. But how? The thought of stepping outside, of facing whatever’s out there, sends a chill down your spine.
+
+                    You realize your hands are shaking. Every instinct screams for you to act, to do something. You can’t stand here frozen forever.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Barricade the doors and windows", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Sneak around the house to plan a route to the car", nextChapterID: 1,
+                                HPChange: 0, EPChange: -1)
+            ],
+            isFinalChapter: false
+        ),
+
         // MARK: General: Death Chapter
         StoryContent(
             chapterID: 9,
