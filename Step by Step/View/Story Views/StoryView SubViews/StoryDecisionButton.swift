@@ -69,11 +69,17 @@ struct StoryDecisionButton: View {
     )
 }
 
-/// Formats the stat change value with a "+" for positive changes and appends the stat type.
+/// Formats the stat change value with a "+" for positive changes, "-" for zero, and the raw value for negatives, appending the stat type.
 /// - Parameters:
-///   - statChangeValue: The stat change value (positive or negative).
+///   - statChangeValue: The stat change value (positive, negative, or zero).
 ///   - statType: The type of stat being displayed (e.g., "Health", "Energy").
 /// - Returns: A formatted string with the stat change and type.
 private func formatStatChange(statChangeValue: Int, statType: String) -> String {
-    return statChangeValue > 0 ? "+\(statChangeValue) \(statType)" : "\(statChangeValue) \(statType)"
+    if statChangeValue > 0 {
+        return "+\(statChangeValue) \(statType)"
+    } else if statChangeValue == 0 {
+        return "- 0 \(statType)" // Explicit "-" for zero values.
+    } else {
+        return "\(statChangeValue) \(statType)"
+    }
 }
