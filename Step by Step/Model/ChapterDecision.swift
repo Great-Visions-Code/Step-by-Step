@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Each `ChapterDecision` defines the player's choice, its consequences
 /// (e.g., health and energy changes), and the next chapter it leads to.
-struct ChapterDecision {
+struct ChapterDecision: Equatable {
     /// The description of the decision displayed to the player.
     let decisionText: String
     
