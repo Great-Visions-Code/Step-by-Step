@@ -42,7 +42,7 @@ struct StoryDecisionButton: View {
                 }
             } else {
                 // Display a single message when energy is 0.
-                Text(". . . you feel tired, out of energy. But you need to keep going to survive. . . take it step by step.")
+                Text("      . . . you feel tired, out of energy. But you need to keep going to survive. . . take it step by step.")
                 Text("Convert Steps to Energy from the Dashboard to continue . . .")
                     .foregroundStyle(Color.blue)
             }
