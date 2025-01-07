@@ -101,7 +101,7 @@ struct SurviveStory {
             chapterID: 13,
             storyDay: 1,
             chapterTitle: "Contact",
-            chapterImages: [""],
+            chapterImages: ["survive-13-runToCar-image"],
             chapterText: """
                     The sirens wail outside, relentless and deafening, as you press your back against the wall, your breath coming in shallow gasps. Every creak of the floor beneath your feet feels like a gunshot in the stillness of the house. You inch toward the living room window, peeling back the blinds just enough to see.
 
@@ -357,7 +357,7 @@ struct SurviveStory {
             chapterID: 9,
             storyDay: 0, // This will be dynamically updated in StoryContentViewModel.
             chapterTitle: "Death",
-            chapterImages: ["survive-death-image"],
+            chapterImages: ["survive-1-death-image"],
             chapterText: """
                 Your journey ends here—for now.
 
