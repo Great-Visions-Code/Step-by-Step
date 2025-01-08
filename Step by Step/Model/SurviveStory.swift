@@ -140,7 +140,7 @@ struct SurviveStory {
             chapterID: 14,
             storyDay: 1,
             chapterTitle: "Drive",
-            chapterImages: [""],
+            chapterImages: ["survive-14-hidingBehindCar-image"],
             chapterText: """
                     The figure stumbles toward you, its gait jerky and unsteady, but its intent chillingly clear. Your breath catches, and panic seizes your chest like a vice. You can’t fight it—not head-on. You have to move, have to get past it.
 
@@ -189,7 +189,7 @@ struct SurviveStory {
             chapterID: 15,
             storyDay: 1,
             chapterTitle: "What Happened?",
-            chapterImages: [""],
+            chapterImages: ["survive-15-carCrash-image"],
             chapterText: """
                     Your hands shake as you fumble with the keys, shoving them into the ignition. The engine roars to life, and for a fleeting moment, the sound drowns out the chaos outside. Your foot slams on the gas pedal, and the car lurches forward, tires screeching against the pavement.
 
@@ -248,7 +248,7 @@ struct SurviveStory {
             chapterID: 16,
             storyDay: 1,
             chapterTitle: "Evening",
-            chapterImages: [""],
+            chapterImages: ["survive-16-shelter-image"],
             chapterText: """
                 The silence is almost worse than the noise.
 
