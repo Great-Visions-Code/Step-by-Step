@@ -31,14 +31,27 @@ struct ChooseYourAdventureView: View {
                 HStack(spacing: 15) {
                     // Dynamically generate a card for each story in the `stories` array.
                     ForEach($stories, id: \.title) { $story in
-                        StoryCardView(
-                            story: story, // Pass a binding to each story card.
-                            storyContentViewModel: storyContentViewModel, // Pass the ViewModel for dynamic updates.
-                            onTitleCardSelected: {
-                                // Notify the parent view when a story card is selected.
-                                onStorySelected(story)
-                            }
-                        )
+                        // Pass dynamic updates only for "Survive."
+                        if story.title == "Survive" {
+                            StoryCardView(
+                                story: $story, // Pass a binding to the story card.
+                                storyContentViewModel: storyContentViewModel, // Pass ViewModel for dynamic updates.
+                                onTitleCardSelected: {
+                                    // Notify the parent view when a story card is selected.
+                                    onStorySelected(story)
+                                }
+                            )
+                        } else {
+                            // Render static stories like "Future Adventures."
+                            StoryCardView(
+                                story: $story, // Pass a binding to the story card.
+                                storyContentViewModel: nil, // Pass nil to prevent dynamic updates.
+                                onTitleCardSelected: {
+                                    // Notify the parent view when a story card is selected.
+                                    onStorySelected(story)
+                                }
+                            )
+                        }
                     }
                 }
                 .padding(.horizontal, 40) // Center the story cards within the scroll view.
@@ -51,16 +64,16 @@ struct ChooseYourAdventureView: View {
 #Preview {
     @Previewable @State var stories = [
         StoryCard(
-            title: "Story Title 1",
+            title: "Survive",
             color: Color.green,
-            completion: 100,
-            details: "DETAILS NOT SHOWN"
+            completion: 50,
+            details: "Dynamic completion story."
         ),
         StoryCard(
-            title: "Story Title 2",
+            title: "Future Adventures",
             color: Color.gray,
             completion: 0,
-            details: "DETAILS NOT SHOWN"
+            details: "Static completion story."
         )
     ]
     return ChooseYourAdventureView(
