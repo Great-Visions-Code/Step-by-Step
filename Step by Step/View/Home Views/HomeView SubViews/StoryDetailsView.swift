@@ -10,8 +10,12 @@ import SwiftUI
 /// Displays detailed information about a selected story, including its title, completion percentage, and description.
 /// Provides an option for the user to "Enter Story," which navigates to the main story view.
 struct StoryDetailsView: View {
-    // The story object containing title, color, completion, and details to be displayed.
+    // The story object containing title, color, and details to be displayed.
     var story: StoryCard
+    
+    // ViewModel to observe the current story's completion percentage dynamically.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
+    
     // Closure to handle the action when the "Enter Story" button is pressed.
     var onEnterStoryButton: () -> Void
         
@@ -24,8 +28,8 @@ struct StoryDetailsView: View {
                 .font(.largeTitle)
                 .bold()
             
-            // Show the completion percentage of the story.
-            Text("Completion: \(story.completion)%")
+            // Show the dynamically updated completion percentage of the story.
+            Text("Completion: \(storyContentViewModel.completionPercentage)%")
                 .font(.headline)
             
             Divider()
@@ -67,14 +71,18 @@ struct StoryDetailsView: View {
         story: StoryCard(
             title: "Story Title",
             color: .green,
-            completion: 100,
+            completion: 0, // This is ignored as we now dynamically observe the ViewModel.
             details: """
                     SAMPLE: 'Story Title', this is where we would show the details of the story.
                     
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
-                    
+                     Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
+                                        
                     Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
                     """
+        ),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         ),
         onEnterStoryButton: {}
     )
