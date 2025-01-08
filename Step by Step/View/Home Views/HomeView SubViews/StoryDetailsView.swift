@@ -13,8 +13,8 @@ struct StoryDetailsView: View {
     // The story object containing title, color, and details to be displayed.
     var story: StoryCard
     
-    // ViewModel to observe the current story's completion percentage dynamically.
-    @ObservedObject var storyContentViewModel: StoryContentViewModel
+    // Optional ViewModel to observe the current story's completion percentage dynamically.
+    var storyContentViewModel: StoryContentViewModel?
     
     // Closure to handle the action when the "Enter Story" button is pressed.
     var onEnterStoryButton: () -> Void
@@ -28,9 +28,14 @@ struct StoryDetailsView: View {
                 .font(.largeTitle)
                 .bold()
             
-            // Show the dynamically updated completion percentage of the story.
-            Text("Completion: \(storyContentViewModel.completionPercentage)%")
-                .font(.headline)
+            // Show the completion percentage dynamically for "Survive" or static for others.
+            if story.title == "Survive" {
+                Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
+                    .font(.headline)
+            } else {
+                Text("Completion: 0%") // Static completion for other stories like "Future Adventures."
+                    .font(.headline)
+            }
             
             Divider()
             
