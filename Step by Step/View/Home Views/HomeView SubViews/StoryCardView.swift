@@ -12,8 +12,11 @@ import SwiftUI
 /// This view displays the title, completion percentage, and color associated with a story.
 /// Users can tap the card to trigger a callback, initiating navigation.
 struct StoryCardView: View {
-    /// The `StoryCard` model containing the data to display.
+    /// The `StoryCard` model containing the static data for the story.
     var story: StoryCard
+    
+    /// The `StoryContentViewModel` to dynamically observe the story's completion percentage.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     /// Closure triggered when the card is tapped.
     var onTitleCardSelected: () -> Void
@@ -33,8 +36,8 @@ struct StoryCardView: View {
                 .minimumScaleFactor(0.6)
                 .padding()
             
-            // Display the completion percentage, styled for a secondary emphasis.
-            Text("Completed: \(story.completion)%")
+            // Display the dynamically updated completion percentage.
+            Text("Completed: \(storyContentViewModel.completionPercentage)%")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.8))
         }
@@ -66,8 +69,12 @@ struct StoryCardView: View {
         story: StoryCard(
             title: "Story Title",
             color: .green,
-            completion: 100,
+            completion: 0, // Ignored as we dynamically observe completionPercentage.
             details: ""
+        ),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
         ),
         onTitleCardSelected: {}
     )
