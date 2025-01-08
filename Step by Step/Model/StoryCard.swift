@@ -20,7 +20,7 @@ struct StoryCard: Hashable {
     let color: Color
     
     /// The completion percentage of the story, ranging from 0% to 100%.
-    let completion: Int
+    var completion: Int
     
     /// Additional details or description of the story, providing context or backstory.
     let details: String
