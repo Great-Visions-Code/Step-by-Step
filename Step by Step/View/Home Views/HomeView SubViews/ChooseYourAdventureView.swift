@@ -9,8 +9,11 @@ import SwiftUI
 
 /// A view that displays a horizontal list of story cards, allowing users to select a story.
 struct ChooseYourAdventureView: View {
-    /// An array of `StoryCard` objects representing the available stories.
-    var stories: [StoryCard]
+    /// A binding array of `StoryCard` objects representing the available stories.
+    @Binding var stories: [StoryCard]
+    
+    /// The `StoryContentViewModel` to track and update the dynamic completion percentage.
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     /// Closure to handle the selection of a story, notifying the parent view.
     var onStorySelected: (StoryCard) -> Void
@@ -27,9 +30,10 @@ struct ChooseYourAdventureView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 15) {
                     // Dynamically generate a card for each story in the `stories` array.
-                    ForEach(stories, id: \.title) { story in
+                    ForEach($stories, id: \.title) { $story in
                         StoryCardView(
-                            story: story,
+                            story: story, // Pass a binding to each story card.
+                            storyContentViewModel: storyContentViewModel, // Pass the ViewModel for dynamic updates.
                             onTitleCardSelected: {
                                 // Notify the parent view when a story card is selected.
                                 onStorySelected(story)
@@ -45,7 +49,7 @@ struct ChooseYourAdventureView: View {
 }
 
 #Preview {
-    let stories = [
+    @Previewable @State var stories = [
         StoryCard(
             title: "Story Title 1",
             color: Color.green,
@@ -59,8 +63,12 @@ struct ChooseYourAdventureView: View {
             details: "DETAILS NOT SHOWN"
         )
     ]
-    ChooseYourAdventureView(
-        stories: stories,
+    return ChooseYourAdventureView(
+        stories: $stories,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
+        ),
         onStorySelected: { _ in }
     )
 }
