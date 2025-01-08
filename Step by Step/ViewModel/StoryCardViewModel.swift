@@ -21,7 +21,7 @@ class StoryCardViewModel: ObservableObject {
         // MARK: - Survive Story
 
         /// "Survive" Story:
-        /// A  zombie apocalypse adventure where the player's goal is to survive 10 in-game days
+        /// A zombie apocalypse adventure where the player's goal is to survive 10 in-game days
         /// and reach the evacuation center.
         StoryCard(
             title: "Survive",
@@ -79,12 +79,19 @@ class StoryCardViewModel: ObservableObject {
 
     /// Updates the completion percentage for a specific story by title.
     ///
+    /// If the story has a static completion (e.g., "Future Adventures"), it remains unchanged.
+    ///
     /// - Parameters:
     ///   - title: The title of the story to update.
     ///   - percentage: The new completion percentage.
     private func updateStoryCompletion(for title: String, to percentage: Int) {
         if let index = stories.firstIndex(where: { $0.title == title }) {
-            stories[index].completion = percentage
+            // Keep static stories like "Future Adventures" at their default completion.
+            if stories[index].title == "Future Adventures" {
+                stories[index].completion = 0 // Always set to 0.
+            } else {
+                stories[index].completion = percentage
+            }
         }
     }
 
