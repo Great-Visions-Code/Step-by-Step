@@ -12,11 +12,11 @@ import SwiftUI
 /// This view displays the title, completion percentage, and color associated with a story.
 /// Users can tap the card to trigger a callback, initiating navigation.
 struct StoryCardView: View {
-    /// The `StoryCard` model containing the static data for the story.
-    var story: StoryCard
+    /// A binding to the `StoryCard` model containing the data to display.
+    @Binding var story: StoryCard
     
-    /// The `StoryContentViewModel` to dynamically observe the story's completion percentage.
-    @ObservedObject var storyContentViewModel: StoryContentViewModel
+    /// An optional `StoryContentViewModel` to track dynamic updates for the story.
+    var storyContentViewModel: StoryContentViewModel?
     
     /// Closure triggered when the card is tapped.
     var onTitleCardSelected: () -> Void
@@ -36,8 +36,8 @@ struct StoryCardView: View {
                 .minimumScaleFactor(0.6)
                 .padding()
             
-            // Display the dynamically updated completion percentage.
-            Text("Completed: \(storyContentViewModel.completionPercentage)%")
+            // Display the completion percentage, styled for a secondary emphasis.
+            Text("Completed: \(story.completion)%")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.8))
         }
@@ -61,16 +61,24 @@ struct StoryCardView: View {
                 onTitleCardSelected()
             }
         }
+        .onChange(of: storyContentViewModel?.completionPercentage, initial: false) { _, newValue in
+            // Update only if a valid ViewModel is provided.
+            if let newValue = newValue, story.title == "Survive" {
+                story.completion = newValue
+            }
+        }
     }
 }
 
 #Preview {
     StoryCardView(
-        story: StoryCard(
-            title: "Story Title",
-            color: .green,
-            completion: 0, // Ignored as we dynamically observe completionPercentage.
-            details: ""
+        story: .constant(
+            StoryCard(
+                title: "Survive",
+                color: Color.green,
+                completion: 50,
+                details: "Dynamic story details."
+            )
         ),
         storyContentViewModel: StoryContentViewModel(
             achievementsViewModel: AchievementsViewModel(),
