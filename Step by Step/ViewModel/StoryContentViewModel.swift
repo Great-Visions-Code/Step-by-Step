@@ -21,6 +21,8 @@ class StoryContentViewModel: ObservableObject {
     
     /// Mapping of `chapterID` to completion percentage.
     private let chapterCompletionMapping: [Int: Int] = [
+        1: 100,
+        9: 0,
         11: 0,
         12: 2,
         13: 4,
