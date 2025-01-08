@@ -16,6 +16,20 @@ class StoryContentViewModel: ObservableObject {
     /// The currently active chapter being displayed.
     @Published private(set) var currentChapter: StoryContent?
     
+    /// The current completion percentage for the story.
+    @Published var completionPercentage: Int = 0
+    
+    /// Mapping of `chapterID` to completion percentage.
+    private let chapterCompletionMapping: [Int: Int] = [
+        11: 0,
+        12: 2,
+        13: 4,
+        14: 5,
+        15: 7,
+        16: 9,
+        21: 10
+    ]
+    
     /// The ID of the last viewed chapter, used for resuming progress.
     private var lastViewedChapterID: Int?
     
@@ -49,6 +63,8 @@ class StoryContentViewModel: ObservableObject {
         // Set the first chapter as the starting point.
         currentChapter = chapters.first
         lastViewedChapterID = currentChapter?.chapterID
+        // Initialize completion percentage.
+        updateCompletionPercentage(for: currentChapter?.chapterID)
     }
     
     // MARK: - Chapter Navigation
@@ -93,6 +109,8 @@ class StoryContentViewModel: ObservableObject {
             }
             currentChapter = nextChapter
             lastViewedChapterID = nextChapterID
+            // Update completion percentage based on the new chapter ID.
+            updateCompletionPercentage(for: nextChapter.chapterID)
         }
     }
 
@@ -117,9 +135,22 @@ class StoryContentViewModel: ObservableObject {
             )
             currentChapter = specialChapter
             lastViewedChapterID = specialChapter.chapterID
+            // Update completion percentage for special chapters.
+            updateCompletionPercentage(for: specialChapter.chapterID)
         }
     }
-
+    
+    /// Updates the completion percentage based on the given chapterID.
+    ///
+    /// This method retrieves the corresponding percentage from the mapping and updates the
+    /// published `completionPercentage` property.
+    ///
+    /// - Parameter chapterID: The ID of the chapter to calculate the completion percentage for.
+    private func updateCompletionPercentage(for chapterID: Int?) {
+        guard let chapterID = chapterID else { return }
+        completionPercentage = chapterCompletionMapping[chapterID] ?? 0
+    }
+    
     /// Resets the story to the first chapter and increments the attempt counter.
     ///
     /// This method is typically called when the player chooses to start a new game.
@@ -127,6 +158,8 @@ class StoryContentViewModel: ObservableObject {
         currentChapter = chapters.first
         lastViewedChapterID = currentChapter?.chapterID
         achievementsViewModel.incrementAttempts()
+        // Reset completion percentage to 0.
+        updateCompletionPercentage(for: currentChapter?.chapterID)
     }
 
     /// Resumes the last viewed chapter.
@@ -136,6 +169,8 @@ class StoryContentViewModel: ObservableObject {
         if let lastChapterID = lastViewedChapterID,
            let lastChapter = chapters.first(where: { $0.chapterID == lastChapterID }) {
             currentChapter = lastChapter
+            // Update completion percentage based on the resumed chapter.
+            updateCompletionPercentage(for: lastChapter.chapterID)
         }
     }
 
