@@ -47,7 +47,8 @@ struct HomeView: View {
                 )
                 // A horizontal scrollable list of available adventures for the player to choose from.
                 ChooseYourAdventureView(
-                    stories: storyViewModel.stories,
+                    stories: $storyViewModel.stories, // Pass stories as a binding.
+                    storyContentViewModel: storyContentViewModel, // Pass StoryContentViewModel for dynamic updates.
                     onStorySelected: { story in
                         selectedStory = story
                         path.append("StoryDetailsView") // Navigate to the story details.
@@ -58,7 +59,8 @@ struct HomeView: View {
             Spacer()
             Divider()
             
-            // MARK: Navigation Destinations.
+            // MARK: - Navigation Destinations
+            
             // Handles navigation to various destinations based on the path value.
             .navigationDestination(for: String.self) { destination in
                 switch destination {
@@ -67,6 +69,7 @@ struct HomeView: View {
                     if let story = selectedStory {
                         StoryDetailsView(
                             story: story,
+                            storyContentViewModel: storyContentViewModel, // Pass the StoryContentViewModel.
                             onEnterStoryButton: {
                                 path.append("StoryHomeView") // Navigate to the story's main view.
                             }
