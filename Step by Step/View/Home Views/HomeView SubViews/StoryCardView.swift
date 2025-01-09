@@ -62,7 +62,7 @@ struct StoryCardView: View {
             }
         }
         .onChange(of: storyContentViewModel?.completionPercentage, initial: false) { _, newValue in
-            // Update only if a valid ViewModel is provided.
+            // Update completion percentage only if a valid ViewModel is provided.
             if let newValue = newValue, story.title == "Survive" {
                 story.completion = newValue
             }
