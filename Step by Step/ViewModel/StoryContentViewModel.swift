@@ -89,16 +89,16 @@ class StoryContentViewModel: ObservableObject {
         let currentStoryDay = currentChapter?.storyDay ?? 1
         let nextStoryDay = min(currentStoryDay + 1, maxStoryDay)
         
-        // Transition to the Death Chapter if health is zero or below.
-        if playerStatsViewModel.playerStats.health <= 0 {
-            transitionToSpecialChapter(chapterID: 99, storyDay: max(currentStoryDay, nextStoryDay))
+        // Check for special chapters and handle them using `transitionToSpecialChapter`.
+        if nextChapterID == 9 || nextChapterID == 1 { // Example: Death Chapter or Survive Chapter
+            transitionToSpecialChapter(chapterID: nextChapterID, storyDay: max(currentStoryDay, nextStoryDay))
             return
         }
-        
+
         // Find and navigate to the next chapter.
         if var nextChapter = chapters.first(where: { $0.chapterID == nextChapterID }) {
-            // Adjust the story day for the Survive Chapter, if applicable.
-            if nextChapter.chapterID == 100 {
+            // Adjust the story day for normal chapters.
+            if nextChapter.chapterID == 1 { // Survive Chapter
                 nextChapter = StoryContent(
                     chapterID: nextChapter.chapterID,
                     storyDay: max(currentStoryDay, nextStoryDay),
@@ -109,8 +109,11 @@ class StoryContentViewModel: ObservableObject {
                     isFinalChapter: nextChapter.isFinalChapter
                 )
             }
+            
+            // Update the current chapter and last viewed chapter ID.
             currentChapter = nextChapter
             lastViewedChapterID = nextChapterID
+            
             // Update completion percentage based on the new chapter ID.
             updateCompletionPercentage(for: nextChapter.chapterID)
         }
@@ -126,6 +129,7 @@ class StoryContentViewModel: ObservableObject {
     ///   - storyDay: The story day to assign to the special chapter.
     private func transitionToSpecialChapter(chapterID: Int, storyDay: Int) {
         if var specialChapter = chapters.first(where: { $0.chapterID == chapterID }) {
+            // Update the special chapter's story day.
             specialChapter = StoryContent(
                 chapterID: specialChapter.chapterID,
                 storyDay: storyDay,
@@ -137,6 +141,12 @@ class StoryContentViewModel: ObservableObject {
             )
             currentChapter = specialChapter
             lastViewedChapterID = specialChapter.chapterID
+            
+            // If transitioning to the Death Chapter, set the player's health to 0.
+            if chapterID == 9 {
+                playerStatsViewModel.decreaseHealth(by: playerStatsViewModel.playerStats.health) // Reduce health to 0.
+            }
+            
             // Update completion percentage for special chapters.
             updateCompletionPercentage(for: specialChapter.chapterID)
         }
