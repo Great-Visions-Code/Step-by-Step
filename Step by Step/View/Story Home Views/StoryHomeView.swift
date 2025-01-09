@@ -65,6 +65,11 @@ struct StoryHomeView: View {
                 )
                 .padding(.bottom, 20)
                 
+                // Display Survive completion percentage dynamically and static for Future Adventures.
+                Text("Completed: \(story.title == "Future Adventures" ? "0" : "\(storyContentViewModel.completionPercentage)")%")
+                    .font(.title3)
+                    .padding(.bottom, 20)
+                
                 // Display Attempts taken.
                 AttemptTrackerView(
                     achievementsViewModel: achievementsViewModel
