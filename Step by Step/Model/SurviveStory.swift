@@ -51,7 +51,7 @@ struct SurviveStory {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Open the front door to see if this is real", nextChapterID: 9,
                                 HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Grab your phone or turn on the TV to seek comfort or answers", nextChapterID: 12,
+                ChapterDecision(decisionText: "Grab your phone or turn on the TV to seek answers", nextChapterID: 12,
                                 HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
@@ -91,7 +91,7 @@ struct SurviveStory {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Barricade the doors and windows", nextChapterID: 9,
                                 HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Sneak around the house to plan a route to the car", nextChapterID: 13,
+                ChapterDecision(decisionText: "Make a run for the car", nextChapterID: 13,
                                 HPChange: 0, EPChange: -2)
             ],
             isFinalChapter: false
@@ -128,9 +128,9 @@ struct SurviveStory {
                     Your stomach twists as it lurches toward you, its mouth opening in a guttural snarl. You stumble backward, your hands trembling as you weigh your options. You can’t let it stop you. You can’t—
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "FIGHT", nextChapterID: 9,
+                ChapterDecision(decisionText: "FIGHT!", nextChapterID: 9,
                                 HPChange: -2, EPChange: -3), // Death Chapter
-                ChapterDecision(decisionText: "Push and run around", nextChapterID: 14,
+                ChapterDecision(decisionText: "Push and run", nextChapterID: 14,
                                 HPChange: -1, EPChange: -3)
             ],
             isFinalChapter: false
@@ -179,7 +179,7 @@ struct SurviveStory {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Check your phone for information and gather your thoughts", nextChapterID: 9,
                                 HPChange: 0, EPChange: -1), // Death Chapter
-                ChapterDecision(decisionText: "Put the car in drive and floor it out of there", nextChapterID: 15,
+                ChapterDecision(decisionText: "Put the car in drive and get out of there", nextChapterID: 15,
                                 HPChange: 0, EPChange: -1)
             ],
             isFinalChapter: false
@@ -238,7 +238,7 @@ struct SurviveStory {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Yell for help", nextChapterID: 9,
                                 HPChange: 0, EPChange: -1), // Death Chapter
-                ChapterDecision(decisionText: "Try to break out the back window and crawl out", nextChapterID: 16,
+                ChapterDecision(decisionText: "Try to break out a window and crawl out", nextChapterID: 16,
                                 HPChange: -3, EPChange: -2)
             ],
             isFinalChapter: false
@@ -293,7 +293,7 @@ struct SurviveStory {
             chapterID: 21,
             storyDay: 2,
             chapterTitle: "A New Day",
-            chapterImages: [""],
+            chapterImages: ["survive-21-survivors-image"],
             chapterText: """
                     The first thing you feel is warmth. The sun’s rays stream through the broken blinds, golden and soft, painting streaks of light across the room. For a moment, it feels foreign, almost comforting. You blink awake, your head pounding, your body stiff from an unnatural sleep.
 
