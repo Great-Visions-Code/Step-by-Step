@@ -89,6 +89,12 @@ class StoryContentViewModel: ObservableObject {
         let currentStoryDay = currentChapter?.storyDay ?? 1
         let nextStoryDay = min(currentStoryDay + 1, maxStoryDay)
         
+        // Transition to the Death Chapter if health is zero or below.
+        if playerStatsViewModel.playerStats.health <= 0 {
+            transitionToSpecialChapter(chapterID: 9, storyDay: max(currentStoryDay, nextStoryDay))
+            return
+        }
+        
         // Check for special chapters and handle them using `transitionToSpecialChapter`.
         if nextChapterID == 9 || nextChapterID == 1 { // Example: Death Chapter or Survive Chapter
             transitionToSpecialChapter(chapterID: nextChapterID, storyDay: max(currentStoryDay, nextStoryDay))
