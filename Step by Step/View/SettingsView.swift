@@ -8,17 +8,41 @@
 import SwiftUI
 
 /// View responsible for displaying and managing user settings within the app.
-///
-/// This is a placeholder view and serves as the entry point for future development of the settings page.
 struct SettingsView: View {
+    // ViewModel to manage the player's stats.
+    @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    
     var body: some View {
-        // Placeholder text indicating the purpose of this view.
-        Text("Settings Page")
-            .font(.title)
-            .padding()
+        VStack(spacing: 20) {
+            // Title for the settings page.
+            Text("Settings")
+                .font(.largeTitle)
+                .bold()
+                .padding(.top)
+            
+            Spacer()
+            
+            // Update Energy to 10 for testing purposes
+            Button(action: {
+                playerStatsViewModel.updateEnergy(to: 10) // Call the updateEnergy function from the ViewModel.
+            }) {
+                Text("Update to 10 Energy Points")
+                    .font(.title2)
+                    .bold()
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+            }
+            .padding(.horizontal)
+            
+            Spacer() // Pushes the content to the top, leaving space at the bottom.
+        }
+        .padding()
     }
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(playerStatsViewModel: PlayerStatsViewModel())
 }
