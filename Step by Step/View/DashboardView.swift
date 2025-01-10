@@ -53,7 +53,9 @@ struct DashboardView: View {
             .tag(1)
 
             // Settings tab for app configuration and user preferences.
-            SettingsView()
+            SettingsView(
+                playerStatsViewModel: playerStatsViewModel
+            )
                 .tabItem {
                     Image(systemName: "gearshape.2.fill")
                     Text("Settings")
