@@ -15,6 +15,8 @@ import Foundation
 struct SurviveStory {
     /// An array of `StoryContent` objects representing the chapters in the "Survive" story.
     static let chapters: [StoryContent] = [
+        // MARK: DAY 1 - chapterIDs: 11-16 -
+        
         // MARK: ChapterID: 11 - The Awakening
         StoryContent(
             chapterID: 11,
@@ -284,10 +286,13 @@ struct SurviveStory {
                 ChapterDecision(decisionText: "Keep moving through the neighborhood to find rescue", nextChapterID: 9,
                                 HPChange: 0, EPChange: -2), // Death Chapter
                 ChapterDecision(decisionText: "Break into the house and rest", nextChapterID: 21,
-                                HPChange: +2, EPChange: -2)
+                                HPChange: +1, EPChange: -2)
             ],
             isFinalChapter: false
         ),
+        
+        // MARK: DAY 2 - chapterIDs: 21-25 -
+
         // MARK: ChapterID: 21 - A New Day
         StoryContent(
             chapterID: 21,
@@ -345,14 +350,308 @@ struct SurviveStory {
                 """,
             chapterDecisions: [
                 ChapterDecision(decisionText: "Try to join up with the group", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Go the other way", nextChapterID: 22,
+                                HPChange: 0, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 22 - Searching for Transportation
+        StoryContent(
+            chapterID: 22,
+            storyDay: 2,
+            chapterTitle: "Searching for Transportation",
+            chapterImages: ["survive-22-bike-image"],
+            chapterText: """
+                    You crouch behind the doorway, gripping the broomstick tightly, your heart hammering in your chest. Outside, the group huddles in the yard, whispering urgently, their heads darting in every direction. They move with precision, their actions deliberate. They’ve done this before.
+
+                    For a moment, you consider stepping out, joining them. Safety in numbers, right?
+
+                    But the thought evaporates as quickly as it forms. Groups are loud, visible, easy to spot. In movies and TV shows, they’re always the first to be targeted—too many voices, too much movement, too many chances for mistakes. And with a group comes trust issues, conflict, and the danger of being dragged into their mistakes.
+
+                    No. Alone is better. You can move quietly, quickly. There’s only you to worry about, no one to hold you back.
+
+                    Your grip on the broomstick tightens as you step away from the door, retreating further into the house. A floorboard creaks beneath your weight, freezing you in place. Your breath catches, your pulse pounding in your ears. But the group outside doesn’t notice.
+
+                    When you reach the back door, you ease it open, the rusted hinges groaning softly. The air outside is thick with the smell of damp earth and smoke. You glance back toward the group one last time, your stomach twisting with uncertainty, before slipping into the backyard. Whatever they’re planning, it’s not your problem.
+                
+                The morning is unnervingly quiet.
+
+                    You tread carefully, each step deliberate. Your body aches from the strain of yesterday’s ordeal, but the need to find a way out keeps you moving.
+
+                    The world around you bears the scars of destruction. Cars are abandoned at odd angles, some with their doors flung open, their interiors ransacked. Clothes, bags, and forgotten possessions lie scattered across lawns. You pass a broken stroller tipped over in the gutter, its contents spilled onto the street.
+
+                    Far in the distance, a scream cuts through the silence. Sharp. Panicked. Then, nothing.
+
+                    You see people, just shadows at first. A figure darts between houses, clutching something tightly. Another person crouches behind a car, their eyes wide with terror as they scan their surroundings. None of them seem to notice you—or perhaps they don’t care. Everyone is focused on their own survival.
+
+                    You keep to the edges of the road, avoiding open spaces, every nerve on edge.
+                
+                    When you round the corner, something catches your eye.
+
+                    A minivan sits parked at the curb, its driver’s side door ajar. Inside, you can see the keys dangling from the ignition. For a moment, hope surges through you.
+
+                    You approach cautiously, your grip tightening on the broomstick as you scan the area. Nothing moves. No sounds. You climb into the driver’s seat, gripping the wheel as you twist the key.
+
+                Nothing happens.
+
+                    The engine doesn’t even sputter. You glance at the fuel gauge—empty. Your stomach sinks as frustration bubbles to the surface. You slam your hand against the steering wheel, letting out a shaky breath.
+
+                    Further down the street, you try another car. And another. Each one is a dead end, the car is either damaged or empty of fuel.
+                
+                    Your legs ache as you move further along the road, your breath coming faster with every step. The thought of walking miles to find safety feels impossible. But you don’t have a choice.
+
+                That’s when you see it.
+                
+                Across the street, chained to a fence, is a bicycle.
+
+                    It looks functional. It’s the first thing you’ve seen today that feels like it might actually work.
+
+                But then you notice it.
+
+                    Not far from the bike, crouched low and unbothered by your presence, is an infected. Its hunched frame quivers as it tears into something—or someone. You can’t make out much, but the sounds are unmistakable: wet, tearing, grotesque.
+
+                Your stomach churns as you take in the scene.
+
+                    The bike is a gamble. If you can get to it, unchain it without making noise, you could have a way out—a faster way to cover ground, to find a military checkpoint. But if the creature notices you, there’s no guarantee you’ll make it out unscathed.
+
+                    Your fingers tighten around the broomstick. You weigh the options carefully, your pulse pounding in your ears.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Inspect the bicycle", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Leave it and continue on foot", nextChapterID: 23,
+                                HPChange: 0, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 23 - A Desperate Plea
+        StoryContent(
+            chapterID: 23,
+            storyDay: 2,
+            chapterTitle: "A Desperate Plea",
+            chapterImages: [""],
+            chapterText: """
+                    You walk briskly, your grip on the broomstick tighter than ever. Leaving the bike behind was a hard choice, but the risk wasn’t worth it. Each step feels heavier, your legs burning with every stride. The thought of reaching the military checkpoint keeps you moving.
+
+                    The streets are quieter now, the distant screams fading into an eerie stillness. Shadows play tricks on your mind as you pass abandoned cars and shattered windows. Your stomach gnaws at you, a reminder that you haven’t eaten in over a day.
+
+                    Your eyes dart to the sides of the road, scanning for anything useful—a weapon, food, even a scrap of fabric to patch your fraying nerves. That’s when it happens.
+                
+                A hand grabs your ankle, cold and sudden.
+
+                    You stumble forward, your heart lurching as you let out a panicked yell. The broomstick falls from your grasp, clattering to the ground.
+
+                    Your mind screams infected! as you scramble to your feet, kicking wildly. You twist around, ready to swing, only to see a pair of wide, terrified eyes staring back at you.
+
+                “Wait! Please—don’t go!”
+
+                    It’s a woman, her face pale and streaked with grime. She’s half-hidden beneath a car, her hands trembling as she reaches out to you.
+
+                    “Help me,” she whispers, her voice breaking. “Please.”
+
+                    You hesitate, your breath coming in short, shallow bursts. She’s human. Not infected. But as you step closer, you see why she can’t stand—her legs are mangled, twisted at unnatural angles. Blood stains her pants, dark and crusted in places, fresh in others.
+                
+                    “Please,” she says again, clutching a worn backpack to her chest. “I have supplies—food, water. I’ll give it to you. Just don’t leave me here. Please.”
+
+                    Her voice cracks on the last word, and it hits you like a punch to the gut. You glance around, the oppressive silence pressing down on you. Every instinct tells you to keep moving, to leave her behind. She’s dead weight, another risk you can’t afford.
+
+                But she’s alive.
+
+                    You crouch down, your hands trembling as you help pull her out from under the car. She winces, biting back a scream as her legs drag against the pavement.
+
+                    “I can’t walk,” she says, her voice barely above a whisper. “But you can carry me, right? Find something—a cart, a stretcher, anything.”
+
+                    Her eyes are wide, desperate, and you feel the weight of her hope pressing down on you. You scan the area frantically, looking for anything that might help. A wheelbarrow. A flat piece of wood. Anything.
+                
+                In your rush, you fumble.
+
+                    The bottle falls from your bag, clinking against the pavement. The sound feels impossibly loud, echoing in the stillness.
+
+                You freeze.
+
+                    A low growl cuts through the silence, sending a jolt of terror through you. Your eyes dart to the shadows at the edge of the street, where a figure emerges. Then another. And another.
+
+                The infected are coming.
+
+                    The woman grabs your arm, her grip weak but urgent. “Don’t leave me,” she pleads. “Please—I’ll do anything. Just don’t leave me here!”
+
+                    Your heart pounds as you glance between her and the approaching infected. There’s no time to think, only time to act.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Help the stranger", nextChapterID: 9,
+                                HPChange: -1, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Run away alone", nextChapterID: 24,
+                                HPChange: -1, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 24 - Supplies
+        StoryContent(
+            chapterID: 24,
+            storyDay: 2,
+            chapterTitle: "Supplies",
+            chapterImages: [""],
+            chapterText: """
+                    “I’m sorry,” you whisper, your voice trembling as you take a step back.
+                
+                    Her eyes widen, and she shakes her head. “No—no! Don’t leave me!”
+                
+                    But you’re already moving, your legs carrying you away from her cries. The infected swarm her, their snarls mixing with her screams as you run. You don’t look back. You can’t.
+                
+                    “I’m sorry,” you whisper again, barely loud enough for her to hear. Her eyes, wide with terror, will haunt you forever.
+
+                    Your chest heaves, your breath ragged, and your throat feels like it’s closing in. You tell yourself it was the only way, the only choice that made sense. She was a goner. There was nothing you could have done.
+
+                    But no matter how many times you repeat it, the guilt sits heavy in your chest.
+                
+                    A few blocks away, the adrenaline finally fades, leaving you drained. You stumble into the shadows between two abandoned cars and collapse, your back against the door of a sedan.
+
+                    The world around you feels impossibly quiet, the distant moans of the infected barely audible now. Your hands shake as you clutch your knees, trying to steady your breathing. The weight of it all presses down on you—the chaos, the hopelessness, the decisions that don’t feel like decisions at all.
+
+                    Tears sting your eyes, and you don’t bother to fight them.
+
+                    “How is this happening?” you whisper to no one. “Where’s the rescue? How am I supposed to survive this?”
+
+                    You pull out your phone, holding onto the faint hope that there’s some update, some sign of salvation. The screen lights up weakly.
+
+                Battery: 1%.
+
+                No signal. No messages. No hope.
+
+                    You let out a bitter laugh, half a sob, and shove the phone back into your pocket. It won’t matter soon enough.
+                
+                    When the silence stretches too long, you force yourself to stand. The ache in your body feels sharper now, no longer masked by adrenaline. You glance at your hands and notice the scrapes and bruises. Must’ve happened when you stumbled trying to get away. The sight sends a fresh wave of shame through you, but you shove it down.
+
+                You can’t stay here.
+
+                    The road ahead feels endless, each step heavier than the last. When you finally come across the pharmacy, it feels like a mirage. The sign hangs crookedly, one of the front windows shattered. The door is slightly ajar, swaying in the faint breeze.
+
+                    Your stomach growls loudly, a painful reminder of how long it’s been since you’ve eaten. Supplies. Food. Bandages. Anything.
+
+                    You hesitate at the door, peering inside. It’s quiet. Too quiet. The shelves are half-empty, the faint smell of spilled medicine and disinfectant lingering in the air.
+
+                    Your heart races as you grip your broomstick, weighing your options.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Search the store thoroughly for supplies", nextChapterID: 9,
+                                HPChange: +2, EPChange: -3), // Death Chapter
+                ChapterDecision(decisionText: "Make a quick entry and grab essentials near the exit", nextChapterID: 25,
+                                HPChange: +1, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 25 - Shelter
+        StoryContent(
+            chapterID: 25,
+            storyDay: 2,
+            chapterTitle: "Shelter",
+            chapterImages: [""],
+            chapterText: """
+                    You slip inside, staying near the door. Your eyes scan the shelves quickly, grabbing anything within reach—an unopened energy drink, a pack of bandages, a protein bar.
+                
+                    The whole process takes less than a minute, but it feels like an eternity. You back out slowly, your ears straining for any sound. The silence holds, and you exhale in relief as you step back into the open air.
+                
+                    The sun starts to dip lower on the horizon, casting long shadows across the street as twilight begins to settle in. The orange glow of the sky feels faintly comforting, but you know it won’t last. Darkness is coming, and with it, danger.
+
+                    You clutch your supplies tightly, the edges of the bandage pack digging into your palm as you press forward. Every sound feels amplified in the quiet—your footsteps on the cracked pavement, the distant rustle of leaves, the faint creak of a swaying sign.
+
+                    The back streets feel safer, offering cover from prying eyes or worse. You keep moving, your body running on instinct. As you pass a few houses, you try the doors, but each one is locked tight. You hesitate at one, your hand resting on the doorknob, debating whether to break the glass or move on. The thought of the noise it would make chills you. It’s not worth the risk.
+                
+                You remember the church.
+
+                    An old building with thick wooden doors, built like a fortress. You’ve passed by it countless times in what now feels like another life—when things were normal, safe. It’s only a few blocks away, but the thought of reaching it feels daunting. What if it’s overrun? What if others had the same idea and it’s not safe anymore?
+
+                    The questions linger as you push forward, your legs growing heavier with each step.
+                
+                Then you see it.
+
+                    A house with the front door ajar, its dark interior visible from where you stand. The sight makes you pause, your heart racing. You step closer, your broomstick raised, every nerve in your body screaming for caution.
+
+                    The house looks untouched—no broken windows, no signs of struggle. Maybe the owners left early when everything started. Or maybe they’re already safe.
+
+                    You stand at the edge of the doorway, peering inside. The furniture is still in place, a pair of shoes by the door, a coat hanging on the rack. It feels almost normal. Almost.
+
+                    You glance down the road toward the church, the shadows growing longer by the second.
+
+                    Your mind races. The house is here, now, and might offer a safe place to rest. But the church… the church was built to withstand time and trouble.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Take shelter in the house", nextChapterID: 9,
+                                HPChange: +1, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Continue to the church", nextChapterID: 31,
+                                HPChange: +1, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        
+        // MARK: DAY 3 - chapterIDs: 31 -
+
+        // MARK: ChapterID: 31 - The Divide
+        StoryContent(
+            chapterID: 31,
+            storyDay: 3,
+            chapterTitle: "The Divide",
+            chapterImages: [""],
+            chapterText: """
+                    You take one last look at the house behind you, its door ajar and its shadowy interior beckoning with uncertainty. But the thought of the church—the sturdy doors, the promise of security—pulls you forward. Your legs ache with every step, your body screaming for rest, but you keep moving.
+
+                    The street ahead is quiet, save for the faint rustle of leaves and the occasional distant noise that makes your heart race. Each shadow feels like it’s watching, waiting.
+
+                    When the church finally comes into view, its silhouette framed by the last light of the day, a wave of relief washes over you. The heavy wooden doors stand closed, their presence a symbol of hope—or a barrier to it.
+
+                    You climb the steps and press your hand against the door, pushing with all your weight. Nothing.
+
+                    Your knees buckle as you collapse against the door, tears streaming down your face. “Please,” you whisper hoarsely, your voice barely audible. “Please. Help me.”
+
+                    For a moment, there’s only silence. Then, the sound of a bolt sliding back.
+
+                    The door creaks open, and a hand reaches out, gripping your arm. “Hurry, come in,” a voice urges.
+
+                    You’re pulled inside, the heavy door slamming shut behind you. The dim light inside reveals a handful of survivors, each keeping to themselves. Some lie curled on the floor, their faces pale and drawn. Others sit quietly, their eyes vacant, staring into the darkness.
+
+                    The air is thick with the smell of sweat and fear. A cough breaks the silence, followed by the shuffle of someone shifting in their makeshift bedding.
+
+                    You find an empty corner and collapse onto the floor, too exhausted to think. The cold stone beneath you feels like a reprieve, and before you can process anything, your eyes close.
+                
+                    You wake to the sound of hushed voices. The faint light of dawn filters through the high windows, casting long shadows across the room.
+
+                    A group of survivors is gathered in the center of the room, their whispers sharp and urgent. You push yourself up, your body stiff and aching, and make your way over.
+
+                    As you approach, the group glances at you briefly but offers no introductions. Their attention is focused on the conversation.
+
+                    “They’re still evacuating people,” one man insists, his voice low but firm. “I heard it on the news before the power went out. Military checkpoints, evacuating to a safe zone. It’s not far—we can make it if we stick together.”
+
+                    Another survivor shakes his head, his arms crossed tightly. “That was yesterday. You think those checkpoints are still standing? They’re probably overrun or abandoned. We stay here, fortify the place, and keep quiet. That’s how we survive.”
+
+                    The group splits into murmurs, some nodding in agreement, others shaking their heads.
+
+                    “We’ll run out of food,” a woman says sharply. “Staying here is a slow death. We have to try.”
+
+                    “And going out there isn’t?” another snaps. “The streets are crawling with infected. You’d die before you got halfway to the checkpoint.”
+
+                    The argument grows louder, tension thick in the air.
+
+                    Finally, one man steps forward, his expression resolute. “I’m not staying here. I’d rather die trying than waste away hiding in this place. I’m heading for the checkpoint. Who’s coming with me?”
+
+                    His words cut through the noise, and silence falls over the group. He looks around, his gaze landing on you.
+
+                    “Well?” he asks, his voice steady. “What’s it going to be?”
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Stay with the group in the church:", nextChapterID: 9,
                                 HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Go the other way", nextChapterID: 1,
+                ChapterDecision(decisionText: "Join the group heading for the military checkpoint", nextChapterID: 1,
                                 HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
         ),
-
-        // MARK: General: Death Chapter
+        
+        // MARK: DAY 4 - chapterIDs: 41 -
+        
+        // MARK: SPECIAL CHAPTERS
+        
+        // MARK: Death Chapter
         StoryContent(
             chapterID: 9,
             storyDay: 0, // This will be dynamically updated in StoryContentViewModel.
@@ -377,7 +676,7 @@ struct SurviveStory {
             isFinalChapter: true
         ),
         
-        // MARK: General: Survive Chapter
+        // MARK: Survive Chapter
         StoryContent(
             chapterID: 1,
             storyDay: 0, // This will be dynamically updated in StoryContentViewModel.
