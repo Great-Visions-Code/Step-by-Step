@@ -15,7 +15,7 @@ import Foundation
 struct SurviveStory {
     /// An array of `StoryContent` objects representing the chapters in the "Survive" story.
     static let chapters: [StoryContent] = [
-        // MARK: DAY 1 - chapterIDs: 11-16 -
+        // MARK: DAY 1 - chapterIDs: 11-16
         
         // MARK: ChapterID: 11 - The Awakening
         StoryContent(
@@ -291,7 +291,7 @@ struct SurviveStory {
             isFinalChapter: false
         ),
         
-        // MARK: DAY 2 - chapterIDs: 21-25 -
+        // MARK: DAY 2 - chapterIDs: 21-25
 
         // MARK: ChapterID: 21 - A New Day
         StoryContent(
@@ -430,7 +430,7 @@ struct SurviveStory {
             chapterID: 23,
             storyDay: 2,
             chapterTitle: "A Desperate Plea",
-            chapterImages: [""],
+            chapterImages: ["survive-23-runAway-image"],
             chapterText: """
                     You walk briskly, your grip on the broomstick tighter than ever. Leaving the bike behind was a hard choice, but the risk wasn’t worth it. Each step feels heavier, your legs burning with every stride. The thought of reaching the military checkpoint keeps you moving.
 
@@ -466,7 +466,7 @@ struct SurviveStory {
                 
                 In your rush, you fumble.
 
-                    The bottle falls from your bag, clinking against the pavement. The sound feels impossibly loud, echoing in the stillness.
+                    A bottle falls, clinking against the pavement. The sound feels impossibly loud, echoing in the stillness.
 
                 You freeze.
 
@@ -491,7 +491,7 @@ struct SurviveStory {
             chapterID: 24,
             storyDay: 2,
             chapterTitle: "Supplies",
-            chapterImages: [""],
+            chapterImages: ["survive-24-lootedStore-image"],
             chapterText: """
                     “I’m sorry,” you whisper, your voice trembling as you take a step back.
                 
@@ -525,7 +525,7 @@ struct SurviveStory {
 
                 You can’t stay here.
 
-                    The road ahead feels endless, each step heavier than the last. When you finally come across the pharmacy, it feels like a mirage. The sign hangs crookedly, one of the front windows shattered. The door is slightly ajar, swaying in the faint breeze.
+                    The road ahead feels endless, each step heavier than the last. When you finally come across a pharmacy, it feels like a mirage. The sign hangs crookedly, one of the front windows shattered. The door is slightly ajar, swaying in the faint breeze.
 
                     Your stomach growls loudly, a painful reminder of how long it’s been since you’ve eaten. Supplies. Food. Bandages. Anything.
 
@@ -546,7 +546,7 @@ struct SurviveStory {
             chapterID: 25,
             storyDay: 2,
             chapterTitle: "Shelter",
-            chapterImages: [""],
+            chapterImages: ["survive-25-church-image"],
             chapterText: """
                     You slip inside, staying near the door. Your eyes scan the shelves quickly, grabbing anything within reach—an unopened energy drink, a pack of bandages, a protein bar.
                 
@@ -558,13 +558,13 @@ struct SurviveStory {
 
                     The back streets feel safer, offering cover from prying eyes or worse. You keep moving, your body running on instinct. As you pass a few houses, you try the doors, but each one is locked tight. You hesitate at one, your hand resting on the doorknob, debating whether to break the glass or move on. The thought of the noise it would make chills you. It’s not worth the risk.
                 
-                You remember the church.
+                Then, you remember the church.
 
                     An old building with thick wooden doors, built like a fortress. You’ve passed by it countless times in what now feels like another life—when things were normal, safe. It’s only a few blocks away, but the thought of reaching it feels daunting. What if it’s overrun? What if others had the same idea and it’s not safe anymore?
 
                     The questions linger as you push forward, your legs growing heavier with each step.
                 
-                Then you see it.
+                You keep going. Then, you notice it. 
 
                     A house with the front door ajar, its dark interior visible from where you stand. The sight makes you pause, your heart racing. You step closer, your broomstick raised, every nerve in your body screaming for caution.
 
@@ -585,14 +585,14 @@ struct SurviveStory {
             isFinalChapter: false
         ),
         
-        // MARK: DAY 3 - chapterIDs: 31 -
+        // MARK: DAY 3 - chapterIDs: 31
 
         // MARK: ChapterID: 31 - The Divide
         StoryContent(
             chapterID: 31,
             storyDay: 3,
             chapterTitle: "The Divide",
-            chapterImages: [""],
+            chapterImages: ["survive-31-insideChurch-image"],
             chapterText: """
                     You take one last look at the house behind you, its door ajar and its shadowy interior beckoning with uncertainty. But the thought of the church—the sturdy doors, the promise of security—pulls you forward. Your legs ache with every step, your body screaming for rest, but you keep moving.
 
@@ -640,14 +640,123 @@ struct SurviveStory {
                 """,
             chapterDecisions: [
                 ChapterDecision(decisionText: "Stay with the group in the church:", nextChapterID: 9,
-                                HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Join the group heading for the military checkpoint", nextChapterID: 1,
+                                HPChange: +1, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "Join the group heading for the military checkpoint", nextChapterID: 32,
                                 HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
         ),
+        // MARK: ChapterID: 32 - The Group
+        StoryContent(
+            chapterID: 32,
+            storyDay: 3,
+            chapterTitle: "The Group",
+            chapterImages: [""],
+            chapterText: """
+                    The decision to join the group weighs heavily on your mind as you stand in the dim light of the church. Around you, hushed whispers fill the air as those staying behind speak in quiet tones with loved ones, debating whether they’re making the right choice.
+
+                    “I think it’s safer here,” one woman murmurs to her partner.
+                    “And starve to death?” he replies, shaking his head.
+
+                    In the end, only a handful of others decide to join. Their faces are a mix of determination and fear, mirroring your own.
+                
+                    As you prepare to leave, one of the group members—a man in his early 30s with a rough, no-nonsense demeanor—glances at the broomstick in your hands. He lets out a short laugh.
+
+                    “You planning to watch my back with that?” he says, shaking his head. Before you can respond, he reaches into his pack and pulls out a crowbar. “Here, take this. You’ll need it.”
+
+                    You take it, the cold steel heavier than you expected. It feels solid in your hands, a real weapon for the first time.
+
+                    “Thanks,” you manage to say, your voice uncertain. He nods and turns back to the group.
+                
+                    The group moves out cautiously, the church doors closing behind you with a final, heavy thud.
+
+                    The streets are quieter than you expected, the chaos of the previous days now replaced with an oppressive stillness. Each step is measured, deliberate, the group weaving through alleyways and side streets to avoid open areas.
+                
+                    Then it happens.
+
+                    An infected appears from nowhere, its guttural snarl breaking the silence. Before you can react, it lunges at you, its hands reaching for your throat.
+
+                    You stumble backward, your heart pounding as you hit the ground. The crowbar slips from your grasp, clattering to the pavement.
+
+                    This is it, you think, your breath caught in your chest.
+
+                    But just as the infected lunges, a sharp crack echoes through the air. You flinch as the creature collapses, its skull caved in.
+
+                    “Get up!” a voice snaps, and you look up to see the same man who gave you the crowbar standing over you, his weapon dripping with blood.
+
+                    He holds out a hand, yanking you to your feet. “Keep your head on straight,” he says gruffly, already turning back to the group.
+
+                    You nod, swallowing hard, and grip the crowbar tightly.
+                
+                    Time passes, and the group moves cautiously through the streets. The tension is palpable, every shadow a potential threat.
+
+                    Suddenly, another snarl cuts through the air. This time, the infected targets someone else—a younger woman near the back of the group.
+
+                    She screams, struggling as the creature grabs her arm. The rest of the group hesitates, frozen in fear.
+
+                    Your heart pounds as you grip the crowbar, your knuckles white. Images flash through your mind—the man who saved you, the infected collapsing at his feet.
+
+                    This time, it’s your turn to decide.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Help the group member and kill the infected", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Step back and let someone else handle it", nextChapterID: 33,
+                                HPChange: -1, EPChange: -4)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 33 -
+        StoryContent(
+            chapterID: 33,
+            storyDay: 3,
+            chapterTitle: "",
+            chapterImages: [""],
+            chapterText: """
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "", nextChapterID: 9,
+                                HPChange: 0, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "", nextChapterID: 1,
+                                HPChange: 0, EPChange: 0)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 34 -
+        StoryContent(
+            chapterID: 34,
+            storyDay: 3,
+            chapterTitle: "",
+            chapterImages: [""],
+            chapterText: """
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "", nextChapterID: 9,
+                                HPChange: 0, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "", nextChapterID: 1,
+                                HPChange: 0, EPChange: 0)
+            ],
+            isFinalChapter: false
+        ),
+
+        // MARK: DAY 4 - chapterIDs: 41
         
-        // MARK: DAY 4 - chapterIDs: 41 -
+        // MARK: ChapterID: 41 -
+        StoryContent(
+            chapterID: 41,
+            storyDay: 4,
+            chapterTitle: "",
+            chapterImages: [""],
+            chapterText: """
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "", nextChapterID: 9,
+                                HPChange: 0, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "", nextChapterID: 1,
+                                HPChange: 0, EPChange: 0)
+            ],
+            isFinalChapter: false
+        ),
         
         // MARK: SPECIAL CHAPTERS
         
