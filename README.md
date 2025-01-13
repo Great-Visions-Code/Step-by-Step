@@ -56,17 +56,31 @@ The first story, *"Survive Step by Step"*, places players in a post-apocalyptic 
 
 ## Current Screenshots
 
-### Chapter View
-<img src="ReadMe Images/IMG_4093.jpg" alt="The Awakening - Chapter View" width="300">
-
-### Decision View
-<img src="ReadMe Images/IMG_4094.jpg" alt="Survival Decision Screen" width="300">
-
-### Story Progression
-<img src="ReadMe Images/IMG_4095.jpg" alt="Survive - Story Progression" width="300">
-
-### Dashboard
-<img src="ReadMe Images/IMG_4096.jpg" alt="Dashboard View" width="300">
+<table>
+  <tr>
+    <td align="center">
+      <b>Chapter View</b><br>
+      <img src="ReadMe Images/IMG_4093.jpg" alt="The Awakening - Chapter View" width="300"><br>
+    </td>
+    <td align="center">
+      <b>Decision View</b><br>
+      <img src="ReadMe Images/IMG_4094.jpg" alt="Survival Decision Screen" width="300"><br>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="height: 20px;"></td> <!-- Adds spacing between rows -->
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Story Progression</b><br>
+      <img src="ReadMe Images/IMG_4095.jpg" alt="Survive - Story Progression" width="300"><br>
+    </td>
+    <td align="center">
+      <b>Dashboard</b><br>
+      <img src="ReadMe Images/IMG_4096.jpg" alt="Dashboard View" width="300"><br>
+    </td>
+  </tr>
+</table>
 
 ---
 
