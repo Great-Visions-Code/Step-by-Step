@@ -672,7 +672,7 @@ struct SurviveStory {
 
                     The streets are quieter than you expected, the chaos of the previous days now replaced with an oppressive stillness. Each step is measured, deliberate, the group weaving through alleyways and side streets to avoid open areas.
                 
-                    Then it happens.
+                Then it happens.
 
                     An infected appears from nowhere, its guttural snarl breaking the silence. Before you can react, it lunges at you, its hands reaching for your throat.
 
@@ -696,29 +696,98 @@ struct SurviveStory {
 
                     Your heart pounds as you grip the crowbar, your knuckles white. Images flash through your mind—the man who saved you, the infected collapsing at his feet.
 
-                    This time, it’s your turn to decide.
+                This time, it’s your turn to decide.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Help the group member and kill the infected", nextChapterID: 9,
+                ChapterDecision(decisionText: "Step back and let someone else handle it", nextChapterID: 9,
                                 HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Step back and let someone else handle it", nextChapterID: 33,
+                ChapterDecision(decisionText: "Help the group member and kill the infected", nextChapterID: 33,
                                 HPChange: -1, EPChange: -4)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 33 -
+        // MARK: ChapterID: 33 - The Checkpoint
         StoryContent(
             chapterID: 33,
             storyDay: 3,
-            chapterTitle: "",
+            chapterTitle: "The Checkpoint",
             chapterImages: [""],
             chapterText: """
+                    Your body moves before your mind can catch up. You raise the crowbar high and swing with all your strength.
+                        
+                    The first hit connects with the creature’s shoulder, knocking it off balance. It snarls, turning toward you, and you strike again—this time hitting its head.
+                        
+                    The sound is sickening, and the creature collapses in a heap.
+                        
+                    The woman stumbles back, her eyes wide. “Thank you,” she whispers, her voice shaking.
+                        
+                    Your hands tremble as you lower the crowbar, your heart racing. The group stares at you, a mix of surprise and respect in their eyes.
+                
+                    Your legs feel like they’re moving on autopilot, your grip on the crowbar tight, your knuckles white. The group trudges on, avoiding infected when they can and striking decisively when they must. The air grows heavier as the sun begins to dip below the horizon.
+                
+                    Rounding a corner onto a side street, you stop in your tracks. Ahead, more groups of survivors are converging, all moving toward a single destination.
+
+                The checkpoint.
+
+                    For a moment, relief washes over you. Soldiers stand behind a makeshift barricade, shouting instructions and gesturing for survivors to form lines. Behind them, military trucks are parked, their engines rumbling faintly. Some survivors are already loaded onto the trucks, their faces tired but hopeful.
+
+                    “Order!” a soldier yells, his voice cutting through the noise. “We’ll check you one at a time! Stay calm and wait your turn!”
+
+                    The chaos is palpable. Survivors shout and bump into each other as they try to find a place in line. Parents clutch their children tightly, their faces etched with desperation. In the back, others push forward, yelling to be taken first.
+                
+                    You and your group edge closer, trying to find some semblance of order. The tension in the air is suffocating.
+
+                    “This needs to move faster,” someone mutters. “We can’t stay out here much longer. It’s too loud.”
+
+                    You glance around nervously, your grip tightening on the crowbar. Every shout, every frantic movement feels like a beacon for the infected.
+                
+                    Then you hear it—raised voices from the next line over.
+
+                    “No, I’m not bitten!” a man yells, his voice hoarse and desperate. “It’s a scratch! I got it jumping a fence!”
+
+                    A soldier steps forward, his weapon raised. “Step back!” he commands, his tone sharp.
+
+                    The crowd in that line begins to part, people stumbling over each other to get away from the man. Soldiers surround him, their guns trained on his chest.
+
+                    “Please!” the man cries, his voice cracking. “I have to get to my family! Please don’t do this!”
+
+                    For a moment, everything seems to freeze. Then, in a desperate bid for freedom, the man bolts, running toward one of the trucks.
+                
+                The shot rings out, deafening and final.
+
+                    The man collapses, his body hitting the ground with a thud.
+
+                Panic erupts.
+                
+                    The lines dissolve into chaos as survivors scream and push forward, trying to break through the barricades. Soldiers yell, trying to hold their ground, but the crowd is relentless.
+
+                Another shot fires, then another.
+
+                    “Fall back!” a commanding voice shouts. “All units, fall back! Evacuate immediately!”
+
+                    The soldiers retreat, climbing into the trucks as the barricades collapse. The engines roar to life, and the trucks begin to pull away.
+
+                    “Please, don’t leave us!” someone screams, their voice raw with despair.
+                
+                    You move forward, driven by the faint hope of finding safety. The crowd surges around you, the noise a deafening blur.
+
+                Then you see it.
+
+                    At first, it’s just one. Then two. Then five. The infected are coming.
+
+                    The gunfire has drawn them, their snarls growing louder as they close in. Chaos engulfs the checkpoint as survivors scatter, some trying to climb onto the moving trucks, others running in every direction.
+
+                    Screams fill the air as the first of the infected reach the crowd. A woman falls, her cries cut short as she’s dragged down.
+
+                    “Over here!” someone shouts, but the voice is lost in the din.
+
+                    You turn, your eyes darting wildly. The infected are everywhere, and your group is nowhere to be seen.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "", nextChapterID: 9,
-                                HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "", nextChapterID: 1,
-                                HPChange: 0, EPChange: 0)
+                ChapterDecision(decisionText: "Try to find your group members", nextChapterID: 9,
+                                HPChange: -1, EPChange: -4), // Death Chapter
+                ChapterDecision(decisionText: "Flee to safety and don’t look back", nextChapterID: 1,
+                                HPChange: -1, EPChange: -4)
             ],
             isFinalChapter: false
         ),
