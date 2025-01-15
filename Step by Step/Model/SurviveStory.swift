@@ -17,11 +17,11 @@ struct SurviveStory {
     static let chapters: [StoryContent] = [
         // MARK: DAY 1 - chapterIDs: 11-16
         
-        // MARK: ChapterID: 11 - The Awakening
+        // MARK: ChapterID: 11 - DAY 1
         StoryContent(
             chapterID: 11,
             storyDay: 1,
-            chapterTitle: "The Awakening",
+            chapterTitle: "DAY 1",
             chapterImages: ["survive-11-bedroom-image"],
             chapterText: """
                     The sound pulls you violently from sleep—piercing, relentless, and unfamiliar. Not an alarm clock. Not a car horn. It’s something darker, sharper. The kind of noise that makes your chest clench and your pulse race before your mind even has time to process.
@@ -58,11 +58,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 12 - Warning
+        // MARK: ChapterID: 12 - EMERGENCY ALERT
         StoryContent(
             chapterID: 12,
             storyDay: 1,
-            chapterTitle: "Warning",
+            chapterTitle: "EMERGENCY ALERT",
             chapterImages: ["survive-12-tvBroadcast-image"],
             chapterText: """
                     Your hands tremble as you snatch up the phone, its incessant buzzing vibrating against your fingertips. The screen is a blur of red and white—notifications flashing faster than you can process. You swipe at the screen, unlocking it as an emergency alert dominates the display:
@@ -137,11 +137,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 14 - Drive
+        // MARK: ChapterID: 14 - Stay Low
         StoryContent(
             chapterID: 14,
             storyDay: 1,
-            chapterTitle: "Drive",
+            chapterTitle: "Stay Low",
             chapterImages: ["survive-14-hidingBehindCar-image"],
             chapterText: """
                     The figure stumbles toward you, its gait jerky and unsteady, but its intent chillingly clear. Your breath catches, and panic seizes your chest like a vice. You can’t fight it—not head-on. You have to move, have to get past it.
@@ -245,11 +245,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 16 - Evening
+        // MARK: ChapterID: 16 - Night
         StoryContent(
             chapterID: 16,
             storyDay: 1,
-            chapterTitle: "Evening",
+            chapterTitle: "Night",
             chapterImages: ["survive-16-shelter-image"],
             chapterText: """
                 The silence is almost worse than the noise.
@@ -293,11 +293,11 @@ struct SurviveStory {
         
         // MARK: DAY 2 - chapterIDs: 21-25
 
-        // MARK: ChapterID: 21 - A New Day
+        // MARK: ChapterID: 21 - DAY 2
         StoryContent(
             chapterID: 21,
             storyDay: 2,
-            chapterTitle: "A New Day",
+            chapterTitle: "DAY 2",
             chapterImages: ["survive-21-survivors-image"],
             chapterText: """
                     The first thing you feel is warmth. The sun’s rays stream through the broken blinds, golden and soft, painting streaks of light across the room. For a moment, it feels foreign, almost comforting. You blink awake, your head pounding, your body stiff from an unnatural sleep.
@@ -356,11 +356,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 22 - Searching for Transportation
+        // MARK: ChapterID: 22 - Transportation
         StoryContent(
             chapterID: 22,
             storyDay: 2,
-            chapterTitle: "Searching for Transportation",
+            chapterTitle: "Transportation",
             chapterImages: ["survive-22-bike-image"],
             chapterText: """
                     You crouch behind the doorway, gripping the broomstick tightly, your heart hammering in your chest. Outside, the group huddles in the yard, whispering urgently, their heads darting in every direction. They move with precision, their actions deliberate. They’ve done this before.
@@ -486,11 +486,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 24 - Supplies
+        // MARK: ChapterID: 24 - No Hope
         StoryContent(
             chapterID: 24,
             storyDay: 2,
-            chapterTitle: "Supplies",
+            chapterTitle: "No Hope",
             chapterImages: ["survive-24-lootedStore-image"],
             chapterText: """
                     “I’m sorry,” you whisper, your voice trembling as you take a step back.
@@ -587,11 +587,11 @@ struct SurviveStory {
         
         // MARK: DAY 3 - chapterIDs: 31
 
-        // MARK: ChapterID: 31 - The Divide
+        // MARK: ChapterID: 31 - DAY 3
         StoryContent(
             chapterID: 31,
             storyDay: 3,
-            chapterTitle: "The Divide",
+            chapterTitle: "DAY 3",
             chapterImages: ["survive-31-insideChurch-image"],
             chapterText: """
                     You take one last look at the house behind you, its door ajar and its shadowy interior beckoning with uncertainty. But the thought of the church—the sturdy doors, the promise of security—pulls you forward. Your legs ache with every step, your body screaming for rest, but you keep moving.
@@ -706,11 +706,11 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 33 - The Checkpoint
+        // MARK: ChapterID: 33 - Checkpoint
         StoryContent(
             chapterID: 33,
             storyDay: 3,
-            chapterTitle: "The Checkpoint",
+            chapterTitle: "Checkpoint",
             chapterImages: [""],
             chapterText: """
                     Your body moves before your mind can catch up. You raise the crowbar high and swing with all your strength.
@@ -769,7 +769,7 @@ struct SurviveStory {
 
                     “Please, don’t leave us!” someone screams, their voice raw with despair.
                 
-                    You move forward, driven by the faint hope of finding safety. The crowd surges around you, the noise a deafening blur.
+                    You move forward, driven by the faint hope of finding safety. The crowd surges around you, the noise deafening, everything a blur.
 
                 Then you see it.
 
@@ -791,30 +791,89 @@ struct SurviveStory {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 34 -
+        // MARK: ChapterID: 34 - The Van
         StoryContent(
             chapterID: 34,
             storyDay: 3,
-            chapterTitle: "",
+            chapterTitle: "The Van",
             chapterImages: [""],
             chapterText: """
+                    Screams pierce the air as survivors scatter in every direction, shoving, stumbling, falling over one another in blind panic. The infected swarm the checkpoint, their snarls mixing with the sharp crack of gunfire and the desperate cries of the crowd.
+
+                You don’t look back.
+
+                    Your legs move on instinct, each step fueled by pure adrenaline. The weight of the crowbar in your hand feels heavier with every passing second, but you grip it tighter, unwilling to let go of the only thing that feels like protection.
+
+                    The streets blur around you, abandoned cars and debris flashing past as you dart through the chaos. A woman runs to your left, clutching a child in her arms, her face pale with terror. Ahead, a man stumbles and falls, screaming as the infected close in. You can’t stop. You won’t stop.
+                
+                    Your chest burns, your breath ragged, but you push forward. The infected are everywhere now, their guttural growls growing louder as they close the distance.
+
+                    A sharp turn leads you into an alleyway, the shadows swallowing you whole. You press yourself against the wall, your heart pounding as you try to catch your breath. The distant cries of survivors echo through the night, growing fainter with each step you take away from the checkpoint.
+
+                    But the infected are still close. Too close.
+                
+                    You glance back toward the alley’s mouth, your eyes catching the flicker of movement. A group of infected emerge, their jerky, unnatural motions sending a chill down your spine.
+
+                    Panic grips you as you search for an escape. That’s when you see it—a work van parked at the curb, its sliding door slightly ajar.
+                
+                    You slam the van door shut, the sound echoing louder than you expected. Your hands shake as you twist the lock into place, your breath coming in short, shallow gasps.
+
+                    The darkness inside feels suffocating, the air thick with the lingering smell of grease and something faintly metallic. You press your back against the cold metal wall, your chest heaving as you try to calm your racing heart.
+                
+                    Outside, the infected are close. Their guttural growls mix with the occasional shuffle of feet against the pavement. You can’t see them, but you can feel their presence, a suffocating weight pressing down on you from all sides.
+
+                    You reach down, grabbing crumpled newspapers and stray magazines from the van’s floor, your movements frantic. You shove them against the windows, the paper crinkling under your trembling hands. It’s not much, but it’s all you can do.
+
+                    The van rocks slightly as you shift, every noise amplified in the silence. Your body curls into itself, knees to your chest, the crowbar clutched tightly in your hands.
+                
+                    And then it hits you.
+
+                    The enormity of it all.
+
+                    The checkpoint, the chaos, the gunshots. The screams of people you couldn’t save. The infected closing in, relentless and unyielding.
+
+                    You can still hear their cries—the survivor pleading for mercy, the desperation in his voice as he tried to reach the truck. The sharp crack of a gunshot. The silence that followed.
+                
+                    A sob escapes your throat before you can stop it. Your chest tightens, and the tears come, hot and fast, streaming down your face as you bury your head in your arms.
+
+                    “What am I doing?” you whisper, your voice cracking.
+
+                    Your mind races, every thought colliding into the next. How did it come to this? How did everything fall apart so quickly? You think about the faces you’ve seen, the ones you’ve lost, the ones you couldn’t save.
+
+                    It feels hopeless. Everything around you is collapsing, the world crumbling into chaos. You’re just one person, alone in a city that feels like it’s trying to swallow you whole.
+                
+                    You tighten your grip on the crowbar, the cold steel biting into your palms. Your body trembles with exhaustion, your head pounding from the weight of it all.
+
+                    “I don’t know what I’m doing,” you admit to the darkness. “I don’t know why I’m still going.”
+
+                    The words hang in the air, raw and unfiltered. You don’t have an answer, not really. Survival feels like instinct now—just putting one foot in front of the other because stopping isn’t an option.
+
+                    But why?
+
+                    You close your eyes, the faint sound of the infected outside a constant reminder of the danger. Maybe it’s hope, you think. Maybe it’s the faint, desperate hope that somewhere, somehow, there’s safety.
+
+                    Or maybe it’s just fear. Fear of what happens if you stop.
+                
+                    Your breath comes in shallow gasps, and you press a trembling hand to your mouth, trying to stifle the sound. Time stretches endlessly as you sit in the suffocating silence.
+                
+                    You know you can’t stay like this forever. The van feels both like a sanctuary and a trap. 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "", nextChapterID: 9,
-                                HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "", nextChapterID: 1,
-                                HPChange: 0, EPChange: 0)
+                ChapterDecision(decisionText: "Move to find another shelter", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Stay hidden", nextChapterID: 41,
+                                HPChange: 0, EPChange: -2)
             ],
             isFinalChapter: false
         ),
 
         // MARK: DAY 4 - chapterIDs: 41
         
-        // MARK: ChapterID: 41 -
+        // MARK: ChapterID: 41 - DAY 4
         StoryContent(
             chapterID: 41,
             storyDay: 4,
-            chapterTitle: "",
+            chapterTitle: "DAY 4",
             chapterImages: [""],
             chapterText: """
                 """,
