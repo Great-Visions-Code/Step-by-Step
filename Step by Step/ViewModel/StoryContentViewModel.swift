@@ -24,17 +24,21 @@ class StoryContentViewModel: ObservableObject {
         1: 100,
         9: 0,
         11: 0,
-        12: 2,
-        13: 4,
-        14: 6,
-        15: 7,
-        16: 9,
-        21: 11,
-        22: 13,
-        23: 16,
-        24: 18,
-        25: 20,
-        31: 22
+        12: 4,
+        13: 8,
+        14: 13,
+        15: 17,
+        16: 21,
+        21: 25,
+        22: 30,
+        23: 35,
+        24: 40,
+        25: 45,
+        31: 50,
+        32: 56,
+        33: 63,
+        34: 69,
+        41: 75
     ]
     
     /// The ID of the last viewed chapter, used for resuming progress.
