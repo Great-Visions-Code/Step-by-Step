@@ -651,7 +651,7 @@ struct SurviveStory {
             chapterID: 32,
             storyDay: 3,
             chapterTitle: "The Group",
-            chapterImages: [""],
+            chapterImages: ["survive-32-group-image"],
             chapterText: """
                     The decision to join the group weighs heavily on your mind as you stand in the dim light of the church. Around you, hushed whispers fill the air as those staying behind speak in quiet tones with loved ones, debating whether they’re making the right choice.
 
@@ -711,7 +711,7 @@ struct SurviveStory {
             chapterID: 33,
             storyDay: 3,
             chapterTitle: "Checkpoint",
-            chapterImages: [""],
+            chapterImages: ["survive-33-checkpoint-image"],
             chapterText: """
                     Your body moves before your mind can catch up. You raise the crowbar high and swing with all your strength.
                         
@@ -796,7 +796,7 @@ struct SurviveStory {
             chapterID: 34,
             storyDay: 3,
             chapterTitle: "The Van",
-            chapterImages: [""],
+            chapterImages: ["survive-34-van-image"],
             chapterText: """
                     Screams pierce the air as survivors scatter in every direction, shoving, stumbling, falling over one another in blind panic. The infected swarm the checkpoint, their snarls mixing with the sharp crack of gunfire and the desperate cries of the crowd.
 
