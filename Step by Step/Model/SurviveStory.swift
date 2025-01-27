@@ -74,7 +74,8 @@ struct SurviveStory {
                     The phone buzzes again, its battery indicator flashing: 4% Battery Remaining. You curse under your breath and toss it aside, your eyes darting toward the TV. You grab the remote with shaking hands, fumbling with the buttons until the screen flickers to life.
 
                     The news anchor’s voice fills the room, trembling and unsteady:
-                    “…military forces have been deployed to the city. Checkpoints are being established at key locations for evacuation and containment. Residents are strongly urged to remain indoors unless a checkpoint is within immediate reach. Repeat: avoid contact with the infected at all costs.”
+                    
+                “…military forces have been deployed to the city. Checkpoints are being established at key locations for evacuation and containment. Residents are strongly urged to remain indoors unless a checkpoint is within immediate reach. Repeat: avoid contact with the infected at all costs.”
 
                     The anchor looks off-camera, his eyes wide with fear, before a shaky video feed takes over the screen. It’s a cell phone recording—a street not unlike your own. Figures stumble into view, their jerky, unnatural movements filling you with a sense of dread. In the background, a military convoy barrels down the road, its rumble like thunder. A soldier waves people toward the vehicles, shouting over the chaos, as one of the figures lunges into the frame.
 
@@ -585,7 +586,7 @@ struct SurviveStory {
             isFinalChapter: false
         ),
         
-        // MARK: DAY 3 - chapterIDs: 31
+        // MARK: DAY 3 - chapterIDs: 31-34
 
         // MARK: ChapterID: 31 - DAY 3
         StoryContent(
@@ -786,7 +787,7 @@ struct SurviveStory {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Try to find your group members", nextChapterID: 9,
                                 HPChange: -1, EPChange: -4), // Death Chapter
-                ChapterDecision(decisionText: "Flee to safety and don’t look back", nextChapterID: 1,
+                ChapterDecision(decisionText: "Flee to safety and don’t look back", nextChapterID: 34,
                                 HPChange: -1, EPChange: -4)
             ],
             isFinalChapter: false
@@ -810,7 +811,7 @@ struct SurviveStory {
 
                     A sharp turn leads you into an alleyway, the shadows swallowing you whole. You press yourself against the wall, your heart pounding as you try to catch your breath. The distant cries of survivors echo through the night, growing fainter with each step you take away from the checkpoint.
 
-                    But the infected are still close. Too close.
+                But the infected are still close. Too close.
                 
                     You glance back toward the alley’s mouth, your eyes catching the flicker of movement. A group of infected emerge, their jerky, unnatural motions sending a chill down your spine.
 
@@ -826,9 +827,9 @@ struct SurviveStory {
 
                     The van rocks slightly as you shift, every noise amplified in the silence. Your body curls into itself, knees to your chest, the crowbar clutched tightly in your hands.
                 
-                    And then it hits you.
+                And then it hits you.
 
-                    The enormity of it all.
+                The enormity of it all.
 
                     The checkpoint, the chaos, the gunshots. The screams of people you couldn’t save. The infected closing in, relentless and unyielding.
 
@@ -848,7 +849,7 @@ struct SurviveStory {
 
                     The words hang in the air, raw and unfiltered. You don’t have an answer, not really. Survival feels like instinct now—just putting one foot in front of the other because stopping isn’t an option.
 
-                    But why?
+                But why?
 
                     You close your eyes, the faint sound of the infected outside a constant reminder of the danger. Maybe it’s hope, you think. Maybe it’s the faint, desperate hope that somewhere, somehow, there’s safety.
 
@@ -867,7 +868,7 @@ struct SurviveStory {
             isFinalChapter: false
         ),
 
-        // MARK: DAY 4 - chapterIDs: 41
+        // MARK: DAY 4 - chapterIDs: 41-45
         
         // MARK: ChapterID: 41 - DAY 4
         StoryContent(
@@ -876,11 +877,321 @@ struct SurviveStory {
             chapterTitle: "DAY 4",
             chapterImages: [""],
             chapterText: """
+                    You’re sitting at the dining table, your family around you. Plates are set with food you can’t quite make out, the smell warm and comforting. Your mom sits across from you, her hair pulled back the way it always was on weekends. Your dad leans against the counter, sipping coffee from his favorite mug.
+
+                Everything feels… normal.
+
+                    You look around, soaking it in. For the first time in days, it feels like you can breathe.
+
+                    But then your mom leans forward, her eyes narrowing slightly. “Are you okay?” she asks.
+
+                You blink, caught off guard.
+
+                “Yeah, just hungry,” you say, forcing a laugh.
+
+                    She studies you for a moment longer before leaning back in her chair. You turn your gaze to your dad, about to make a joke about his coffee obsession, but the words catch in your throat.
+
+                He’s on the ground.
+                
+                    Your dad crawls toward you, his movements jerky and unnatural. His eyes—once warm and familiar—are clouded, lifeless.
+
+                “Dad?” you whisper, your voice barely audible.
+
+                    Your mom’s chair scrapes against the floor as she stands abruptly, her face twisted in panic. “RUN!” she screams. “RUN!”
+
+                    You stumble backward, your heart racing, the room blurring around you. The table is gone. It’s just you and your dad—or what’s left of him—closing the distance.
+
+                And then you feel it.
+
+                A vibration.
+                
+                    Your eyes snap open, and the dream evaporates like smoke. The van comes into focus—the cramped, dark space pressing in on you. The smell of grease and old fabric fills your nose, grounding you in the harsh reality.
+
+                    You sit up, your body trembling, and reach for your phone, still clutched tightly in your hand. The screen is black, the battery long since drained.
+
+                But you felt it. You swear you felt it.
+
+                    You press the power button, and to your surprise, the screen flickers to life. Your breath catches as an emergency alert fills the screen:
+                
+                Emergency Alert:
+                “FINAL EVACUATION NOTICE: Seek immediate evacuation. Last rescue efforts departing.
+                Active Evacuation Centers: High School Stadium, Main Park.
+                Inactive Evacuation Centers: City Hall, DownTown Mall Center.
+                Or head to the shoreline for military extraction. Time is critical.”
+                
+                    The glow of the screen is blinding in the dim light. You scan the words over and over, your mind racing. The evacuation centers. The shoreline. The last rescue efforts.
+
+                And then the screen goes black again.
+
+                    You stare at it, willing it to come back to life, but it doesn’t. The battery is gone. The moment of connection—of hope—is gone.
+                
+                    You lean back against the van wall, your chest heaving. The dream lingers in your mind, your mother’s voice still ringing in your ears. “Run,” she’d said.
+
+                You know you have to move, but where?
+
+                    The memory of the last checkpoint flashes in your mind. The gunshots. The chaos. The infected swarming.
+
+                    Could this evacuation center be any different? What if it’s just another trap—a false hope that ends in disaster?
+
+                    But what’s the alternative? Staying here? Going it alone? You’ve barely made it this far.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Try to survive on your own", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Follow the emergency alert to the stadium", nextChapterID: 42,
+                                HPChange: 0, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 42 - The Fight for Survival
+        StoryContent(
+            chapterID: 42,
+            storyDay: 4,
+            chapterTitle: "The Fight for Survival",
+            chapterImages: [""],
+            chapterText: """
+                The decision wasn’t easy.
+
+                    You sat in the van for what felt like an eternity, staring at the black screen of your dead phone, the words of the alert echoing in your mind: “Seek immediate evacuation.”
+
+                    The last checkpoint had been chaos, but what other choice did you have? The evacuation center at the high school stadium was your best shot, maybe your only shot. Staying here meant waiting to die—alone, out of options.
+
+                    With a deep breath, you grabbed the crowbar, opened the van door, and stepped out into the world once more.
+                
+                    The streets are a graveyard of yesterday’s chaos. Cars sit abandoned, their doors hanging open. Clothes and suitcases are scattered across the pavement, the remnants of people who fled in haste. You step carefully, your eyes scanning every shadow, every flicker of movement.
+
+                    You grip the crowbar tightly in your hand, its weight both comforting and daunting. Every step feels heavier than the last.
+                
+                    You move quickly, your eyes darting from shadow to shadow. The streets are silent, the kind of silence that makes every small sound feel like an explosion.
+
+                    Ahead, the faint growl you’ve come to dread cuts through the stillness. You freeze, your heart hammering in your chest.
+
+                    Two figures stumble into view. Their movements are jerky, unnatural. Their torn clothes and bloodstained skin tell you all you need to know.
+
+                The infected.
+
+                    They turn toward you, their dead eyes locking onto your every move. For a moment, panic roots you in place. Then, they lunge.
+                
+                    You swing the crowbar with all your strength, the metal colliding with the first one’s shoulder. The impact sends it stumbling back, but it doesn’t stop. The second one rushes you, its gnarled hands clawing at the air.
+
+                    You twist out of the way, but you’re not fast enough. Its fingers graze your arm, the cold, deathly grip making your stomach lurch.
+
+                    The first infected regains its footing and comes at you again. You swing wildly, the crowbar connecting with its chest. It doesn’t fall. They’re relentless, their snarls filling your ears as they close in.
+                
+                    You backpedal, your breaths coming in short, sharp gasps. The edge of your foot catches on something—a broken piece of curb or discarded debris—and you lose your balance.
+
+                    You hit the ground hard, the impact knocking the air out of your lungs.
+
+                    Before you can move, one of the infected is on you. Its weight presses down on your chest, its snapping jaws inches from your face.
+                
+                    You grip the crowbar with both hands, shoving it between you and the creature. Its teeth gnash against the metal, its breath hot and rancid. Your arms tremble as you push back with everything you have.
+
+                    Out of the corner of your eye, you see the second infected crawling toward you, its fingers digging into the pavement as it drags itself closer.
+                
+                Panic surges through you.
+
+                This is it.
+
+                    You’re pinned, the crowbar your only lifeline. The second infected is almost on you, its guttural snarls growing louder with each passing second.
+
+                    Your arms scream in protest, your muscles burning as you try to keep the first infected at bay. But you can’t hold on forever.
+                
+                Your mind races.
+
+                    You could try to shove the creature off, scramble to your feet, and flee. But the second infected is so close—would you even make it?
+
+                    Or you could fight. Give it everything you have and hope it’s enough.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Push off and flee", nextChapterID: 9,
+                                HPChange: -3, EPChange: -3), // Death Chapter
+                ChapterDecision(decisionText: "Fight to the death", nextChapterID: 43,
+                                HPChange: -5, EPChange: -5)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 43 - Rescue
+        StoryContent(
+            chapterID: 43,
+            storyDay: 4,
+            chapterTitle: "Rescue",
+            chapterImages: [""],
+            chapterText: """
+                    You swing the crowbar again, your arms screaming in protest. The first infected stumbles, but it doesn’t fall. The second one lunges, and you barely manage to shove it back with the butt of your weapon.
+
+                    Your strength is waning. Each movement feels slower, heavier, like wading through thick mud. The snarls of the infected drown out your pounding heartbeat. Your back presses against the cold pavement, and you know—this is it.
+
+                    Your vision blurs, the world narrowing to the two creatures closing in. You grit your teeth, gripping the crowbar tighter. If this is the end, you won’t go down without a fight.
+
+                    And then, out of nowhere, a deafening crack splits the air.
+
+                    One of the infected jerks back violently, a gaping hole in its head. It collapses in a heap.
+
+                    Before you can process what’s happening, another crack echoes, and the second infected drops.
+                
+                    You blink, gasping for air as the adrenaline courses through your veins. Your arms tremble, the crowbar slipping from your grip and clattering to the ground.
+
+                “Hey, you’re okay,” a voice says, calm and steady.
+
+                    You look up, your vision still swimming. Figures emerge from the shadows—a group of people, some dressed in military uniforms, others in civilian clothing. They move with purpose, their actions coordinated and efficient.
+                
+                    One of them kneels beside you, their gloved hand resting on your shoulder. “You’re safe now,” they say, their voice low and reassuring.
+
+                    Another figure raises their rifle, scanning the area for more threats. A pair of motorcycles rev in the distance, the riders honking and shouting to draw infected away.
+
+                    The group works like a machine. Spotters scan the area while others take defensive positions. A man with a scarred face waves to the others, motioning for them to move.
+
+                    “Let’s get you up,” the person beside you says, pulling you to your feet. You stagger, your legs barely holding you. They catch you before you fall, their grip firm.
+                
+                    “Come on,” they urge, leading you forward. “We’re heading to the stadium. It’s safe there.”
+
+                    Safe. The word feels foreign, almost meaningless after everything you’ve been through. But you don’t resist. You let them guide you, their presence a faint beacon in the suffocating darkness.
+                
+                    The high school stadium looms ahead, its massive structure a stark contrast to the ruins of the city. The entrances are fortified with rubble, barbed wire, and abandoned vehicles, forming an almost impenetrable barrier.
+
+                    Guards in military uniforms patrol the perimeter, their weapons at the ready. A makeshift sign hangs above the entrance: “EVACUATION CENTER – CHECKPOINT”.
+
+                    As you approach, one of the rescuers raises their hand, signaling the guards. They open a gap in the barricade, and you’re ushered inside.
+                
+                    You’re led to a side area where all newcomers are gathered. The air smells of antiseptic, and the harsh glare of floodlights illuminates the scene.
+
+                    A figure in a hazmat suit approaches you, their mask obscuring their face. “Stand still,” they say, their voice muffled but authoritative.
+
+                    They begin inspecting you, their hands methodical and precise. A flashlight shines into your eyes, making you wince. They lift your sleeves, checking your arms, then pull up your shirt slightly to inspect your torso.
+
+                “He’s clear,” the person says, stepping back.
+                
+                    You’re still in a daze, your mind struggling to process everything. Another soldier steps forward, their tone less clinical. “We’re trying to help you. Are you injured? Have you seen anyone infected recently?”
+
+                    Their questions hang in the air, but you hesitate. Memories of the last checkpoint flash in your mind—panic, gunfire, chaos. Can you trust them?
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Refuse to answer", nextChapterID: 9,
+                                HPChange: 0, EPChange: -1), // Death Chapter
+                ChapterDecision(decisionText: "Trust them", nextChapterID: 44,
+                                HPChange: 0, EPChange: -1)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 44 - The Stadium
+        StoryContent(
+            chapterID: 44,
+            storyDay: 4,
+            chapterTitle: "The Stadium",
+            chapterImages: [""],
+            chapterText: """
+                    The flashlight clicks off, and the person in the hazmat suit steps back.
+
+                    “He’s clear,” they say to the soldier standing nearby.
+
+                    You let out a breath you didn’t know you were holding, your shoulders sagging under the weight of exhaustion.
+
+                    “Follow me,” the soldier says, their tone firm but not unkind. They place a hand on your shoulder, steering you toward a large opening in the barricade.
+                
+                    You pass through a makeshift tunnel of debris and fencing, the world around you narrowing into a single path. The hum of voices grows louder with each step, the muffled sound of life pushing back against the chaos outside.
+
+                    The soldier guides you to a large doorway at the base of the stadium—a tunnel where football players used to run onto the field. The air feels heavier here, thick with the mingled scent of sweat, antiseptic, and desperation.
+
+                    “Go ahead,” the soldier says, stepping aside to let you pass.
+
+                    You hesitate for a moment before stepping forward, the dim light of the tunnel giving way to a blinding brightness.
+                
+                The scene before you is overwhelming.
+
+                    The football field has been transformed into a sprawling emergency evacuation center. Rows of cots stretch across the grass, separated by makeshift dividers. Tents line the sidelines, each one marked with signs: “MEDICAL,” “SUPPLIES,” “WATER DISTRIBUTION.”
+
+                    People are everywhere—sitting, lying down, shuffling from one station to the next. Some clutch backpacks or bags, holding onto what little they have left. Others stare blankly ahead, their faces etched with exhaustion and grief.
+
+                    Children cry softly as their parents try to console them. A man paces near the edge of the field, his hands running through his hair in a frantic rhythm. A woman sits alone on a cot, holding a photo in her trembling hands.
+
+                    The weight of it all presses down on you, your chest tightening as you take it in.
+                
+                    A soldier approaches, her voice calm but hurried. “Find an open cot and settle in. Food and water are being distributed at the tents near the scoreboard. We’ll leave first thing in the morning.”
+
+                    She starts to turn away, but you call out, your voice barely above a whisper.
+
+                “Evacuation?”
+
+                    The soldier stops, her shoulders tensing. She glances back at you, her expression unreadable. “We’re doing the best we can,” she says softly. “Just… get some rest.”
+
+                With that, she disappears into the crowd.
+                
+                    You stand there, the noise of the stadium swirling around you. The crowd moves like a slow tide, everyone caught in their own bubble of despair.
+
+                    You feel the weight of the past days settling in—every step, every loss, every close call. But here, for the first time, there’s a flicker of something else. Not hope, exactly. Not yet. But a chance.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Find a cot and rest", nextChapterID: 9,
+                                HPChange: +2, EPChange: -1), // Death Chapter
+                ChapterDecision(decisionText: "Wander around the stadium", nextChapterID: 45,
+                                HPChange: 0, EPChange: -1)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 45 - The Final Plan
+        StoryContent(
+            chapterID: 45,
+            storyDay: 4,
+            chapterTitle: "The Final Plan",
+            chapterImages: [""],
+            chapterText: """
+                    You move through the stadium, weaving between cots, tents, and clusters of survivors. The noise is a low hum—whispers, quiet sobs, the occasional bark of a soldier giving instructions.
+
+                    Everywhere you look, there are signs of exhaustion and despair. A child clings to their mother, their face buried in her shoulder. An older man sits on a folding chair, staring blankly at the ground, his hands gripping a battered duffel bag.
+
+                    A group of soldiers huddle near one of the tents, their voices hushed but urgent. You catch snippets of their conversation—words like “fallback,” “overrun,” and “final orders.”
+
+                    The enormity of it all settles heavily on your chest. This isn’t just survival. It’s the last gasp of a city that’s already gone.
+                
+                    As you wander, you spot a familiar figure—the soldier who spoke to you earlier. She’s standing near the edge of the field, her gaze fixed on something in the distance.
+
+                    You approach hesitantly, the words spilling out before you can stop them. “Why are we evacuating tomorrow morning? What’s happening?”
+
+                    She turns to you, her face grim. Her eyes, dark and weary, hold a weight you can’t fully understand.
+
+                    “We lost the city,” she says, her voice low. “The defenses didn’t hold. The infected are everywhere now, and there’s no way to push them back.”
+
+                    You feel your stomach drop, the ground beneath you seeming less steady. “But… the evacuation?”
+
+                    She exhales slowly, looking away. “Tomorrow morning is the last attempt. After that…” She hesitates, her jaw tightening. “After that, the city gets bombed. We can’t risk the infection spreading further. This is it.”
+
+                    Her words hit you like a punch to the gut. Bombed. The entire city, wiped out in a last-ditch effort to contain the chaos.
+
+                    She shifts her stance, her gaze softening slightly as she looks back at you. “Get some rest if you can. Or stay awake if you think it’ll keep you safe. Either way, be ready when morning comes.”
+
+                    Her voice drops to a near whisper, filled with quiet urgency. “And don’t miss that truck tomorrow.”
+
+                    With that, she turns and walks away, her figure blending into the crowd of survivors.
+                
+                    You stand there, the weight of her words pressing down on you. The city is lost. Tomorrow is the last chance.
+
+                    You glance around the field, your body aching, your mind racing. You see a few open cots scattered among the others—an invitation to rest, to recover. But the hum of voices, the occasional cry of a child, and the memory of what happened at the last checkpoint make it impossible to shake the sense of unease.
+
+                Can you really let your guard down, even here?
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Stay awake throughout the night", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Find a cot to sleep", nextChapterID: 51,
+                                HPChange: +2, EPChange: -1)
+            ],
+            isFinalChapter: false
+        ),
+        
+        // MARK: DAY 5 - chapterIDs: 51-5
+
+        // MARK: ChapterID: 51 - Day 5
+        StoryContent(
+            chapterID: 51,
+            storyDay: 5,
+            chapterTitle: "",
+            chapterImages: [""],
+            chapterText: """
                 """,
             chapterDecisions: [
                 ChapterDecision(decisionText: "", nextChapterID: 9,
                                 HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "", nextChapterID: 1,
+                ChapterDecision(decisionText: "", nextChapterID: 52,
                                 HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
