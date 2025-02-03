@@ -875,7 +875,7 @@ struct SurviveStory {
             chapterID: 41,
             storyDay: 4,
             chapterTitle: "DAY 4",
-            chapterImages: [""],
+            chapterImages: ["survive-41-familyDinner-image"],
             chapterText: """
                     You’re sitting at the dining table, your family around you. Plates are set with food you can’t quite make out, the smell warm and comforting. Your mom sits across from you, her hair pulled back the way it always was on weekends. Your dad leans against the counter, sipping coffee from his favorite mug.
 
@@ -948,7 +948,7 @@ struct SurviveStory {
             chapterID: 42,
             storyDay: 4,
             chapterTitle: "The Fight for Survival",
-            chapterImages: [""],
+            chapterImages: ["survive-42-zombieAttack-image"],
             chapterText: """
                 The decision wasn’t easy.
 
@@ -1015,7 +1015,7 @@ struct SurviveStory {
             chapterID: 43,
             storyDay: 4,
             chapterTitle: "Rescue",
-            chapterImages: [""],
+            chapterImages: ["survive-43-stadium-image"],
             chapterText: """
                     You swing the crowbar again, your arms screaming in protest. The first infected stumbles, but it doesn’t fall. The second one lunges, and you barely manage to shove it back with the butt of your weapon.
 
@@ -1078,7 +1078,7 @@ struct SurviveStory {
             chapterID: 44,
             storyDay: 4,
             chapterTitle: "The Stadium",
-            chapterImages: [""],
+            chapterImages: ["survive-44-insideStadium-image"],
             chapterText: """
                     The flashlight clicks off, and the person in the hazmat suit steps back.
 
@@ -1133,7 +1133,7 @@ struct SurviveStory {
             chapterID: 45,
             storyDay: 4,
             chapterTitle: "The Final Plan",
-            chapterImages: [""],
+            chapterImages: ["survive-45-thePlan-image"],
             chapterText: """
                     You move through the stadium, weaving between cots, tents, and clusters of survivors. The noise is a low hum—whispers, quiet sobs, the occasional bark of a soldier giving instructions.
 
@@ -1184,16 +1184,569 @@ struct SurviveStory {
         StoryContent(
             chapterID: 51,
             storyDay: 5,
-            chapterTitle: "",
-            chapterImages: [""],
+            chapterTitle: "Day 5",
+            chapterImages: ["survive-51-infectedInStadium-image"],
             chapterText: """
+                    You wake to a scream.
+
+                    Your eyes snap open. For a second, you don’t remember where you are. The ceiling above you is unfamiliar, the air thick with the stale scent of sweat, fear, and unwashed bodies.
+
+                    Then, another scream—raw, desperate. A gunshot follows.
+
+                    Your heart pounds as reality crashes back in. The stadium. The evacuation center. The last trucks out.
+
+                    Chaos.
+                
+                    You sit up too fast, your vision swimming. People are running. Some pushing toward the exits, others scrambling over cots, knocking over supplies. Someone trips, gets trampled. A woman sobs uncontrollably in the corner, clutching a child who won’t stop screaming.
+
+                    Then you see it.
+
+                    Near the center of the stadium, a body convulses on the ground. Blood pools around it. The limbs twitch violently before going unnaturally still. For a breathless moment, there’s silence.
+
+                    Then it moves again.
+                
+                    The soldier’s words slam into you like a punch to the gut:
+                    “We lost the city.”
+                    “Don’t miss the trucks.”
+
+                    This is it. The breach.
+
+                    A gunshot rings out, but it’s already too late. The infected stirs, its body snapping unnaturally as it pushes itself up. Its eyes are empty, lifeless. But it sees movement. It lunges.
+
+                    The nearest survivor doesn’t stand a chance.
+
+                    Screams erupt from every direction. The panic spreads like wildfire.
+
+                    More gunfire. More screams. More chaos.
+
+                    You don’t stop to think. You run.
+                
+                    Your legs are unsteady, your mind clouded with adrenaline. Everything is a blur. Your breath is ragged, muscles screaming as you push forward.
+
+                    You stumble past overturned cots, past the injured who are too weak to escape. The infected are already among them.
+
+                    A man reaches for you, his grip like iron around your wrist. You nearly scream, but his face is human—panicked, desperate. “Please, help me! Don’t leave me!” he begs, his voice cracking. “The trucks! We have to get to the trucks!”
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "", nextChapterID: 9,
-                                HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "", nextChapterID: 52,
+                ChapterDecision(decisionText: "Help the man to his feet", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Pull away and keep running", nextChapterID: 52,
+                                HPChange: 0, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 52 - The Trucks
+        StoryContent(
+            chapterID: 52,
+            storyDay: 5,
+            chapterTitle: "The Trucks",
+            chapterImages: ["survive-52-truck-image"],
+            chapterText: """
+                    “Please! Don’t leave me!” the man pleads, his grip tightening as if he can anchor himself to you, to survival.
+
+                    For a split second, you hesitate.
+
+                    But the screams behind you grow louder.
+
+                    The chaos closes in.
+
+                    Your chest tightens, your pulse hammering against your ribs. You can’t stop.
+
+                    With a sharp yank, you rip your arm free. The man staggers back, eyes wide with fear and betrayal.
+
+                    You don’t look back.
+
+                    You force yourself forward, pushing through the madness, ignoring his voice as it fades into the chaos behind you.
+
+                    Because if you stop now, you die too.
+                
+                    Ahead, you see the military, rifles raised, trying to maintain control. They’re shouting for order, but no one is listening.
+
+                    The first truck is already pulling away.
+                
+                    You push harder, dodging bodies, ducking as another gunshot cracks the air.
+
+                    You see the last truck. The bed is packed with survivors, the soldiers waving frantically for people to hurry.
+
+                    Someone shoves past you, nearly knocking you down. You barely regain your footing. The infected are closing in—people being tackled, torn apart, their screams drowned in the madness.
+
+                    A soldier near the truck fires into the crowd, trying to hold back the tide. “Move! MOVE!”
+
+                    You run for it.
+
+                    The truck begins to roll forward.
+                
+                    Your heart leaps to your throat.
+
+                    The metal railing is just out of reach.
+
+                    You jump.
+
+                    Your fingers grip the cold steel. For a terrifying second, your feet dangle off the ground. Someone grabs your arm—pulls hard.
+
+                    You crash into the bed of the truck, bodies pressing against you. Someone yells, another cries in relief.
+
+                    The last thing you see before the truck speeds away is the stadium collapsing into chaos—the infected spreading, the soldiers falling back.
+
+                    The screams stay with you as the city rushes past.
+                
+                    The truck barrels through the city, swerving violently as it speeds down ruined streets.
+
+                    Bodies press against you from all sides, survivors clutching each other, gripping onto whatever they can to stay steady. The floor rattles beneath you, every bump in the road sending people lurching into one another. Someone near you is sobbing. Another whispers a prayer under their breath.
+
+                    You force yourself to sit upright, to focus.
+
+                    Outside the truck, the city is collapsing.
+                
+                    Flashes of chaos blur past—buildings in flames, shattered windows, abandoned cars.
+
+                    You see people running. Not just survivors, but stragglers who didn’t make the trucks. Some wave desperately, screaming for help as the convoy passes them by.
+
+                    Others are not so lucky.
+
+                    A man in a torn jacket stumbles into the street, arms outstretched, eyes wild with desperation. He waves frantically at the convoy, his mouth forming silent pleas over the roar of the engines.
+
+                    Then—an infected slams into him from behind.
+
+                    His screams cut through the air, raw and gut-wrenching, before they are swallowed by the surrounding chaos.
+
+                    Your stomach tightens.
+
+                    Do you say something?
+
+                    The truck is still moving. You could shout, tell them to stop, to help the others—
+
+                    But stopping means risking everything.
+
+                    Survivors still on the ground scramble for safety, some pounding against the sides of the truck, begging for a chance to climb aboard.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Yell for the truck to stop", nextChapterID: 9,
+                                HPChange: 0, EPChange: -1), // Death Chapter
+                ChapterDecision(decisionText: "Remain silent", nextChapterID: 53,
                                 HPChange: 0, EPChange: 0)
             ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 53 - The Crash
+        StoryContent(
+            chapterID: 53,
+            storyDay: 5,
+            chapterTitle: "The Crash",
+            chapterImages: [""],
+            chapterText: """
+                    You clench your jaw, your throat tight, but you stay silent.
+
+                    You tell yourself there’s nothing you can do. That stopping won’t save them. That it will only get more people killed.
+
+                    But the guilt settles in your chest like a stone.
+
+                    More survivors pound on the truck, their desperate voices barely audible over the wind. You force yourself to look away.
+
+                    The soldier in the truck bed slams his fist against the side panel, shouting over the wind.
+
+                    “Hold on!”
+
+                    The truck jerks hard to the left, barely missing a wrecked police car in the middle of the road. A woman yelps as she loses her grip and nearly falls out. Hands grab at her, pulling her back just in time.
+
+                    Then, you hear it—the sound of impact.
+
+                    The truck collides with something. The tires screech, the whole vehicle tilts dangerously to the side.
+
+                    Someone screams.
+
+                    Then everything flips.
+                
+                    The world spins violently.
+
+                    Metal screeches, bodies slam into each other. Your shoulder smashes against the floor, pain shooting through your body as the truck rolls.
+
+                    You can’t breathe—you don’t know which way is up, which way is down.
+
+                    A final, violent crash shakes through the air.
+
+                    Then, silence.
+                
+                    You open your eyes. Your body feels heavy, aching all over. Your ears ring.
+
+                    For a moment, all you can do is lie there, trying to breathe.
+
+                    The truck is on its side, smoke rising from the engine. The groans of injured survivors fill the air. Someone coughs violently, another moans in pain.
+
+                    You press your hands against the cool metal beneath you and push yourself up, shaky and weak.
+
+                    Your arms are scraped and bruised, but nothing feels broken. You got lucky.
+                
+                    Then, voices.
+
+                    “Move! We have to move!”
+
+                    You turn your head, vision still spinning. Soldiers are already pulling survivors out of the wreckage, shouting for people to get up.
+
+                    “Get to the docks!” one soldier bellows. “That’s our last chance!”
+
+                    Your pulse spikes. The docks. The final boats.
+
+                    There’s no time to think. No time to process.
+
+                    You scramble out of the overturned truck.
+
+                    The city is still burning around you.
+
+                    Ahead, the road slopes downward, leading toward the distant docks.
+
+                    Somewhere beyond the smoke and chaos, your only hope of escape is waiting.
+
+                    The soldier grabs your arm, pushing you forward.
+
+                    “RUN!”
+                
+                    Your legs burn as you run.
+
+                    The soldier’s voice echoes behind you—“Get to the docks!”—but it’s already fading, drowned out by the chaos around you.
+
+                    The city is crumbling.
+
+                    Buildings, once towering and strong, now stand as skeletal remains, flames licking at their broken frames. Cars clog the roads—some overturned, some still smoldering from earlier battles. Gunfire cracks in the distance. The scent of smoke and decay clings to the air.
+
+                    Ahead, you see people running.
+
+                    Some are sprinting alone, weaving through debris, desperate to reach the docks before it’s too late. Others have banded together, sticking close, yelling for one another as they dodge obstacles.
+
+                    The final boats are the only way out.
+
+                    You have seconds to decide.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Stick with a group", nextChapterID: 9,
+                                HPChange: +1, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Go alone", nextChapterID: 54,
+                                HPChange: -1, EPChange: -3)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 54 - Run
+        StoryContent(
+            chapterID: 54,
+            storyDay: 5,
+            chapterTitle: "Run",
+            chapterImages: [""],
+            chapterText: """
+                    You break away from the nearest group, your mind made up. Alone is faster.
+
+                    Survivors shout at each other as you pass—some yelling names, others barking orders.
+
+                    Gunshots.
+
+                    A man ahead of you stumbles, clutching his side. His partner grabs him, trying to pull him forward. They don’t see the infected closing in.
+
+                    You do.
+
+                    But you don’t stop.
+
+                    You can’t.
+                
+                    Your heart slams against your ribs as you push forward, dodging overturned cars and leaping over fallen debris. The road slopes downward, guiding you toward the docks.
+
+                    A piercing scream shreds through the air behind you.
+
+                    You don’t look back.
+
+                    Just run.
+                
+                    The street ahead narrows, leading into a tunnel beneath an overpass.
+
+                    The dim light inside sends a chill through you. It’s a gamble—a shortcut that could get you to the docks faster, or a death trap.
+
+                    You hear footsteps closing in.
+
+                    Survivors.
+
+                    Infected.
+
+                    Something.
+                
+                    You dart inside.
+
+                    The air is stale and cold, thick with the scent of damp concrete and rust. Water drips from cracked pipes, echoing through the passage.
+
+                    Shadows stretch across the walls, your own breath ragged in your ears.
+
+                    Then, you hear it.
+
+                    A low growl.
+
+                    Your steps halt.
+
+                    Eyes adjust to the dim light.
+
+                    There—at the far end of the tunnel—a figure shambles into view.
+
+                    Then another.
+
+                    Then two more.
+
+                    Your stomach drops.
+
+                    The exit is just beyond them.
+
+                    You tighten your grip on the crowbar.
+
+                    You have seconds to react.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Go back out the way you came", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Fight and push through", nextChapterID: 55,
+                                HPChange: -1, EPChange: -3)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 55 - The Docks
+        StoryContent(
+            chapterID: 55,
+            storyDay: 5,
+            chapterTitle: "The Docks",
+            chapterImages: [""],
+            chapterText: """
+                    You grip the crowbar tighter, every muscle in your body screaming at you to move.
+
+                    The tunnel exit is just beyond the infected, but they’re blocking the way. Their bodies twitch unnaturally, their heads tilting as if listening, sensing.
+
+                    Your breath comes in short gasps. No way around them.
+
+                    No way but through.
+                    
+                    You step forward. No hesitation.
+
+                    The first infected turns its head sharply, eyes locking onto you. It snarls, lunging forward.
+
+                    Swing.
+
+                    Your crowbar connects with its skull, the impact jarring your arms. It collapses, but the others react instantly.
+
+                    The second charges.
+
+                    You barely have time to react before it slams into you. The air rushes from your lungs as you crash into the tunnel wall.
+
+                    Panic flares. Hands grasp at you, clawing, pulling.
+
+                    You shove back, swinging wildly. Another sickening crack. Another body drops.
+
+                    The last one is close—too close.
+
+                    You stab forward, driving the crowbar into its chest, forcing it back. It thrashes, teeth snapping inches from your face. With every ounce of strength, you push it away and bring the crowbar down onto its head.
+
+                    Silence.
+
+                    You’re panting, your arms trembling. Your hands sting from gripping the crowbar too hard.
+
+                    You look up—the exit is clear.
+
+                    You run.
+                
+                    The air changes instantly as you burst out of the tunnel. The city behind you roars with chaos, but ahead—the docks.
+
+                    A vast stretch of open concrete leads to the water, where military boats are waiting—
+
+                    No.
+
+                    They’re not waiting.
+
+                    They’re leaving.
+                
+                    Soldiers on the final boats wave people forward, yelling at the last stragglers to jump into the water if they want to live.
+
+                    You hear a familiar voice behind you:
+
+                    “Go! Don’t stop!”
+
+                    You don’t need to be told twice.
+
+                    You sprint toward the docks, your legs burning, your body exhausted—but this is it.
+
+                    Everything you’ve been through, every decision you’ve made, every moment of terror, loss, survival—
+
+                    It all comes down to this.
+                    
+                    Then—chaos.
+
+                    You hear them before you see them.
+
+                    The infected have reached the docks.
+
+                    A wave of them, spilling onto the pavement, racing toward you and the last survivors.
+
+                    People are screaming, tripping, falling. Some are pulled down instantly. Others fight—some succeed, others don’t.
+
+                    The last boat is pulling away.
+
+                    Your last chance.
+
+                    You have seconds to act.
+                """,
+            chapterDecisions: [
+                ChapterDecision(decisionText: "Try to reach the docks another way", nextChapterID: 9,
+                                HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Jump into the water", nextChapterID: 56,
+                                HPChange: 0, EPChange: -2)
+            ],
+            isFinalChapter: false
+        ),
+        // MARK: ChapterID: 56 - The End?
+        StoryContent(
+            chapterID: 56,
+            storyDay: 5,
+            chapterTitle: "The End?",
+            chapterImages: [""],
+            chapterText: """
+                    You don’t think. You run straight for the edge.
+
+                    The cold spray of the ocean hits your face as you near the end of the dock.
+
+                    Behind you, you hear screams.
+
+                    The infected are here.
+
+                    You jump.
+
+                    For a split second, you feel weightless. The city, the fire, the chaos—all of it vanishes.
+
+                    Then, the plunge.
+
+                    The water is like ice, shocking the breath from your lungs. You thrash wildly, your body screaming in exhaustion.
+
+                    Above you, shapes tumble into the water—infected, survivors.
+
+                    The infected don’t swim.
+
+                    They sink.
+
+                    But some survivors don’t surface.
+
+                    You force yourself to move. To keep going.
+                
+                    Your arms ache, your chest burns, but you push through the waves. The last boat is just ahead.
+
+                    A soldier leans over the railing, hand outstretched.
+
+                    “Come on!”
+
+                    You reach.
+
+                    Fingertips brush—
+
+                    They grab you, pulling you aboard.
+
+                    You collapse onto the deck, soaking, shaking, gasping.
+
+                    You’re alive.
+                
+                    You lay on the cold metal deck of the boat, chest heaving, body trembling. Your soaked clothes cling to your skin, every muscle in your body screaming in exhaustion.
+
+                    You made it.
+
+                    You’re alive.
+                
+                    The ocean sways beneath you, the waves rocking the boat as it speeds further away from the city. Around you, survivors collapse in exhaustion, some sobbing, others whispering prayers or simply staring blankly at the horizon.
+
+                    A soldier moves through the group, checking on everyone. He kneels beside you, his voice muffled, distant.
+
+                    “You hurt? Bitten?”
+
+                    You shake your head, barely able to process the words.
+
+                    “Good.” He stands, looking over the railing. His jaw tightens. “We’re out of time.”
+
+                    You force yourself to sit up.
+
+                    That’s when you see it.
+                
+                    The city.
+
+                    Your home.
+
+                    Or what’s left of it.
+
+                    The skyline is smothered in thick black smoke, fires raging across rooftops. The docks are completely overrun—tiny figures still running, still fighting, still trying to escape.
+
+                    They won’t.
+
+                    They can’t.
+
+                    Because they didn’t make it.
+
+                    Just like the soldiers said.
+
+                    The city is lost.
+                    
+                    A sound rumbles in the distance.
+
+                    Then another.
+
+                    Jet engines.
+
+                    You turn toward the sky, and there—**streaking through the clouds—**are the fighter jets.
+
+                    You feel it before you see it.
+
+                    A deep, powerful boom shakes the sky.
+
+                    A blinding flash erupts over the city.
+
+                    Then another.
+
+                    Then dozens.
+                
+                    The first shockwave slams into the boat, knocking you sideways. You grab onto the railing, heart hammering, as the city is swallowed in fire.
+
+                    The skyline erupts into a storm of light and destruction. Buildings crumble in on themselves, entire streets vanishing beneath the force of the blasts.
+
+                    The fire spreads like a living thing, devouring everything.
+
+                    The infected. The survivors. Everything.
+
+                    Gone.
+                
+                    No one speaks.
+
+                    The only sounds are the roar of the fire and the endless crash of waves against the boat.
+
+                    You feel the heat on your face, even from here.
+
+                    The city you fought so hard to escape is being erased.
+
+                    And all you can do is watch.
+                
+                    You stand at the railing, gripping the cold metal so tight your knuckles ache.
+
+                    You watch as the final explosions consume what’s left of the skyline.
+
+                    The last remaining buildings collapse, sending thick mushroom clouds of dust and fire billowing into the air.
+
+                    The fires burn, but there’s nothing left to save.
+
+                    The jets disappear into the sky.
+
+                    The bombs stop falling.
+
+                    The world goes quiet.
+                
+                    A single voice breaks the silence.
+
+                    “What now?”
+
+                    No one answers.
+
+                    Because no one knows.
+
+                    The city is gone.
+
+                    The world is different now.
+
+                    And this is only the beginning.
+                """,
+            chapterDecisions: [],
             isFinalChapter: false
         ),
         
