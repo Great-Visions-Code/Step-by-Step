@@ -1590,7 +1590,7 @@ struct SurviveStory {
                 ChapterDecision(decisionText: "Try to reach the docks another way", nextChapterID: 9,
                                 HPChange: 0, EPChange: -2), // Death Chapter
                 ChapterDecision(decisionText: "Jump into the water", nextChapterID: 56,
-                                HPChange: 0, EPChange: -2)
+                                HPChange: 0, EPChange: -1)
             ],
             isFinalChapter: false
         ),
@@ -1772,7 +1772,7 @@ struct SurviveStory {
 
                     Will you make the right decisions this time? Will this be the attempt where you finally survive?
 
-                    The challenge awaits. The choice is yours.                
+                The challenge awaits. The choice is yours.                
                 """,
             chapterDecisions: [],
             isFinalChapter: true
