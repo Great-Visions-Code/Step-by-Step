@@ -19,17 +19,17 @@ class StepTrackerViewModel: ObservableObject {
     /// Initializes the ViewModel with default or custom values for steps and goals.
     ///
     /// - Parameters:
-    ///   - stepsToConvert: The initial number of steps available for conversion (default is 0).
-    ///   - totalStepsGoal: The initial daily step goal (default is 5,000).
+    ///   - currentStepCount: The current steps taken(default is 0).
+    ///   - totalStepsGoal: The daily step goal (default is 10,000).
     ///   - totalStepsTaken: The total number of steps taken (default is 0).
     init(
-        stepsToConvert: Int = 10000,
+        currentStepCount: Int = 7500,
         totalStepsGoal: Int = 10000,
         totalStepsTaken: Int = 0
     ) {
         self.stepTracker = StepTracker(
-            stepsToConvert: stepsToConvert,
-            totalStepsGoals: totalStepsGoal,
+            currentStepCount: currentStepCount,
+            totalStepsGoal: totalStepsGoal,
             totalStepsTaken: totalStepsTaken
         )
     }
@@ -38,7 +38,7 @@ class StepTrackerViewModel: ObservableObject {
     ///
     /// Typically used after converting steps to energy or at the start of a new day.
     func resetStepsToConvert() {
-        stepTracker.stepsToConvert = 0
+        stepTracker.totalStepsTaken += stepTracker.stepsToConvert
     }
     
     /// Calculates the energy points based on the user's steps and goal.
@@ -50,7 +50,7 @@ class StepTrackerViewModel: ObservableObject {
     func calculateEnergyPoints() -> Int {
         return ConvertToEnergyViewModel.calculateStepsToEnergy(
             stepsToConvert: stepTracker.stepsToConvert,
-            totalStepsGoal: stepTracker.totalStepsGoals
+            totalStepsGoal: stepTracker.totalStepsGoal
         )
     }
 }
