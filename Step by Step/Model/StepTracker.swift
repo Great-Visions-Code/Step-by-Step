@@ -12,12 +12,19 @@ import Foundation
 /// This struct manages daily steps goals, tracks steps taken, and provides utilities
 /// for calculation progress and resetting steps when needed.
 struct StepTracker {
-    /// The number of steps available for conversion into energy points.
-    var stepsToConvert: Int
+    /// The current step count.
+    var currentStepCount: Int
     
     /// The total number of steps required to meet the user's daily goal.
-    var totalStepsGoals: Int
+    var totalStepsGoal: Int
     
     /// The total number of steps taken. 
     var totalStepsTaken: Int
+    
+    /// The number of steps available for conversion into energy points.
+    ///
+    /// This value is calculated as `currentStepCount - totalStepsTaken`.
+    var stepsToConvert: Int {
+        max(currentStepCount - totalStepsTaken, 0)
+    }
 }
