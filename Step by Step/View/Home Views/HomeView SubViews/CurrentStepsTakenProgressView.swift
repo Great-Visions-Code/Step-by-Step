@@ -20,7 +20,7 @@ struct CurrentStepsTakenProgressView: View {
         /// Calculates progress as a percentage of steps taken versus the total goal.
         /// Ensures the value remains within a valid range (0.0 - 1.0).
         let progress = min(Double(stepTrackerViewModel.stepTracker.totalStepsTaken) /
-                           Double(stepTrackerViewModel.stepTracker.totalStepsGoals), 1.0)
+                           Double(stepTrackerViewModel.stepTracker.totalStepsGoal), 1.0)
         
         ZStack {
             // Background Circle (Unfilled)
@@ -48,7 +48,7 @@ struct CurrentStepsTakenProgressView: View {
                 Text("Steps So Far")
                     .font(.title2)
                 
-                Text("Goal: \(stepTrackerViewModel.stepTracker.totalStepsGoals) Steps")
+                Text("Goal: \(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps")
                     .font(.headline)
                     .padding(.top, 5)
             }
