@@ -18,6 +18,6 @@ struct StepTracker {
     /// The total number of steps required to meet the user's daily goal.
     var totalStepsGoals: Int
     
-    /// The current number of steps taken, imported from HealthKit or a similar service.
-    var healthKitImportedCurrentStepsTaken: Int
+    /// The total number of steps taken. 
+    var totalStepsTaken: Int
 }
