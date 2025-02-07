@@ -21,17 +21,16 @@ class StepTrackerViewModel: ObservableObject {
     /// - Parameters:
     ///   - stepsToConvert: The initial number of steps available for conversion (default is 0).
     ///   - totalStepsGoal: The initial daily step goal (default is 5,000).
-    ///   - healthKitImportedCurrentStepsTaken: The current number of steps taken,
-    ///    as reported by HealthKit or similar services (default is 0).
+    ///   - totalStepsTaken: The total number of steps taken (default is 0).
     init(
         stepsToConvert: Int = 10000,
         totalStepsGoal: Int = 10000,
-        healthKitImportedCurrentStepsTaken: Int = 0
+        totalStepsTaken: Int = 0
     ) {
         self.stepTracker = StepTracker(
             stepsToConvert: stepsToConvert,
             totalStepsGoals: totalStepsGoal,
-            healthKitImportedCurrentStepsTaken: healthKitImportedCurrentStepsTaken
+            totalStepsTaken: totalStepsTaken
         )
     }
     
