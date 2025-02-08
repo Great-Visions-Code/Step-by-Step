@@ -15,6 +15,9 @@ struct CurrentEnergyProgressView: View {
     /// The ViewModel responsible for managing player stats such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
+    /// State to track when the animation should begin.
+    @State private var animateBolts = false
+    
     var body: some View {
         VStack {
             // Title displaying "Current Energy" for clarity.
@@ -28,11 +31,22 @@ struct CurrentEnergyProgressView: View {
                     Image(systemName: index < playerStatsViewModel.playerStats.energy ? "bolt.fill" : "bolt")
                         .foregroundColor(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
                         .font(.title)
+                        .scaleEffect(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.2 : 1.0) // Slight pop effect
+                        .opacity(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.0 : 0.3) // Fade in
+                        .animation(.easeInOut(duration: 0.3).delay(Double(index) * 0.1), value: animateBolts)
                 }
             }
+            .onChange(of: playerStatsViewModel.playerStats.energy) {
+                      animateBolts = false
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                          withAnimation {
+                              animateBolts = true
+                          }
+                      }
+                  }
             .padding(5)
         }
-        .padding()
+        .padding(.top)
     }
 }
 
