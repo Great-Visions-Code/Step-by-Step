@@ -16,11 +16,23 @@ struct CurrentEnergyProgressView: View {
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     var body: some View {
-        // Displays the current energy level as text.
-        // Future iterations could replace this with a progress bar.
-        Text("Current Energy: \(playerStatsViewModel.playerStats.energy)")
-            .font(.headline)
-            .padding(.top)
+        VStack {
+            // Title displaying "Current Energy" for clarity.
+            Text("Current Energy:   \(playerStatsViewModel.playerStats.energy)/10")
+                .font(.headline)
+                .bold()
+                    
+            // Energy bar using lightning bolt icons.
+            HStack(spacing: 5) {
+                ForEach(0..<10, id: \.self) { index in
+                    Image(systemName: index < playerStatsViewModel.playerStats.energy ? "bolt.fill" : "bolt")
+                        .foregroundColor(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
+                        .font(.title)
+                }
+            }
+            .padding(5)
+        }
+        .padding()
     }
 }
 
