@@ -35,6 +35,7 @@ struct CurrentStepsTakenProgressView: View {
                 .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
                 .foregroundColor(.blue)
+                .animation(.easeInOut(duration: 0.6), value: stepTrackerViewModel.stepTracker.totalStepsTaken)
             
             // Icon, Step Count, Goal
             VStack {
