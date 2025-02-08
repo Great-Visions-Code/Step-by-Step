@@ -23,7 +23,7 @@ class StepTrackerViewModel: ObservableObject {
     ///   - totalStepsGoal: The daily step goal (default is 10,000).
     ///   - totalStepsTaken: The total number of steps taken (default is 0).
     init(
-        currentStepCount: Int = 7500,
+        currentStepCount: Int = 5000,
         totalStepsGoal: Int = 10000,
         totalStepsTaken: Int = 0
     ) {
@@ -37,7 +37,7 @@ class StepTrackerViewModel: ObservableObject {
     /// Resets the current steps available for conversion to zero.
     ///
     /// Typically used after converting steps to energy or at the start of a new day.
-    func resetStepsToConvert() {
+    func commitStepsToTotal() {
         stepTracker.totalStepsTaken += stepTracker.stepsToConvert
     }
     
