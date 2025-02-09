@@ -35,7 +35,7 @@ struct AchievementsView: View {
                     .font(.title2)
                     .bold()
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
