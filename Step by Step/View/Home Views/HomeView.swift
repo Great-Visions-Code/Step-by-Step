@@ -30,34 +30,37 @@ struct HomeView: View {
     var body: some View {
         // NavigationStack manages the navigation flow and associated destinations.
         NavigationStack(path: $path) {
-            Spacer()
-            VStack {
-                // Displays the user's progress toward their daily step goal.
-                CurrentStepsTakenProgressView(
-                    stepTrackerViewModel: stepTrackerViewModel
-                )
-                // Button to convert steps into energy points for use in the game.
-                ConvertToEnergyButtonView(
-                    playerStatsViewModel: playerStatsViewModel,
-                    stepTrackerViewModel: stepTrackerViewModel
-                )
-                // Displays the player's current energy level.
-                CurrentEnergyProgressView(
-                    playerStatsViewModel: playerStatsViewModel
-                )
-                // A horizontal scrollable list of available adventures for the player to choose from.
-                ChooseYourAdventureView(
-                    stories: $storyViewModel.stories, // Pass stories as a binding.
-                    storyContentViewModel: storyContentViewModel, // Pass StoryContentViewModel for dynamic updates.
-                    onStorySelected: { story in
-                        selectedStory = story
-                        path.append("StoryDetailsView") // Navigate to the story details.
-                    }
-                )
+            ZStack {
+                //Color.background
+                VStack {
+                    Spacer()
+                    // Displays the user's progress toward their daily step goal.
+                    CurrentStepsTakenProgressView(
+                        stepTrackerViewModel: stepTrackerViewModel
+                    )
+                    // Button to convert steps into energy points for use in the game.
+                    ConvertToEnergyButtonView(
+                        playerStatsViewModel: playerStatsViewModel,
+                        stepTrackerViewModel: stepTrackerViewModel
+                    )
+                    // Displays the player's current energy level.
+                    CurrentEnergyProgressView(
+                        playerStatsViewModel: playerStatsViewModel
+                    )
+                    // A horizontal scrollable list of available adventures for the player to choose from.
+                    ChooseYourAdventureView(
+                        stories: $storyViewModel.stories, // Pass stories as a binding.
+                        storyContentViewModel: storyContentViewModel, // Pass StoryContentViewModel for dynamic updates.
+                        onStorySelected: { story in
+                            selectedStory = story
+                            path.append("StoryDetailsView") // Navigate to the story details.
+                        }
+                    )
+                    Spacer()
+                    Divider()
+                }
+                .padding()
             }
-            .padding()
-            Spacer()
-            Divider()
             
             // MARK: - Navigation Destinations
             
