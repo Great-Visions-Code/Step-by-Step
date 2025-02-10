@@ -16,22 +16,52 @@ class StepTrackerViewModel: ObservableObject {
     /// Any updates to this property will automatically refresh the associated UI.
     @Published private(set) var stepTracker: StepTracker
     
-    /// Initializes the ViewModel with default or custom values for steps and goals.
+    /// Instance of HealthKitViewModel to fetch real step count data.
+    private let healthKitViewModel = HealthKitViewModel()
+    
+    /// Initializes the ViewModel with default values for steps and goals.
     ///
     /// - Parameters:
-    ///   - currentStepCount: The current steps taken(default is 0).
     ///   - totalStepsGoal: The daily step goal (default is 10,000).
     ///   - totalStepsTaken: The total number of steps taken (default is 0).
     init(
-        currentStepCount: Int = 5000,
         totalStepsGoal: Int = 10000,
         totalStepsTaken: Int = 0
     ) {
         self.stepTracker = StepTracker(
-            currentStepCount: currentStepCount,
+            currentStepCount: 0, // Initially 0, will update from HealthKit.
             totalStepsGoal: totalStepsGoal,
             totalStepsTaken: totalStepsTaken
         )
+        
+        // Request HealthKit authorization and update step count
+        requestHealthKitAuthorization()
+    }
+    
+    /// Requests HealthKit authorization and fetches today's steps if granted.
+    private func requestHealthKitAuthorization() {
+        healthKitViewModel.requestHealthKitAuthorization()
+        
+        // Update step count after authorization
+        updateCurrentStepCount()
+    }
+    
+    /// Updates `currentStepCount` by fetching the latest step count from HealthKit.
+    func updateCurrentStepCount() {
+        healthKitViewModel.updateStepCount()
+        
+        // Assign the fetched step count to stepTracker
+        DispatchQueue.main.async { [weak self] in
+            self?.stepTracker.currentStepCount = self?.healthKitViewModel.dailySteps ?? 0
+        }
+    }
+    
+    /// Updates the current step count from HealthKit.
+    ///
+    /// - Parameter newStepCount: The updated step count retrieved from HealthKit.
+    func updateCurrentSteps(to newStepCount: Int) {
+        stepTracker.currentStepCount = newStepCount
+        print("(STVM) StepTrackerViewModel updated step count: \(newStepCount) ✅")
     }
     
     /// Resets the current steps available for conversion to zero.
