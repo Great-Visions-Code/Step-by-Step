@@ -12,6 +12,8 @@ import SwiftUI
 struct HomeView: View {
     // ViewModel for managing available story cards.
     @StateObject var storyViewModel: StoryCardViewModel
+    // HealthKit ViewModel for retrieving real step count.
+    @StateObject private var healthKitViewModel = HealthKitViewModel()
     
     // ViewModel for managing player stats such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
@@ -38,6 +40,13 @@ struct HomeView: View {
                     CurrentStepsTakenProgressView(
                         stepTrackerViewModel: stepTrackerViewModel
                     )
+                    .onAppear {
+                        healthKitViewModel.requestHealthKitAuthorization()
+                    }
+                    .onChange(of: healthKitViewModel.dailySteps) { _, newSteps in
+                        stepTrackerViewModel.updateCurrentSteps(to: newSteps)
+                    }
+                    
                     // Button to convert steps into energy points for use in the game.
                     ConvertToEnergyButtonView(
                         playerStatsViewModel: playerStatsViewModel,
