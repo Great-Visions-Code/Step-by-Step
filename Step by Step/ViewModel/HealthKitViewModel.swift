@@ -10,14 +10,14 @@ import SwiftUI
 /// ViewModel responsible for managing HealthKit integration and updating step count.
 class HealthKitViewModel: ObservableObject {
     /// Stores the latest step count fetched from HealthKit.
-    @Published var dailySteps: Int = 0
+    @Published var hkCurrentStepsCount: Int = 0
     
     /// Initializes the ViewModel and requests authorization.
     init() {
         requestHealthKitAuthorization()
     }
 
-    /// Requests HealthKit authorization and fetches step data if granted.
+    /// Requests HealthKit authorization.
     func requestHealthKitAuthorization() {
         HealthKitManager.shared.requestAuthorization { [weak self] success, error in
             if success {
@@ -29,12 +29,12 @@ class HealthKitViewModel: ObservableObject {
         }
     }
     
-    /// Updates `dailySteps` with the latest step count from HealthKit.
+    /// Updates `hkCurrentStepsCount` with the latest step count from HealthKit.
     func updateStepCount() {
         HealthKitManager.shared.fetchTodayStepCount { [weak self] steps, error in
             if let steps = steps {
-                self?.dailySteps = steps
-                print("(HKVM) HealthKitViewModel updated dailySteps: \(steps) ✅")
+                self?.hkCurrentStepsCount = steps
+                print("(HKVM) HealthKitViewModel updated hkCurrentStepsCount: \(steps) ✅")
             } else {
                 print("❌ (HKVM) Failed to fetch steps: \(error?.localizedDescription ?? "Unknown error")")
             }
