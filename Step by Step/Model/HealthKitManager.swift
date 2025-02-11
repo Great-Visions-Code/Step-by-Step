@@ -36,29 +36,49 @@ class HealthKitManager {
     /// - Parameter completion: Closure returning the step count or an error.
     func fetchTodayStepCount(completion: @escaping (Int?, Error?) -> Void) {
         let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: Date())
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
         
-        let query = HKStatisticsQuery(quantityType: stepCountType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+        // Get the start of the current day (midnight) to retrieve only today's steps.
+        let startOfDay = calendar.startOfDay(for: Date())
+        
+        // Create a predicate to filter HealthKit step data from midnight until now.
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startOfDay,
+            end: Date(),
+            options: .strictStartDate
+        )
+        
+        // Create a query to fetch cumulative step count for today.
+        let query = HKStatisticsQuery(
+            quantityType: stepCountType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum
+        ) { _, result, error in
             DispatchQueue.main.async {
+                // Check for errors in retrieving step data.
                 if let error = error {
                     print("❌ (HKM) Error fetching step count: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
+                // Ensure we received valid step data.
                 guard let quantity = result?.sumQuantity() else {
                     print("❌ (HKM) No step count data found for today.")
                     completion(0, nil) // Return 0 steps if no data is available.
                     return
                 }
                 
+                // Convert the retrieved quantity into an integer step count.
                 let stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
+                
+                // Log retrieved step count for debugging.
                 print("(HKM) Steps retrieved from HealthKit: \(stepCount) ✅")
+                
+                // Return the fetched step count through the completion handler.
                 completion(stepCount, nil)
             }
         }
         
+        // Execute the query on HealthKit.
         healthStore.execute(query)
-    }
-}
+    }}
