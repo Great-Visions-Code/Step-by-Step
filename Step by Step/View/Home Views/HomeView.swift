@@ -41,9 +41,12 @@ struct HomeView: View {
                         stepTrackerViewModel: stepTrackerViewModel
                     )
                     .onAppear {
+                        // Requests HealthKit authorization when the view appears.
                         healthKitViewModel.requestHealthKitAuthorization()
                     }
-                    .onChange(of: healthKitViewModel.dailySteps) { _, newSteps in
+                    .onChange(of: healthKitViewModel.hkCurrentStepsCount) { _, newSteps in
+                        // Updates the step count in StepTrackerViewModel whenever
+                        // HealthKit provides new step data.
                         stepTrackerViewModel.updateCurrentSteps(to: newSteps)
                     }
                     
