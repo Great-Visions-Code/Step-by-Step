@@ -19,7 +19,11 @@ struct StepTracker {
     var totalStepsGoal: Int
     
     /// The total number of steps taken. 
-    var totalStepsTaken: Int
+    var totalStepsTaken: Int {
+        didSet {
+            StepTrackerViewModel.saveTotalStepsTaken(totalStepsTaken) // Persist when updated
+        }
+    }
     
     /// The number of steps available for conversion into energy points.
     ///
