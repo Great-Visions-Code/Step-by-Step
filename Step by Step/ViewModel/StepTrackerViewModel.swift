@@ -108,4 +108,17 @@ class StepTrackerViewModel: ObservableObject {
             totalStepsGoal: stepTracker.totalStepsGoal
         )
     }
+    
+    // MARK: - Functions primarily used for testing/debugging purposes
+    
+    /// Updates `totalStepsTaken` manually (for testing/debugging purposes).
+    ///
+    /// - Parameter steps: The new total steps taken value.
+    func setTotalStepsTaken(_ steps: Int) {
+        stepTracker = StepTracker(
+            currentStepCount: stepTracker.currentStepCount,
+            totalStepsGoal: stepTracker.totalStepsGoal,
+            totalStepsTaken: steps
+        )
+    }
 }
