@@ -19,28 +19,23 @@ class StepTrackerViewModel: ObservableObject {
     /// Instance of HealthKitViewModel to fetch real step count data.
     private let healthKitViewModel = HealthKitViewModel()
     
-    /// Initializes the ViewModel with default values for steps and goals.
+    /// Key for UserDefaults storage.
+    private static let totalStepsTakenKey = "totalStepsTaken"
+    private static let lastResetDateKey = "lastResetDate"
+    
+    /// Initializes the ViewModel with persistent values for steps and goals.
     ///
     /// - Parameters:
     ///   - totalStepsGoal: The daily step goal (default is 10,000).
-    ///   - totalStepsTaken: The total number of steps taken (default is 0).
-    init(
-        totalStepsGoal: Int = 10000,
-        totalStepsTaken: Int = 0
-    ) {
+    init(totalStepsGoal: Int = 10000) {
+        let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken() // Load persisted value
         self.stepTracker = StepTracker(
             currentStepCount: 0, // Initially 0, will update from HealthKit.
             totalStepsGoal: totalStepsGoal,
-            totalStepsTaken: totalStepsTaken
+            totalStepsTaken: savedTotalStepsTaken
         )
-        
-        // Request HealthKit authorization and update step count
-        requestHealthKitAuthorization()
-    }
-    
-    /// Requests HealthKit authorization and fetches today's steps if granted.
-    private func requestHealthKitAuthorization() {
-        healthKitViewModel.requestHealthKitAuthorization()
+        // Ensures daily reset
+        checkAndResetStepsAtMidnight()
         
         // Update step count after authorization
         updateCurrentStepCount()
@@ -52,7 +47,7 @@ class StepTrackerViewModel: ObservableObject {
         
         // Assign the fetched step count to stepTracker
         DispatchQueue.main.async { [weak self] in
-            self?.stepTracker.currentStepCount = self?.healthKitViewModel.dailySteps ?? 0
+            self?.stepTracker.currentStepCount = self?.healthKitViewModel.hkCurrentStepsCount ?? 0
         }
     }
     
@@ -69,6 +64,36 @@ class StepTrackerViewModel: ObservableObject {
     /// Typically used after converting steps to energy or at the start of a new day.
     func commitStepsToTotal() {
         stepTracker.totalStepsTaken += stepTracker.stepsToConvert
+        StepTrackerViewModel.saveTotalStepsTaken(stepTracker.totalStepsTaken) // Persist updated total steps
+    }
+    
+    /// Checks if it's a new day and resets  `totalStepsTaken` if needed.
+    private func checkAndResetStepsAtMidnight() {
+        let lastResetDate = UserDefaults.standard.object(forKey: Self.lastResetDateKey) as? Date ?? Date.distantPast
+        let calendar = Calendar.current
+        
+        if !calendar.isDate(lastResetDate, inSameDayAs: Date()) {
+            stepTracker.totalStepsTaken = 0
+            StepTrackerViewModel.saveTotalStepsTaken(0) // Reset value in storage
+            UserDefaults.standard.set(Date(), forKey: Self.lastResetDateKey) // Save new reset date
+            print("Total steps reset at midnight")
+        }
+    }
+    
+    // MARK: - Persistence Functions
+    
+    /// Saves the total steps taken persistently
+    ///
+    /// - Parameter totalSteps: The updated total steps value.
+    static func saveTotalStepsTaken(_ totalSteps: Int) {
+        UserDefaults.standard.set(totalSteps, forKey: totalStepsTakenKey)
+    }
+    
+    /// Loads the persisted total steps taken value.
+    ///
+    /// - Returns: The saved total steps or 0 if no value exists.
+    static func loadTotalStepsTaken() -> Int {
+        return UserDefaults.standard.integer(forKey: totalStepsTakenKey)
     }
     
     /// Calculates the energy points based on the user's steps and goal.
