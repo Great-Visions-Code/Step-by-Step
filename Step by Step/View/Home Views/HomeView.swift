@@ -33,6 +33,7 @@ struct HomeView: View {
         // NavigationStack manages the navigation flow and associated destinations.
         NavigationStack(path: $path) {
             ZStack {
+                // !!!NOTE!!!
                 //Color.background
                 VStack {
                     Spacer()
