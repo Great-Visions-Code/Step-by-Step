@@ -30,7 +30,11 @@ struct ConvertToEnergyButtonView: View {
                 playerStatsViewModel.updateEnergy(to: newEnergy)
                 
                 // Reset the current steps in ViewModel.
-                stepTrackerViewModel.commitStepsToTotal()
+                stepTrackerViewModel.commitStepsToTotal { energyPoints in
+                    playerStatsViewModel.updateEnergy(
+                        to: playerStatsViewModel.playerStats.energy + energyPoints
+                    )
+                }
             }) {
                 VStack {
                     HStack {
