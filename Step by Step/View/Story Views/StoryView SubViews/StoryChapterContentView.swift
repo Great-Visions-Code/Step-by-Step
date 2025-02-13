@@ -44,7 +44,7 @@ struct StoryChapterContentView: View {
                         Spacer()
                         
                         // Buttons for user decisions related to the current chapter.
-                        StoryDecisionButton(
+                        StoryDecisionButtonView(
                             options: currentChapter.chapterDecisions.compactMap { decision in
                                 if let nextChapterID = decision.nextChapterID {
                                     return (
