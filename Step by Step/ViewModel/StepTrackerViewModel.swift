@@ -59,12 +59,25 @@ class StepTrackerViewModel: ObservableObject {
         print("(STVM) StepTrackerViewModel updated step count: \(newStepCount) ✅")
     }
     
-    /// Resets the current steps available for conversion to zero.
+    /// Converts steps into energy and updates the tracker.
     ///
-    /// Typically used after converting steps to energy or at the start of a new day.
-    func commitStepsToTotal() {
-        stepTracker.totalStepsTaken += stepTracker.stepsToConvert
-        StepTrackerViewModel.saveTotalStepsTaken(stepTracker.totalStepsTaken) // Persist updated total steps
+    /// Ensures that only full intervals of `energyCost` are converted, leaving
+    /// any unconverted steps available for the next conversion.
+    ///
+    /// - Parameter updateEnergy: A closure that updates energy in `PlayerStatsViewModel`.
+    func commitStepsToTotal(updateEnergy: (Int) -> Void) {
+        let (energyPoints, remainingSteps) = ConvertToEnergyViewModel.calculateStepsToEnergy(
+            stepsToConvert: stepTracker.stepsToConvert,
+            totalStepsGoal: stepTracker.totalStepsGoal
+        )
+
+        // Update total steps taken by subtracting only the converted steps.
+        stepTracker.totalStepsTaken += (stepTracker.stepsToConvert - remainingSteps)
+
+        // Persist the updated total steps.
+        StepTrackerViewModel.saveTotalStepsTaken(stepTracker.totalStepsTaken)
+
+        print("(STVM) Energy Added: \(energyPoints) ⚡️ | Remaining Steps: \(remainingSteps) 🚶‍♂️")
     }
     
     /// Checks if it's a new day and resets  `totalStepsTaken` if needed.
@@ -98,15 +111,16 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Calculates the energy points based on the user's steps and goal.
     ///
-    /// This method uses the `ConvertToEnergyViewModel` to determine the energy points earned
-    /// by scaling the user's steps to a maximum of 10 energy points.
+    /// This method retrieves the energy points from the `ConvertToEnergyViewModel`,
+    /// ensuring only full `energyCost` intervals are converted.
     ///
     /// - Returns: The calculated energy points (capped at 10).
     func calculateEnergyPoints() -> Int {
-        return ConvertToEnergyViewModel.calculateStepsToEnergy(
+        let (energyPoints, _) = ConvertToEnergyViewModel.calculateStepsToEnergy(
             stepsToConvert: stepTracker.stepsToConvert,
             totalStepsGoal: stepTracker.totalStepsGoal
         )
+        return energyPoints
     }
     
     // MARK: - Functions primarily used for testing/debugging purposes
