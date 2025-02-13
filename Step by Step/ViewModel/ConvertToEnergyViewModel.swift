@@ -17,29 +17,33 @@ struct ConvertToEnergyViewModel {
     ///
     /// This function translates real-world steps into a gamified energy system,
     /// incentivizing users to achieve their step goals.
-    /// Energy points are calculated as a ration of steps taken to the total steps goal,
-    /// scaled to a maximum of 10 points.
+    /// Energy points are calculated by dividing steps into fixed intervals (`energyCost`).
     ///
     /// - Parameters:
     ///   - stepsToConvert: The steps available to convert to energy points.
     ///   - totalStepsGoal: The user's total step goal for the day.
-    /// - Returns: An integer representing the calculated energy points, capped at 10.
+    /// - Returns: A tuple containing:
+    ///     - `energyPoints`: The energy points earned from the conversion.
+    ///     - `remainingSteps`: The leftover steps that weren't converted.
     static func calculateStepsToEnergy(
         stepsToConvert: Int,
         totalStepsGoal: Int
-    ) -> Int {
+    ) -> (energyPoints: Int, remainingSteps: Int) {
         // Validate the total step goal to prevent division by zero.
         guard totalStepsGoal > 0 else {
-            return 0 // Return 0 energy points if the goal is invalid.
+            return (0, stepsToConvert) // Returns 0 energy points and keeps all steps.
         }
         
-        // Calculate the ratio of steps taken to the total step goal.
-        let stepsToCompletionRatio = Double(stepsToConvert) / Double(totalStepsGoal)
+        // Determine how many steps are needed per 1 energy point.
+        let energyCost = totalStepsGoal / 10 // Divides step goal into 10 energy segments.
         
-        // Scale the ratio to a maximum of 10 energy points.
-        let calculatedEnergy = Int(stepsToCompletionRatio * 10)
+        // Calculate the energy points that can be earned in full `energyCost` intervals.
+        let energyPoints = stepsToConvert / energyCost
         
-        // Cap the energy points at 10 to maintain balance in the game mechanics.
-        return min(calculatedEnergy, 10)
+        // Determine the leftover steps after conversion.
+        let remainingSteps = stepsToConvert % energyCost
+        
+        // Return both the energy points earned and the remaining steps. 
+        return (energyPoints, remainingSteps)
     }
 }
