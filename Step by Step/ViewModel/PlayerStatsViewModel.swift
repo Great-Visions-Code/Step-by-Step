@@ -18,16 +18,50 @@ class PlayerStatsViewModel: ObservableObject {
     /// The `private(set)` access ensures external code can only read, not modify, this property directly.
     @Published private(set) var playerStats: PlayerStats
     
-    /// Initializes the ViewModel with default or custom values for health and energy points.
+    /// Keys for persisting energy and last reset date.
+    private static let energyKey = "playerEnergy"
+    private static let lastResetDateKey = "lastEnergyResetDate"
+    
+    /// Initializes the ViewModel with persisted values for energy and default health.
     ///
     /// - Parameters:
     ///   - health: The player's initial health value (default is 10).
-    ///   - energy: The player's initial energy value (default is 0).
-    init(health: Int = 10, energy: Int = 0) {
+    init(health: Int = 10) {
+        let savedEnergy = PlayerStatsViewModel.loadEnergy() // Load saved energy
         self.playerStats = PlayerStats(
             health: health,
-            energy: energy
+            energy: savedEnergy
         )
+        
+        checkAndResetEnergyAtMidnight() // Ensures energy resets daily
+    }
+    
+    // MARK: - Energy Persistence
+    
+    /// Saves the current energy value persistently.
+    ///
+    /// - Parameter energy: The player's updated energy value.
+    private static func saveEnergy(_ energy: Int) {
+        UserDefaults.standard.set(energy, forKey: energyKey)
+    }
+    
+    /// Loads the persisted energy value.
+    ///
+    /// - Returns: The saved energy value or 0 if no value exists.
+    private static func loadEnergy() -> Int {
+        return UserDefaults.standard.integer(forKey: energyKey)
+    }
+    
+    private func checkAndResetEnergyAtMidnight() {
+        let lastResetDate = UserDefaults.standard.object(forKey: Self.lastResetDateKey) as? Date ?? Date.distantPast
+        let calendar = Calendar.current
+        
+        if !calendar.isDate(lastResetDate, inSameDayAs: Date()) {
+            playerStats.energy = 0
+            PlayerStatsViewModel.saveEnergy(0) // Reset value in storage
+            UserDefaults.standard.set(Date(), forKey: Self.lastResetDateKey) // Save new reset date
+            print("🔁 Energy reset at midnight")
+        }
     }
     
     // MARK: - Health and Energy Management
@@ -58,6 +92,9 @@ class PlayerStatsViewModel: ObservableObject {
         } else {
             updatedStats.increaseEnergy(by: EPChange)
         }
+        
+        // Save the new energy value persistently
+        PlayerStatsViewModel.saveEnergy(updatedStats.energy)
 
         // Update the published property to trigger SwiftUI updates.
         playerStats = updatedStats
@@ -92,17 +129,20 @@ class PlayerStatsViewModel: ObservableObject {
     /// - Parameter amount: The amount to decrease the energy by.
     func decreaseEnergy(by amount: Int) {
         playerStats.decreaseEnergy(by: amount)
+        PlayerStatsViewModel.saveEnergy(playerStats.energy) // Persist the change
     }
     
     /// Increases the player's energy by a specified amount, ensuring it doesn't exceed the maximum value of 10.
     /// - Parameter amount: The amount to increase the energy by.
     func increaseEnergy(by amount: Int) {
         playerStats.increaseEnergy(by: amount)
+        PlayerStatsViewModel.saveEnergy(playerStats.energy) // Persist the change
     }
     
     /// Updates the player's energy to a new value, ensuring it doesn't exceed the maximum value of 10.
     /// - Parameter newEnergy: The new energy value to set.
     func updateEnergy(to newEnergy: Int) {
         playerStats.energy = min(newEnergy, 10)
+        PlayerStatsViewModel.saveEnergy(playerStats.energy) // Persist the change
     }
 }
