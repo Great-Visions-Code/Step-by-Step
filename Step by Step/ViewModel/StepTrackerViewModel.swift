@@ -27,7 +27,7 @@ class StepTrackerViewModel: ObservableObject {
     ///
     /// - Parameters:
     ///   - totalStepsGoal: The daily step goal (default is 10,000).
-    init(totalStepsGoal: Int = 10000) {
+    init(totalStepsGoal: Int = 5000) {
         let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken() // Load persisted value
         self.stepTracker = StepTracker(
             currentStepCount: 0, // Initially 0, will update from HealthKit.
