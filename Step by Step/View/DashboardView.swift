@@ -22,6 +22,8 @@ struct DashboardView: View {
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     // ViewModel to manage player stats across the app.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    // Persistent instance to retain story completion progress.
+    @StateObject private var storyViewModel = StoryCardViewModel()
 
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
@@ -40,7 +42,7 @@ struct DashboardView: View {
 
             // Home tab: Story selection and steps conversion.
             HomeView(
-                storyViewModel: StoryCardViewModel(),
+                storyViewModel: storyViewModel,
                 playerStatsViewModel: playerStatsViewModel,
                 stepTrackerViewModel: stepTrackerViewModel,
                 achievementsViewModel: achievementsViewModel,
