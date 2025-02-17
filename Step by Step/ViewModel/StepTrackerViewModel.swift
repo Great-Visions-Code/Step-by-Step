@@ -109,6 +109,20 @@ class StepTrackerViewModel: ObservableObject {
         return UserDefaults.standard.integer(forKey: totalStepsTakenKey)
     }
     
+    /// Updates the total step goal and persists the value.
+    ///
+    /// - Parameter newGoal: The updated daily step goal.
+    func updateTotalStepsGoal(to newGoal: Int) {
+        stepTracker = StepTracker(
+            currentStepCount: stepTracker.currentStepCount,
+            totalStepsGoal: newGoal,
+            totalStepsTaken: stepTracker.totalStepsTaken
+        )
+        
+        UserDefaults.standard.set(newGoal, forKey: "totalStepsGoal")
+        print("(STVM) Updated Step Goal: \(newGoal) Steps 🎯")
+    }
+    
     /// Calculates the energy points based on the user's steps and goal.
     ///
     /// This method retrieves the energy points from the `ConvertToEnergyViewModel`,
