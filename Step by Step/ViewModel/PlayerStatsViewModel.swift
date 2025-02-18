@@ -19,24 +19,39 @@ class PlayerStatsViewModel: ObservableObject {
     @Published private(set) var playerStats: PlayerStats
     
     /// Keys for persisting energy and last reset date.
+    private static let healthKey = "playerHealth"
     private static let energyKey = "playerEnergy"
     private static let lastResetDateKey = "lastEnergyResetDate"
     
     /// Initializes the ViewModel with persisted values for energy and default health.
-    ///
-    /// - Parameters:
-    ///   - health: The player's initial health value (default is 10).
-    init(health: Int = 10) {
+    init() {
+        let savedHealth = PlayerStatsViewModel.loadHealth() // Load saved health
         let savedEnergy = PlayerStatsViewModel.loadEnergy() // Load saved energy
+        
         self.playerStats = PlayerStats(
-            health: health,
+            health: savedHealth,
             energy: savedEnergy
         )
         
         checkAndResetEnergyAtMidnight() // Ensures energy resets daily
     }
     
-    // MARK: - Energy Persistence
+    // MARK: - Persistence: Saving and Loading Stats
+    
+    /// Saves the current health value persistently.
+    ///
+    /// - Parameter health: The player's updated health value.
+    private static func saveHealth(_ health: Int) {
+        UserDefaults.standard.set(health, forKey: healthKey)
+    }
+    
+    /// Loads the persisted health value.
+    ///
+    /// - Returns: The saved health value or 10 if no value exists.
+    private static func loadHealth() -> Int {
+        let storedHealth = UserDefaults.standard.integer(forKey: healthKey)
+        return storedHealth == 0 ? 10 : storedHealth // Default to 10 if no saved value
+    }
     
     /// Saves the current energy value persistently.
     ///
@@ -60,7 +75,7 @@ class PlayerStatsViewModel: ObservableObject {
             playerStats.energy = 0
             PlayerStatsViewModel.saveEnergy(0) // Reset value in storage
             UserDefaults.standard.set(Date(), forKey: Self.lastResetDateKey) // Save new reset date
-            print("🔁 Energy reset at midnight")
+            print("🔁 Energy reset at midnight (Health remains unchanged)")
         }
     }
     
@@ -93,6 +108,8 @@ class PlayerStatsViewModel: ObservableObject {
             updatedStats.increaseEnergy(by: EPChange)
         }
         
+        // Save the new health value persistently
+        PlayerStatsViewModel.saveHealth(updatedStats.health)
         // Save the new energy value persistently
         PlayerStatsViewModel.saveEnergy(updatedStats.energy)
 
@@ -106,21 +123,22 @@ class PlayerStatsViewModel: ObservableObject {
     /// - Parameter amount: The amount to decrease the health by.
     func decreaseHealth(by amount: Int) {
         playerStats.decreaseHealth(by: amount)
+        PlayerStatsViewModel.saveHealth(playerStats.health) // Persist the change
     }
     
     /// Increases the player's health by a specified amount, ensuring it doesn't exceed the maximum value of 10.
     /// - Parameter amount: The amount to increase the health by.
     func increaseHealth(by amount: Int) {
         playerStats.increaseHealth(by: amount)
+        PlayerStatsViewModel.saveHealth(playerStats.health) // Persist the change
     }
     
     /// Resets the player's health to its default value of 10 health points.
     ///
     /// This method is typically used to reset health points at the start of a new game or after a key milestone.
     func resetHealth() {
-        var updatedStats = playerStats
-        updatedStats.health = 10
-        playerStats = updatedStats
+        playerStats.health = 10
+        PlayerStatsViewModel.saveHealth(10) // Persist the reset
     }
 
     // MARK: - Energy Management
