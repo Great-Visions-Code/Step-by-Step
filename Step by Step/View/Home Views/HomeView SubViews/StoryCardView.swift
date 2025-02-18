@@ -37,7 +37,7 @@ struct StoryCardView: View {
                 .padding()
             
             // Display the completion percentage, styled for a secondary emphasis.
-            Text("Completed: \(story.completion)%")
+            Text("Completed: \(storyContentViewModel?.completionPercentage ?? 0)%")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.8))
         }
