@@ -60,9 +60,9 @@ struct CurrentStepsTakenProgressView: View {
 }
 
 #Preview {
-    let stepTrackerViewModel = StepTrackerViewModel(totalStepsGoal: 10000)
-
-    stepTrackerViewModel.setTotalStepsTaken(5000) // Modify this value for testing
+    let stepTrackerViewModel = StepTrackerViewModel()
+    
+    stepTrackerViewModel.setTotalStepsTaken(2500)
 
     return CurrentStepsTakenProgressView(stepTrackerViewModel: stepTrackerViewModel)
 }
