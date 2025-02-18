@@ -10,11 +10,11 @@ import SwiftUI
 /// The main view of the app's dashboard, providing an overview of the player's energy,
 /// step tracking progress, and available stories.
 struct HomeView: View {
-    // ViewModel for managing available story cards.
-    @StateObject var storyViewModel: StoryCardViewModel
     // HealthKit ViewModel for retrieving real step count.
     @StateObject private var healthKitViewModel = HealthKitViewModel()
     
+    // ViewModel for managing available story cards.
+    @ObservedObject var storyViewModel: StoryCardViewModel
     // ViewModel for managing player stats such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // ViewModel for managing step tracking data.
