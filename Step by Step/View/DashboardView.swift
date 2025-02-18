@@ -15,7 +15,7 @@ import SwiftUI
 ///   3. Settings: Allows users to manage app preferences and configurations.
 struct DashboardView: View {
     // ViewModel to manage step tracking across the app.
-    @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     // ViewModel to manage achievements.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     // ViewModel to manage story content.
@@ -23,7 +23,7 @@ struct DashboardView: View {
     // ViewModel to manage player stats across the app.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // Persistent instance to retain story completion progress.
-    @StateObject private var storyViewModel = StoryCardViewModel()
+    @ObservedObject var storyViewModel: StoryCardViewModel
 
     // Tracks the currently selected tab in the TabView.
     @State private var selectedTab: Int = 1
@@ -34,11 +34,11 @@ struct DashboardView: View {
             AchievementsView(
                 achievementsViewModel: achievementsViewModel
             )
-                .tabItem {
-                    Image(systemName: "trophy.fill")
-                    Text("Achievements")
-                }
-                .tag(0)
+            .tabItem {
+                Image(systemName: "trophy.fill")
+                Text("Achievements")
+            }
+            .tag(0)
 
             // Home tab: Story selection and steps conversion.
             HomeView(
@@ -57,26 +57,31 @@ struct DashboardView: View {
             // Settings tab for app configuration and user preferences.
             SettingsView(
                 playerStatsViewModel: playerStatsViewModel,
-                stepTrackingViewModel: stepTrackerViewModel
+                stepTrackerViewModel: stepTrackerViewModel
             )
-                .tabItem {
-                    Image(systemName: "gearshape.2.fill")
-                    Text("Settings")
-                }
-                .tag(2)
+            .tabItem {
+                Image(systemName: "gearshape.2.fill")
+                Text("Settings")
+            }
+            .tag(2)
         }
     }
 }
 
 #Preview {
     let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
     
     DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel, 
         achievementsViewModel: previewAchievementsViewModel,
         storyContentViewModel: StoryContentViewModel(
             achievementsViewModel: previewAchievementsViewModel,
-            playerStatsViewModel: PlayerStatsViewModel()
+            playerStatsViewModel: previewPlayerStatsViewModel
         ),
-        playerStatsViewModel: PlayerStatsViewModel()
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyViewModel: previewStoryCardViewModel
     )
 }
