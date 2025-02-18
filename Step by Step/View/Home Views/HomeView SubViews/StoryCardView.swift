@@ -75,7 +75,7 @@ struct StoryCardView: View {
         story: .constant(
             StoryCard(
                 title: "Survive",
-                color: Color.green,
+                color: Color.blue,
                 completion: 50,
                 details: "Dynamic story details."
             )
