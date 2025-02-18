@@ -24,9 +24,16 @@ struct DashboardView: View {
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // ViewModel to manage story card content.
     @ObservedObject var storyCardViewModel: StoryCardViewModel
+    
+    /// Enum to represent each tab in `TabView`.
+    enum TabSelection: String, Hashable {
+        case achievements
+        case home
+        case settings
+    }
 
     // Tracks the currently selected tab in the TabView.
-    @State private var selectedTab: Int = 1
+    @State private var selectedTab: TabSelection = .home
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -38,7 +45,7 @@ struct DashboardView: View {
                 Image(systemName: "trophy.fill")
                 Text("Achievements")
             }
-            .tag(0)
+            .tag(TabSelection.achievements)
 
             // Home tab: Story selection and steps conversion.
             HomeView(
@@ -52,7 +59,7 @@ struct DashboardView: View {
                 Image(systemName: "house.fill")
                 Text("Home")
             }
-            .tag(1)
+            .tag(TabSelection.home)
 
             // Settings tab for app configuration and user preferences.
             SettingsView(
@@ -63,7 +70,7 @@ struct DashboardView: View {
                 Image(systemName: "gearshape.2.fill")
                 Text("Settings")
             }
-            .tag(2)
+            .tag(TabSelection.settings)
         }
     }
 }
