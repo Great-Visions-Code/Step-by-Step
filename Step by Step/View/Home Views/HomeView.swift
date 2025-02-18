@@ -12,6 +12,8 @@ import SwiftUI
 struct HomeView: View {
     // HealthKit ViewModel for retrieving real step count.
     @StateObject private var healthKitViewModel = HealthKitViewModel()
+    // SelectedStoryViewModel to hold story selected by user.
+    @StateObject private var selectedStoryViewModel = SelectedStoryViewModel()
     
     // ViewModel for managing available story cards.
     @ObservedObject var storyCardViewModel: StoryCardViewModel
@@ -26,15 +28,11 @@ struct HomeView: View {
     
     // Tracks the navigation path for transitioning between views.
     @State private var path = NavigationPath()
-    // Holds the story selected by the user, enabling navigation to its details.
-    @State private var selectedStory: StoryCard? = nil
 
     var body: some View {
         // NavigationStack manages the navigation flow and associated destinations.
         NavigationStack(path: $path) {
             ZStack {
-                // !!!NOTE!!!
-                //Color.background
                 VStack {
                     Spacer()
                     // Displays the user's progress toward their daily step goal.
@@ -62,11 +60,15 @@ struct HomeView: View {
                     )
                     // A horizontal scrollable list of available adventures for the player to choose from.
                     ChooseYourAdventureView(
-                        stories: $storyCardViewModel.stories, // Pass stories as a binding.
-                        storyContentViewModel: storyContentViewModel, // Pass StoryContentViewModel for dynamic updates.
+                        stories: $storyCardViewModel.stories,
+                        storyContentViewModel: storyContentViewModel,
                         onStorySelected: { story in
-                            selectedStory = story
-                            path.append("StoryDetailsView") // Navigate to the story details.
+                            DispatchQueue.main.async {
+                                print("Before update: selectedStory = \(selectedStoryViewModel.selectedStory?.title ?? "nil")")
+                                selectedStoryViewModel.selectedStory = story
+                                print("After update: selectedStory = \(selectedStoryViewModel.selectedStory?.title ?? "nil")")
+                                path.append("StoryDetailsView")
+                            }
                         }
                     )
                     Spacer()
@@ -77,69 +79,88 @@ struct HomeView: View {
             
             // MARK: - Navigation Destinations
             
-            // Handles navigation to various destinations based on the path value.
             .navigationDestination(for: String.self) { destination in
                 switch destination {
                 case "StoryDetailsView":
-                    // Show details about the selected story.
-                    if let story = selectedStory {
-                        StoryDetailsView(
-                            story: story,
-                            storyContentViewModel: storyContentViewModel, // Pass the StoryContentViewModel.
-                            onEnterStoryButton: {
-                                path.append("StoryHomeView") // Navigate to the story's main view.
-                            }
+                    if let story = selectedStoryViewModel.selectedStory {
+                        DispatchQueue.main.async {
+                            print("📌 Displaying StoryDetailsView for: \(story.title)")
+                        }
+                        return AnyView(
+                            StoryDetailsView(
+                                story: story,
+                                storyContentViewModel: storyContentViewModel,
+                                onEnterStoryButton: {
+                                    path.append("StoryHomeView")
+                                }
+                            )
+                            .id(path.count) // Forces a refresh when navigating
                         )
+                    } else {
+                        DispatchQueue.main.async {
+                            print("⚠️ selectedStory is nil, displaying EmptyView")
+                        }
+                        return AnyView(EmptyView())
                     }
                     
                 case "StoryHomeView":
-                    // Show the main view for the selected story.
-                    if let story = selectedStory {
-                        StoryHomeView(
-                            story: story, // Pass the selected story object to the view.
-                            playerStatsViewModel: playerStatsViewModel, // Provide the player's stats (health, energy).
-                            achievementsViewModel: achievementsViewModel, // Provide the user's achievements data.
-                            storyContentViewModel: storyContentViewModel, // Provide the story content and progress data.
-                            onNavigateButton: { nextView in
-                                // Handle navigation to the specified next view when a button is pressed.
-                                path.append(nextView) // Append the target view to the navigation path.
-                            }
+                    if let story = selectedStoryViewModel.selectedStory {
+                        return AnyView(
+                            StoryHomeView(
+                                story: story,
+                                playerStatsViewModel: playerStatsViewModel,
+                                achievementsViewModel: achievementsViewModel,
+                                storyContentViewModel: storyContentViewModel,
+                                onNavigateButton: { nextView in
+                                    path.append(nextView)
+                                }
+                            )
                         )
+                    } else {
+                        return AnyView(EmptyView())
                     }
-                    
+
                 case "StoryView", "ResumeStoryView":
-                    // Show the interactive view of the story.
-                    StoryView(
-                        onNavigateStoryHomeIcon: {
-                            path.removeLast() // Return to last view.
-                        },
-                        onNavigateStoryAchievementsIcon: {
-                            path.append("StoryAchievementsView") // Navigate to story achievements.
-                        },
-                        onNavigateStoryMapIcon: {
-                            path.append("StoryMapView") // Navigate to the story map.
-                        },
-                        playerStatsViewModel: playerStatsViewModel,
-                        storyContentViewModel: storyContentViewModel
+                    return AnyView(
+                        StoryView(
+                            onNavigateStoryHomeIcon: {
+                                path.removeLast()
+                            },
+                            onNavigateStoryAchievementsIcon: {
+                                path.append("StoryAchievementsView")
+                            },
+                            onNavigateStoryMapIcon: {
+                                path.append("StoryMapView")
+                            },
+                            playerStatsViewModel: playerStatsViewModel,
+                            storyContentViewModel: storyContentViewModel
+                        )
+                        .toolbar(.hidden, for: .tabBar)
                     )
-                    .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience.
                     
                 case "StoryAchievementsView":
-                    // Show achievements related to the current story.
-                    StoryAchievementsView()
-                        .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience.
+                    return AnyView(
+                        StoryAchievementsView()
+                            .toolbar(.hidden, for: .tabBar)
+                    )
                     
                 case "StoryMapView":
-                    // Show the map view for the current story.
-                    StoryMapView()
-                        .toolbar(.hidden, for: .tabBar) // Hide the TabView for a focused experience.
+                    return AnyView(
+                        StoryMapView()
+                            .toolbar(.hidden, for: .tabBar)
+                    )
                     
                 default:
-                    EmptyView() // Handle unexpected or invalid destinations.
+                    return AnyView(EmptyView()) // Handle unexpected destinations
                 }
             }
         }
     }
+}
+
+/// ViewModel: Persist `selectedStory` across renders
+class SelectedStoryViewModel: ObservableObject {
+    @Published var selectedStory: StoryCard?
 }
 
 #Preview {
