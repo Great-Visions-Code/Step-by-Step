@@ -14,12 +14,6 @@ struct SettingsView: View {
     // ViewModel to manage step tracking settings.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
-    /// UserDefaults key for persisting the total step goal.
-    private let totalStepsGoalKey = "totalStepsGoalKey"
-    
-    /// Load the saved total step goal from UserDefaults, or default to 5,000.
-    @State private var totalStepsGoal: Int = UserDefaults.standard.integer(forKey: "totalStepsGoal") == 0 ? 5000 : UserDefaults.standard.integer(forKey: "totalStepsGoal")
-    
     var body: some View {
         VStack(spacing: 20) {
             // Title for the settings page.
@@ -36,37 +30,33 @@ struct SettingsView: View {
                     .font(.title2)
                     .bold()
                 
-                // Display current totalStepsGoal
-                Text("\(totalStepsGoal) Steps")
+                // Display current totalStepsGoal (directly from stepTrackerViewModel)
+                Text("\(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps")
                     .font(.title)
                     .bold()
                 
                 HStack(spacing: 30) {
                     // Decrease Step Goal Button
                     Button(action: {
-                        if totalStepsGoal > 1000 { // Prevents goal from going below 1,000
-                            totalStepsGoal -= 250 // Intervals of 250
-                            updateTotalStepsGoal()
-                        }
+                        let newGoal = max(stepTrackerViewModel.stepTracker.totalStepsGoal - 250, 1000) // Min 1000
+                        stepTrackerViewModel.updateTotalStepsGoal(to: newGoal)
                     }) {
                         Image(systemName: "minus.circle.fill")
                             .font(.largeTitle)
-                            .foregroundStyle(totalStepsGoal > 1000 ? .blue : .gray)
+                            .foregroundStyle(stepTrackerViewModel.stepTracker.totalStepsGoal > 1000 ? .blue : .gray)
                     }
-                    .disabled(totalStepsGoal <= 1000)
+                    .disabled(stepTrackerViewModel.stepTracker.totalStepsGoal <= 1000)
                     
                     // Increase Step Goal Button
                     Button(action: {
-                        if totalStepsGoal < 50000 { // Prevents goal from exceeding 50,000
-                            totalStepsGoal += 250 // Intervals of 250
-                            updateTotalStepsGoal()
-                        }
+                        let newGoal = min(stepTrackerViewModel.stepTracker.totalStepsGoal + 250, 50000) // Max 50,000
+                        stepTrackerViewModel.updateTotalStepsGoal(to: newGoal)
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.largeTitle)
-                            .foregroundStyle(totalStepsGoal < 50000 ? .blue : .gray)
+                            .foregroundStyle(stepTrackerViewModel.stepTracker.totalStepsGoal < 50000 ? .blue : .gray)
                     }
-                    .disabled(totalStepsGoal >= 50000)
+                    .disabled(stepTrackerViewModel.stepTracker.totalStepsGoal >= 50000)
                 }
             }
             .padding()
@@ -90,16 +80,11 @@ struct SettingsView: View {
         }
         .padding()
     }
-    
-    /// Saves the updated `totalStepsGoal` to UserDefaults and updates `StepTrackerViewModel`.
-    private func updateTotalStepsGoal() {
-        UserDefaults.standard.set(totalStepsGoal, forKey: totalStepsGoalKey)
-        stepTrackerViewModel.updateTotalStepsGoal(to: totalStepsGoal)
-    }
 }
 
 #Preview {
-    SettingsView(playerStatsViewModel: PlayerStatsViewModel(),
-                 stepTrackerViewModel: StepTrackerViewModel()
+    SettingsView(
+        playerStatsViewModel: PlayerStatsViewModel(),
+        stepTrackerViewModel: StepTrackerViewModel()
     )
 }
