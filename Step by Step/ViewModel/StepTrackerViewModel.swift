@@ -22,16 +22,17 @@ class StepTrackerViewModel: ObservableObject {
     /// Key for UserDefaults storage.
     private static let totalStepsTakenKey = "totalStepsTaken"
     private static let lastResetDateKey = "lastResetDate"
+    private static let totalStepsGoalKey = "totalStepsGoal"
     
     /// Initializes the ViewModel with persistent values for steps and goals.
-    ///
-    /// - Parameters:
-    ///   - totalStepsGoal: The daily step goal (default is 10,000).
-    init(totalStepsGoal: Int = 5000) {
+    init(totalStepsGoal: Int? = nil) {
+        let savedTotalStepsGoal = UserDefaults.standard.integer(forKey: Self.totalStepsGoalKey)
+        let finalTotalStepsGoal = savedTotalStepsGoal > 0 ? savedTotalStepsGoal : 5000 // Ensure fallback
+        
         let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken() // Load persisted value
         self.stepTracker = StepTracker(
             currentStepCount: 0, // Initially 0, will update from HealthKit.
-            totalStepsGoal: totalStepsGoal,
+            totalStepsGoal: finalTotalStepsGoal, // Load from UserDefaults
             totalStepsTaken: savedTotalStepsTaken
         )
         // Ensures daily reset
@@ -119,7 +120,7 @@ class StepTrackerViewModel: ObservableObject {
             totalStepsTaken: stepTracker.totalStepsTaken
         )
         
-        UserDefaults.standard.set(newGoal, forKey: "totalStepsGoal")
+        UserDefaults.standard.set(newGoal, forKey: Self.totalStepsGoalKey) // Persist updated goal
         print("(STVM) Updated Step Goal: \(newGoal) Steps 🎯")
     }
     
