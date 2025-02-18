@@ -30,7 +30,7 @@ struct StepByStepApp: App {
     
     /// StateObject for managing the available stories.
     /// This ensures that the story completion progress updates dynamically.
-    @StateObject private var storyViewModel = StoryCardViewModel()
+    @StateObject private var storyCardViewModel = StoryCardViewModel()
 
     // MARK: - Initializer
 
@@ -50,7 +50,7 @@ struct StepByStepApp: App {
         _achievementsViewModel = StateObject(wrappedValue: sharedAchievementsViewModel)
         _playerStatsViewModel = StateObject(wrappedValue: sharedPlayerStatsViewModel)
         _stepTrackerViewModel = StateObject(wrappedValue: sharedStepTrackerViewModel)
-        _storyViewModel = StateObject(wrappedValue: sharedStoryViewModel)
+        _storyCardViewModel = StateObject(wrappedValue: sharedStoryViewModel)
         
         // Create StoryContentViewModel with dependencies on other shared ViewModels.
         _storyContentViewModel = StateObject(wrappedValue: StoryContentViewModel(
@@ -69,7 +69,7 @@ struct StepByStepApp: App {
                 achievementsViewModel: achievementsViewModel,
                 storyContentViewModel: storyContentViewModel,
                 playerStatsViewModel: playerStatsViewModel,
-                storyViewModel: storyViewModel
+                storyCardViewModel: storyCardViewModel
             )
         }
     }

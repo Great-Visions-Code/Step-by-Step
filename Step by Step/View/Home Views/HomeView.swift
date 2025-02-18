@@ -14,7 +14,7 @@ struct HomeView: View {
     @StateObject private var healthKitViewModel = HealthKitViewModel()
     
     // ViewModel for managing available story cards.
-    @ObservedObject var storyViewModel: StoryCardViewModel
+    @ObservedObject var storyCardViewModel: StoryCardViewModel
     // ViewModel for managing player stats such as health and energy.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // ViewModel for managing step tracking data.
@@ -62,7 +62,7 @@ struct HomeView: View {
                     )
                     // A horizontal scrollable list of available adventures for the player to choose from.
                     ChooseYourAdventureView(
-                        stories: $storyViewModel.stories, // Pass stories as a binding.
+                        stories: $storyCardViewModel.stories, // Pass stories as a binding.
                         storyContentViewModel: storyContentViewModel, // Pass StoryContentViewModel for dynamic updates.
                         onStorySelected: { story in
                             selectedStory = story
@@ -144,7 +144,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView(
-        storyViewModel: StoryCardViewModel(),
+        storyCardViewModel: StoryCardViewModel(),
         playerStatsViewModel: PlayerStatsViewModel(),
         stepTrackerViewModel: StepTrackerViewModel(),
         achievementsViewModel: AchievementsViewModel(),
