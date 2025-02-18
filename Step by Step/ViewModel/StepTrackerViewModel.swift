@@ -25,7 +25,7 @@ class StepTrackerViewModel: ObservableObject {
     private static let totalStepsGoalKey = "totalStepsGoal"
     
     /// Initializes the ViewModel with persistent values for steps and goals.
-    init(totalStepsGoal: Int? = nil) {
+    init() {
         let savedTotalStepsGoal = UserDefaults.standard.integer(forKey: Self.totalStepsGoalKey)
         let finalTotalStepsGoal = savedTotalStepsGoal > 0 ? savedTotalStepsGoal : 5000 // Ensure fallback
         
