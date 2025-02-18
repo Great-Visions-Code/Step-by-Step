@@ -23,6 +23,14 @@ struct StepByStepApp: App {
     /// StateObject for managing story content and progress, dependent on other view models.
     /// This handles the loading and updating of story chapters and decisions.
     @StateObject private var storyContentViewModel: StoryContentViewModel
+    
+    /// StateObject for managing step tracking progress.
+    /// Ensures that the user's steps are tracked persistently across the app.
+    @StateObject private var stepTrackerViewModel = StepTrackerViewModel()
+    
+    /// StateObject for managing the available stories.
+    /// This ensures that the story completion progress updates dynamically.
+    @StateObject private var storyViewModel = StoryCardViewModel()
 
     // MARK: - Initializer
 
@@ -34,9 +42,15 @@ struct StepByStepApp: App {
         // Shared instance of the PlayerStatsViewModel to ensure consistency in player stats.
         let sharedPlayerStatsViewModel = PlayerStatsViewModel()
         
+        // Create shared instances for persistent tracking.
+        let sharedStepTrackerViewModel = StepTrackerViewModel()
+        let sharedStoryViewModel = StoryCardViewModel()
+        
         // Wrap shared instances into StateObjects to allow SwiftUI to observe changes.
         _achievementsViewModel = StateObject(wrappedValue: sharedAchievementsViewModel)
         _playerStatsViewModel = StateObject(wrappedValue: sharedPlayerStatsViewModel)
+        _stepTrackerViewModel = StateObject(wrappedValue: sharedStepTrackerViewModel)
+        _storyViewModel = StateObject(wrappedValue: sharedStoryViewModel)
         
         // Create StoryContentViewModel with dependencies on other shared ViewModels.
         _storyContentViewModel = StateObject(wrappedValue: StoryContentViewModel(
@@ -51,9 +65,11 @@ struct StepByStepApp: App {
         WindowGroup {
             // Launch the DashboardView as the root view, passing in all necessary ViewModels.
             DashboardView(
+                stepTrackerViewModel: stepTrackerViewModel,
                 achievementsViewModel: achievementsViewModel,
                 storyContentViewModel: storyContentViewModel,
-                playerStatsViewModel: playerStatsViewModel
+                playerStatsViewModel: playerStatsViewModel,
+                storyViewModel: storyViewModel
             )
         }
     }
