@@ -82,6 +82,7 @@ struct HomeView: View {
             .navigationDestination(for: String.self) { destination in
                 switch destination {
                 case "StoryDetailsView":
+                    // Displays story details if a story has been selected.
                     if let story = selectedStoryViewModel.selectedStory {
                         DispatchQueue.main.async {
                             print("📌 Displaying StoryDetailsView for: \(story.title)")
@@ -94,7 +95,7 @@ struct HomeView: View {
                                     path.append("StoryHomeView")
                                 }
                             )
-                            .id(path.count) // Forces a refresh when navigating
+                            .id(path.count) // Forces refresh to avoid stale UI.
                         )
                     } else {
                         DispatchQueue.main.async {
@@ -104,6 +105,7 @@ struct HomeView: View {
                     }
                     
                 case "StoryHomeView":
+                    // Navigates to the main gameplay screen for the selected story.
                     if let story = selectedStoryViewModel.selectedStory {
                         return AnyView(
                             StoryHomeView(
@@ -156,11 +158,6 @@ struct HomeView: View {
             }
         }
     }
-}
-
-/// ViewModel: Persist `selectedStory` across renders
-class SelectedStoryViewModel: ObservableObject {
-    @Published var selectedStory: StoryCard?
 }
 
 #Preview {
