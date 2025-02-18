@@ -12,7 +12,7 @@ struct SettingsView: View {
     // ViewModel to manage the player's stats.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // ViewModel to manage step tracking settings.
-    @ObservedObject var stepTrackingViewModel: StepTrackerViewModel
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
     /// UserDefaults key for persisting the total step goal.
     private let totalStepsGoalKey = "totalStepsGoalKey"
@@ -94,12 +94,12 @@ struct SettingsView: View {
     /// Saves the updated `totalStepsGoal` to UserDefaults and updates `StepTrackerViewModel`.
     private func updateTotalStepsGoal() {
         UserDefaults.standard.set(totalStepsGoal, forKey: totalStepsGoalKey)
-        stepTrackingViewModel.updateTotalStepsGoal(to: totalStepsGoal)
+        stepTrackerViewModel.updateTotalStepsGoal(to: totalStepsGoal)
     }
 }
 
 #Preview {
     SettingsView(playerStatsViewModel: PlayerStatsViewModel(),
-                 stepTrackingViewModel: StepTrackerViewModel()
+                 stepTrackerViewModel: StepTrackerViewModel()
     )
 }
