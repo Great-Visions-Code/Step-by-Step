@@ -65,13 +65,13 @@ struct ChooseYourAdventureView: View {
     @Previewable @State var stories = [
         StoryCard(
             title: "Survive",
-            color: Color.green,
+            color: Color.blue,
             completion: 50,
             details: "Dynamic completion story."
         ),
         StoryCard(
             title: "Future Adventures",
-            color: Color.gray,
+            color: Color.blue,
             completion: 0,
             details: "Static completion story."
         )
