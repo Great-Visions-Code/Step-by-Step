@@ -44,13 +44,17 @@ struct CurrentStepsTakenProgressView: View {
                 
                 Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
                     .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .bold()
                 
                 Text("Steps So Far")
                     .font(.title2)
                 
+                Text("Keep moving to earn more energy!")
+                    .font(.caption2)
+                
                 Text("Goal: \(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps")
-                    .font(.headline)
+                    .font(.subheadline)
+                    .bold()
                     .padding(.top, 5)
             }
         }
