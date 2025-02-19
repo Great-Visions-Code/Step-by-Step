@@ -70,6 +70,8 @@ struct CurrentEnergyProgressView: View {
 #Preview {
     let playerStatsViewModel = PlayerStatsViewModel()
     
+    playerStatsViewModel.updateEnergy(to: 5)
+    
     return CurrentEnergyProgressView(
         playerStatsViewModel: playerStatsViewModel
     )
