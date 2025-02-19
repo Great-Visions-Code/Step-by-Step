@@ -76,7 +76,7 @@ struct StoryDetailsView: View {
         story: StoryCard(
             title: "Story Title",
             color: .green,
-            completion: 0, // This is ignored as we now dynamically observe the ViewModel.
+            completion: 0,
             details: """
                     SAMPLE: 'Story Title', this is where we would show the details of the story.
                     
