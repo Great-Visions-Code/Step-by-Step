@@ -38,13 +38,15 @@ struct ConvertToEnergyButtonView: View {
             }) {
                 VStack {
                     HStack {
-                        Text("Convert")
-                            .font(.title2)
                         Text(" \(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
+                            .font(.title2)
+                        
+                        Text("available to convert")
                             .font(.title3)
                     }
   
                 }
+                .frame(width: 300, height: 40)
                 .bold()
                 .padding()
                 .background(Color.blue)
@@ -52,19 +54,17 @@ struct ConvertToEnergyButtonView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
             Text("Tap to convert steps into energy")
-                .font(.footnote)
+                .font(.callout)
         }
     }
 }
 
-struct ConvertToEnergyButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        let playerStatsViewModel = PlayerStatsViewModel()
-        let stepTrackerViewModel = StepTrackerViewModel()
-        
-        return ConvertToEnergyButtonView(
-            playerStatsViewModel: playerStatsViewModel,
-            stepTrackerViewModel: stepTrackerViewModel
-        )
-    }
+#Preview {
+    let playerStatsViewModel = PlayerStatsViewModel()
+    let stepTrackerViewModel = StepTrackerViewModel()
+
+    return ConvertToEnergyButtonView(
+        playerStatsViewModel: playerStatsViewModel,
+        stepTrackerViewModel: stepTrackerViewModel
+    )
 }
