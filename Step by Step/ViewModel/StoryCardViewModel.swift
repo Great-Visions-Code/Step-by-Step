@@ -38,13 +38,13 @@ class StoryCardViewModel: ObservableObject {
             """
         ),
 
-        // MARK: - Future Adventures Placeholder
+        // MARK: - Stay Tuned Placeholder
         
-        /// "Future Adventures" Placeholder:
+        /// "Stay Tuned" Placeholder:
         /// Represents upcoming stories that will be added to the app in future updates.
         /// This encourages user engagement by teasing additional content.
         StoryCard(
-            title: "Future Adventures",
+            title: "Stay Tuned",
             color: Color.blue,
             completion: 0,
             details: """
@@ -79,15 +79,15 @@ class StoryCardViewModel: ObservableObject {
 
     /// Updates the completion percentage for a specific story by title.
     ///
-    /// If the story has a static completion (e.g., "Future Adventures"), it remains unchanged.
+    /// If the story has a static completion (e.g., "Stay Tuned"), it remains unchanged.
     ///
     /// - Parameters:
     ///   - title: The title of the story to update.
     ///   - percentage: The new completion percentage.
     private func updateStoryCompletion(for title: String, to percentage: Int) {
         if let index = stories.firstIndex(where: { $0.title == title }) {
-            // Keep static stories like "Future Adventures" at their default completion.
-            if stories[index].title == "Future Adventures" {
+            // Keep static stories like "Stay Tuned" at their default completion.
+            if stories[index].title == "Stay Tuned" {
                 stories[index].completion = 0 // Always set to 0.
             } else {
                 stories[index].completion = percentage
