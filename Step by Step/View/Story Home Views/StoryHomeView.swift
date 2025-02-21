@@ -39,21 +39,21 @@ struct StoryHomeView: View {
             StoryTitleView(
                 title: story.title
             )
-            .padding(.bottom, 25)
+            .padding()
 
             // Show the player's current health and energy levels.
             VStack(spacing: 20) {
                 StoryHPAndEPBarView(
                     currentPoints: playerStatsViewModel.playerStats.health,
                     maxPoints: 10,
-                    barColor: .red,
-                    labelText: "Health"
+                    type: .health,
+                    iconSpacing: 8
                 )
                 StoryHPAndEPBarView(
                     currentPoints: playerStatsViewModel.playerStats.energy,
                     maxPoints: 10,
-                    barColor: .blue,
-                    labelText: "Energy"
+                    type: .energy,
+                    iconSpacing: 14
                 )
             }
             .padding()
@@ -65,16 +65,18 @@ struct StoryHomeView: View {
                 )
                 .padding(.bottom, 20)
                 
-                // Display Survive completion percentage dynamically and static for Future Adventures.
-                Text("Completed: \(story.title == "Future Adventures" ? "0" : "\(storyContentViewModel.completionPercentage)")%")
-                    .font(.title3)
-                    .padding(.bottom, 20)
+                // Display Survive completion percentage dynamically.
+                CompletionPercentageView(storyContentViewModel: StoryContentViewModel(
+                    achievementsViewModel: AchievementsViewModel(),
+                    playerStatsViewModel: PlayerStatsViewModel()
+                    )
+                )
                 
                 // Display Attempts taken.
                 AttemptTrackerView(
                     achievementsViewModel: achievementsViewModel
                 )
-                .padding(.vertical, 20)
+               // .padding()
             }
             .padding()
 
@@ -114,9 +116,9 @@ struct StoryHomeView: View {
 #Preview {
     StoryHomeView(
         story: StoryCard(
-            title: "Story Title",
+            title: "Survive",
             color: .green,
-            completion: 100,
+            completion: 0,
             details: "DETAILS NOT SHOWN"
         ),
         playerStatsViewModel: PlayerStatsViewModel(),
