@@ -34,12 +34,20 @@ struct StoryCardView: View {
                 .foregroundStyle(.white)
                 .lineLimit(2)
                 .minimumScaleFactor(0.6)
-                .padding()
+                .padding(.bottom, 10)
             
             // Display the completion percentage, styled for a secondary emphasis.
             Text("Completed: \(storyContentViewModel?.completionPercentage ?? 0)%")
-                .font(.subheadline)
+                .font(.footnote)
                 .foregroundStyle(.white.opacity(0.8))
+            
+            // **Modern Progress Bar**
+            ProgressView(value: Double(storyContentViewModel?.completionPercentage ?? 0), total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: Color.white)) //vUses white tint for contrast
+                .frame(height: 5) // Thin, sleek progress bar
+                .background(Color.white.opacity(0.2)) // Subtle background for contrast
+                .cornerRadius(3)
+                .padding(.horizontal, 20)
         }
         .padding()
         .frame(width: 150, height: 150) // Set card dimensions.
