@@ -17,23 +17,17 @@ struct StoryDayAndChapterView: View {
         VStack(spacing: 10) {
             if let currentChapter = storyContentViewModel.currentChapter {
                 // Display the current day and total days to track user progress.
-                Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
+                Text("Day \(currentChapter.storyDay): \"\(currentChapter.chapterTitle)\"")
                     .font(.title)
-                    .fontWeight(.medium)
+                    .bold()
                 
                 // Title of the current chapter.
-                Text("\"\(currentChapter.chapterTitle)\"")
-                    .font(.title2)
-                    .fontWeight(.medium)
+                Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
+                    .font(.subheadline)
             } else {
                 // Placeholder text if no current chapter is loaded.
-                Text("Day 1 out of 10")
-                    .font(.title)
-                    .fontWeight(.medium)
-                
-                Text("\"Start A Story\"")
-                    .font(.title2)
-                    .fontWeight(.medium)
+                Text("Story not found: Please return home.")
+                    
             }
         }
     }
