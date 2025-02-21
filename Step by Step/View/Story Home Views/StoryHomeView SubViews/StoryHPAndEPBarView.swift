@@ -7,70 +7,96 @@
 
 import SwiftUI
 
-/// A reusable progress bar view for displaying the player's health or energy levels in the game.
-/// Features a labeled display of current and maximum points, a progress bar, and tick marks for visual clarity.
+/// A reusable status bar view displaying the player's health or energy using heart and bolt icons.
+/// The bar visually updates with animations when values change, ensuring consistent alignment.
 struct StoryHPAndEPBarView: View {
-    // The current value of points (e.g., health or energy).
+    /// The current value of points (e.g., health or energy).
     var currentPoints: Int
-    // The maximum value of points.
+    /// The maximum value of points.
     let maxPoints: Int
-    // The color of the progress bar.
-    var barColor: Color
-    // The label text to indicate whether the bar represents "Health" or "Energy".
-    var labelText: String
+    /// The type of bar: "Health" or "Energy".
+    var type: StatusBarType
+    /// Customizable spacing between icons.
+    var iconSpacing: CGFloat
+    
+    /// Animation trigger for smooth transitions.
+    @State private var animateIcons = false
+    
+    /// Enum to differentiate between health and energy bars.
+    enum StatusBarType {
+        case health
+        case energy
+    }
     
     var body: some View {
-        VStack(spacing: 5) {
-            // Display the label and current/max points prominently.
-            Text("\(currentPoints)/\(maxPoints) \(labelText)")
+        VStack {
+            // **Label indicating the type (Health or Energy)**
+            Text("\(currentPoints)/\(maxPoints) \(type == .health ? "Health" : "Energy")")
                 .font(.title3)
-                .fontWeight(.heavy)
+                .bold()
             
-            // Render the progress bar with tick marks.
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    // Background bar with a subtle gray color.
-                    Capsule()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 20)
-                    
-                    // Foreground bar to visually represent progress.
-                    Capsule()
-                        .fill(barColor)
-                        .frame(width: geometry.size.width * CGFloat(currentPoints) / CGFloat(maxPoints),
-                               height: 20)
-                    
-                    // Add tick marks evenly spaced along the progress bar.
-                    ForEach(0...maxPoints, id: \.self) { tick in
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 2, height: 14)
-                            .offset(x: geometry.size.width * CGFloat(tick) / CGFloat(maxPoints) - 1)
+            // **Aligned Capsule Background**
+            ZStack(alignment: .center) {
+                // Background for alignment
+                Capsule()
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(height: 30)
+                
+                // **HStack containing hearts or bolts**
+                HStack(spacing: iconSpacing) {  // ✅ Uses customizable spacing
+                    ForEach(0..<maxPoints, id: \.self) { index in
+                        let isFilled = index < currentPoints
+                        let icon = type == .health ? (isFilled ? "heart.fill" : "heart") : (isFilled ? "bolt.fill" : "bolt")
+                        let color = type == .health ? (isFilled ? Color.red : Color.gray) : (isFilled ? Color.blue : Color.gray)
+                        
+                        Image(systemName: icon)
+                            .foregroundColor(color)
+                            .font(.title2) // Standardized size
+                            .scaleEffect(animateIcons && isFilled ? 1.2 : 1.0) // "Pop" effect
+                            .opacity(animateIcons && isFilled ? 1.0 : 0.3) // Fade-in effect
+                            .animation(.easeInOut(duration: 0.3).delay(Double(index) * 0.1), value: animateIcons)
                     }
                 }
+                .padding(.horizontal, 10)
             }
-            .frame(height: 20) // Consistent height for the progress bar.
+            //.frame(width: 200, height: 30) // Ensuring consistent width
         }
-        .padding(.horizontal) // Add horizontal padding for better alignment.
+        .padding(.horizontal)
+        .onAppear {
+            animateIcons = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation {
+                    animateIcons = true
+                }
+            }
+        }
+        .onChange(of: currentPoints) {
+            animateIcons = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation {
+                    animateIcons = true
+                }
+            }
+        }
     }
 }
 
 #Preview {
     VStack(spacing: 20) {
-        // Preview for health bar.
+        // **Preview for health bar (Hearts) - More Spacing**
         StoryHPAndEPBarView(
             currentPoints: 3,
             maxPoints: 10,
-            barColor: .red,
-            labelText: "Health"
+            type: .health,
+            iconSpacing: 8 // Adjust spacing for hearts
         )
         
-        // Preview for energy bar.
+        // **Preview for energy bar (Bolts) - Less Spacing**
         StoryHPAndEPBarView(
             currentPoints: 5,
             maxPoints: 10,
-            barColor: .blue,
-            labelText: "Energy"
+            type: .energy,
+            iconSpacing: 13 // Adjust spacing for bolts
         )
     }
 }
