@@ -24,25 +24,31 @@ struct CurrentEnergyProgressView: View {
             Text("Current Energy:   \(playerStatsViewModel.playerStats.energy)/10")
                 .font(.headline)
                 .bold()
-                    
-            // Energy bar using lightning bolt icons.
-            HStack(spacing: 5) {
-                ForEach(0..<10, id: \.self) { index in
-                    // Determines if the bolt should be filled or outlined based on available energy.
-                    Image(systemName: index < playerStatsViewModel.playerStats.energy ? "bolt.fill" : "bolt")
+            ZStack(alignment: .center) {
+                // Background for alignment
+                Capsule()
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(width: 350, height: 50)
+                
+                // Energy bar using lightning bolt icons.
+                HStack(spacing: 5) {
+                    ForEach(0..<10, id: \.self) { index in
+                        // Determines if the bolt should be filled or outlined based on available energy.
+                        Image(systemName: index < playerStatsViewModel.playerStats.energy ? "bolt.fill" : "bolt")
                         // Filled bolts are blue, empty bolts are gray.
-                        .foregroundColor(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
+                            .foregroundColor(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
                         // Sets the icon size.
-                        .font(.title)
+                            .font(.title)
                         // Creates a "pop" effect when a bolt is filled.
-                        .scaleEffect(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.2 : 1.0)
+                            .scaleEffect(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.2 : 1.0)
                         // Smoothly fades in newly added bolts.
-                        .opacity(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.0 : 0.3)
+                            .opacity(animateBolts && index < playerStatsViewModel.playerStats.energy ? 1.0 : 0.3)
                         // Staggers the animation for a sequential fill effect.
-                        .animation(.easeInOut(duration: 0.3).delay(Double(index) * 0.1), value: animateBolts)
+                            .animation(.easeInOut(duration: 0.3).delay(Double(index) * 0.1), value: animateBolts)
+                    }
                 }
+                .padding(5)
             }
-            .padding(5)
             // Restart animation when the view appears.
             .onAppear {
                 animateBolts = false
