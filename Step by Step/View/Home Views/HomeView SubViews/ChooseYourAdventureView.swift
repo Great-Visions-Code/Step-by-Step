@@ -42,7 +42,7 @@ struct ChooseYourAdventureView: View {
                                 }
                             )
                         } else {
-                            // Render static stories like "Future Adventures."
+                            // Render static stories like "Stay Tuned"
                             StoryCardView(
                                 story: $story, // Pass a binding to the story card.
                                 storyContentViewModel: nil, // Pass nil to prevent dynamic updates.
@@ -70,7 +70,7 @@ struct ChooseYourAdventureView: View {
             details: "Dynamic completion story."
         ),
         StoryCard(
-            title: "Future Adventures",
+            title: "Stay Tuned",
             color: Color.blue,
             completion: 0,
             details: "Static completion story."
