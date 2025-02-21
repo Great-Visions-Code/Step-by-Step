@@ -21,9 +21,8 @@ struct StoryDetailsView: View {
         
     var body: some View {
         VStack(spacing: 20) {
-            Spacer() // Spacer to push content towards the center of the screen.
-            
             // Display the story title prominently.
+            Spacer()
             Text(story.title)
                 .font(.largeTitle)
                 .bold()
@@ -31,10 +30,10 @@ struct StoryDetailsView: View {
             // Show the completion percentage dynamically for "Survive" or static for others.
             if story.title == "Survive" {
                 Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
-                    .font(.headline)
+                    .font(.subheadline)
             } else {
-                Text("Completion: 0%") // Static completion for other stories like "Future Adventures."
-                    .font(.headline)
+                Text("Completion: 0%") // Static completion for other stories like "Stay Tuned".
+                    .font(.subheadline)
             }
             
             Divider()
@@ -42,15 +41,13 @@ struct StoryDetailsView: View {
             // Scrollable section for the story's detailed description.
             ScrollView(.vertical, showsIndicators: true) {
                 Text(story.details)
-                    .font(.body)
-                    .foregroundStyle(.secondary)
+                    .font(.headline)
+                    .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                     .padding()
             }
-            .frame(height: 450) // Adjust the height as needed.
-                        
             // Conditionally show the "Enter Story" button.
-            if story.title != "Future Adventures" {
+            if story.title != "Stay Tuned" {
                 Button(action: {
                     onEnterStoryButton() // Trigger the closure to navigate to the main story view.
                 }) {
@@ -58,14 +55,14 @@ struct StoryDetailsView: View {
                         .font(.title2)
                         .bold()
                         .padding()
-                        .frame(maxWidth: .infinity) // Make the button span the full width.
+                        .frame(width: 300, height: 70)
                         .background(Color.blue)
                         .foregroundStyle(.white)
                         .cornerRadius(20)
                 }
             }
         }
-        .padding()
+        .padding(.bottom)
         // Hide the default navigation back button as the TabView is visible for navigation.
         .navigationBarBackButtonHidden(true)
     }
