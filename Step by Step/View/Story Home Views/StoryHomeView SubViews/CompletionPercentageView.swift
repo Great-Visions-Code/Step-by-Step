@@ -12,7 +12,7 @@ struct CompletionPercentageView: View {
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             Text("Completed: \(storyContentViewModel.completionPercentage)%")
                 .font(.title3)
                 .fontWeight(.semibold)
