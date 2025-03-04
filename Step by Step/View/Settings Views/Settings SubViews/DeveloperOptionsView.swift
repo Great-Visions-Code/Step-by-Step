@@ -11,15 +11,21 @@ import SwiftUI
 struct DeveloperOptionsView: View {
     /// ViewModel responsible for managing player stats.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
+    /// ViewModel responsible for tracking user achievements.
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
     /// Environment key to allow dismissing the modal.
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 70) {
+            // Title
             Text("Developer Options")
                 .font(.title)
                 .bold()
             
+            Spacer()
+
+            // MARK: - Set Energy to 10 Button
             Button(action: {
                 playerStatsViewModel.updateEnergy(to: 10)
             }) {
@@ -32,10 +38,31 @@ struct DeveloperOptionsView: View {
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            
+
+            // MARK: - Reset Attempt Count Button
+            VStack(spacing: 10) {
+                Text("Attempt #\(achievementsViewModel.achievements.attempts)")
+                    .font(.title2)
+                    .fontWeight(.medium)
+                
+                Button(action: {
+                    achievementsViewModel.resetAttempts()
+                }) {
+                    Text("Reset Attempts")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                }
+            }
+            .padding(.top, 10)
+
             Spacer()
-            
-            // Dismiss Button
+
+            // MARK: - Dismiss Button
             Button(action: { dismiss() }) {
                 Text("Done")
                     .font(.title2)
@@ -53,5 +80,8 @@ struct DeveloperOptionsView: View {
 }
 
 #Preview {
-    DeveloperOptionsView(playerStatsViewModel: PlayerStatsViewModel())
+    DeveloperOptionsView(
+        playerStatsViewModel: PlayerStatsViewModel(),
+        achievementsViewModel: AchievementsViewModel()
+    )
 }
