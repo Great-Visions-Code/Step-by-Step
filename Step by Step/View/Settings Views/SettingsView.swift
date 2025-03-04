@@ -13,6 +13,8 @@ struct SettingsView: View {
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     // ViewModel to manage step tracking settings.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    /// ViewModel responsible for tracking user achievements.
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
     
     /// State to track whether the step goal editor is presented.
     @State private var isStepGoalEditorPresented = false
@@ -58,7 +60,9 @@ struct SettingsView: View {
             StepGoalEditorView(stepTrackerViewModel: stepTrackerViewModel)
         }
         .sheet(isPresented: $isDeveloperOptionsPresented) {
-            DeveloperOptionsView(playerStatsViewModel: playerStatsViewModel)
+            DeveloperOptionsView(playerStatsViewModel: playerStatsViewModel,
+                                 achievementsViewModel: achievementsViewModel
+            )
         }
     }
 }
@@ -66,6 +70,7 @@ struct SettingsView: View {
 #Preview {
     SettingsView(
         playerStatsViewModel: PlayerStatsViewModel(),
-        stepTrackerViewModel: StepTrackerViewModel()
+        stepTrackerViewModel: StepTrackerViewModel(),
+        achievementsViewModel: AchievementsViewModel()
     )
 }
