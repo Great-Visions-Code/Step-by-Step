@@ -7,10 +7,19 @@
 
 import SwiftUI
 
-/// A placeholder view for the Story Map feature, where users will visualize their progress or navigate through the story world.
+/// Displays the story's world map, allowing users to pan and zoom.
 struct StoryMapView: View {
+    private let mapImage = UIImage(named: "surviveTownMap") ?? UIImage()
+
     var body: some View {
-        Text("Story Map View Placeholder")
+        ZoomableScrollView {
+            Image(uiImage: mapImage)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .navigationTitle("Story Map")
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
