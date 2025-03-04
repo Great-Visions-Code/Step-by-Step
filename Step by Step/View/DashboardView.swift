@@ -38,9 +38,7 @@ struct DashboardView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Achievements tab for showcasing user accomplishments.
-            AchievementsView(
-                achievementsViewModel: achievementsViewModel
-            )
+            AchievementsView()
             .tabItem {
                 Image(systemName: "trophy.fill")
                 Text("Achievements")
@@ -64,7 +62,8 @@ struct DashboardView: View {
             // Settings tab for app configuration and user preferences.
             SettingsView(
                 playerStatsViewModel: playerStatsViewModel,
-                stepTrackerViewModel: stepTrackerViewModel
+                stepTrackerViewModel: stepTrackerViewModel,
+                achievementsViewModel: achievementsViewModel
             )
             .tabItem {
                 Image(systemName: "gearshape.2.fill")
