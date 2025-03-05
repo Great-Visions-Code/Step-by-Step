@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-/// A placeholder view for displaying achievements related to the current story.
-/// This view will later showcase the player's progress, milestones, and accomplishments.
+/// Displays story-related achievements, focusing on milestones in the "Survive" storyline.
 struct StoryAchievementsView: View {
     var body: some View {
-        // Placeholder text indicating where the achievements content will appear.
-        Text("Story Achievements View Placeholder")
+        NavigationView {
+            List {
+                Section(header: Text("Survive Achievements").font(.headline)) {
+                    AchievementRowView(title: "Survive Day 1", description: "Complete Day 1", isCompleted: true)
+                    AchievementRowView(title: "Survive Day 2", description: "Complete Day 2", isCompleted: false)
+                    AchievementRowView(title: "Survive Day 3", description: "Complete Day 3", isCompleted: false)
+                    AchievementRowView(title: "Survive Day 4", description: "Complete Day 4", isCompleted: false)
+                    AchievementRowView(title: "Survive Day 5", description: "Complete Day 5", isCompleted: false)
+                }
+            }
+            .navigationTitle("Story Achievements")
+        }
     }
 }
 
