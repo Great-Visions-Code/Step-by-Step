@@ -14,12 +14,14 @@ struct AchievementRowView: View {
     var isCompleted: Bool
 
     var body: some View {
-        HStack {
+        HStack(spacing: 15) {
+            // Achievement Icon
             Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
                 .foregroundColor(isCompleted ? .green : .gray)
                 .font(.title2)
 
-            VStack(alignment: .leading) {
+            // Achievement Details
+            VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.headline)
                 Text(description)
@@ -29,13 +31,17 @@ struct AchievementRowView: View {
 
             Spacer()
 
+            // Completed Label
             if isCompleted {
                 Text("Completed")
                     .font(.footnote)
                     .foregroundColor(.green)
             }
         }
-        .padding(.vertical, 8)
+        .padding()
+        .background(Color.white) // Card background
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1) // Subtle shadow
     }
 }
 
