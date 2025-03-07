@@ -13,6 +13,9 @@ struct AchievementRowView: View {
     var description: String
     var isCompleted: Bool
 
+    /// Dynamically adjust colors based on system theme
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         HStack(spacing: 15) {
             // Achievement Icon
@@ -24,6 +27,8 @@ struct AchievementRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.headline)
+                    .foregroundColor(colorScheme == .dark ? .white : .black) // Adjust for Dark Mode
+                
                 Text(description)
                     .font(.subheadline)
                     .foregroundColor(.gray)
@@ -39,7 +44,7 @@ struct AchievementRowView: View {
             }
         }
         .padding()
-        .background(Color.white) // Card background
+        .background(colorScheme == .dark ? Color.black : Color.white) // Adjust background for Dark Mode
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1) // Subtle shadow
     }
