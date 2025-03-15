@@ -15,18 +15,14 @@ struct StoryAchievementsView: View {
                 VStack(spacing: 12) { // Controls spacing between sections
                     
                     // MARK: - Survive Achievements
-                    Text("Survive Achievements")
-                                .font(.headline)
-                                .foregroundColor(.gray)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 16)
-                    
                     VStack(spacing: 12) {
-                        AchievementRowView(title: "Survive Day 1", description: "Complete Day 1", isCompleted: true)
-                        AchievementRowView(title: "Survive Day 2", description: "Complete Day 2", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 3", description: "Complete Day 3", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 4", description: "Complete Day 4", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 5", description: "Complete Day 5", isCompleted: false)
+                        AchievementSection(title: "Survive Achievements", achievements: [
+                            ("Survive Day 1", "Complete Day 1", true),
+                            ("Survive Day 2", "Complete Day 2", false),
+                            ("Survive Day 3", "Complete Day 3", false),
+                            ("Survive Day 4", "Complete Day 4", false),
+                            ("Survive Day 5", "Complete Day 5", false)
+                        ])
                     }
                 }
                 .padding(.horizontal)
