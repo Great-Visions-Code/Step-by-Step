@@ -7,59 +7,94 @@
 
 import SwiftUI
 
-/// View displaying user achievements categorized into different sections.
+/// View displaying user achievements and step activity, toggleable with tab buttons.
 struct AchievementsView: View {
+    /// State to track the selected tab: Achievements or Step Activity
+    @State private var selectedTab: AchievementTab = .achievements
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 12) { // Controls spacing between sections
-                    
-                    // MARK: - Survive Achievements
-                    Text("Survive Achievements")
-                                .font(.headline)
-                                .foregroundColor(.gray)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 16)
-                    
-                    VStack(spacing: 12) {
-                        AchievementRowView(title: "Survive Day 1", description: "Complete Day 1", isCompleted: true)
-                        AchievementRowView(title: "Survive Day 2", description: "Complete Day 2", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 3", description: "Complete Day 3", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 4", description: "Complete Day 4", isCompleted: false)
-                        AchievementRowView(title: "Survive Day 5", description: "Complete Day 5", isCompleted: false)
+            VStack {
+                // MARK: - Custom Segmented Control
+                HStack {
+                    TabButtonView(title: "Achievements", isSelected: selectedTab == .achievements) {
+                        selectedTab = .achievements
                     }
                     
-                    // MARK: - Total Steps Taken
-                    Text("Total Steps Taken")
-                                .font(.headline)
-                                .foregroundColor(.gray)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 16)
-                    
-                    VStack(spacing: 12) {
-                        AchievementRowView(title: "1,000 Steps", description: "Walk 1,000 steps", isCompleted: false)
-                        AchievementRowView(title: "10,000 Steps", description: "Walk 10,000 steps", isCompleted: false)
-                        AchievementRowView(title: "100,000 Steps", description: "Walk 100,000 steps", isCompleted: false)
+                    TabButtonView(title: "Step Activity", isSelected: selectedTab == .stepActivity) {
+                        selectedTab = .stepActivity
                     }
-                    
-                    // MARK: - Total Distance Traveled
-                    Text("Total Distance Traveled ")
-                                .font(.headline)
-                                .foregroundColor(.gray)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 16)
-                    
-                    VStack(spacing: 12) {
-                        AchievementRowView(title: "1 Mile", description: "Travel 1 mile", isCompleted: false)
-                        AchievementRowView(title: "10 Miles", description: "Travel 10 miles", isCompleted: false)
-                        AchievementRowView(title: "100 Miles", description: "Travel 100 miles", isCompleted: false)
+                }
+                .padding(.horizontal)
+                
+                Divider()
+                
+                // MARK: - Content Switching Based on Selected Tab
+                ScrollView {
+                    if selectedTab == .achievements {
+                        AchievementsListView()
+                    } else {
+                        StepActivityView()
                     }
                 }
                 .padding(.horizontal)
                 .padding(.top, 16)
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("Achievements")
+        }
+    }
+}
+
+/// Enum for tab selection
+enum AchievementTab {
+    case achievements
+    case stepActivity
+}
+
+/// **Achievements List**
+struct AchievementsListView: View {
+    var body: some View {
+        VStack(spacing: 12) {
+            AchievementSection(title: "Survive Achievements", achievements: [
+                ("Survive Day 1", "Complete Day 1", true),
+                ("Survive Day 2", "Complete Day 2", false),
+                ("Survive Day 3", "Complete Day 3", false),
+                ("Survive Day 4", "Complete Day 4", false),
+                ("Survive Day 5", "Complete Day 5", false)
+            ])
+
+            AchievementSection(title: "Total Steps Taken", achievements: [
+                ("10,000 Steps", "Walk 10,000 steps", false),
+                ("100,000 Steps", "Walk 100,000 steps", false)
+            ])
+
+            AchievementSection(title: "Total Distance Traveled", achievements: [
+                ("1 Mile", "Travel 1 mile", false),
+                ("10 Miles", "Travel 10 miles", false)
+            ])
+        }
+    }
+}
+
+/// **Reusable Achievement Section**
+struct AchievementSection: View {
+    var title: String
+    var achievements: [(String, String, Bool)]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding(.top, 16)
+
+            ForEach(achievements, id: \.0) { achievement in
+                AchievementRowView(
+                    title: achievement.0,
+                    description: achievement.1,
+                    isCompleted: achievement.2
+                )
+            }
         }
     }
 }
