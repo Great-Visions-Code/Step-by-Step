@@ -1,5 +1,5 @@
 //
-//  AchievementRowView.swift
+//  AchievementCardView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/3/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A single achievement row with an icon, title, and completion status.
-struct AchievementRowView: View {
+struct AchievementCardView: View {
     var title: String
     var description: String
     var isCompleted: Bool
@@ -20,7 +20,7 @@ struct AchievementRowView: View {
         HStack(spacing: 15) {
             // Achievement Icon
             Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(isCompleted ? .green : .gray)
+                .foregroundColor(isCompleted ? .blue : .gray)
                 .font(.title2)
 
             // Achievement Details
@@ -40,7 +40,7 @@ struct AchievementRowView: View {
             if isCompleted {
                 Text("Completed")
                     .font(.footnote)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
             }
         }
         .padding()
@@ -51,7 +51,7 @@ struct AchievementRowView: View {
 }
 
 #Preview {
-    AchievementRowView(title: "Achievement Title",
+    AchievementCardView(title: "Achievement Title",
                    description: "Whats needed to complete",
                    isCompleted: true
     )
