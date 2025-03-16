@@ -32,14 +32,16 @@ class StepTrackerViewModel: ObservableObject {
         let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken() // Load persisted value
         self.stepTracker = StepTracker(
             currentStepCount: 0, // Initially 0, will update from HealthKit.
-            totalStepsGoal: finalTotalStepsGoal, // Load from UserDefaults
+            totalStepsGoal: finalTotalStepsGoal, // Load from UserDefaults,
+            currentDistance: 0.0, // Initially 0, will update from HealthKit.
             totalStepsTaken: savedTotalStepsTaken
         )
         // Ensures daily reset
         checkAndResetStepsAtMidnight()
         
-        // Update step count after authorization
+        // Update step count and distance after authorization
         updateCurrentStepCount()
+        updateCurrentDistance()
     }
     
     /// Updates `currentStepCount` by fetching the latest step count from HealthKit.
@@ -49,6 +51,16 @@ class StepTrackerViewModel: ObservableObject {
         // Assign the fetched step count to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.currentStepCount = self?.healthKitViewModel.hkCurrentStepsCount ?? 0
+        }
+    }
+    
+    /// Updates `currentDistance` by fetching the latest distance traveled data from HealthKit.
+    func updateCurrentDistance() {
+        healthKitViewModel.updateDistance()
+        
+        // Assign the fetched distance data to stepTracker
+        DispatchQueue.main.async { [weak self] in
+            self?.stepTracker.currentDistance = self?.healthKitViewModel.hkCurrentDistance ?? 0
         }
     }
     
@@ -117,6 +129,7 @@ class StepTrackerViewModel: ObservableObject {
         stepTracker = StepTracker(
             currentStepCount: stepTracker.currentStepCount,
             totalStepsGoal: newGoal,
+            currentDistance: stepTracker.currentDistance,
             totalStepsTaken: stepTracker.totalStepsTaken
         )
         
@@ -147,6 +160,7 @@ class StepTrackerViewModel: ObservableObject {
         stepTracker = StepTracker(
             currentStepCount: stepTracker.currentStepCount,
             totalStepsGoal: stepTracker.totalStepsGoal,
+            currentDistance: stepTracker.currentDistance,
             totalStepsTaken: steps
         )
     }
