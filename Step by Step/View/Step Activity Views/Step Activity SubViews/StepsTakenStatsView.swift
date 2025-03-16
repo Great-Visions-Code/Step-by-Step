@@ -20,7 +20,7 @@ struct StepsTakenStatsView: View {
         guard goal > 0 else { return "0%"} // Prevent division by zero
         
         let progress = (Double(stepsTaken) / Double(goal)) * 100
-        return String(format: "%.1f%%", min(progress, 500)) // Cap at 500%
+        return String(format: "%.1f%%", min(progress, 5000)) // Cap at 5000%
     }
 
     var body: some View {

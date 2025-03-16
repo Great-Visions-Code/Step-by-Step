@@ -39,7 +39,7 @@ struct CurrentStepsTakenProgressView: View {
             
             // Icon, Step Count, Goal
             VStack {
-                Image(systemName: "figure.walk")
+                Image(systemName: "figure.walk.motion")
                     .font(.system(size: 30))
                 
                 Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")

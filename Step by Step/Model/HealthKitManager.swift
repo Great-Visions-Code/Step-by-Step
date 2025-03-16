@@ -17,7 +17,7 @@ class HealthKitManager {
     
     /// The HealthKit step count type.
     private let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
+    
     /// Requests authorization to read step count data from HealthKit.
     ///
     /// - Parameter completion: Closure returning success status and an optional error.
@@ -81,4 +81,5 @@ class HealthKitManager {
         
         // Execute the query on HealthKit.
         healthStore.execute(query)
-    }}
+    }
+}

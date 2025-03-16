@@ -40,7 +40,7 @@ struct DashboardView: View {
             // Achievements tab for showcasing user accomplishments.
             AchievementsView()
             .tabItem {
-                Image(systemName: "figure.walk.motion")
+                Image(systemName: "figure.walk")
                 Text("Stats")
             }
             .tag(TabSelection.achievements)
