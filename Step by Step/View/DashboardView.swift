@@ -38,7 +38,7 @@ struct DashboardView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Achievements tab for showcasing user accomplishments.
-            AchievementsView()
+            StatsView()
             .tabItem {
                 Image(systemName: "figure.walk")
                 Text("Stats")
