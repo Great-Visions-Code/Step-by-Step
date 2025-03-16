@@ -34,7 +34,7 @@ class HealthKitViewModel: ObservableObject {
         HealthKitManager.shared.fetchTodayStepCount { [weak self] steps, error in
             if let steps = steps {
                 self?.hkCurrentStepsCount = steps
-                print("(HKVM) HealthKitViewModel updated hkCurrentStepsCount: \(steps) ✅")
+                print("(HKVM) HealthKitModel (stepCount) updated HealthKitViewModel (steps): \(steps) ✅")
             } else {
                 print("❌ (HKVM) Failed to fetch steps: \(error?.localizedDescription ?? "Unknown error")")
             }
