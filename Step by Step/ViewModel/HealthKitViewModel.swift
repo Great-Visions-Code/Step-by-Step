@@ -11,6 +11,8 @@ import SwiftUI
 class HealthKitViewModel: ObservableObject {
     /// Stores the latest step count fetched from HealthKit.
     @Published var hkCurrentStepsCount: Int = 0
+    /// Stores the latest distance traveled data from HealthKit.
+    @Published var hkCurrentDistance: Double = 0.0
     
     /// Initializes the ViewModel and requests authorization.
     init() {
@@ -23,6 +25,7 @@ class HealthKitViewModel: ObservableObject {
             if success {
                 print("(HKVM) HealthKit authorization granted ✅.")
                 self?.updateStepCount()
+                self?.updateDistance()
             } else {
                 print("❌ (HKVM) HealthKit authorization failed: \(error?.localizedDescription ?? "Unknown error")")
             }
@@ -37,6 +40,18 @@ class HealthKitViewModel: ObservableObject {
                 print("(HKVM) HealthKitModel (stepCount) updated HealthKitViewModel (steps): \(steps) ✅")
             } else {
                 print("❌ (HKVM) Failed to fetch steps: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    /// Updates `hkCurrentDistance` with the latest distance traveled data from HealthKit.
+    func updateDistance() {
+        HealthKitManager.shared.fetchTodayDistance { [weak self] distance, error in
+            if let distance = distance {
+                self?.hkCurrentDistance = distance
+                print("(HKVM) Updated distance: \(String(format: "%.2f", distance)) mi ✅")
+            } else {
+                print("❌ (HKVM) Failed to fetch distance: \(error?.localizedDescription ?? "Unknown error")")
             }
         }
     }
