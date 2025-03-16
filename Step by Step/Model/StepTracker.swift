@@ -18,6 +18,9 @@ struct StepTracker {
     /// The total number of steps required to meet the user's daily goal.
     var totalStepsGoal: Int
     
+    /// The current distance traveled data. 
+    var currentDistance: Double
+    
     /// The total number of steps taken. 
     var totalStepsTaken: Int {
         didSet {
