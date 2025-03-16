@@ -34,4 +34,7 @@ struct StepTracker {
     var stepsToConvert: Int {
         max(currentStepCount - totalStepsTaken, 0)
     }
+    
+    /// The average step count for the past 7-days.
+    var sevenDayStepAverage: Double = 0.0
 }
