@@ -50,9 +50,10 @@ class StepTrackerViewModel: ObservableObject {
         // Ensures daily reset
         checkAndResetStepsAtMidnight()
         
-        // Update step count and distance after authorization
+        // Update step count, distance, and 7-day step average after authorization
         updateCurrentStepCount()
         updateCurrentDistance()
+        updateSevenDayStepAverage()
     }
     
     /// Updates `currentStepCount` by fetching the latest step count from HealthKit.
@@ -72,6 +73,16 @@ class StepTrackerViewModel: ObservableObject {
         // Assign the fetched distance data to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.currentDistance = self?.healthKitViewModel.hkCurrentDistance ?? 0
+        }
+    }
+    
+    /// Updates `sevenDayStepAverage` by fetching the calculated step average for the past 7-days.
+    func updateSevenDayStepAverage() {
+        healthKitViewModel.updateSevenDayStepAverage()
+        
+        // Assign the fetched 7-say step data to stepTracker
+        DispatchQueue.main.async { [weak self] in
+            self?.stepTracker.sevenDayStepAverage = self?.healthKitViewModel.hkSevenDayStepAverage ?? 0
         }
     }
     
