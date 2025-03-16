@@ -16,7 +16,7 @@ struct StoryAchievementsView: View {
                     
                     // MARK: - Survive Achievements
                     VStack(spacing: 12) {
-                        AchievementSection(title: "Survive Achievements", achievements: [
+                        AchievementSectionView(title: "Survive Achievements", achievements: [
                             ("Survive Day 1", "Complete Day 1", true),
                             ("Survive Day 2", "Complete Day 2", false),
                             ("Survive Day 3", "Complete Day 3", false),
