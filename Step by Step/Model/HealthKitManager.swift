@@ -79,7 +79,6 @@ class HealthKitManager {
                 completion(stepCount, nil)
             }
         }
-        
         // Execute the query on HealthKit.
         healthStore.execute(query)
     }
@@ -132,7 +131,60 @@ class HealthKitManager {
                 completion(distanceInMiles, nil)
             }
         }
+        // Execute the query on HealthKit.
+        healthStore.execute(query)
+    }
+    
+    /// Fetches the average step count for the last 7 days from HealthKit.
+    ///
+    /// - Parameter completion: Closure returning the step count or an error.
+    func fetchSevenDayStepAverage(completion: @escaping (Double?, Error?) -> Void) {
+        let calendar = Calendar.current
+        let endDate = Date()
+        guard let startDate = calendar.date(byAdding: .day, value: -6, to: endDate) else {
+            completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
+            return
+        }
         
+        // Create a predicate to filter HealthKit step data from midnight until now.
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: endDate,
+            options: .strictStartDate
+        )
+        
+        // Create a query to fetch cumulative step count for today.
+        let query = HKStatisticsQuery(
+            quantityType: stepCountType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum
+        ) { _, result, error in
+            DispatchQueue.main.async {
+                // Check for errors in retrieving step data.
+                if let error = error {
+                    print("❌ (HKM) Error fetching 7-day step data: \(error.localizedDescription)")
+                    completion(nil, error)
+                    return
+                }
+                
+                // Ensure we received valid step data.
+                guard let quantity = result?.sumQuantity() else {
+                    print("❌ (HKM) No step data found for past 7 days.")
+                    completion(0, nil) // Return 0 if no data is available.
+                    return
+                }
+                
+                // Convert the retrieved quantity into an integer step count.
+                let totalSteps = quantity.doubleValue(for: HKUnit.count())
+                let averageSteps = totalSteps / 7 // Calculate 7-day average
+                
+                // Log retrieved step count for debugging.
+                print("(HKM) 7-Day Average Step Count: \(Int(averageSteps)) ✅")
+                
+                // Return the fetched step count through the completion handler.
+                completion(averageSteps, nil)
+            }
+        }
         // Execute the query on HealthKit.
         healthStore.execute(query)
     }
