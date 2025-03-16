@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct StepsTakenStatsView: View {
+    /// Observed ViewModel to track step count dynamically
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     @Environment(\.colorScheme) var colorScheme // Detect system theme
 
     var body: some View {
@@ -17,8 +19,11 @@ struct StepsTakenStatsView: View {
                 .font(.caption)
                 .foregroundColor(.gray)
             
-            Text("237")
+            Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
                 .font(.system(size: 50, weight: .bold))
+                .onAppear {
+                    stepTrackerViewModel.updateCurrentStepCount()
+                }
             
             HStack {
                 Text("7-DAY AVERAGE")
@@ -43,5 +48,7 @@ struct StepsTakenStatsView: View {
 }
 
 #Preview {
-    StepsTakenStatsView()
+    StepsTakenStatsView(
+        stepTrackerViewModel: StepTrackerViewModel()
+    )
 }
