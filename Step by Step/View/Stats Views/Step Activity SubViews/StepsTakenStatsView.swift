@@ -28,7 +28,7 @@ struct StepsTakenStatsView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 
-                Text("2,942")
+                Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
                     .font(.subheadline)
                     .bold()
             }
@@ -38,6 +38,7 @@ struct StepsTakenStatsView: View {
         .onAppear {
             stepTrackerViewModel.updateCurrentStepCount()
             stepTrackerViewModel.updateCurrentDistance()
+            stepTrackerViewModel.updateSevenDayStepAverage()
         }
         
         // MARK: - Distance & Goal Progress
