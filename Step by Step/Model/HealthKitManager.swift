@@ -72,7 +72,7 @@ class HealthKitManager {
                 let stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
                 
                 // Log retrieved step count for debugging.
-                print("(HKM) Steps retrieved from HealthKit: \(stepCount) ✅")
+                print("(HKM) Steps retrieved from HealthKit (stepCount): \(stepCount) ✅")
                 
                 // Return the fetched step count through the completion handler.
                 completion(stepCount, nil)
