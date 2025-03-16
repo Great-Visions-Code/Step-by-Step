@@ -33,7 +33,12 @@ struct StepsCardStatsView: View {
 
 #Preview {
     StepsCardStatsView(
-        title: "Distance",
+        title: "DISTANCE",
         value: "1.3 mi",
+        colorScheme: .light)
+    
+    StepsCardStatsView(
+        title: "GOAL PROGRESS",
+        value: "2%",
         colorScheme: .light)
 }
