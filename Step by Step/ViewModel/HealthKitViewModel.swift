@@ -13,6 +13,8 @@ class HealthKitViewModel: ObservableObject {
     @Published var hkCurrentStepsCount: Int = 0
     /// Stores the latest distance traveled data from HealthKit.
     @Published var hkCurrentDistance: Double = 0.0
+    /// Stores the calculated 7-day average step count from HealthKit.
+    @Published var hkSevenDayStepAverage: Double = 0.0
     
     /// Initializes the ViewModel and requests authorization.
     init() {
@@ -52,6 +54,18 @@ class HealthKitViewModel: ObservableObject {
                 print("(HKVM) Updated distance: \(String(format: "%.2f", distance)) mi ✅")
             } else {
                 print("❌ (HKVM) Failed to fetch distance: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    /// Update `hkSevenDayStepAverage` with the calculated step average for the past 7-days from HealthKit.
+    func updateSevenDayStepAverage() {
+        HealthKitManager.shared.fetchSevenDayStepAverage { [weak self] average, error in
+            if let average = average {
+                self?.hkSevenDayStepAverage = average
+                print("(HKVM) 7-Day Step Average Updated: \(Int(average)) ✅")
+            } else {
+                print("❌ (HKVM) Failed to fetch 7-day step average: \(error?.localizedDescription ?? "Unknown error")")
             }
         }
     }
