@@ -348,7 +348,7 @@
 				INFOPLIST_FILE = "Step-by-Step-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Step by Step";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Step by Step needs to access your motion activity in order to display your steps. Your data is never shared or stored outside the app. ";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Step by Step needs to access your motion activity in order to display your step data. Your data is never shared or stored outside the app. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -386,7 +386,7 @@
 				INFOPLIST_FILE = "Step-by-Step-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Step by Step";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Step by Step needs to access your motion activity in order to display your steps. Your data is never shared or stored outside the app. ";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Step by Step needs to access your motion activity in order to display your step data. Your data is never shared or stored outside the app. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
