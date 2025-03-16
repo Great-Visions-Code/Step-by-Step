@@ -13,7 +13,9 @@ struct StepActivityView: View {
         VStack(spacing: 20) { // Spacing for balance
             
             // MARK: - Steps Taken Stats View
-            StepsTakenStatsView()
+            StepsTakenStatsView(
+                stepTrackerViewModel: StepTrackerViewModel()
+            )
             
             // MARK: - Step Stats Graph View
             StepStatsGraphView()
