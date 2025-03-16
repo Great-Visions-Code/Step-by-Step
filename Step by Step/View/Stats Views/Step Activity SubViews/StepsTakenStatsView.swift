@@ -11,17 +11,6 @@ struct StepsTakenStatsView: View {
     /// Observed ViewModel to track step count dynamically
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     @Environment(\.colorScheme) var colorScheme // Detect system theme
-    
-    /// Computed Property for Total Step Goal Progress
-    private var goalProgress: String {
-        let stepsTaken = stepTrackerViewModel.stepTracker.currentStepCount
-        let goal = stepTrackerViewModel.stepTracker.totalStepsGoal
-        
-        guard goal > 0 else { return "0%"} // Prevent division by zero
-        
-        let progress = (Double(stepsTaken) / Double(goal)) * 100
-        return String(format: "%.1f%%", min(progress, 5000)) // Cap at 5000%
-    }
 
     var body: some View {
         // MARK: - Steps & 7-Day Average
@@ -60,7 +49,7 @@ struct StepsTakenStatsView: View {
             )
             StepsCardStatsView(
                 title: "GOAL PROGRESS",
-                value: goalProgress,
+                value: stepTrackerViewModel.goalProgress,
                 colorScheme: colorScheme
             )
         }

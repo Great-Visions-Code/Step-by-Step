@@ -19,6 +19,17 @@ class StepTrackerViewModel: ObservableObject {
     /// Instance of HealthKitViewModel to fetch real step count data.
     private let healthKitViewModel = HealthKitViewModel()
     
+    /// Computed Property for Total Step Goal Progress
+    var goalProgress: String {
+        let stepsTaken = stepTracker.currentStepCount
+        let goal = stepTracker.totalStepsGoal
+        
+        guard goal > 0 else { return "0%"} // Prevent division by zero
+        
+        let progress = (Double(stepsTaken) / Double(goal)) * 100
+        return String(format: "%.1f%%", min(progress, 5000)) // Cap at 5000%
+    }
+    
     /// Key for UserDefaults storage.
     private static let totalStepsTakenKey = "totalStepsTaken"
     private static let lastResetDateKey = "lastResetDate"
