@@ -11,6 +11,17 @@ struct StepsTakenStatsView: View {
     /// Observed ViewModel to track step count dynamically
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     @Environment(\.colorScheme) var colorScheme // Detect system theme
+    
+    /// Computed Property for Total Step Goal Progress
+    private var goalProgress: String {
+        let stepsTaken = stepTrackerViewModel.stepTracker.totalStepsTaken
+        let goal = stepTrackerViewModel.stepTracker.totalStepsGoal
+        
+        guard goal > 0 else { return "0%"} // Prevent division by zero
+        
+        let progress = (Double(stepsTaken) / Double(goal)) * 100
+        return String(format: "%.1f%%", min(progress, 500)) // Cap at 500%
+    }
 
     var body: some View {
         // MARK: - Steps & 7-Day Average
@@ -21,9 +32,7 @@ struct StepsTakenStatsView: View {
             
             Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
                 .font(.system(size: 50, weight: .bold))
-                .onAppear {
-                    stepTrackerViewModel.updateCurrentStepCount()
-                }
+
             
             HStack {
                 Text("7-DAY AVERAGE")
@@ -37,11 +46,14 @@ struct StepsTakenStatsView: View {
             .padding(.top, 4)
         }
         .padding()
+        .onAppear {
+            stepTrackerViewModel.updateCurrentStepCount()
+        }
         
         // MARK: - Distance & Goal Progress
         HStack(spacing: 16) {
             StepsCardStatsView(title: "DISTANCE", value: "0.1 mi", colorScheme: colorScheme)
-            StepsCardStatsView(title: "GOAL PROGRESS", value: "2%", colorScheme: colorScheme)
+            StepsCardStatsView(title: "GOAL PROGRESS", value: goalProgress, colorScheme: colorScheme)
         }
         .padding(.bottom, 50)
     }
