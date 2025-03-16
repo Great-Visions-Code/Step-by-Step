@@ -57,7 +57,7 @@ class StepTrackerViewModel: ObservableObject {
     /// - Parameter newStepCount: The updated step count retrieved from HealthKit.
     func updateCurrentSteps(to newStepCount: Int) {
         stepTracker.currentStepCount = newStepCount
-        print("(STVM) StepTrackerViewModel updated step count: \(newStepCount) ✅")
+        print("(STVM) StepTrackerViewModel updated step count (newStepCount): \(newStepCount) ✅")
     }
     
     /// Converts steps into energy and updates the tracker.
