@@ -86,13 +86,18 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Updates `stepHistory` by fetching the step data history.
     func updateStepHistory() {
-        healthKitViewModel.updateStepHistory()
-        
-        DispatchQueue.main.async { [weak self] in
-            let sortedData = self?.healthKitViewModel.hkStepHistory.sorted { $0.key < $1.key }
-                .map { (date: $0.key, steps: $0.value) } ?? []
-            
-            self?.stepTracker.stepHistory = sortedData
+        HealthKitManager.shared.fetchSevenDayStepHistory { [weak self] stepData, error in
+            DispatchQueue.main.async {
+                if let stepData = stepData {
+                    let sortedData = stepData.sorted { $0.key < $1.key }
+                        .map { (date: $0.key, steps: $0.value) }
+                    
+                    self?.stepTracker.stepHistory = sortedData
+                    print("(STVM) Updated Step History: \(sortedData) ✅")
+                } else {
+                    print("❌ (STVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
+                }
+            }
         }
     }
     
