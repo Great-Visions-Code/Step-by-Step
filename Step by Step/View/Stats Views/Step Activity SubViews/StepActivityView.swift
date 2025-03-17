@@ -18,7 +18,7 @@ struct StepActivityView: View {
             )
             
             // MARK: - Step Stats Graph View
-            StepStatsGraphView()
+            StepStatsGraphView(stepTrackerViewModel: StepTrackerViewModel())
         }
         .padding()
     }
