@@ -20,7 +20,7 @@ struct StatsView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 0) {  // Ensures no extra spacing at the top
                 // MARK: - Custom Segmented Control
                 HStack {
                     AchievementsTabView(title: "Step Activity", isSelected: selectedTab == .stepActivity) {
@@ -31,19 +31,25 @@ struct StatsView: View {
                         selectedTab = .achievements
                     }
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.top, 10) // Adjust as needed
                 
                 Divider()
                 
                 // MARK: - Content Switching Based on Selected Tab
                 if selectedTab == .stepActivity {
                     StepActivityView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensures it fills the space
                 } else {
                     AchievementsListView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top) // Ensures VStack fills space
             .background(Color(.systemGroupedBackground))
+            .ignoresSafeArea(edges: .bottom) // Prevent extra space above tab bar
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // Avoids double NavigationView issue on iPad
     }
 }
 
