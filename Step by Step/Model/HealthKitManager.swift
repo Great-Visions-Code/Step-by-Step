@@ -210,7 +210,7 @@ class HealthKitManager {
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum,
-            anchorDate: startDate,
+            anchorDate: calendar.startOfDay(for: endDate),
             intervalComponents: DateComponents(day: 1)
         )
         
@@ -223,6 +223,7 @@ class HealthKitManager {
                 }
                 
                 var stepHistory: [String: Int] = [:]
+                
                 results?.enumerateStatistics(from: startDate, to: endDate) { statistics, _ in
                     let stepCount = statistics.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0
                     let dateString = DateFormatter.localizedString(from: statistics.startDate, dateStyle: .short, timeStyle: .none)
