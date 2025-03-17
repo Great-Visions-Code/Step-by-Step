@@ -37,4 +37,7 @@ struct StepTracker {
     
     /// The average step count for the past 7-days.
     var sevenDayStepAverage: Double = 0.0
+    
+    /// The daily step history for the past 7-days.
+    var stepHistory: [(date: String, steps: Int)] = []
 }
