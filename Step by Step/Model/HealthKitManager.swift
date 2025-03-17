@@ -194,17 +194,23 @@ class HealthKitManager {
     /// - Parameter completion: Closure returning a dictionary of date-step count pairs or an error.
     func fetchSevenDayStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
         let calendar = Calendar.current
-        let endDate = Date()
-        guard let startDate = calendar.date(byAdding: .day, value: -6, to: endDate) else {
+        
+        // Ensure we start from midnight exactly 6 days ago.
+        guard let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date())) else {
             completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
             return
         }
+        
+        let endDate = calendar.startOfDay(for: Date()).addingTimeInterval(86399)
         
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
             end: endDate,
             options: .strictStartDate
         )
+        
+        // Debugging: Print the exact dates used in the query
+        print("Fetching step history from \(startDate) to \(endDate)")
         
         let query = HKStatisticsCollectionQuery(
             quantityType: stepCountType,
@@ -231,6 +237,9 @@ class HealthKitManager {
                 }
                 
                 print("(HKM) 7-Day Step History: \(stepHistory) ✅")
+                for (date, steps) in stepHistory {
+                    print("Date: \(date) | Steps: \(steps)")
+                }
                 completion(stepHistory, nil)
             }
         }
