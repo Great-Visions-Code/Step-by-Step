@@ -188,4 +188,51 @@ class HealthKitManager {
         // Execute the query on HealthKit.
         healthStore.execute(query)
     }
+    
+    /// Fetches daily step counts for the last 7 days from HealthKit.
+    ///
+    /// - Parameter completion: Closure returning a dictionary of date-step count pairs or an error.
+    func fetchSevenDayStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
+        let calendar = Calendar.current
+        let endDate = Date()
+        guard let startDate = calendar.date(byAdding: .day, value: -6, to: endDate) else {
+            completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: endDate,
+            options: .strictStartDate
+        )
+        
+        let query = HKStatisticsCollectionQuery(
+            quantityType: stepCountType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum,
+            anchorDate: startDate,
+            intervalComponents: DateComponents(day: 1)
+        )
+        
+        query.initialResultsHandler = { _, results, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("❌ (HKM) Error fetching 7-day step history: \(error.localizedDescription)")
+                    completion(nil, error)
+                    return
+                }
+                
+                var stepHistory: [String: Int] = [:]
+                results?.enumerateStatistics(from: startDate, to: endDate) { statistics, _ in
+                    let stepCount = statistics.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0
+                    let dateString = DateFormatter.localizedString(from: statistics.startDate, dateStyle: .short, timeStyle: .none)
+                    stepHistory[dateString] = Int(stepCount)
+                }
+                
+                print("(HKM) 7-Day Step History: \(stepHistory) ✅")
+                completion(stepHistory, nil)
+            }
+        }
+        healthStore.execute(query)
+    }
 }
