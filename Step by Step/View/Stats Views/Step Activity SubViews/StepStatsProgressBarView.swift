@@ -12,6 +12,8 @@ struct StepStatsProgressBarView: View {
     var value: Int
     var label: String
     var isToday: Bool = false
+    var maxValue: Int
+    var maxHeight: CGFloat
 
     var body: some View {
         VStack {
@@ -26,7 +28,10 @@ struct StepStatsProgressBarView: View {
             // Bar representation of steps
             RoundedRectangle(cornerRadius: 5)
                 .fill(isToday ? Color.blue.opacity(0.8) : Color.blue.opacity(0.6))
-                .frame(width: 35, height: CGFloat(value) / 15)
+                .frame(
+                    width: 35,
+                    height: maxHeight * CGFloat(value) / CGFloat(maxValue)
+                )
 
             // Day label with dynamic font scaling
             Text(label)
@@ -40,5 +45,10 @@ struct StepStatsProgressBarView: View {
 }
 
 #Preview {
-    StepStatsProgressBarView(value: 5000, label: "Mon")
+    StepStatsProgressBarView(
+        value: 5000,
+        label: "Mon",
+        maxValue: 2094,
+        maxHeight: 200
+    )
 }
