@@ -84,16 +84,32 @@ class StepTrackerViewModel: ObservableObject {
         }
     }
     
-    /// Updates `stepHistory` by fetching the step data history.
+    /// Updates `stepHistory` by fetching the step data history and ensuring proper chronological order.
     func updateStepHistory() {
         HealthKitManager.shared.fetchSevenDayStepHistory { [weak self] stepData, error in
             DispatchQueue.main.async {
                 if let stepData = stepData {
-                    let sortedData = stepData.sorted { $0.key < $1.key }
-                        .map { (date: $0.key, steps: $0.value) }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "M/d/yy" // Expected HealthKit format
                     
+                    // Convert date strings to tuples (Date, String, Steps)
+                    let dateStepArray: [(date: Date, formattedDate: String, steps: Int)] = stepData.compactMap { dateString, steps in
+                        if let date = dateFormatter.date(from: dateString) {
+                            return (date, dateString, steps) // Keep both Date and formatted string
+                        } else {
+                            print("⚠️ (STVM) Failed to parse date: \(dateString)")
+                            return nil
+                        }
+                    }
+
+                    // 🔹 Sort by actual Date values
+                    let sortedDateStepArray = dateStepArray.sorted { $0.date < $1.date }
+
+                    // 🔹 Convert back into display-friendly format
+                    let sortedData = sortedDateStepArray.map { (date: $0.formattedDate, steps: $0.steps) }
+
                     self?.stepTracker.stepHistory = sortedData
-                    print("(STVM) Updated Step History: \(sortedData) ✅")
+                    print("(STVM) Correctly Sorted Step History: \(sortedData) ✅")
                 } else {
                     print("❌ (STVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
                 }
