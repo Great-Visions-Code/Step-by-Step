@@ -189,19 +189,19 @@ class HealthKitManager {
         healthStore.execute(query)
     }
     
-    /// Fetches daily step counts for the last 7 days from HealthKit.
+    /// Fetches daily step counts for the last 2 years from HealthKit.
     ///
     /// - Parameter completion: Closure returning a dictionary of date-step count pairs or an error.
     func fetchStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
         let calendar = Calendar.current
         
-        // Ensure we start from midnight exactly 6 days ago.
-        guard let startDate = calendar.date(byAdding: .day, value: -30, to: calendar.startOfDay(for: Date())) else {
+        // ✅ Fetch exact step data (75 days)
+        guard let startDate = calendar.date(byAdding: .day, value: -75, to: calendar.startOfDay(for: Date())) else {
             completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
             return
         }
         
-        let endDate = calendar.startOfDay(for: Date()).addingTimeInterval(86399)
+        let endDate = calendar.startOfDay(for: Date()).addingTimeInterval(86399) // Include full day
         
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
@@ -209,41 +209,37 @@ class HealthKitManager {
             options: .strictStartDate
         )
         
-        // Debugging: Print the exact dates used in the query
         print("Fetching step history from \(startDate) to \(endDate)")
-        
+
         let query = HKStatisticsCollectionQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum,
             anchorDate: calendar.startOfDay(for: endDate),
-            intervalComponents: DateComponents(day: 1)
+            intervalComponents: DateComponents(day: 1) // ✅ Get daily step counts
         )
-        
+
         query.initialResultsHandler = { _, results, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("❌ (HKM) Error fetching step history: \(error.localizedDescription)")
+                    print("❌ (HKM) Error fetching long-term step history: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
                 var stepHistory: [String: Int] = [:]
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "M/d/yy" // Keep formatting consistent
                 
                 results?.enumerateStatistics(from: startDate, to: endDate) { statistics, _ in
                     let stepCount = statistics.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0
-                    let dateString = DateFormatter.localizedString(from: statistics.startDate, dateStyle: .short, timeStyle: .none)
+                    let dateString = dateFormatter.string(from: statistics.startDate)
                     stepHistory[dateString] = Int(stepCount)
                 }
                 
-                print("(HKM) Step History: \(stepHistory) ✅")
-                
-                for (date, steps) in stepHistory {
-                    print("Date: \(date) | Steps: \(steps)")
-                }
+                print("(HKM) Long-Term Step History: Retrieved \(stepHistory.count) days ✅")
                 completion(stepHistory, nil)
             }
         }
         healthStore.execute(query)
-    }
-}
+    }}
