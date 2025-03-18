@@ -78,7 +78,7 @@ class StepTrackerViewModel: ObservableObject {
     func updateSevenDayStepAverage() {
         healthKitViewModel.updateSevenDayStepAverage()
         
-        // Assign the fetched 7-say step data to stepTracker
+        // Assign the fetched 7-day step data to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.sevenDayStepAverage = self?.healthKitViewModel.hkSevenDayStepAverage ?? 0
         }
@@ -86,7 +86,7 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Updates `stepHistory` by fetching the step data history and ensuring proper chronological order.
     func updateStepHistory() {
-        HealthKitManager.shared.fetchSevenDayStepHistory { [weak self] stepData, error in
+        HealthKitManager.shared.fetchStepHistory { [weak self] stepData, error in
             DispatchQueue.main.async {
                 if let stepData = stepData {
                     let dateFormatter = DateFormatter()

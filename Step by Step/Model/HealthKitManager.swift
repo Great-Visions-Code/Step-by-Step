@@ -192,7 +192,7 @@ class HealthKitManager {
     /// Fetches daily step counts for the last 7 days from HealthKit.
     ///
     /// - Parameter completion: Closure returning a dictionary of date-step count pairs or an error.
-    func fetchSevenDayStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
+    func fetchStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
         let calendar = Calendar.current
         
         // Ensure we start from midnight exactly 6 days ago.
