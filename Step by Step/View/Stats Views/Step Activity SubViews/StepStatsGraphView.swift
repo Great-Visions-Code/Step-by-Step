@@ -13,23 +13,26 @@ struct StepStatsGraphView: View {
 
     var body: some View {
         VStack {
-            Text("Last 7 Days of Steps")
+            Text("Step Count Timeline")
                 .font(.title2)
                 .bold()
+                .padding(.leading, 10)
             
-            HStack(alignment: .bottom, spacing: 12) {
-                let maxStepCount = stepTrackerViewModel.sortedStepData().map  { $0.steps }.max() ?? 1
-                
-                ForEach(stepTrackerViewModel.sortedStepData(), id: \.date) { date, steps in
-                    StepStatsProgressBarView(
-                        value: steps,
-                        label: date,
-                        maxValue: maxStepCount,
-                        maxHeight: maxBarHeight
-                    )
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .bottom, spacing: 10) {
+                    let maxStepCount = stepTrackerViewModel.sortedStepData().map  { $0.steps }.max() ?? 1
+                    
+                    ForEach(stepTrackerViewModel.sortedStepData(), id: \.date) { date, steps in
+                        StepStatsProgressBarView(
+                            value: steps,
+                            label: date,
+                            maxValue: maxStepCount,
+                            maxHeight: maxBarHeight
+                        )
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
         .onAppear {
             stepTrackerViewModel.updateStepHistory()
@@ -41,6 +44,13 @@ struct StepStatsGraphView: View {
 class MockStepTrackerViewModel: StepTrackerViewModel {
     override func sortedStepData() -> [(date: String, steps: Int)] {
         return [
+            ("Mon", 3500),
+            ("Tue", 3400),
+            ("Wed", 3000),
+            ("Thu", 10200),
+            ("Fri", 4100),
+            ("Sat", 4000),
+            ("Sun", 2800),
             ("Mon", 3500),
             ("Tue", 3400),
             ("Wed", 3000),
