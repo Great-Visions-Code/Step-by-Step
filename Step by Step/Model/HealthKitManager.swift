@@ -196,7 +196,7 @@ class HealthKitManager {
         let calendar = Calendar.current
         
         // Ensure we start from midnight exactly 6 days ago.
-        guard let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date())) else {
+        guard let startDate = calendar.date(byAdding: .day, value: -30, to: calendar.startOfDay(for: Date())) else {
             completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
             return
         }
@@ -223,7 +223,7 @@ class HealthKitManager {
         query.initialResultsHandler = { _, results, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("❌ (HKM) Error fetching 7-day step history: \(error.localizedDescription)")
+                    print("❌ (HKM) Error fetching step history: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
@@ -236,7 +236,8 @@ class HealthKitManager {
                     stepHistory[dateString] = Int(stepCount)
                 }
                 
-                print("(HKM) 7-Day Step History: \(stepHistory) ✅")
+                print("(HKM) Step History: \(stepHistory) ✅")
+                
                 for (date, steps) in stepHistory {
                     print("Date: \(date) | Steps: \(steps)")
                 }
