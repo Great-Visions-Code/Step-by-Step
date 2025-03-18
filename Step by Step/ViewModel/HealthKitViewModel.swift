@@ -16,8 +16,8 @@ class HealthKitViewModel: ObservableObject {
     /// Stores the calculated 7-day average step count from HealthKit.
     @Published var hkSevenDayStepAverage: Double = 0.0
     /// Stores 7-day step data.
-    @Published var hkStepHistory: [String: Int] = [:]
-    
+    @Published var hkStepHistory: [(date: String, steps: Int)] = []
+
     /// Initializes the ViewModel and requests authorization.
     init() {
         requestHealthKitAuthorization()
@@ -75,11 +75,16 @@ class HealthKitViewModel: ObservableObject {
     /// Updates`hkStepHistory` with the last 7 days of step count data from HealthKit.
     func updateStepHistory() {
         HealthKitManager.shared.fetchSevenDayStepHistory { [weak self] stepData, error in
-            if let stepData = stepData {
-                self?.hkStepHistory = stepData
-                print("(HKVM) 7-Day Step History Updated: \(stepData) ✅")
-            } else {
-                print("❌ (HKVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
+            DispatchQueue.main.async {
+                if let stepData = stepData {
+                    let sortedData = stepData.sorted { $0.key < $1.key}
+                        .map { (date: $0.key, steps: $0.value) }
+                    
+                    self?.hkStepHistory = sortedData
+                    print("(HKVM) 7-Day Step History Updated: \(stepData) ✅")
+                } else {
+                    print("❌ (HKVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
+                }
             }
         }
     }
