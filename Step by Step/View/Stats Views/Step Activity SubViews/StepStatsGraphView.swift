@@ -17,21 +17,31 @@ struct StepStatsGraphView: View {
                 .font(.title2)
                 .bold()
                 .padding(.leading, 10)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .bottom, spacing: 10) {
-                    let maxStepCount = stepTrackerViewModel.sortedStepData().map  { $0.steps }.max() ?? 1
-                    
-                    ForEach(stepTrackerViewModel.sortedStepData(), id: \.date) { date, steps in
-                        StepStatsProgressBarView(
-                            value: steps,
-                            label: date,
-                            maxValue: maxStepCount,
-                            maxHeight: maxBarHeight
-                        )
+
+            ScrollViewReader { scrollProxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .bottom, spacing: 10) {
+                        let stepData = stepTrackerViewModel.sortedStepData()
+                        let maxStepCount = stepData.map { $0.steps }.max() ?? 1
+
+                        ForEach(stepData.indices, id: \.self) { index in
+                            let entry = stepData[index]
+                            StepStatsProgressBarView(
+                                value: entry.steps,
+                                label: entry.date,
+                                maxValue: maxStepCount,
+                                maxHeight: maxBarHeight
+                            )
+                            .id(index) // Assign an ID for programmatic scrolling
+                        }
+                    }
+                    .padding()
+                }
+                .onChange(of: stepTrackerViewModel.sortedStepData().map(\.date)) { oldDates, newDates in
+                    if oldDates != newDates, let lastIndex = stepTrackerViewModel.sortedStepData().indices.last {
+                        scrollProxy.scrollTo(lastIndex, anchor: .trailing) // Instantly scroll to last entry
                     }
                 }
-                .padding()
             }
         }
         .onAppear {
