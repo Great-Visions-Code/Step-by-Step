@@ -13,33 +13,53 @@ struct StepStatsGraphView: View {
 
     var body: some View {
         VStack {
-            Text("Step Count Timeline")
+            Text("Step Count History")
                 .font(.title2)
                 .bold()
                 .padding(.leading, 10)
             
             ScrollViewReader { scrollProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .bottom, spacing: 10) {
-                        let stepData = stepTrackerViewModel.sortedStepData()
-                        let maxStepCount = stepData.map { $0.steps }.max() ?? 1
-
-                        ForEach(stepData.indices, id: \.self) { index in
-                            let entry = stepData[index]
-                            StepStatsProgressBarView(
-                                value: entry.steps,
-                                label: entry.date,
-                                maxValue: maxStepCount,
-                                maxHeight: maxBarHeight
-                            )
-                            .id(index) // Assign an ID for programmatic scrolling
+                    let stepData = stepTrackerViewModel.sortedStepData()
+                    let maxStepCount = stepData.map { $0.steps }.max() ?? 1
+                    
+                    ZStack(alignment: .topLeading) {
+                        // Max line
+                        VStack {
+                            HStack {
+                                Spacer()
+                                
+                                Text("🏆 Best Step Count: \(maxStepCount)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .padding(.trailing, 25)
+                            }
+                            Rectangle()
+                                .fill(Color.blue.opacity(0.4))
+                                .frame(height: 1)
                         }
+                        .frame(height: maxBarHeight, alignment: .top)
+                        .zIndex(1)
+
+                        // Bar graph
+                        HStack(alignment: .bottom, spacing: 10) {
+                            ForEach(stepData.indices, id: \.self) { index in
+                                let entry = stepData[index]
+                                StepStatsProgressBarView(
+                                    value: entry.steps,
+                                    label: entry.date,
+                                    maxValue: maxStepCount,
+                                    maxHeight: maxBarHeight
+                                )
+                                .id(index)
+                            }
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
                 .onChange(of: stepTrackerViewModel.sortedStepData().map(\.date)) { oldDates, newDates in
                     if oldDates != newDates, let lastIndex = stepTrackerViewModel.sortedStepData().indices.last {
-                        scrollProxy.scrollTo(lastIndex, anchor: .trailing) // Instantly scroll to last entry
+                        scrollProxy.scrollTo(lastIndex, anchor: .trailing)
                     }
                 }
             }
@@ -64,7 +84,7 @@ class MockStepTrackerViewModel: StepTrackerViewModel {
             ("Mon", 3500),
             ("Tue", 3400),
             ("Wed", 3000),
-            ("Thu", 20200),
+            ("Thu", 3200),
             ("Fri", 4100),
             ("Sat", 4000),
             ("Sun", 2800)
