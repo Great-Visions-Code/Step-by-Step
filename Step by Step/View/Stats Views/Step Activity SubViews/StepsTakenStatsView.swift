@@ -16,7 +16,7 @@ struct StepsTakenStatsView: View {
         // MARK: - Steps & 7-Day Average
         VStack(spacing: 8) {
             Text("STEPS")
-                .font(.caption)
+                .font(.callout)
                 .foregroundColor(.gray)
             
             Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
@@ -25,11 +25,11 @@ struct StepsTakenStatsView: View {
             
             HStack {
                 Text("7-DAY AVERAGE")
-                    .font(.caption)
+                    .font(.callout)
                     .foregroundColor(.gray)
                 
                 Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
-                    .font(.subheadline)
+                    .font(.body)
                     .bold()
             }
             .padding(.top, 4)
@@ -54,7 +54,7 @@ struct StepsTakenStatsView: View {
                 colorScheme: colorScheme
             )
         }
-        .padding(.bottom, 50)
+        .padding()
     }
 }
 
