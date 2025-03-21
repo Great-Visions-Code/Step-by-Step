@@ -33,9 +33,7 @@ struct StatsView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 10) // Adjust as needed
-                
-                Divider()
-                
+                                
                 // MARK: - Content Switching Based on Selected Tab
                 if selectedTab == .stepActivity {
                     StepActivityView()
