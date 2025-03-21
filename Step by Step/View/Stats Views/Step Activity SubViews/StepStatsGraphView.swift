@@ -13,11 +13,6 @@ struct StepStatsGraphView: View {
 
     var body: some View {
         VStack {
-            Text("Step Count History")
-                .font(.title2)
-                .bold()
-                .padding(.leading, 10)
-            
             ScrollViewReader { scrollProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     let stepData = stepTrackerViewModel.sortedStepData()
