@@ -17,7 +17,7 @@ struct StepStatsGraphView: View {
                 .font(.title2)
                 .bold()
                 .padding(.leading, 10)
-
+            
             ScrollViewReader { scrollProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .bottom, spacing: 10) {
