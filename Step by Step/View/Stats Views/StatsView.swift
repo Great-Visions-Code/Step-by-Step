@@ -39,7 +39,9 @@ struct StatsView: View {
                     StepActivityView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensures it fills the space
                 } else {
-                    AchievementsListView()
+                    AchievementsListView(
+                        achievementsViewModel: AchievementsViewModel()
+                    )
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
