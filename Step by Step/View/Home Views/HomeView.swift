@@ -84,76 +84,62 @@ struct HomeView: View {
                 case "StoryDetailsView":
                     // Displays story details if a story has been selected.
                     if let story = selectedStoryViewModel.selectedStory {
-                        DispatchQueue.main.async {
-                            print("📌 Displaying StoryDetailsView for: \(story.title)")
-                        }
-                        return AnyView(
-                            StoryDetailsView(
-                                story: story,
-                                storyContentViewModel: storyContentViewModel,
-                                onEnterStoryButton: {
-                                    path.append("StoryHomeView")
-                                }
-                            )
-                            .id(path.count) // Forces refresh to avoid stale UI.
+                        StoryDetailsView(
+                            story: story,
+                            storyContentViewModel: storyContentViewModel,
+                            onEnterStoryButton: {
+                                path.append("StoryHomeView")
+                            }
                         )
+                        .id(path.count) // Forces refresh to avoid stale UI.
                     } else {
-                        DispatchQueue.main.async {
-                            print("⚠️ selectedStory is nil, displaying EmptyView")
-                        }
-                        return AnyView(EmptyView())
+                        EmptyView()
                     }
                     
                 case "StoryHomeView":
                     // Navigates to the main gameplay screen for the selected story.
                     if let story = selectedStoryViewModel.selectedStory {
-                        return AnyView(
-                            StoryHomeView(
-                                story: story,
-                                playerStatsViewModel: playerStatsViewModel,
-                                achievementsViewModel: achievementsViewModel,
-                                storyContentViewModel: storyContentViewModel,
-                                onNavigateButton: { nextView in
-                                    path.append(nextView)
-                                }
-                            )
+                        StoryHomeView(
+                            story: story,
+                            playerStatsViewModel: playerStatsViewModel,
+                            achievementsViewModel: achievementsViewModel,
+                            storyContentViewModel: storyContentViewModel,
+                            onNavigateButton: { nextView in
+                                path.append(nextView)
+                            }
                         )
                     } else {
-                        return AnyView(EmptyView())
+                        EmptyView()
                     }
 
                 case "StoryView", "ResumeStoryView":
-                    return AnyView(
-                        StoryView(
-                            onNavigateStoryHomeIcon: {
-                                path.removeLast()
-                            },
-                            onNavigateStoryAchievementsIcon: {
-                                path.append("StoryAchievementsView")
-                            },
-                            onNavigateStoryMapIcon: {
-                                path.append("StoryMapView")
-                            },
-                            playerStatsViewModel: playerStatsViewModel,
-                            storyContentViewModel: storyContentViewModel
-                        )
-                        .toolbar(.hidden, for: .tabBar)
+                    StoryView(
+                        onNavigateStoryHomeIcon: {
+                            path.removeLast()
+                        },
+                        onNavigateStoryAchievementsIcon: {
+                            path.append("StoryAchievementsView")
+                        },
+                        onNavigateStoryMapIcon: {
+                            path.append("StoryMapView")
+                        },
+                        playerStatsViewModel: playerStatsViewModel,
+                        storyContentViewModel: storyContentViewModel
                     )
+                    .toolbar(.hidden, for: .tabBar)
                     
                 case "StoryAchievementsView":
-                    return AnyView(
-                        StoryAchievementsView()
-                            .toolbar(.hidden, for: .tabBar)
+                    StoryAchievementsView(
+                        achievementsViewModel: AchievementsViewModel()
                     )
+                    .toolbar(.hidden, for: .tabBar)
                     
                 case "StoryMapView":
-                    return AnyView(
-                        StoryMapView()
-                            .toolbar(.hidden, for: .tabBar)
-                    )
+                    StoryMapView()
+                        .toolbar(.hidden, for: .tabBar)
                     
                 default:
-                    return AnyView(EmptyView()) // Handle unexpected destinations
+                    EmptyView() // Handle unexpected destinations
                 }
             }
         }
