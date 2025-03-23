@@ -20,7 +20,11 @@ struct AchievementsListView: View {
                         .font(.headline)
                         .foregroundStyle(.secondary)
 
-                    NavigationLink(destination: StoryAchievementsView()) {
+                    NavigationLink(
+                        destination: StoryAchievementsView(
+                            achievementsViewModel: AchievementsViewModel()
+                        )
+                    ) {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("View Survive Achievements")
