@@ -18,6 +18,7 @@ class StepTrackerViewModel: ObservableObject {
     
     /// Instance of HealthKitViewModel to fetch real step count data.
     private let healthKitViewModel = HealthKitViewModel()
+    private let achievementsViewModel = AchievementsViewModel()
     
     /// Computed Property for Total Step Goal Progress
     var goalProgress: String {
@@ -88,6 +89,8 @@ class StepTrackerViewModel: ObservableObject {
     func updateStepHistory() {
         HealthKitManager.shared.fetchStepHistory { [weak self] stepData, error in
             DispatchQueue.main.async {
+                guard let self = self else { return }
+                
                 if let stepData = stepData {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "M/d/yy" // Expected HealthKit format
@@ -108,8 +111,10 @@ class StepTrackerViewModel: ObservableObject {
                     // 🔹 Convert back into display-friendly format
                     let sortedData = sortedDateStepArray.map { (date: $0.formattedDate, steps: $0.steps) }
 
-                    self?.stepTracker.stepHistory = sortedData
+                    self.stepTracker.stepHistory = sortedData
                     print("(STVM) Correctly Sorted Step History: \(sortedData) ✅")
+                    // Notify AchievementsViewModel
+                    self.achievementsViewModel.evaluateAllStepMilestones(from: sortedData)
                 } else {
                     print("❌ (STVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
                 }
