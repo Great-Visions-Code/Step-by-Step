@@ -90,6 +90,9 @@ class StoryContentViewModel: ObservableObject {
             currentChapter = nextChapter
             saveLastViewedChapterID(nextChapterID) // Persist progress
             updateCompletionPercentage(for: nextChapter.chapterID)
+            
+            // Evaluate story milestone unlocks
+            achievementsViewModel.evaluateStoryProgress(chapterID: nextChapterID)
         }
     }
 
