@@ -20,4 +20,5 @@ struct Achievements {
     var stepsInADayAchievementUnlocked: Set<Int>
     var totalStepsAchievementUnlocked: Set<Int>
     var totalDistanceAchievementUnlocked: Set<Double>
+    var storyDaysCompletedAchievementUnlocked: Set<Int>
 }
