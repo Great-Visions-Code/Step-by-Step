@@ -16,4 +16,8 @@ struct Achievements {
     ///
     /// - Parameter attempts: Tracks how many times the user has restarted or tried a story.
     var attempts: Int
+    
+    var stepsInADayAchievementUnlocked: Set<Int>
+    var totalStepsAchievementUnlocked: Set<Int>
+    var totalDistanceAchievementUnlocked: Set<Double>
 }
