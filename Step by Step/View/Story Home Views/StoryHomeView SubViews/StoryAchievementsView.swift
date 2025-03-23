@@ -9,31 +9,27 @@ import SwiftUI
 
 /// Displays story-related achievements, focusing on milestones in the "Survive" storyline.
 struct StoryAchievementsView: View {
+    @ObservedObject var achievementsViewModel: AchievementsViewModel
+
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 12) { // Controls spacing between sections
-                    
-                    // MARK: - Survive Achievements
-                    VStack(spacing: 12) {
-                        AchievementSectionView(title: "Survive Achievements", achievements: [
-                            ("Survive Day 1", "Complete Day 1", true),
-                            ("Survive Day 2", "Complete Day 2", false),
-                            ("Survive Day 3", "Complete Day 3", false),
-                            ("Survive Day 4", "Complete Day 4", false),
-                            ("Survive Day 5", "Complete Day 5", false)
-                        ])
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 16)
+        ScrollView {
+            VStack(spacing: 12) {
+                // MARK: - Survive Achievements
+                AchievementSectionView(title: "Survive Achievements", achievements: [
+                    ("Survive Day 1", "Complete Day 1", achievementsViewModel.isStoryDayAchievementUnlocked(1)),
+                    ("Survive Day 2", "Complete Day 2", achievementsViewModel.isStoryDayAchievementUnlocked(2)),
+                    ("Survive Day 3", "Complete Day 3", achievementsViewModel.isStoryDayAchievementUnlocked(3)),
+                    ("Survive Day 4", "Complete Day 4", achievementsViewModel.isStoryDayAchievementUnlocked(4)),
+                    ("Survive Day 5", "Complete Day 5", achievementsViewModel.isStoryDayAchievementUnlocked(5))
+                ])
             }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Story Achievements")
+            .padding(.horizontal)
+            .padding(.top, 16)
         }
+        .background(Color(.systemGroupedBackground))
     }
 }
 
 #Preview {
-    StoryAchievementsView()
+    StoryAchievementsView(achievementsViewModel: AchievementsViewModel())
 }
