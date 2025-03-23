@@ -36,7 +36,7 @@ struct CurrentEnergyProgressView: View {
                         // Determines if the bolt should be filled or outlined based on available energy.
                         Image(systemName: index < playerStatsViewModel.playerStats.energy ? "bolt.fill" : "bolt")
                         // Filled bolts are blue, empty bolts are gray.
-                            .foregroundColor(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
+                            .foregroundStyle(index < playerStatsViewModel.playerStats.energy ? .blue : .gray)
                         // Sets the icon size.
                             .font(.title)
                         // Creates a "pop" effect when a bolt is filled.

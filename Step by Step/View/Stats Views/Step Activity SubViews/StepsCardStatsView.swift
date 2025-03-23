@@ -17,7 +17,7 @@ struct StepsCardStatsView: View {
         VStack {
             Text(title)
                 .font(.caption)
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
             
             Text(value)
                 .font(.title3)

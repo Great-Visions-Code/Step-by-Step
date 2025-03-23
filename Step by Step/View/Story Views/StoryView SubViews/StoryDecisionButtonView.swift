@@ -36,7 +36,7 @@ struct StoryDecisionButtonView: View {
                         .frame(maxWidth: .infinity) // Stretch the button to fill the available width.
                         .padding()
                         .background(Color.orange)
-                        .foregroundColor(Color.white)
+                        .foregroundStyle(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
                 }

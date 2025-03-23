@@ -60,7 +60,7 @@ struct StepGoalEditorView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.blue)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
             .padding(.horizontal)

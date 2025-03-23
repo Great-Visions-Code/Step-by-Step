@@ -27,14 +27,14 @@ struct CurrentStepsTakenProgressView: View {
             Circle()
                 .stroke(lineWidth: 15)
                 .opacity(0.3)
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
             
             // Progress Circle
             Circle()
                 .trim(from: 0.0, to: progress)
                 .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
                 .rotationEffect(Angle(degrees: -90))
-                .foregroundColor(.blue)
+                .foregroundStyle(.blue)
                 .animation(.easeInOut(duration: 0.6), value: stepTrackerViewModel.stepTracker.totalStepsTaken)
             
             // Icon, Step Count, Goal

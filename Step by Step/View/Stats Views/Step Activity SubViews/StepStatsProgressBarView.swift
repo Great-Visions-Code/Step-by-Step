@@ -23,7 +23,7 @@ struct StepStatsProgressBarView: View {
                 .minimumScaleFactor(0.7) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents multiple lines
                 .frame(width: 40) // Ensures width consistency
-                .foregroundColor(isToday ? Color.blue : Color.primary)
+                .foregroundStyle(isToday ? Color.blue : Color.primary)
 
             // Bar representation of steps
             RoundedRectangle(cornerRadius: 5)
@@ -39,7 +39,7 @@ struct StepStatsProgressBarView: View {
                 .minimumScaleFactor(0.7) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents wrapping
                 .frame(width: 40) // Ensures consistent width
-                .foregroundColor(isToday ? Color.blue : .gray)
+                .foregroundStyle(isToday ? Color.blue : .gray)
         }
     }
 }

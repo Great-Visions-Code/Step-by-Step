@@ -16,7 +16,7 @@ struct AchievementSectionView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.headline)
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
                 .padding(.top, 16)
 
             ForEach(achievements, id: \.0) { achievement in

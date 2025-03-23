@@ -18,7 +18,7 @@ struct StepsTakenStatsView: View {
             VStack {
                 Text("STEPS")
                     .font(.callout)
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
                 
                 Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
                     .font(.system(size: 50, weight: .bold))
@@ -27,7 +27,7 @@ struct StepsTakenStatsView: View {
                 HStack {
                     Text("7-DAY AVERAGE")
                         .font(.callout)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(.gray)
                     
                     Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
                         .font(.body)

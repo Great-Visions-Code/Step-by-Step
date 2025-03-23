@@ -35,7 +35,7 @@ struct DeveloperOptionsView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.blue)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
 
@@ -54,7 +54,7 @@ struct DeveloperOptionsView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
             }
@@ -70,7 +70,7 @@ struct DeveloperOptionsView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.gray.opacity(0.2))
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
             .padding(.horizontal)

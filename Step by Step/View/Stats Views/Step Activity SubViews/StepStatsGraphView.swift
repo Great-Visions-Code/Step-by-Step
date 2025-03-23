@@ -26,7 +26,7 @@ struct StepStatsGraphView: View {
                                 
                                 Text("🏆 Best Step Count: \(maxStepCount)")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundStyle(.secondary)
                                     .padding(.trailing, 25)
                             }
                             Rectangle()

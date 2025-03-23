@@ -19,7 +19,7 @@ struct AchievementsTabView: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .background(isSelected ? Color.blue : Color.clear)
-                .foregroundColor(isSelected ? .white : .gray)
+                .foregroundStyle(isSelected ? .white : .gray)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)

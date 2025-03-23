@@ -33,9 +33,9 @@ struct SettingsView: View {
                             Text("Daily Step Goal")
                             Spacer()
                             Text("\(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps")
-                                .foregroundColor(.gray)
+                                .foregroundStyle(.gray)
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.gray)
+                                .foregroundStyle(.gray)
                         }
                     }
                 }
@@ -49,7 +49,7 @@ struct SettingsView: View {
                             Text("Developer Testing")
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.gray)
+                                .foregroundStyle(.gray)
                         }
                     }
                 }

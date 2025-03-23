@@ -20,18 +20,18 @@ struct AchievementCardView: View {
         HStack(spacing: 15) {
             // Achievement Icon
             Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(isCompleted ? .blue : .gray)
+                .foregroundStyle(isCompleted ? .blue : .gray)
                 .font(.title2)
 
             // Achievement Details
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.headline)
-                    .foregroundColor(colorScheme == .dark ? .white : .black) // Adjust for Dark Mode
+                    .foregroundStyle(colorScheme == .dark ? .white : .black) // Adjust for Dark Mode
                 
                 Text(description)
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
             }
 
             Spacer()
@@ -40,7 +40,7 @@ struct AchievementCardView: View {
             if isCompleted {
                 Text("Completed")
                     .font(.footnote)
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
             }
         }
         .padding()

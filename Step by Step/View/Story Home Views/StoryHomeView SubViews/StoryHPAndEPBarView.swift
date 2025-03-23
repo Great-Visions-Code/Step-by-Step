@@ -50,7 +50,7 @@ struct StoryHPAndEPBarView: View {
                         let color = type == .health ? (isFilled ? Color.red : Color.gray) : (isFilled ? Color.blue : Color.gray)
                         
                         Image(systemName: icon)
-                            .foregroundColor(color)
+                            .foregroundStyle(color)
                             .font(.title2) // Standardized size
                             .scaleEffect(animateIcons && isFilled ? 1.2 : 1.0) // "Pop" effect
                             .opacity(animateIcons && isFilled ? 1.0 : 0.3) // Fade-in effect
