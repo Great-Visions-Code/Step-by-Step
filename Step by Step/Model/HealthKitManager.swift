@@ -195,7 +195,7 @@ class HealthKitManager {
     func fetchStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
         let calendar = Calendar.current
         
-        // ✅ Fetch exact step data (75 days)
+        // Fetch exact step data (75 days)
         guard let startDate = calendar.date(byAdding: .day, value: -75, to: calendar.startOfDay(for: Date())) else {
             completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
             return
@@ -210,15 +210,15 @@ class HealthKitManager {
         )
         
         print("Fetching step history from \(startDate) to \(endDate)")
-
+        
         let query = HKStatisticsCollectionQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum,
             anchorDate: calendar.startOfDay(for: endDate),
-            intervalComponents: DateComponents(day: 1) // ✅ Get daily step counts
+            intervalComponents: DateComponents(day: 1) // Get daily step counts
         )
-
+        
         query.initialResultsHandler = { _, results, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -242,4 +242,5 @@ class HealthKitManager {
             }
         }
         healthStore.execute(query)
-    }}
+    }
+}
