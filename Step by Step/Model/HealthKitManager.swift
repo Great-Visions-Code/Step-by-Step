@@ -7,23 +7,29 @@
 
 import HealthKit
 
-/// Singleton class to manage HealthKit permissions and step count retrieval.
-class HealthKitManager {
+/// A singleton class that manages HealthKit permissions and data retrieval
+/// for step count, distance, and historical step data.
+final class HealthKitManager {
+    
     /// Shared instance for global access.
     static let shared = HealthKitManager()
     
-    /// HealthKit store reference.
+    /// The HealthKit store used to access health data.
     private let healthStore = HKHealthStore()
     
-    /// The HealthKit step count and distance types.
+    /// The HealthKit quantity type for step count.
     private let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+    
+    /// The HealthKit quantity type for walking/running distance.
     private let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
     
-    /// Requests authorization to read step count data from HealthKit.
+    // MARK: - Authorization
+    
+    /// Requests permission to read step count and walking distance data.
     ///
-    /// - Parameter completion: Closure returning success status and an optional error.
+    /// - Parameter completion: Completion handler returning authorization result.
     func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
-        let readTypes: Set = [stepCountType, distanceType] // Requesting permission to read step data.
+        let readTypes: Set = [stepCountType, distanceType]
         
         healthStore.requestAuthorization(toShare: nil, read: readTypes) { success, error in
             DispatchQueue.main.async {
@@ -32,215 +38,192 @@ class HealthKitManager {
         }
     }
     
-    /// Fetches the total steps taken for the current day from HealthKit.
+    // MARK: - Today’s Data
+
+    /// Fetches today’s total step count.
     ///
-    /// - Parameter completion: Closure returning the step count or an error.
+    /// - Parameter completion: Completion handler with step count or error.
     func fetchTodayStepCount(completion: @escaping (Int?, Error?) -> Void) {
         let calendar = Calendar.current
-        
-        // Get the start of the current day (midnight) to retrieve only today's steps.
         let startOfDay = calendar.startOfDay(for: Date())
         
-        // Create a predicate to filter HealthKit step data from midnight until now.
         let predicate = HKQuery.predicateForSamples(
             withStart: startOfDay,
             end: Date(),
             options: .strictStartDate
         )
         
-        // Create a query to fetch cumulative step count for today.
         let query = HKStatisticsQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum
         ) { _, result, error in
             DispatchQueue.main.async {
-                // Check for errors in retrieving step data.
                 if let error = error {
                     print("❌ (HKM) Error fetching step count: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
-                // Ensure we received valid step data.
                 guard let quantity = result?.sumQuantity() else {
                     print("❌ (HKM) No step count data found for today.")
-                    completion(0, nil) // Return 0 steps if no data is available.
+                    completion(0, nil)
                     return
                 }
                 
-                // Convert the retrieved quantity into an integer step count.
-                let stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
-                
-                // Log retrieved step count for debugging.
-                print("(HKM) Steps retrieved from HealthKit (stepCount): \(stepCount) ✅")
-                
-                // Return the fetched step count through the completion handler.
+                let stepCount = Int(quantity.doubleValue(for: .count()))
+                print("(HKM) Steps retrieved from HealthKit: \(stepCount) ✅")
                 completion(stepCount, nil)
             }
         }
-        // Execute the query on HealthKit.
+        
         healthStore.execute(query)
     }
     
-    /// Fetches the total distance traveled for the current day from HealthKit.
+    /// Fetches today’s total distance walked or run.
     ///
-    /// - Parameter completion: Closure returning the distance traveled or an error.
+    /// - Parameter completion: Completion handler with distance in miles or error.
     func fetchTodayDistance(completion: @escaping (Double?, Error?) -> Void) {
         let calendar = Calendar.current
-        
-        // Get the start of the current day (midnight) to retrieve only today's steps.
         let startOfDay = calendar.startOfDay(for: Date())
         
-        // Create a predicate to filter HealthKit step data from midnight until now.
         let predicate = HKQuery.predicateForSamples(
             withStart: startOfDay,
             end: Date(),
             options: .strictStartDate
         )
         
-        // Create a query to fetch cumulative step count for today.
         let query = HKStatisticsQuery(
             quantityType: distanceType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum
         ) { _, result, error in
             DispatchQueue.main.async {
-                // Check for errors in retrieving distance data.
                 if let error = error {
-                    print("❌ (HKM) Error fetching distance data: \(error.localizedDescription)")
+                    print("❌ (HKM) Error fetching distance: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
-                // Ensure we received valid step data.
                 guard let quantity = result?.sumQuantity() else {
                     print("❌ (HKM) No distance data found for today.")
-                    completion(0, nil) // Return 0 steps if no data is available.
+                    completion(0, nil)
                     return
                 }
                 
-                // Convert the retrieved quantity into an integer step count.
-                let distanceInMeters = quantity.doubleValue(for: HKUnit.meter())
-                let distanceInMiles = distanceInMeters * 0.000621371 // Convert meters to miles
-                
-                // Log retrieved step count for debugging.
-                print("(HKM) Distance traveled retrieved from HealthKit: \(String(format: "%.2f", distanceInMiles)) mi ✅")
-                
-                // Return the fetched step count through the completion handler.
-                completion(distanceInMiles, nil)
+                let meters = quantity.doubleValue(for: .meter())
+                let miles = meters * 0.000621371 // Convert meters to miles
+                print("(HKM) Distance from HealthKit: \(String(format: "%.2f", miles)) mi ✅")
+                completion(miles, nil)
             }
         }
-        // Execute the query on HealthKit.
+        
         healthStore.execute(query)
     }
     
-    /// Fetches the average step count for the last 7 days from HealthKit.
+    // MARK: - 7-Day Average
+
+    /// Fetches the average number of steps taken over the past 7 days.
     ///
-    /// - Parameter completion: Closure returning the step count or an error.
+    /// - Parameter completion: Completion handler with average step count or error.
     func fetchSevenDayStepAverage(completion: @escaping (Double?, Error?) -> Void) {
         let calendar = Calendar.current
         let endDate = Date()
         guard let startDate = calendar.date(byAdding: .day, value: -6, to: endDate) else {
-            completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
+            let error = NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid start date"])
+            completion(nil, error)
             return
         }
         
-        // Create a predicate to filter HealthKit step data from midnight until now.
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
             end: endDate,
             options: .strictStartDate
         )
         
-        // Create a query to fetch cumulative step count for today.
         let query = HKStatisticsQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum
         ) { _, result, error in
             DispatchQueue.main.async {
-                // Check for errors in retrieving step data.
                 if let error = error {
                     print("❌ (HKM) Error fetching 7-day step data: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
-                // Ensure we received valid step data.
                 guard let quantity = result?.sumQuantity() else {
-                    print("❌ (HKM) No step data found for past 7 days.")
-                    completion(0, nil) // Return 0 if no data is available.
+                    print("❌ (HKM) No step data for 7-day range.")
+                    completion(0, nil)
                     return
                 }
                 
-                // Convert the retrieved quantity into an integer step count.
-                let totalSteps = quantity.doubleValue(for: HKUnit.count())
-                let averageSteps = totalSteps / 7 // Calculate 7-day average
-                
-                // Log retrieved step count for debugging.
-                print("(HKM) 7-Day Average Step Count: \(Int(averageSteps)) ✅")
-                
-                // Return the fetched step count through the completion handler.
-                completion(averageSteps, nil)
+                let totalSteps = quantity.doubleValue(for: .count())
+                let average = totalSteps / 7.0
+                print("(HKM) 7-Day Step Average: \(Int(average)) ✅")
+                completion(average, nil)
             }
         }
-        // Execute the query on HealthKit.
+        
         healthStore.execute(query)
     }
     
-    /// Fetches daily step counts for the last 2 years from HealthKit.
+    /// Fetches daily step counts from the start of the current year to today.
     ///
-    /// - Parameter completion: Closure returning a dictionary of date-step count pairs or an error.
+    /// - Parameter completion: A dictionary of [Date String: Step Count] or an error.
     func fetchStepHistory(completion: @escaping ([String: Int]?, Error?) -> Void) {
         let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
         
-        // Fetch exact step data (75 days)
-        guard let startDate = calendar.date(byAdding: .day, value: -75, to: calendar.startOfDay(for: Date())) else {
-            completion(nil, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine start date"]))
+        // Start from January 1st of the current year
+        guard let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: today)) else {
+            let error = NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to get start of year"])
+            completion(nil, error)
             return
         }
         
-        let endDate = calendar.startOfDay(for: Date()).addingTimeInterval(86399) // Include full day
+        let endDate = today.addingTimeInterval(86399) // Include full day until current time
         
         let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
+            withStart: startOfYear,
             end: endDate,
             options: .strictStartDate
         )
         
-        print("Fetching step history from \(startDate) to \(endDate)")
+        print("📅 Fetching Year-to-Date Step History from \(startOfYear) to \(endDate)")
         
         let query = HKStatisticsCollectionQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum,
-            anchorDate: calendar.startOfDay(for: endDate),
-            intervalComponents: DateComponents(day: 1) // Get daily step counts
+            anchorDate: today, // Anchor can be today for daily intervals
+            intervalComponents: DateComponents(day: 1)
         )
         
         query.initialResultsHandler = { _, results, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("❌ (HKM) Error fetching long-term step history: \(error.localizedDescription)")
+                    print("❌ (HKM) Error fetching step history YTD: \(error.localizedDescription)")
                     completion(nil, error)
                     return
                 }
                 
                 var stepHistory: [String: Int] = [:]
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "M/d/yy" // Keep formatting consistent
+                dateFormatter.dateFormat = "M/d/yy"
                 
-                results?.enumerateStatistics(from: startDate, to: endDate) { statistics, _ in
-                    let stepCount = statistics.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0
-                    let dateString = dateFormatter.string(from: statistics.startDate)
-                    stepHistory[dateString] = Int(stepCount)
+                results?.enumerateStatistics(from: startOfYear, to: endDate) { stat, _ in
+                    let steps = stat.sumQuantity()?.doubleValue(for: .count()) ?? 0
+                    let date = dateFormatter.string(from: stat.startDate)
+                    stepHistory[date] = Int(steps)
                 }
                 
-                print("(HKM) Long-Term Step History: Retrieved \(stepHistory.count) days ✅")
+                print("(HKM) Year-to-Date Step History: \(stepHistory.count) days ✅")
                 completion(stepHistory, nil)
             }
         }
+        
         healthStore.execute(query)
     }
 }
