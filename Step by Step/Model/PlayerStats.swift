@@ -7,49 +7,64 @@
 
 import Foundation
 
-/// Model representing the player's statistics in the game.
+/// A structure that represents the player's statistics within the game.
 ///
-/// Tracks and manages the player's current health and energy points
-/// with safeguards to ensure values stay within valid ranges.
+/// `PlayerStats` tracks two primary attributes:
+/// - `health`: A value representing the player's life or endurance.
+/// - `energy`: A resource used to perform actions within the game.
+///
+/// Both values are capped between `0` and `10` to ensure valid bounds
+/// and maintain game balance.
 struct PlayerStats {
-    /// The current health points of the player, ranging 0 to 10.
-    var health: Int
     
-    /// The current energy points of the player, ranging from 0 to 10.
-    var energy: Int
-    
-    // MARK: - Health Management
-    
-    /// Decreases the player's health by a specified amount.
+    // MARK: - Properties
+
+    /// The player’s current health value.
     ///
-    /// Ensures that health cannot drop below 0.
-    /// -  Parameter amount: The amount to decrease health by.
+    /// Health is capped between `0` (no health) and `10` (maximum health).
+    var health: Int
+
+    /// The player’s current energy value.
+    ///
+    /// Energy is capped between `0` (exhausted) and `10` (fully energized).
+    var energy: Int
+
+    // MARK: - Health Management
+
+    /// Reduces the player’s health by a specified amount.
+    ///
+    /// If the resulting health would drop below `0`, it is capped to `0`.
+    ///
+    /// - Parameter amount: The number of health points to subtract.
     mutating func decreaseHealth(by amount: Int) {
         health = max(health - amount, 0)
     }
-    
-    /// Increases the player's health by a specified amount.
+
+    /// Increases the player’s health by a specified amount.
     ///
-    /// Ensures that health does not exceed the maximum of 10.
-    /// - Parameter amount: The amount to increase health by.
+    /// If the resulting health would exceed `10`, it is capped to `10`.
+    ///
+    /// - Parameter amount: The number of health points to add.
     mutating func increaseHealth(by amount: Int) {
         health = min(health + amount, 10)
     }
-    
+
     // MARK: - Energy Management
-    
-    /// Decreases the player's energy by a specified amount.
+
+    /// Reduces the player’s energy by a specified amount.
     ///
-    /// Ensures that energy cannot drop below 0.
-    /// - Parameter amount: The amount to decrease energy by.
+    /// If the resulting energy would drop below `0`, it is capped to `0`.
+    ///
+    /// - Parameter amount: The number of energy points to subtract.
     mutating func decreaseEnergy(by amount: Int) {
         energy = max(energy - amount, 0)
     }
-    
-    /// Increases the players's energy by a specified amount.
+
+    /// Increases the player’s energy by a specified amount.
     ///
-    /// Ensures that energy does not exceed the maximum of 10.
-    /// - Parameter amount: The amount to increase energy by.
+    /// If the resulting energy would exceed `10`, it is capped to `10`.
+    ///
+    /// - Parameter amount: The number of energy points to add.
     mutating func increaseEnergy(by amount: Int) {
         energy = min(energy + amount, 10)
     }
