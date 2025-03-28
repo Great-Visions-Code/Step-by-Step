@@ -38,11 +38,15 @@ struct ConvertToEnergyButtonView: View {
             }) {
                 VStack {
                     HStack {
-                        Text(" \(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
+                        Text("\(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
                             .font(.title2)
-                        
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
+
                         Text("available to convert")
                             .font(.title3)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
                     }
   
                 }
