@@ -30,9 +30,9 @@ struct ChooseYourAdventureView: View {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 15) {
                     // Dynamically generate a card for each story in the `stories` array.
-                    ForEach($stories, id: \.title) { $story in
+                    ForEach($stories, id: \.storyTitle) { $story in
                         // Pass dynamic updates only for "Survive."
-                        if story.title == "Survive" {
+                        if story.storyTitle == "Survive" {
                             StoryCardView(
                                 story: $story, // Pass a binding to the story card.
                                 storyContentViewModel: storyContentViewModel, // Pass ViewModel for dynamic updates.
@@ -64,16 +64,16 @@ struct ChooseYourAdventureView: View {
 #Preview {
     @Previewable @State var stories = [
         StoryCard(
-            title: "Survive",
-            color: Color.blue,
-            completion: 50,
-            details: "Dynamic completion story."
+            storyTitle: "Survive",
+            storyCardColor: Color.blue,
+            storyCompletion: 50,
+            storyDetails: "Dynamic completion story."
         ),
         StoryCard(
-            title: "Stay Tuned",
-            color: Color.blue,
-            completion: 0,
-            details: "Static completion story."
+            storyTitle: "Stay Tuned",
+            storyCardColor: Color.blue,
+            storyCompletion: 0,
+            storyDetails: "Static completion story."
         )
     ]
     return ChooseYourAdventureView(
