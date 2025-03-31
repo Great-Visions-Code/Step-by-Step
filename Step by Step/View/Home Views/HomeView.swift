@@ -64,9 +64,9 @@ struct HomeView: View {
                         storyContentViewModel: storyContentViewModel,
                         onStorySelected: { story in
                             DispatchQueue.main.async {
-                                print("Before update: selectedStory = \(selectedStoryViewModel.selectedStory?.title ?? "nil")")
+                                print("Before update: selectedStory = \(selectedStoryViewModel.selectedStory?.storyTitle ?? "nil")")
                                 selectedStoryViewModel.selectedStory = story
-                                print("After update: selectedStory = \(selectedStoryViewModel.selectedStory?.title ?? "nil")")
+                                print("After update: selectedStory = \(selectedStoryViewModel.selectedStory?.storyTitle ?? "nil")")
                                 path.append("StoryDetailsView")
                             }
                         }
