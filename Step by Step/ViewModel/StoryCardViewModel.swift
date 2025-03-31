@@ -24,10 +24,10 @@ class StoryCardViewModel: ObservableObject {
         /// A zombie apocalypse adventure where the player's goal is to survive 10 in-game days
         /// and reach the evacuation center.
         StoryCard(
-            title: "Survive",
-            color: Color.blue,
-            completion: 0,
-            details: """
+            storyTitle: "Survive",
+            storyCardColor: Color.blue,
+            storyCompletion: 0,
+            storyDetails: """
             In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
 
             Your goal is simple yet daunting: survive for 5 in-game days and reach the evacuation center at the city's edge, where safety awaits. Each day presents new challenges, from scavenging for supplies to fending off zombies and navigating the unpredictable dangers of a collapsing society.
@@ -44,10 +44,10 @@ class StoryCardViewModel: ObservableObject {
         /// Represents upcoming stories that will be added to the app in future updates.
         /// This encourages user engagement by teasing additional content.
         StoryCard(
-            title: "Stay Tuned",
-            color: Color.blue,
-            completion: 0,
-            details: """
+            storyTitle: "Stay Tuned",
+            storyCardColor: Color.blue,
+            storyCompletion: 0,
+            storyDetails: """
             Stay tuned for upcoming thrilling adventures that will test your strategy!
             """
         )
@@ -85,12 +85,12 @@ class StoryCardViewModel: ObservableObject {
     ///   - title: The title of the story to update.
     ///   - percentage: The new completion percentage.
     private func updateStoryCompletion(for title: String, to percentage: Int) {
-        if let index = stories.firstIndex(where: { $0.title == title }) {
+        if let index = stories.firstIndex(where: { $0.storyTitle == title }) {
             // Keep static stories like "Stay Tuned" at their default completion.
-            if stories[index].title == "Stay Tuned" {
-                stories[index].completion = 0 // Always set to 0.
+            if stories[index].storyTitle == "Stay Tuned" {
+                stories[index].storyCompletion = 0 // Always set to 0.
             } else {
-                stories[index].completion = percentage
+                stories[index].storyCompletion = percentage
             }
         }
     }
