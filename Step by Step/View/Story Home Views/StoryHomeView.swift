@@ -37,7 +37,7 @@ struct StoryHomeView: View {
             
             // Display the title of the current story.
             StoryTitleView(
-                title: story.title
+                title: story.storyTitle
             )
             .padding()
 
@@ -116,10 +116,10 @@ struct StoryHomeView: View {
 #Preview {
     StoryHomeView(
         story: StoryCard(
-            title: "Survive",
-            color: .green,
-            completion: 0,
-            details: "DETAILS NOT SHOWN"
+            storyTitle: "Survive",
+            storyCardColor: .green,
+            storyCompletion: 0,
+            storyDetails: "DETAILS NOT SHOWN"
         ),
         playerStatsViewModel: PlayerStatsViewModel(),
         achievementsViewModel: AchievementsViewModel(),
