@@ -13,6 +13,7 @@ struct StepStatsGraphView: View {
 
     var body: some View {
         VStack {
+            Spacer()
             ScrollViewReader { scrollProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     let stepData = stepTrackerViewModel.sortedStepData()
