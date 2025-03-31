@@ -27,7 +27,7 @@ struct StoryCardView: View {
     var body: some View {
         VStack {
             // Display the story title with formatting for readability and scaling for longer titles.
-            Text(story.title)
+            Text(story.storyTitle)
                 .font(.title2)
                 .bold()
                 .multilineTextAlignment(.center)
@@ -51,7 +51,7 @@ struct StoryCardView: View {
         }
         .padding()
         .frame(width: 150, height: 150) // Set card dimensions.
-        .background(story.color) // Use the story's assigned color as the background.
+        .background(story.storyCardColor) // Use the story's assigned color as the background.
         .cornerRadius(20) // Add rounded corners for a polished look.
         .shadow(radius: 5) // Apply a shadow for a slight 3D effect.
         .scaleEffect(isPressed ? 0.95 : 1.0) // Add scaling animation when the card is pressed.
@@ -71,8 +71,8 @@ struct StoryCardView: View {
         }
         .onChange(of: storyContentViewModel?.completionPercentage, initial: false) { _, newValue in
             // Update completion percentage only if a valid ViewModel is provided.
-            if let newValue = newValue, story.title == "Survive" {
-                story.completion = newValue
+            if let newValue = newValue, story.storyTitle == "Survive" {
+                story.storyCompletion = newValue
             }
         }
     }
@@ -82,10 +82,10 @@ struct StoryCardView: View {
     StoryCardView(
         story: .constant(
             StoryCard(
-                title: "Survive",
-                color: Color.blue,
-                completion: 50,
-                details: "Dynamic story details."
+                storyTitle: "Survive",
+                storyCardColor: Color.blue,
+                storyCompletion: 50,
+                storyDetails: "Dynamic story details."
             )
         ),
         storyContentViewModel: StoryContentViewModel(
