@@ -23,12 +23,12 @@ struct StoryDetailsView: View {
         VStack(spacing: 20) {
             // Display the story title prominently.
             Spacer()
-            Text(story.title)
+            Text(story.storyTitle)
                 .font(.largeTitle)
                 .bold()
             
             // Show the completion percentage dynamically for "Survive" or static for others.
-            if story.title == "Survive" {
+            if story.storyTitle == "Survive" {
                 Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
                     .font(.subheadline)
             } else {
@@ -40,14 +40,14 @@ struct StoryDetailsView: View {
             
             // Scrollable section for the story's detailed description.
             ScrollView(.vertical, showsIndicators: true) {
-                Text(story.details)
+                Text(story.storyDetails)
                     .font(.headline)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                     .padding()
             }
             // Conditionally show the "Enter Story" button.
-            if story.title != "Stay Tuned" {
+            if story.storyTitle != "Stay Tuned" {
                 Button(action: {
                     onEnterStoryButton() // Trigger the closure to navigate to the main story view.
                 }) {
@@ -71,10 +71,10 @@ struct StoryDetailsView: View {
 #Preview {
     StoryDetailsView(
         story: StoryCard(
-            title: "Story Title",
-            color: .green,
-            completion: 0,
-            details: """
+            storyTitle: "Story Title",
+            storyCardColor: .green,
+            storyCompletion: 0,
+            storyDetails: """
                     SAMPLE: 'Story Title', this is where we would show the details of the story.
                     
                      Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
