@@ -51,8 +51,8 @@ struct AchievementCardView: View {
 }
 
 #Preview {
-    AchievementCardView(title: "Achievement Title",
-                   description: "Whats needed to complete",
+    AchievementCardView(title: "5,000 Steps",
+                   description: "Walk 5,000 steps in a single day",
                    isCompleted: true
     )
 }
