@@ -27,7 +27,7 @@ class AchievementsViewModel: ObservableObject {
     private let totalDistanceKey = "totalDistanceAchievementUnlocked"
     private let storyDaysKey = "storyDaysCompletedAchievementUnlocked"
     
-    let stepsInADayMilestones: [Int] = [5_000, 10_000, 12_500, 15_000, 20_000, 30_000, 50_000]
+    let stepsInADayMilestones: [Int] = [5_000, 7_500, 10_000, 12_500, 15_000, 18_000, 20_000, 25_000, 30_000]
     let totalStepsMilestones: [Int] = [10_000, 25_000, 50_000, 100_000, 250_000, 500_000, 1_000_000, 3_000_000, 5_000_000]
     let totalDistanceMilestones: [Double] = [1, 3, 5, 10, 15, 25, 50, 100, 200, 500, 1000, 2500, 5000, 10_000, 15_000, 25_000, 50_000]
     let surviveStoryDayMilestones: [Int: Int] = [
