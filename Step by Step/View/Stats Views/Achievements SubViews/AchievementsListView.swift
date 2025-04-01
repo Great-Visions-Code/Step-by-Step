@@ -104,12 +104,8 @@ extension Double {
 
 #Preview {
     NavigationStack {
-        AchievementsListView(achievementsViewModel: AchievementsViewModel())
+        AchievementsListView(
+            achievementsViewModel: AchievementsViewModel()
+        )
     }
-}
-
-#Preview {
-    AchievementsListView(
-        achievementsViewModel: AchievementsViewModel()
-    )
 }
