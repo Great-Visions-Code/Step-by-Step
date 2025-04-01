@@ -31,9 +31,9 @@ struct AchievementSectionView: View {
 }
 
 #Preview {
-    AchievementSectionView(title: "Survive Achievements",
+    AchievementSectionView(title: "Steps In A Day",
                        achievements: [
-                        ("Survive Day 1", "Complete Day 1", true),
+                        ("5,000", "Walk 5,000 steps in a single day", true),
                         ("Survive Day 2", "Complete Day 2", false),
                         ("Survive Day 3", "Complete Day 3", false)
                        ]
