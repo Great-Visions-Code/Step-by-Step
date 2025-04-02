@@ -12,6 +12,7 @@ struct AchievementCardView: View {
     var title: String
     var description: String
     var isCompleted: Bool
+    var dateEarned: String? = nil
 
     /// Dynamically adjust colors based on system theme
     @Environment(\.colorScheme) var colorScheme
@@ -32,6 +33,12 @@ struct AchievementCardView: View {
                 Text(description)
                     .font(.subheadline)
                     .foregroundStyle(.gray)
+                
+                if isCompleted, let date = dateEarned {
+                    Text("Date Earned: \(date)")
+                        .font(.footnote)
+                        .foregroundStyle(.blue)
+                }
             }
 
             Spacer()
@@ -52,7 +59,8 @@ struct AchievementCardView: View {
 
 #Preview {
     AchievementCardView(title: "5,000 Steps",
-                   description: "Walk 5,000 steps in a single day",
-                   isCompleted: true
+        description: "Walk 5,000 steps in a single day",
+        isCompleted: true,
+        dateEarned: "01/02/25"
     )
 }
