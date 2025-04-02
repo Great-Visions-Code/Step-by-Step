@@ -57,9 +57,7 @@ struct AchievementsListView: View {
                         let isUnlocked = achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
                         let currentSteps = healthKitViewModel.hkCurrentStepsCount
 
-                        let firstDate = stepTrackerViewModel.sortedStepData()
-                            .first(where: { $0.steps >= milestone })?
-                            .date
+                        let firstDate = stepTrackerViewModel.sortedStepData().first(where: { $0.steps >= milestone })?.date
 
                         let stepsToGo = max(milestone - currentSteps, 0)
                         let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
@@ -122,21 +120,6 @@ struct AchievementsListView: View {
             .padding(.horizontal)
             .padding(.top, 16)
         }
-    }
-}
-
-// MARK: - Formatters
-extension Int {
-    func formatted() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
-    }
-}
-
-extension Double {
-    func cleanMiles() -> String {
-        self == floor(self) ? String(format: "%.0f", self) : String(format: "%.1f", self)
     }
 }
 
