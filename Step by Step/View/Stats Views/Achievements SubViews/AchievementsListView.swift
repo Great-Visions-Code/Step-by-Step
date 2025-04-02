@@ -60,14 +60,15 @@ struct AchievementsListView: View {
                             .first(where: { $0.steps >= milestone })?
                             .date
 
-                        let stepsToGo = isUnlocked ? 0 : max(milestone - currentSteps, 0)
-                        let stepsToGoText = stepsToGo > 0 ? "Steps to go: \(stepsToGo.formatted())" : nil
+                        let stepsToGo = max(milestone - currentSteps, 0)
+                    let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
 
                         return (
                             "\(milestone.formatted()) Steps",
-                            "Walk \(milestone.formatted()) steps in a single day" + (stepsToGoText != nil ? " (\(stepsToGoText!))" : ""),
+                            "Walk \(milestone.formatted()) steps in a single day",
                             isUnlocked,
-                            isUnlocked ? firstDate : nil
+                            isUnlocked ? firstDate : nil,
+                            stepsToGoText
                         )
                     }
                 )
@@ -89,7 +90,8 @@ struct AchievementsListView: View {
                             "\(milestone.formatted()) Steps",
                             "Walk \(milestone.formatted()) steps total",
                             isUnlocked,
-                            isUnlocked ? firstDate : nil
+                            isUnlocked ? firstDate : nil ,
+                            nil
                         )
                     }
                 )
@@ -112,7 +114,8 @@ struct AchievementsListView: View {
                             "\(milestone.cleanMiles()) Miles",
                             "Travel \(milestone.cleanMiles()) miles total",
                             isUnlocked,
-                            isUnlocked ? firstDate : nil
+                            isUnlocked ? firstDate : nil,
+                            nil
                         )
                     }
                 )
