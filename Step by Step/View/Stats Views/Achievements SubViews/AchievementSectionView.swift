@@ -10,7 +10,7 @@ import SwiftUI
 /// **Reusable Achievement Section**
 struct AchievementSectionView: View {
     var title: String
-    var achievements: [(String, String, Bool)]
+    var achievements: [(String, String, Bool, String?)]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -23,7 +23,8 @@ struct AchievementSectionView: View {
                 AchievementCardView(
                     title: achievement.0,
                     description: achievement.1,
-                    isCompleted: achievement.2
+                    isCompleted: achievement.2,
+                    dateEarned: achievement.3
                 )
             }
         }
@@ -31,11 +32,12 @@ struct AchievementSectionView: View {
 }
 
 #Preview {
-    AchievementSectionView(title: "Steps In A Day",
-                       achievements: [
-                        ("5,000", "Walk 5,000 steps in a single day", true),
-                        ("Survive Day 2", "Complete Day 2", false),
-                        ("Survive Day 3", "Complete Day 3", false)
-                       ]
+    AchievementSectionView(
+        title: "Steps In A Day",
+        achievements: [
+            ("5,000", "Walk 5,000 steps in a single day", true, "03/01/25"),
+            ("Survive Day 2", "Complete Day 2", false, nil),
+            ("Survive Day 3", "Complete Day 3", false, nil)
+        ]
     )
 }
