@@ -16,11 +16,11 @@ struct StoryAchievementsView: View {
             VStack(spacing: 12) {
                 // MARK: - Survive Achievements
                 AchievementSectionView(title: "Survive Achievements", achievements: [
-                    ("Survive Day 1", "Complete Day 1", achievementsViewModel.isStoryDayAchievementUnlocked(1)),
-                    ("Survive Day 2", "Complete Day 2", achievementsViewModel.isStoryDayAchievementUnlocked(2)),
-                    ("Survive Day 3", "Complete Day 3", achievementsViewModel.isStoryDayAchievementUnlocked(3)),
-                    ("Survive Day 4", "Complete Day 4", achievementsViewModel.isStoryDayAchievementUnlocked(4)),
-                    ("Survive Day 5", "Complete Day 5", achievementsViewModel.isStoryDayAchievementUnlocked(5))
+                    ("Survive Day 1", "Complete Day 1", achievementsViewModel.isStoryDayAchievementUnlocked(1), nil),
+                    ("Survive Day 2", "Complete Day 2", achievementsViewModel.isStoryDayAchievementUnlocked(2), nil),
+                    ("Survive Day 3", "Complete Day 3", achievementsViewModel.isStoryDayAchievementUnlocked(3), nil),
+                    ("Survive Day 4", "Complete Day 4", achievementsViewModel.isStoryDayAchievementUnlocked(4), nil),
+                    ("Survive Day 5", "Complete Day 5", achievementsViewModel.isStoryDayAchievementUnlocked(5), nil)
                 ])
             }
             .padding(.horizontal)
