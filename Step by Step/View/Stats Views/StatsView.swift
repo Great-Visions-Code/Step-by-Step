@@ -41,7 +41,8 @@ struct StatsView: View {
                 } else {
                     AchievementsListView(
                         achievementsViewModel: AchievementsViewModel(),
-                        stepTrackerViewModel: StepTrackerViewModel()
+                        stepTrackerViewModel: StepTrackerViewModel(),
+                        healthKitViewModel: HealthKitViewModel()
                     )
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
