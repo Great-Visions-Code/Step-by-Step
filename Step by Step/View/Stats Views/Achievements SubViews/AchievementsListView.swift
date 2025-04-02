@@ -10,6 +10,7 @@ import SwiftUI
 struct AchievementsListView: View {
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    @ObservedObject var healthKitViewModel: HealthKitViewModel
 
     var body: some View {
         ScrollView {
@@ -50,20 +51,23 @@ struct AchievementsListView: View {
                 }
 
                 // MARK: - Steps In A Day
-                AchievementSectionView(
-                    title: "Steps In A Day",
-                    achievements: achievementsViewModel.stepsInADayMilestones.map { milestone in
+                AchievementSectionView(title: "Steps In A Day", achievements:
+                    achievementsViewModel.stepsInADayMilestones.map { milestone in
                         let isUnlocked = achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
-                    
-                        let firsDate = stepTrackerViewModel.sortedStepData()
+                        let currentSteps = healthKitViewModel.hkCurrentStepsCount
+
+                        let firstDate = stepTrackerViewModel.sortedStepData()
                             .first(where: { $0.steps >= milestone })?
                             .date
-                    
+
+                        let stepsToGo = isUnlocked ? 0 : max(milestone - currentSteps, 0)
+                        let stepsToGoText = stepsToGo > 0 ? "Steps to go: \(stepsToGo.formatted())" : nil
+
                         return (
                             "\(milestone.formatted()) Steps",
-                            "Walk \(milestone.formatted()) steps in a single day",
+                            "Walk \(milestone.formatted()) steps in a single day" + (stepsToGoText != nil ? " (\(stepsToGoText!))" : ""),
                             isUnlocked,
-                            isUnlocked ? firsDate : nil
+                            isUnlocked ? firstDate : nil
                         )
                     }
                 )
@@ -138,7 +142,8 @@ extension Double {
     NavigationStack {
         AchievementsListView(
             achievementsViewModel: AchievementsViewModel(),
-            stepTrackerViewModel: StepTrackerViewModel()
+            stepTrackerViewModel: StepTrackerViewModel(),
+            healthKitViewModel: HealthKitViewModel()
         )
     }
 }
