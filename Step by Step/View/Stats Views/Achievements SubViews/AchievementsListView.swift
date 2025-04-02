@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AchievementsListView: View {
     @ObservedObject var achievementsViewModel: AchievementsViewModel
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
 
     var body: some View {
         ScrollView {
@@ -49,34 +50,44 @@ struct AchievementsListView: View {
                 }
 
                 // MARK: - Steps In A Day
-                AchievementSectionView(title: "Steps In A Day", achievements:
-                    achievementsViewModel.stepsInADayMilestones.map { milestone in
-                        (
+                AchievementSectionView(
+                    title: "Steps In A Day",
+                    achievements: achievementsViewModel.stepsInADayMilestones.map { milestone in
+                        let isUnlocked = achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
+                    
+                        let firsDate = stepTrackerViewModel.sortedStepData()
+                            .first(where: { $0.steps >= milestone })?
+                            .date
+                    
+                        return (
                             "\(milestone.formatted()) Steps",
                             "Walk \(milestone.formatted()) steps in a single day",
-                            achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
+                            isUnlocked,
+                            isUnlocked ? firsDate : nil
                         )
                     }
                 )
 
                 // MARK: - Total Steps Taken
-                AchievementSectionView(title: "Total Steps Taken", achievements:
-                    achievementsViewModel.totalStepsMilestones.map { milestone in
-                        (
-                            "\(milestone.formatted()) Steps",
-                            "Walk \(milestone.formatted()) steps total",
-                            achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone)
+                AchievementSectionView(
+                    title: "Total Steps Taken",
+                    achievements: achievementsViewModel.totalStepsMilestones.map { milestone in
+                        ("\(milestone.formatted()) Steps",
+                        "Walk \(milestone.formatted()) steps total",
+                        achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone),
+                        nil
                         )
                     }
                 )
 
                 // MARK: - Total Distance Traveled
-                AchievementSectionView(title: "Total Distance Traveled", achievements:
-                    achievementsViewModel.totalDistanceMilestones.map { milestone in
-                        (
-                            "\(milestone.cleanMiles()) Miles",
-                            "Travel \(milestone.cleanMiles()) miles total",
-                            achievementsViewModel.achievements.totalDistanceAchievementUnlocked.contains(milestone)
+                AchievementSectionView(
+                    title: "Total Distance Traveled",
+                    achievements: achievementsViewModel.totalDistanceMilestones.map { milestone in
+                        ("\(milestone.cleanMiles()) Miles",
+                         "Travel \(milestone.cleanMiles()) miles total",
+                         achievementsViewModel.achievements.totalDistanceAchievementUnlocked.contains(milestone),
+                         nil
                         )
                     }
                 )
@@ -105,7 +116,8 @@ extension Double {
 #Preview {
     NavigationStack {
         AchievementsListView(
-            achievementsViewModel: AchievementsViewModel()
+            achievementsViewModel: AchievementsViewModel(),
+            stepTrackerViewModel: StepTrackerViewModel()
         )
     }
 }
