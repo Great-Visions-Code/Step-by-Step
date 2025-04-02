@@ -51,8 +51,9 @@ struct AchievementsListView: View {
                 }
 
                 // MARK: - Steps In A Day
-                AchievementSectionView(title: "Steps In A Day", achievements:
-                    achievementsViewModel.stepsInADayMilestones.map { milestone in
+                AchievementSectionView(
+                    title: "Steps In A Day",
+                    achievements: achievementsViewModel.stepsInADayMilestones.map { milestone in
                         let isUnlocked = achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
                         let currentSteps = healthKitViewModel.hkCurrentStepsCount
 
@@ -61,7 +62,7 @@ struct AchievementsListView: View {
                             .date
 
                         let stepsToGo = max(milestone - currentSteps, 0)
-                    let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
+                        let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
 
                         return (
                             "\(milestone.formatted()) Steps",
@@ -78,20 +79,19 @@ struct AchievementsListView: View {
                     title: "Total Steps Taken",
                     achievements: achievementsViewModel.totalStepsMilestones.map { milestone in
                         let isUnlocked = achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone)
-                        
-                        let totalSoFar = stepTrackerViewModel.sortedStepData()
-                        var runningTotal = 0
-                        let firstDate = totalSoFar.first {
-                            runningTotal += $0.steps
-                            return runningTotal >= milestone
-                        }?.date
-                        
+                        let totalSteps = stepTrackerViewModel.sortedStepData().reduce(0) { $0 + $1.steps }
+
+                        let date = isUnlocked ? stepTrackerViewModel.sortedStepData().first(where: { $0.steps >= milestone })?.date : nil
+
+                        let stepsToGoValue = max(milestone - totalSteps, 0)
+                        let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGoValue.formatted())"
+
                         return (
                             "\(milestone.formatted()) Steps",
                             "Walk \(milestone.formatted()) steps total",
                             isUnlocked,
-                            isUnlocked ? firstDate : nil ,
-                            nil
+                            date,
+                            stepsToGoText
                         )
                     }
                 )
@@ -101,21 +101,20 @@ struct AchievementsListView: View {
                     title: "Total Distance Traveled",
                     achievements: achievementsViewModel.totalDistanceMilestones.map { milestone in
                         let isUnlocked = achievementsViewModel.achievements.totalDistanceAchievementUnlocked.contains(milestone)
-                        
-                        let totalSoFar = stepTrackerViewModel.sortedStepData()
-                        var runningTotalSteps = 0
-                        let firstDate = totalSoFar.first {
-                            runningTotalSteps += $0.steps
-                            let miles = Double(runningTotalSteps) * 0.0005
-                            return miles >= milestone
-                        }?.date
-                        
+                        let totalSteps = stepTrackerViewModel.sortedStepData().reduce(0) { $0 + $1.steps }
+                        let totalDistance = Double(totalSteps) * 0.0005 // ≈ 2000 steps per mile
+
+                        let date = isUnlocked ? stepTrackerViewModel.sortedStepData().first(where: { Double($0.steps) * 0.0005 >= milestone })?.date : nil
+
+                        let milesToGoValue = max(milestone - totalDistance, 0)
+                        let milesToGoText = isUnlocked ? nil : "Miles to go: \(milesToGoValue.cleanMiles())"
+
                         return (
                             "\(milestone.cleanMiles()) Miles",
                             "Travel \(milestone.cleanMiles()) miles total",
                             isUnlocked,
-                            isUnlocked ? firstDate : nil,
-                            nil
+                            date,
+                            milesToGoText
                         )
                     }
                 )
