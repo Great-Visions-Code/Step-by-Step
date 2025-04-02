@@ -72,10 +72,20 @@ struct AchievementsListView: View {
                 AchievementSectionView(
                     title: "Total Steps Taken",
                     achievements: achievementsViewModel.totalStepsMilestones.map { milestone in
-                        ("\(milestone.formatted()) Steps",
-                        "Walk \(milestone.formatted()) steps total",
-                        achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone),
-                        nil
+                        let isUnlocked = achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone)
+                        
+                        let totalSoFar = stepTrackerViewModel.sortedStepData()
+                        var runningTotal = 0
+                        let firstDate = totalSoFar.first {
+                            runningTotal += $0.steps
+                            return runningTotal >= milestone
+                        }?.date
+                        
+                        return (
+                            "\(milestone.formatted()) Steps",
+                            "Walk \(milestone.formatted()) steps total",
+                            isUnlocked,
+                            isUnlocked ? firstDate : nil
                         )
                     }
                 )
