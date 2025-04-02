@@ -40,7 +40,8 @@ struct StatsView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensures it fills the space
                 } else {
                     AchievementsListView(
-                        achievementsViewModel: AchievementsViewModel()
+                        achievementsViewModel: AchievementsViewModel(),
+                        stepTrackerViewModel: StepTrackerViewModel()
                     )
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
