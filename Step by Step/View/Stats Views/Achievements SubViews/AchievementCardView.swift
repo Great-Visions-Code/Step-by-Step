@@ -7,41 +7,46 @@
 
 import SwiftUI
 
-/// A single achievement row with an icon, title, and completion status.
+/// A single card view displaying an achievement's status, description, and optional metadata.
+///
+/// This view presents the achievement with a status icon, title, description,
+/// optional progress note (e.g., "Steps to go: 3,000"), and the date it was earned.
+/// Completed achievements are visually distinguished by color and an additional label.
 struct AchievementCardView: View {
-    var title: String
-    var description: String
-    var isCompleted: Bool
-    var dateEarned: String?
-    var stepsToGo: String?
+    /// A structured representation of the achievement to be displayed.
+    let achievementCardItems: AchievementCardItems
 
-    /// Dynamically adjust colors based on system theme
+    /// Automatically adapts to the system's light/dark mode for color styling.
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         HStack(spacing: 15) {
-            // Achievement Icon
-            Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundStyle(isCompleted ? .blue : .gray)
+            // MARK: - Completion Status Icon
+            Image(systemName: achievementCardItems.isCompleted ? "checkmark.circle.fill" : "circle")
+                .foregroundStyle(achievementCardItems.isCompleted ? .blue : .gray)
                 .font(.title2)
 
-            // Achievement Details
+            // MARK: - Textual Details
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                // Title (e.g., "5,000 Steps")
+                Text(achievementCardItems.title)
                     .font(.headline)
-                    .foregroundStyle(colorScheme == .dark ? .white : .black) // Adjust for Dark Mode
-                
-                Text(description)
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
+
+                // Description (e.g., "Walk 5,000 steps in a single day")
+                Text(achievementCardItems.description)
                     .font(.subheadline)
                     .foregroundStyle(.gray)
-                
-                if let stepsToGo = stepsToGo {
-                    Text(stepsToGo)
+
+                // Optional progress note if not yet completed
+                if let progress = achievementCardItems.progressNote {
+                    Text(progress)
                         .font(.footnote)
                         .foregroundStyle(.blue)
                 }
-                
-                if let dateEarned = dateEarned {
+
+                // Optional completion date
+                if let dateEarned = achievementCardItems.dateEarned {
                     Text("Date Earned: \(dateEarned)")
                         .font(.footnote)
                         .foregroundStyle(.blue)
@@ -50,25 +55,28 @@ struct AchievementCardView: View {
 
             Spacer()
 
-            // Completed Label
-            if isCompleted {
+            // MARK: - Completed Label
+            if achievementCardItems.isCompleted {
                 Text("Completed")
                     .font(.footnote)
                     .foregroundStyle(.blue)
             }
         }
         .padding()
-        .background(colorScheme == .dark ? Color.black : Color.white) // Adjust background for Dark Mode
+        .background(colorScheme == .dark ? Color.black : Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1) // Subtle shadow
+        .shadow(color: Color.black.opacity(0.05), radius: 3, x: 0, y: 1)
     }
 }
 
 #Preview {
-    AchievementCardView(title: "5,000 Steps",
-        description: "Walk 5,000 steps in a single day",
-        isCompleted: true,
-        dateEarned: "01/02/25",
-        stepsToGo: "(Steps to go: 14,576)"
+    AchievementCardView(
+        achievementCardItems: AchievementCardItems(
+            title: "5,000 Steps",
+            description: "Walk 5,000 steps in a single day",
+            isCompleted: true,
+            dateEarned: "04/01/25",
+            progressNote: nil
+        )
     )
 }
