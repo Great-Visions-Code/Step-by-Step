@@ -7,29 +7,36 @@
 
 import SwiftUI
 
-/// ViewModel responsible for managing the achievements data in the app.
+/// ViewModel responsible for managing and persisting achievement progress.
 ///
-/// This ViewModel provides functionality to observe and modify user achievements,
-/// such as tracking the number of attempts made in the game, unlocking achievements, and ensuring persistence.
+/// Handles logic for unlocking milestones, tracking step totals, resetting progress, and
+/// generating display-ready achievement data for views like `AchievementsListView` and `StoryAchievementsView`.
 class AchievementsViewModel: ObservableObject {
-    /// Published property for `Achievements`, allowing views to react to updates.
-    /// This ensures UI components stay in sync with the achievements data.
+    // MARK: - Published Properties
+
+    /// The underlying achievements model, updated and observed by the UI.
     @Published private(set) var achievements: Achievements {
         didSet {
             saveAchievements()
         }
     }
     
-    /// UserDefaults key for storing data persistently.
+    // MARK: - UserDefaults Keys
+    
     private let attemptsKey = "userAttempts"
     private let stepsInADayKey = "stepsInADayAchievementUnlocked"
     private let totalStepsKey = "totalStepsAchievementUnlocked"
     private let totalDistanceKey = "totalDistanceAchievementUnlocked"
     private let storyDaysKey = "storyDaysCompletedAchievementUnlocked"
     
+    // MARK: - Milestone Definitions
+    
     let stepsInADayMilestones: [Int] = [5_000, 7_500, 10_000, 12_500, 15_000, 17_500, 20_000, 25_000, 30_000, 35_000]
     let totalStepsMilestones: [Int] = [10_000, 20_000, 40_000, 80_000, 100_000, 200_000, 400_000, 500_000, 1_000_000, 2_000_000, 4_000_000]
     let totalDistanceMilestones: [Double] = [10, 20, 40, 50, 100, 200, 400, 500, 1000, 2_000, 4_000, 5_000, 10_000]
+    
+    /// Maps in-game day to the minimum chapterID required to unlock it.
+
     let surviveStoryDayMilestones: [Int: Int] = [
         1: 21, // Survive Day 1 Achievement (Chap 2 beginning)
         2: 31, // Survive Day 2 Achievement(Chap 3 beginning)
@@ -38,7 +45,8 @@ class AchievementsViewModel: ObservableObject {
         5: 56 // Survive Day 5 Achievement(Chap 5 ending)
     ]
     
-    /// Initializes the ViewModel.
+    // MARK: - Initialization
+    
     init() {
         let attempts = UserDefaults.standard.integer(forKey: attemptsKey)
         let day = Set(UserDefaults.standard.array(forKey: stepsInADayKey) as? [Int] ?? [])
@@ -55,22 +63,21 @@ class AchievementsViewModel: ObservableObject {
         )
     }
     
-    /// Increments the number of attempts by one and saves to UserDefaults.
-    ///
-    /// This method is typically called when the user starts a new attempt in the story.
+    // MARK: - Attempts
+
+    /// Increments the user's attempt counter and persists the change.
     func incrementAttempts() {
         achievements.attempts += 1
     }
-    
-    /// Resets the number of attempts to zero.
-    ///
-    /// This method can be used when the user wants to clear their progress or reset their achievements.
+
+    /// Resets the user's attempt counter to 0.
     func resetAttempts() {
         achievements.attempts = 0
     }
     
-    // MARK: - Story Achievements Logic
-    
+    // MARK: - Story Progress
+
+    /// Evaluates whether story-day achievements should be unlocked based on current chapter progress.
     func evaluateStoryProgress(chapterID: Int) {
         for (day, requiredChapterID) in surviveStoryDayMilestones {
             if chapterID >= requiredChapterID && !achievements.storyDaysCompletedAchievementUnlocked.contains(day) {
@@ -78,13 +85,15 @@ class AchievementsViewModel: ObservableObject {
             }
         }
     }
-    
+
+    /// Checks if a specific story day achievement has been unlocked.
     func isStoryDayAchievementUnlocked(_ day: Int) -> Bool {
         achievements.storyDaysCompletedAchievementUnlocked.contains(day)
     }
     
-    // MARK: - Unlock Checkers
-
+    // MARK: - Step & Distance Evaluation
+    
+    /// Evaluates step-related achievements across all categories based on step history.
     func evaluateAllStepMilestones(from stepData: [(date: String, steps: Int)]) {
         let maxInADay = stepData.map { $0.steps }.max() ?? 0
         let totalSteps = stepData.reduce(0) { $0 + $1.steps }
@@ -114,22 +123,114 @@ class AchievementsViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Display Generators
+
+    /// Returns display-ready data for "Steps In A Day" achievements.
+    func stepsInADayDisplayItems(currentSteps: Int, stepHistory: [(date: String, steps: Int)]) -> [AchievementCardItems] {
+            return stepsInADayMilestones.map { milestone in
+                let isUnlocked = achievements.stepsInADayAchievementUnlocked.contains(milestone)
+                let date = stepHistory.first(where: { $0.steps >= milestone })?.date
+                let stepsToGo = max(milestone - currentSteps, 0)
+                let note = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
+
+                return AchievementCardItems(
+                    title: "\(milestone.formatted()) Steps",
+                    description: "Walk \(milestone.formatted()) steps in a single day",
+                    isCompleted: isUnlocked,
+                    dateEarned: isUnlocked ? date : nil,
+                    progressNote: note
+                )
+            }
+        }
+    
+    /// Returns display-ready data for "Total Steps Taken" achievements.
+    func totalStepsDisplayItems(stepHistory: [(date: String, steps: Int)]) -> [AchievementCardItems] {
+        var displayItems: [AchievementCardItems] = []
+        var runningTotal = 0
+        var dateByMilestone: [Int: String] = [:]
+        
+        for (date, steps) in stepHistory {
+            runningTotal += steps
+            
+            for milestone in totalStepsMilestones where runningTotal >= milestone && dateByMilestone[milestone] == nil {
+                dateByMilestone[milestone] = date
+            }
+        }
+
+        for milestone in totalStepsMilestones {
+            let isUnlocked = achievements.totalStepsAchievementUnlocked.contains(milestone)
+            let stepsToGo = max(milestone - runningTotal, 0)
+            let note = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
+            
+            displayItems.append(
+                AchievementCardItems(
+                    title: "\(milestone.formatted()) Steps",
+                    description: "Walk \(milestone.formatted()) steps total",
+                    isCompleted: isUnlocked,
+                    dateEarned: dateByMilestone[milestone],
+                    progressNote: note
+                )
+            )
+        }
+        
+        return displayItems
+    }
+    
+    /// Returns display-ready data for "Total Distance Traveled" achievements.
+    func totalDistanceDisplayItems(stepHistory: [(date: String, steps: Int)]) -> [AchievementCardItems] {
+        var displayItems: [AchievementCardItems] = []
+        var runningTotalSteps = 0
+        var runningDistance = 0.0
+        var dateByMilestone: [Double: String] = [:]
+
+        for (date, steps) in stepHistory {
+            runningTotalSteps += steps
+            runningDistance = Double(runningTotalSteps) * 0.0005
+
+            for milestone in totalDistanceMilestones where runningDistance >= milestone && dateByMilestone[milestone] == nil {
+                dateByMilestone[milestone] = date
+            }
+        }
+
+        for milestone in totalDistanceMilestones {
+            let isUnlocked = achievements.totalDistanceAchievementUnlocked.contains(milestone)
+            let milesToGo = max(milestone - runningDistance, 0)
+            let note = isUnlocked ? nil : "Miles to go: \(milesToGo.formattedWithCommas())"
+
+            displayItems.append(
+                AchievementCardItems(
+                    title: "\(milestone.formattedWithCommas()) Miles",
+                    description: "Travel \(milestone.formattedWithCommas()) miles total",
+                    isCompleted: isUnlocked,
+                    dateEarned: dateByMilestone[milestone],
+                    progressNote: note
+                )
+            )
+        }
+
+        return displayItems
+    }
+
     // MARK: - Reset Functions
 
+    /// Resets all 'Steps In A Day' achievements.
     func resetMaxStepsInADayAchievements() {
         achievements.stepsInADayAchievementUnlocked = []
     }
 
+    /// Resets all 'Total Steps Taken' achievements.
     func resetTotalStepsAchievements() {
         achievements.totalStepsAchievementUnlocked = []
     }
 
+    /// Resets all 'Total Distance Traveled' achievements.
     func resetTotalDistanceAchievements() {
         achievements.totalDistanceAchievementUnlocked = []
     }
 
     // MARK: - Persistence
 
+    /// Saves the current state of all achievements to `UserDefaults`.
     private func saveAchievements() {
         UserDefaults.standard.set(achievements.attempts, forKey: attemptsKey)
         UserDefaults.standard.set(Array(achievements.stepsInADayAchievementUnlocked), forKey: stepsInADayKey)
