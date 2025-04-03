@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+/// Displays all achievement categories in a scrollable layout.
+///
+/// This view is responsible for listing achievements grouped by category:
+/// - Story Achievements (navigates to a separate view)
+/// - Steps In A Day
+/// - Total Steps Taken
+/// - Total Distance Traveled
+///
+/// It consumes data from three view models:
+/// - `AchievementsViewModel` for unlocked milestone logic
+/// - `StepTrackerViewModel` for historical step data
+/// - `HealthKitViewModel` for live step count updates
 struct AchievementsListView: View {
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
@@ -15,8 +27,8 @@ struct AchievementsListView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                
-                // MARK: - Story Achievements Section with Single Link Card
+
+                // MARK: - Story Achievements Shortcut Card
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Story Achievements")
                         .font(.headline)
@@ -50,71 +62,29 @@ struct AchievementsListView: View {
                     }
                 }
 
-                // MARK: - Steps In A Day
+                // MARK: - Steps In A Day Achievements
                 AchievementSectionView(
                     title: "Steps In A Day",
-                    achievements: achievementsViewModel.stepsInADayMilestones.map { milestone in
-                        let isUnlocked = achievementsViewModel.achievements.stepsInADayAchievementUnlocked.contains(milestone)
-                        let currentSteps = healthKitViewModel.hkCurrentStepsCount
-
-                        let firstDate = stepTrackerViewModel.sortedStepData().first(where: { $0.steps >= milestone })?.date
-
-                        let stepsToGo = max(milestone - currentSteps, 0)
-                        let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGo.formatted())"
-
-                        return (
-                            "\(milestone.formatted()) Steps",
-                            "Walk \(milestone.formatted()) steps in a single day",
-                            isUnlocked,
-                            isUnlocked ? firstDate : nil,
-                            stepsToGoText
-                        )
-                    }
+                    achievements: achievementsViewModel.stepsInADayDisplayItems(
+                        currentSteps: healthKitViewModel.hkCurrentStepsCount,
+                        stepHistory: stepTrackerViewModel.sortedStepData()
+                    )
                 )
 
-                // MARK: - Total Steps Taken
+                // MARK: - Total Steps Taken Achievements
                 AchievementSectionView(
                     title: "Total Steps Taken",
-                    achievements: achievementsViewModel.totalStepsMilestones.map { milestone in
-                        let isUnlocked = achievementsViewModel.achievements.totalStepsAchievementUnlocked.contains(milestone)
-                        let totalSteps = stepTrackerViewModel.sortedStepData().reduce(0) { $0 + $1.steps }
-
-                        let date = isUnlocked ? stepTrackerViewModel.sortedStepData().first(where: { $0.steps >= milestone })?.date : nil
-
-                        let stepsToGoValue = max(milestone - totalSteps, 0)
-                        let stepsToGoText = isUnlocked ? nil : "Steps to go: \(stepsToGoValue.formatted())"
-
-                        return (
-                            "\(milestone.formatted()) Steps",
-                            "Walk \(milestone.formatted()) steps total",
-                            isUnlocked,
-                            date,
-                            stepsToGoText
-                        )
-                    }
+                    achievements: achievementsViewModel.totalStepsDisplayItems(
+                        stepHistory: stepTrackerViewModel.sortedStepData()
+                    )
                 )
 
-                // MARK: - Total Distance Traveled
+                // MARK: - Total Distance Traveled Achievements
                 AchievementSectionView(
                     title: "Total Distance Traveled",
-                    achievements: achievementsViewModel.totalDistanceMilestones.map { milestone in
-                        let isUnlocked = achievementsViewModel.achievements.totalDistanceAchievementUnlocked.contains(milestone)
-                        let totalSteps = stepTrackerViewModel.sortedStepData().reduce(0) { $0 + $1.steps }
-                        let totalDistance = Double(totalSteps) * 0.0005 // ≈ 2000 steps per mile
-
-                        let date = isUnlocked ? stepTrackerViewModel.sortedStepData().first(where: { Double($0.steps) * 0.0005 >= milestone })?.date : nil
-
-                        let milesToGoValue = max(milestone - totalDistance, 0)
-                        let milesToGoText = isUnlocked ? nil : "Miles to go: \(milesToGoValue.cleanMiles())"
-
-                        return (
-                            "\(milestone.cleanMiles()) Miles",
-                            "Travel \(milestone.cleanMiles()) miles total",
-                            isUnlocked,
-                            date,
-                            milesToGoText
-                        )
-                    }
+                    achievements: achievementsViewModel.totalDistanceDisplayItems(
+                        stepHistory: stepTrackerViewModel.sortedStepData()
+                    )
                 )
             }
             .padding(.horizontal)
