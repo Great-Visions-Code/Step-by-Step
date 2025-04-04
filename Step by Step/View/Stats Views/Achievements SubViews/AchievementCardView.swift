@@ -20,7 +20,7 @@ struct AchievementCardView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        HStack(spacing: 15) {
+        HStack(spacing: 13) {
             // MARK: - Completion Status Icon
             Image(systemName: achievementCardItems.isCompleted ? "checkmark.circle.fill" : "circle")
                 .foregroundStyle(achievementCardItems.isCompleted ? .blue : .gray)
@@ -70,10 +70,12 @@ struct AchievementCardView: View {
 }
 
 #Preview {
+    var steps: String = "10,000"
+    
     AchievementCardView(
         achievementCardItems: AchievementCardItems(
-            title: "5,000 Steps",
-            description: "Walk 5,000 steps in a single day",
+            title: "\(steps) Steps",
+            description: "Walk \(steps) steps in a single day",
             isCompleted: true,
             dateEarned: "04/01/25",
             progressNote: nil
