@@ -89,6 +89,7 @@ struct AchievementsListView: View {
             }
             .padding(.horizontal)
             .padding(.top, 16)
+            .padding(.bottom, 88)
         }
     }
 }
