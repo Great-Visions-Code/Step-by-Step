@@ -53,7 +53,6 @@ The flagship story, **_Survive_**, drops players into a zombie apocalypse where 
 ### Finished Features  
 - Real-time HealthKit syncing  
 - Step-to-energy conversion  
-- Full story for _Survive_ (Days 1–5 complete)  
 - Player stat management (energy, health, progression)  
 - Story + fitness achievements  
 - Stats view with animated progress bars
