@@ -70,7 +70,7 @@ struct AchievementCardView: View {
 }
 
 #Preview {
-    var steps: String = "10,000"
+    let steps: String = "10,000"
     
     AchievementCardView(
         achievementCardItems: AchievementCardItems(
