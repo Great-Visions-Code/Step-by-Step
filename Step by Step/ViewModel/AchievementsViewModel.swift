@@ -31,9 +31,42 @@ class AchievementsViewModel: ObservableObject {
     
     // MARK: - Milestone Definitions
     
-    let stepsInADayMilestones: [Int] = [5_000, 7_500, 10_000, 12_500, 15_000, 17_500, 20_000, 25_000, 30_000, 35_000]
-    let totalStepsMilestones: [Int] = [10_000, 20_000, 40_000, 80_000, 100_000, 200_000, 400_000, 500_000, 1_000_000, 2_000_000, 4_000_000]
-    let totalDistanceMilestones: [Double] = [10, 20, 40, 50, 100, 200, 400, 500, 1000, 2_000, 4_000, 5_000, 10_000]
+    let stepsInADayMilestones: [Int] = [
+        5_000,
+        7_500,
+        10_000,
+        12_500,
+        15_000,
+        17_500,
+        20_000,
+        25_000,
+        30_000,
+        35_000,
+        40_000
+    ]
+    let totalStepsMilestones: [Int] = [
+        50_000,
+        75_000,
+        100_000,
+        250_000,
+        500_000,
+        1_000_000,
+        2_500_000,
+        5_000_000,
+        10_000_000
+    ]
+    let totalDistanceMilestones: [Double] = [
+        50,
+        75,
+        100,
+        250,
+        500,
+        750,
+        1_000,
+        2_500,
+        5_000,
+        10_000
+    ]
     
     /// Maps in-game day to the minimum chapterID required to unlock it.
 
