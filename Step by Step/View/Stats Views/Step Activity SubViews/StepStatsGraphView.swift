@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepStatsGraphView: View {
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
-    private let maxBarHeight: CGFloat = 200
+    private let maxBarHeight: CGFloat = 300 // Adjust as needed
 
     var body: some View {
         VStack {
