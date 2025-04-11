@@ -10,7 +10,7 @@ import SwiftUI
 struct StepActivityView: View {
 
     var body: some View {
-        VStack(spacing: 40) {
+        VStack {
             // MARK: - Steps Taken Stats View
             StepsTakenStatsView(
                 stepTrackerViewModel: StepTrackerViewModel()
@@ -18,7 +18,7 @@ struct StepActivityView: View {
             // MARK: - Step Stats Graph View
             StepStatsGraphView(stepTrackerViewModel: StepTrackerViewModel())
         }
-        .padding(.bottom, 75)
+        .padding(.bottom, 37) // Adjust as need
     }
 }
 
