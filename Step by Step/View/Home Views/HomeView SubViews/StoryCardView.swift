@@ -93,7 +93,7 @@ struct StoryCardView: View {
         story: .constant(
             StoryCard(
                 storyTitle: "Survive",
-                storyCardImage: "surviveCardImage",
+                storyCardImage: "SurviveStoryCardImage",
                 storyCompletion: 50,
                 storyDetails: "Dynamic story details."
             )
