@@ -66,13 +66,13 @@ struct ChooseYourAdventureView: View {
     @Previewable @State var stories = [
         StoryCard(
             storyTitle: "Survive",
-            storyCardImage: "surviveCardImage",
+            storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 50,
             storyDetails: "Dynamic completion story."
         ),
         StoryCard(
             storyTitle: "Stay Tuned",
-            storyCardImage: "stayTunedCardImage",
+            storyCardImage: "ComingSoonStoryCardImage",
             storyCompletion: 0,
             storyDetails: "Static completion story."
         )
