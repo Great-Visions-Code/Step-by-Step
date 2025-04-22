@@ -7,56 +7,57 @@
 
 import SwiftUI
 
-/// A view that displays a horizontal list of story cards, allowing users to select a story.
+/// A horizontal carousel that allows the user to scroll through and select interactive story cards.
+///
+/// Displays a title prompt followed by a horizontally scrollable list of story previews.
+/// Designed to highlight one primary story ("Survive") with live progress tracking,
+/// while also supporting static preview cards like "Stay Tuned" or upcoming titles.
 struct ChooseYourAdventureView: View {
-    /// A binding array of `StoryCard` objects representing the available stories.
+    
+    /// A dynamic list of all available stories for display and interaction.
     @Binding var stories: [StoryCard]
     
-    /// The `StoryContentViewModel` to track and update the dynamic completion percentage.
+    /// The view model responsible for updating completion percentages dynamically for active stories.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     
-    /// Closure to handle the selection of a story, notifying the parent view.
+    /// Callback triggered when a story is selected.
     var onStorySelected: (StoryCard) -> Void
     
     var body: some View {
-        VStack {
-            // Display the section title to prompt users to choose a story.
+        VStack() {
+            // MARK: - Title
             Text("Choose Your Adventure:")
-                .font(.title2)
-                .bold()
+                .font(.title2.bold())
+                .padding(.horizontal)
                 .padding(.top)
-            
-            // Horizontal scroll view displaying a collection of story cards.
+
+            // MARK: - Scrollable Story Cards
             ScrollView(.horizontal, showsIndicators: true) {
-                HStack(spacing: 15) {
-                    // Dynamically generate a card for each story in the `stories` array.
+                HStack(spacing: 20) {
                     ForEach($stories, id: \.storyTitle) { $story in
-                        // Pass dynamic updates only for "Survive."
+                        // "Survive" supports live dynamic tracking.
                         if story.storyTitle == "Survive" {
                             StoryCardView(
-                                story: $story, // Pass a binding to the story card.
-                                storyContentViewModel: storyContentViewModel, // Pass ViewModel for dynamic updates.
+                                story: $story,
+                                storyContentViewModel: storyContentViewModel,
                                 onTitleCardSelected: {
-                                    // Notify the parent view when a story card is selected.
                                     onStorySelected(story)
                                 }
                             )
                         } else {
-                            // Render static stories like "Stay Tuned"
+                            // Static preview cards for future or locked stories.
                             StoryCardView(
-                                story: $story, // Pass a binding to the story card.
-                                storyContentViewModel: nil, // Pass nil to prevent dynamic updates.
+                                story: $story,
+                                storyContentViewModel: nil,
                                 onTitleCardSelected: {
-                                    // Notify the parent view when a story card is selected.
                                     onStorySelected(story)
                                 }
                             )
                         }
                     }
                 }
-                .padding(.horizontal, 40) // Center the story cards within the scroll view.
+                .padding(.top, 5)
             }
-            .padding(.top)
         }
     }
 }
@@ -65,13 +66,13 @@ struct ChooseYourAdventureView: View {
     @Previewable @State var stories = [
         StoryCard(
             storyTitle: "Survive",
-            storyCardColor: Color.blue,
+            storyCardImage: "surviveCardImage",
             storyCompletion: 50,
             storyDetails: "Dynamic completion story."
         ),
         StoryCard(
             storyTitle: "Stay Tuned",
-            storyCardColor: Color.blue,
+            storyCardImage: "stayTunedCardImage",
             storyCompletion: 0,
             storyDetails: "Static completion story."
         )
