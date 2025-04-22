@@ -25,7 +25,7 @@ class StoryCardViewModel: ObservableObject {
         /// and reach the evacuation center.
         StoryCard(
             storyTitle: "Survive",
-            storyCardColor: Color.blue,
+            storyCardImage: "surviveCardImage",
             storyCompletion: 0,
             storyDetails: """
             In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
@@ -45,7 +45,7 @@ class StoryCardViewModel: ObservableObject {
         /// This encourages user engagement by teasing additional content.
         StoryCard(
             storyTitle: "Stay Tuned",
-            storyCardColor: Color.blue,
+            storyCardImage: "stayTunedCardImage",
             storyCompletion: 0,
             storyDetails: """
             Stay tuned for upcoming thrilling adventures that will test your strategy!
