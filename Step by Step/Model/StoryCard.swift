@@ -21,10 +21,10 @@ struct StoryCard: Hashable {
     /// This is used as a label for the card and displayed prominently to the user.
     let storyTitle: String
 
-    /// The background color of the card, providing visual identity for the story.
+    /// The background image of the card, providing visual identity for the story.
     ///
     /// This helps differentiate stories in the UI using consistent color themes.
-    let storyCardColor: Color
+    let storyCardImage: String
 
     /// The percentage of the story completed by the user.
     ///
