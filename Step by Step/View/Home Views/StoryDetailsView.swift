@@ -45,20 +45,20 @@ struct StoryDetailsView: View {
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                     .padding()
-            }
-            // Conditionally show the "Enter Story" button.
-            if story.storyTitle != "Stay Tuned" {
-                Button(action: {
-                    onEnterStoryButton() // Trigger the closure to navigate to the main story view.
-                }) {
-                    Text("Enter Story")
-                        .font(.title2)
-                        .bold()
-                        .padding()
-                        .frame(width: 300, height: 70)
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(20)
+                // Conditionally show the "Enter Story" button.
+                if story.storyTitle != "Stay Tuned" {
+                    Button(action: {
+                        onEnterStoryButton() // Trigger the closure to navigate to the main story view.
+                    }) {
+                        Text("Enter Story")
+                            .font(.title2)
+                            .bold()
+                            .padding()
+                            .frame(width: 300, height: 70)
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .cornerRadius(20)
+                    }
                 }
             }
         }
@@ -72,7 +72,7 @@ struct StoryDetailsView: View {
     StoryDetailsView(
         story: StoryCard(
             storyTitle: "Story Title",
-            storyCardColor: .green,
+            storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: """
                     SAMPLE: 'Story Title', this is where we would show the details of the story.
