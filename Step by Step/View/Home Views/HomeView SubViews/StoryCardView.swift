@@ -7,71 +7,81 @@
 
 import SwiftUI
 
-/// Represents a single story card in the "Choose Your Adventure" section.
+/// A tappable visual card representing a single interactive story in the Choose Your Adventure list.
 ///
-/// This view displays the title, completion percentage, and color associated with a story.
-/// Users can tap the card to trigger a callback, initiating navigation.
+/// Displays a full-width story image with a dark overlay and an optional progress bar.
+/// When tapped, the card triggers a callback to allow parent views to navigate or present content.
+///
+/// Completion percentage is only shown for stories tied to a `StoryContentViewModel` (e.g., "Survive").
 struct StoryCardView: View {
-    /// A binding to the `StoryCard` model containing the data to display.
+    
+    /// A binding to the story model to reflect progress updates and selection state.
     @Binding var story: StoryCard
     
-    /// An optional `StoryContentViewModel` to track dynamic updates for the story.
+    /// View model that provides real-time progress updates for the active story.
+    /// Only set for dynamic stories like "Survive".
     var storyContentViewModel: StoryContentViewModel?
     
-    /// Closure triggered when the card is tapped.
+    /// Callback triggered when the card is tapped.
     var onTitleCardSelected: () -> Void
 
-    /// State variable to manage the scaling animation when the card is pressed.
+    /// Used to animate a subtle scale-down effect on tap.
     @State private var isPressed = false
     
     var body: some View {
-        VStack {
-            // Display the story title with formatting for readability and scaling for longer titles.
-            Text(story.storyTitle)
-                .font(.title2)
-                .bold()
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.white)
-                .lineLimit(2)
-                .minimumScaleFactor(0.6)
-                .padding(.bottom, 10)
-            
-            // Display the completion percentage, styled for a secondary emphasis.
-            Text("Completed: \(storyContentViewModel?.completionPercentage ?? 0)%")
-                .font(.footnote)
-                .foregroundStyle(.white.opacity(0.8))
-            
-            // **Modern Progress Bar**
-            ProgressView(value: Double(storyContentViewModel?.completionPercentage ?? 0), total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: Color.white)) //vUses white tint for contrast
-                .frame(height: 5) // Thin, sleek progress bar
-                .background(Color.white.opacity(0.2)) // Subtle background for contrast
-                .cornerRadius(3)
-                .padding(.horizontal, 20)
+        ZStack {
+            // MARK: - Background Story Art
+            Image(story.storyCardImage)
+                .resizable()
+                .frame(width: 350, height: 185)
+                .clipped()
+
+            // MARK: - Bottom Overlay for Progress
+            Rectangle()
+                .fill(.black)
+                .opacity(0.6)
+                .frame(height: 52)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+
+            // MARK: - Progress Text + Bar
+            if let percentage = storyContentViewModel?.completionPercentage {
+                VStack(spacing: 4) {
+                    Text("Completed: \(percentage)%")
+                        .font(.footnote.bold())
+                        .foregroundStyle(.white)
+
+                    ProgressView(value: Double(percentage), total: 100)
+                        .progressViewStyle(.linear)
+                        .tint(.white)
+                        .frame(height: 5)
+                        .background(Color.white.opacity(0.2))
+                        .cornerRadius(3)
+                        .padding(.horizontal, 20)
+                }
+                .frame(height: 52)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+            }
         }
-        .padding()
-        .frame(width: 150, height: 150) // Set card dimensions.
-        .background(story.storyCardColor) // Use the story's assigned color as the background.
-        .cornerRadius(20) // Add rounded corners for a polished look.
-        .shadow(radius: 5) // Apply a shadow for a slight 3D effect.
-        .scaleEffect(isPressed ? 0.95 : 1.0) // Add scaling animation when the card is pressed.
+        .frame(width: 350, height: 185)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 5)
+        .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
         .onTapGesture {
-            // Animate the press effect.
             withAnimation {
-                isPressed.toggle()
+                isPressed = true
             }
-            // After a short delay, reset the animation and execute the callback.
+            // Reset the press state after tap and invoke selection callback
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation {
-                    isPressed.toggle()
+                    isPressed = false
                 }
                 onTitleCardSelected()
             }
         }
         .onChange(of: storyContentViewModel?.completionPercentage, initial: false) { _, newValue in
-            // Update completion percentage only if a valid ViewModel is provided.
-            if let newValue = newValue, story.storyTitle == "Survive" {
+            // Update bound model with new completion value (only for live-tracked stories)
+            if let newValue, story.storyTitle == "Survive" {
                 story.storyCompletion = newValue
             }
         }
@@ -83,7 +93,7 @@ struct StoryCardView: View {
         story: .constant(
             StoryCard(
                 storyTitle: "Survive",
-                storyCardColor: Color.blue,
+                storyCardImage: "surviveCardImage",
                 storyCompletion: 50,
                 storyDetails: "Dynamic story details."
             )
