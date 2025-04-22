@@ -117,7 +117,7 @@ struct StoryHomeView: View {
     StoryHomeView(
         story: StoryCard(
             storyTitle: "Survive",
-            storyCardImage: "surviveCardImage",
+            storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: "DETAILS NOT SHOWN"
         ),
