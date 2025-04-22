@@ -117,7 +117,7 @@ struct StoryHomeView: View {
     StoryHomeView(
         story: StoryCard(
             storyTitle: "Survive",
-            storyCardColor: .green,
+            storyCardImage: "surviveCardImage",
             storyCompletion: 0,
             storyDetails: "DETAILS NOT SHOWN"
         ),
