@@ -7,63 +7,81 @@
 
 import SwiftUI
 
-/// Displays detailed information about a selected story, including its title, completion percentage, and description.
-/// Provides an option for the user to "Enter Story," which navigates to the main story view.
+/// Displays detailed information about a selected story, including a dynamic banner,
+/// completion status, and a description with an action to enter the story.
 struct StoryDetailsView: View {
     // The story object containing title, color, and details to be displayed.
     var story: StoryCard
-    
+
     // Optional ViewModel to observe the current story's completion percentage dynamically.
     var storyContentViewModel: StoryContentViewModel?
-    
+
     // Closure to handle the action when the "Enter Story" button is pressed.
     var onEnterStoryButton: () -> Void
-        
+
+    /// Determines which banner image to use based on the story's title.
+    private var bannerImageName: String {
+        story.storyTitle == "Survive" ? "SurviveBannerImage" : "ComingSoonBannerImage"
+    }
+
     var body: some View {
         VStack(spacing: 20) {
-            // Display the story title prominently.
-            Spacer()
-            Text(story.storyTitle)
-                .font(.largeTitle)
-                .bold()
-            
-            // Show the completion percentage dynamically for "Survive" or static for others.
-            if story.storyTitle == "Survive" {
-                Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
-                    .font(.subheadline)
-            } else {
-                Text("Completion: 0%") // Static completion for other stories like "Stay Tuned".
-                    .font(.subheadline)
-            }
-            
-            Divider()
-            
-            // Scrollable section for the story's detailed description.
-            ScrollView(.vertical, showsIndicators: true) {
-                Text(story.storyDetails)
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                // Conditionally show the "Enter Story" button.
-                if story.storyTitle != "Stay Tuned" {
-                    Button(action: {
-                        onEnterStoryButton() // Trigger the closure to navigate to the main story view.
-                    }) {
-                        Text("Enter Story")
-                            .font(.title2)
-                            .bold()
-                            .padding()
-                            .frame(width: 300, height: 70)
-                            .background(Color.blue)
+            // MARK: - Banner Section
+            ZStack(alignment: .bottom) {
+                Image(bannerImageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 225)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                
+                Rectangle()
+                    .opacity(0.4)
+                    .frame(maxWidth: .infinity, minHeight: 75, maxHeight: 75)
+                
+                // MARK: - Story Title & Completion
+                VStack(spacing: 8) {
+                    Text(story.storyTitle)
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundStyle(.white)
+                    
+                    if story.storyTitle == "Survive" {
+                        Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
+                            .font(.subheadline)
                             .foregroundStyle(.white)
-                            .cornerRadius(20)
+                    } else {
+                        Text("More adventures in the works!")
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
+                    }
+                }
+                .padding(.bottom, 7)
+            }
+
+            // MARK: - Description & Enter Button
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text(story.storyDetails)
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .padding()
+
+                    if story.storyTitle != "Stay Tuned" {
+                        Button(action: onEnterStoryButton) {
+                            Text("Enter Story")
+                                .font(.title2)
+                                .bold()
+                                .frame(width: 300, height: 70)
+                                .background(Color.blue)
+                                .foregroundStyle(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                        }
                     }
                 }
             }
         }
-        .padding(.bottom)
-        // Hide the default navigation back button as the TabView is visible for navigation.
+        .edgesIgnoringSafeArea(.top) // Allow banner to extend to screen top
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -71,7 +89,7 @@ struct StoryDetailsView: View {
 #Preview {
     StoryDetailsView(
         story: StoryCard(
-            storyTitle: "Story Title",
+            storyTitle: "Survive",
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: """
