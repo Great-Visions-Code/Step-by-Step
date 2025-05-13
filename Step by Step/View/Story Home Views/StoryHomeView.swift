@@ -103,11 +103,8 @@ struct StoryHomeView: View {
                     )
                 }
             }
-            
             Spacer() // Spacer to balance layout and push buttons toward the bottom.
-            Divider()
         }
-        .padding()
         // Hide the default navigation back button since this is a top-level view.
         .navigationBarBackButtonHidden(true)
     }
