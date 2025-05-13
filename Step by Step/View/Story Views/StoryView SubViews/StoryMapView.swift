@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Displays the story's world map, allowing users to pan and zoom.
 struct StoryMapView: View {
-    private let mapImage = UIImage(named: "surviveTownMap") ?? UIImage()
+    private let mapImage = UIImage(named: "SurviveTownMap") ?? UIImage()
 
     var body: some View {
         ZoomableScrollView {
