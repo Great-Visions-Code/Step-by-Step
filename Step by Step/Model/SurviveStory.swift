@@ -1783,7 +1783,7 @@ struct SurviveStory {
             chapterID: 1,
             storyDay: 0, // This will be dynamically updated in StoryContentViewModel.
             chapterTitle: "Survive",
-            chapterImages: ["survive-ending-image"],
+            chapterImages: ["survive-1-ending-image"],
             chapterText: """
                 Congratulations! You made it through the chaos and survived against all odds.
                 This is the end of your journey.
