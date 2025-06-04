@@ -11,14 +11,12 @@ import SwiftUI
 /// and options for resuming, restarting, or viewing achievements.
 /// Provides navigational buttons to various sections of the app.
 struct StoryHomeView: View {
-    // The story object containing title, color, completion, and details to be displayed.
+    // The story object containing title, completion, and details to be displayed.
     var story: StoryCard
     
-    // ViewModel to manage and observe the player's stats, such as health and energy.
+    // ViewModels to manage and observe the player's stats, achievements, and story content.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
-    // ViewModel to manage achievements.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
-    // ViewModel to manage the story content.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     // Closure to handle navigation to other sections, such as resuming or starting a new story.
@@ -33,17 +31,24 @@ struct StoryHomeView: View {
     
     var body: some View {
         ZStack {
+            // MARK: - Background Image
             Image("survive-day1-homeImage")
                 .resizable()
                 .ignoresSafeArea()
             
             VStack {
-                Spacer() // Spacer to push content towards the center of the screen.
-                
-                // MARK: - Display the title of the current story.
-                StoryTitleView(title: story.storyTitle)
-                    .padding()
-                    
+                // MARK: - Display Story Title
+                StoryTitleView(
+                    title: story.storyTitle,
+                    font: .largeTitle,
+                    fontWeight: .black,
+                    fontWidth: .expanded,
+                    fontDesign: .serif,
+                    fontSize: 80,
+                    kerning: 3.5,
+                    foregroundColor: .white.opacity(0.9)
+                )
+                .padding()
                 
                 // MARK: - Show the player's current health and energy levels.
                 VStack(spacing: 20) {
