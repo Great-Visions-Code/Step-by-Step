@@ -38,7 +38,7 @@ struct StoryHomeView: View {
             
             VStack {
                 // MARK: - Display Story Title
-                StoryTitleView(
+                StoryTitleTextView(
                     title: story.storyTitle,
                     font: .largeTitle,
                     fontWeight: .black,
