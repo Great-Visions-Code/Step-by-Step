@@ -1,5 +1,5 @@
 //
-//  PlayerStatsIconDisplayView.swift
+//  PlayersVisualStatsView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 12/5/24.
@@ -13,7 +13,7 @@ import SwiftUI
 /// Supports animation on value changes and full typography customization for the label above the bar.
 ///
 /// Use this view in game HUDs or dashboards to give players clear, expressive feedback on their current status.
-struct PlayerStatsIconDisplayView: View {
+struct PlayersVisualStatsView: View {
     
     // MARK: - Typography
     
@@ -144,7 +144,7 @@ struct PlayerStatsIconDisplayView: View {
         
         VStack(spacing: 20) {
             // **Preview for HP
-            PlayerStatsIconDisplayView(
+            PlayersVisualStatsView(
                 font: .largeTitle,
                 fontWeight: .black,
                 fontWidth: .expanded,
@@ -162,7 +162,7 @@ struct PlayerStatsIconDisplayView: View {
             )
             
             // **Preview for EP
-            PlayerStatsIconDisplayView(
+            PlayersVisualStatsView(
                 font: .largeTitle,
                 fontWeight: .black,
                 fontWidth: .expanded,
