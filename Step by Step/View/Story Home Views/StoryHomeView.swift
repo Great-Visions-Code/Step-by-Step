@@ -52,17 +52,37 @@ struct StoryHomeView: View {
                 
                 // MARK: - Show the player's current health and energy levels.
                 VStack(spacing: 20) {
-                    StoryHPAndEPBarView(
+                    PlayerStatsIconDisplayView(
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 20,
+                        kerning: 2.5,
+                        foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.health,
                         maxPoints: 10,
-                        type: .health,
-                        iconSpacing: 8
+                        iconType: .health,
+                        iconSpacing: 8,
+                        capsuleColor: Color.white.opacity(0.15),
+                        iconColor: Color.red.opacity(0.9),
+                        iconOutlineColor: Color.white.opacity(0.9)
                     )
-                    StoryHPAndEPBarView(
+                    PlayerStatsIconDisplayView(
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 20,
+                        kerning: 2.5,
+                        foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.energy,
                         maxPoints: 10,
-                        type: .energy,
-                        iconSpacing: 14
+                        iconType: .energy,
+                        iconSpacing: 14,
+                        capsuleColor: Color.white.opacity(0.15),
+                        iconColor: Color.blue.opacity(0.9),
+                        iconOutlineColor: Color.white.opacity(0.9)
                     )
                 }
                 .padding()
