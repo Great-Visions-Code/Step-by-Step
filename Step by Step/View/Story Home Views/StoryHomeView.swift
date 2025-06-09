@@ -37,7 +37,7 @@ struct StoryHomeView: View {
                 .ignoresSafeArea()
             
             VStack {
-                // MARK: - Display Story Title
+                // MARK: - Displays Story Title
                 StoryTitleTextView(
                     title: story.storyTitle,
                     font: .largeTitle,
@@ -50,14 +50,14 @@ struct StoryHomeView: View {
                 )
                 .padding()
                 
-                // MARK: - Show the player's current health and energy levels.
+                // MARK: - Displays Players Visual Stats
                 VStack(spacing: 20) {
-                    PlayerStatsIconDisplayView(
+                    PlayersVisualStatsView(
                         font: .largeTitle,
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 20,
+                        fontSize: 18,
                         kerning: 2.5,
                         foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.health,
@@ -68,12 +68,12 @@ struct StoryHomeView: View {
                         iconColor: Color.red.opacity(0.9),
                         iconOutlineColor: Color.white.opacity(0.9)
                     )
-                    PlayerStatsIconDisplayView(
+                    PlayersVisualStatsView(
                         font: .largeTitle,
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 20,
+                        fontSize: 18,
                         kerning: 2.5,
                         foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.energy,
@@ -87,9 +87,19 @@ struct StoryHomeView: View {
                 }
                 .padding()
                 
-                // MARK: - Display the current day and chapter of the story, along with the number of attempts.
+                // MARK: - Displays Day and Chapter
                 VStack {
-                    StoryDayAndChapterView(storyContentViewModel: storyContentViewModel)
+                    StoryDayAndChapterTextView(
+                        storyContentViewModel: storyContentViewModel,
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 25,
+                        subheadlineSize: 18,
+                        kerning: 3.5,
+                        foregroundColor: .white.opacity(0.9)
+                    )
                     .padding(.bottom, 20)
                     
                     // MARK: - Display Survive completion percentage dynamically.
