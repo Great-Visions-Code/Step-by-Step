@@ -97,21 +97,37 @@ struct StoryHomeView: View {
                         fontDesign: .serif,
                         fontSize: 25,
                         subheadlineSize: 18,
-                        kerning: 3.5,
+                        kerning: 2.5,
                         foregroundColor: .white.opacity(0.9)
                     )
                     .padding(.bottom, 20)
                     
                     // MARK: - Display Survive completion percentage dynamically.
-                    CompletionPercentageView(storyContentViewModel: StoryContentViewModel(
+                    StoryProgressDisplayView(
+                        storyContentViewModel: StoryContentViewModel(
                         achievementsViewModel: AchievementsViewModel(),
                         playerStatsViewModel: PlayerStatsViewModel()
-                        )
+                        ),
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 18,
+                        kerning: 2.5,
+                        foregroundColor: .white.opacity(0.9)
                     )
+                    .padding(.bottom, 20)
                     
                     // MARK: - Display Attempts taken.
                     AttemptTrackerView(
-                        achievementsViewModel: achievementsViewModel
+                        achievementsViewModel: achievementsViewModel,
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 25,
+                        kerning: 2.5,
+                        foregroundColor: .white.opacity(0.9)
                     )
                     .padding()
                 }
@@ -147,6 +163,8 @@ struct StoryHomeView: View {
         .navigationBarBackButtonHidden(true)
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     StoryHomeView(
