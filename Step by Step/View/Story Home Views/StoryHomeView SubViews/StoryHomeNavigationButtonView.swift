@@ -33,6 +33,8 @@ struct StoryHomeNavigationButtonView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     StoryHomeNavigationButtonView(
         buttonText: "Start New Story",

@@ -88,6 +88,8 @@ struct StoryDayAndChapterTextView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()

@@ -55,6 +55,8 @@ struct StoryTitleTextView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()

@@ -63,6 +63,8 @@ struct StoryAchievementsView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     StoryAchievementsView(achievementsViewModel: AchievementsViewModel())
 }
