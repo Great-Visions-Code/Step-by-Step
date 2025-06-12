@@ -57,7 +57,7 @@ struct StoryHomeView: View {
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 18,
+                        fontSize: 15,
                         kerning: 2.5,
                         foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.health,
@@ -73,7 +73,7 @@ struct StoryHomeView: View {
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 18,
+                        fontSize: 15,
                         kerning: 2.5,
                         foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.energy,
@@ -112,22 +112,15 @@ struct StoryHomeView: View {
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 18,
+                        fontSize: 15,
                         kerning: 2.5,
                         foregroundColor: .white.opacity(0.9)
                     )
                     .padding(.bottom, 20)
                     
                     // MARK: - Display Attempts taken.
-                    AttemptTrackerView(
+                    AttemptsCountView(
                         achievementsViewModel: achievementsViewModel,
-                        font: .largeTitle,
-                        fontWeight: .black,
-                        fontWidth: .expanded,
-                        fontDesign: .serif,
-                        fontSize: 25,
-                        kerning: 2.5,
-                        foregroundColor: .white.opacity(0.9)
                     )
                     .padding()
                 }
@@ -152,7 +145,14 @@ struct StoryHomeView: View {
                                 }
                                 // Trigger navigation to the appropriate view using the button's action property.
                                 onNavigateButton(button.action)
-                            }
+                            },
+                            font: .largeTitle,
+                            fontWeight: .black,
+                            fontWidth: .expanded,
+                            fontDesign: .serif,
+                            fontSize: 18,
+                            kerning: 1.0,
+                            foregroundColor: .white.opacity(0.9)
                         )
                     }
                 }
