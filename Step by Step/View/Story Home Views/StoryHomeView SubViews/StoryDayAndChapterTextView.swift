@@ -7,52 +7,72 @@
 
 import SwiftUI
 
-/// A view that displays the current day and chapter title for a story.
+/// A UI component that displays the current in-game day and chapter title in the story.
 ///
-/// This component helps convey narrative progress to the player, showing their current in-game day,
-/// chapter title, and how far along they are in the overall story.
+/// This view communicates narrative progress by showing the player which day they're on,
+/// the title of the current chapter, and how far along they are in the story's timeline.
 ///
-/// Commonly used in views like `StoryHomeView` to reinforce the player’s current place within the story arc.
+/// Commonly used in views like `StoryHomeView` to reinforce the user’s position in the story.
+///
+/// ### Example
+/// ```swift
+/// StoryDayAndChapterTextView(
+///     storyContentViewModel: StoryContentViewModel(...),
+///     font: .title,
+///     fontWeight: .black,
+///     fontWidth: .expanded,
+///     fontDesign: .serif,
+///     fontSize: 26,
+///     subheadlineSize: 16,
+///     kerning: 2.0,
+///     subheadlineKerning: 1.5,
+///     foregroundColor: .white
+/// )
+/// ```
 struct StoryDayAndChapterTextView: View {
     
     // MARK: - Dependencies
     
-    /// The view model tracking the player's current story chapter and total number of days.
+    /// The view model containing the current story chapter and story metadata (e.g., total days).
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     
     // MARK: - Typography
     
-    /// The base font to use when no specific size is given.
+    /// The fallback font if no size override is provided.
     var font: Font
     
-    /// The weight of the font (e.g., `.regular`, `.bold`, `.black`).
+    /// Font weight for both the headline and subheadline.
     var fontWeight: Font.Weight
     
-    /// The width of the font (e.g., `.condensed`, `.expanded`).
+    /// Font width (e.g., `.standard`, `.condensed`, `.expanded`) for both lines of text.
     var fontWidth: Font.Width
     
-    /// The design of the font (e.g., `.serif`, `.monospaced`, `.rounded`).
+    /// The design of the font (e.g., `.serif`, `.monospaced`).
     var fontDesign: Font.Design
     
-    /// Optional font size for the main headline (e.g., chapter title).
+    /// Optional font size for the main headline (day and chapter title).
     var fontSize: CGFloat?
     
-    /// Optional font size for the subheadline (e.g., day tracker).
+    /// Optional font size for the subheadline (e.g., “Day 3 out of 10”).
     var subheadlineSize: CGFloat?
     
-    /// Spacing between characters for both labels.
+    /// Character spacing for the headline text.
     var kerning: CGFloat
     
-    /// The color used for all text displayed in this view.
+    /// Character spacing for the subheadline text.
+    var subheadlineKerning: CGFloat
+    
+    /// Color applied to both text labels.
     var foregroundColor: Color
     
     // MARK: - View Body
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 5) {
             if let currentChapter = storyContentViewModel.currentChapter {
                 
-                // Headline: Displays current in-game day and chapter title.
+                // MARK: - Headline
+                // Displays in-game day and current chapter title.
                 Text("Day \(currentChapter.storyDay): \"\(currentChapter.chapterTitle)\"")
                     .font(
                         fontSize != nil
@@ -66,7 +86,8 @@ struct StoryDayAndChapterTextView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                 
-                // Subheadline: Shows day progress (e.g., “Day 3 out of 10”).
+                // MARK: - Subheadline
+                // Shows story progress: current day out of total days.
                 Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
                     .font(
                         subheadlineSize != nil
@@ -75,11 +96,12 @@ struct StoryDayAndChapterTextView: View {
                     )
                     .fontWeight(fontWeight)
                     .fontWidth(fontWidth)
-                    .kerning(kerning)
+                    .kerning(subheadlineKerning)
                     .foregroundColor(foregroundColor)
                 
             } else {
-                // Fallback message if no chapter data is available.
+                // MARK: - Fallback
+                // Displayed when chapter data is missing.
                 Text("Story not found: Please return home.")
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
@@ -89,6 +111,24 @@ struct StoryDayAndChapterTextView: View {
 }
 
 // MARK: - Preview
+
+#Preview {
+    StoryHomeView(
+        story: StoryCard(
+            storyTitle: "Survive",
+            storyCardImage: "SurviveStoryCardImage",
+            storyCompletion: 0,
+            storyDetails: "DETAILS NOT SHOWN"
+        ),
+        playerStatsViewModel: PlayerStatsViewModel(),
+        achievementsViewModel: AchievementsViewModel(),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
+        ),
+        onNavigateButton: { _ in }
+    )
+}
 
 #Preview {
     ZStack {
@@ -106,6 +146,7 @@ struct StoryDayAndChapterTextView: View {
             fontSize: 25,
             subheadlineSize: 18,
             kerning: 3.5,
+            subheadlineKerning: 2.5,
             foregroundColor: .white.opacity(0.9)
         )
     }
