@@ -7,41 +7,74 @@
 
 import SwiftUI
 
-/// A customizable button designed for navigation actions within the Story Home screen.
-/// This button provides a consistent style and supports dynamic text and actions.
+/// A stylized navigation button used on the Story Home screen.
+///
+/// This reusable button supports customizable text, action, font styling, and background color.
+/// Designed for use within the story selection and navigation flow, ensuring consistent appearance
+/// across the app's user interface.
+///
+/// - Note: This button defaults to a fixed width and corner radius to align with design patterns
+/// used throughout `Step by Step`.
+///
+/// ### Example
+/// ```swift
+/// StoryHomeNavigationButtonView(
+///     buttonText: "Resume",
+///     buttonAction: { print("Resume tapped") },
+///     font: .headline,
+///     fontWeight: .bold,
+///     fontWidth: .expanded,
+///     fontDesign: .serif,
+///     fontSize: 18,
+///     kerning: 2.0,
+///     foregroundColor: .white,
+///     backgroundColor: Color.blue.opacity(0.2)
+/// )
+/// ```
 struct StoryHomeNavigationButtonView: View {
-    /// The text to display on the button.
+    
+    // MARK: - Content & Behavior
+    
+    /// The title shown inside the button.
     var buttonText: String
-    /// An optional closure executed when the button is pressed.
+    
+    /// Optional action executed when the button is tapped.
     var buttonAction: (() -> Void)?
     
-    /// The base font to use. This is used if no explicit font size is provided.
+    // MARK: - Typography
+    
+    /// Base font used when `fontSize` is not provided.
     var font: Font
     
-    /// The weight of the font (e.g., `.regular`, `.bold`, `.black`).
+    /// Font weight (e.g., `.regular`, `.bold`, `.black`) applied to the label.
     var fontWeight: Font.Weight
     
-    /// The width of the font characters (e.g., `.standard`, `.condensed`, `.expanded`).
+    /// Font width variation (e.g., `.standard`, `.expanded`).
     var fontWidth: Font.Width
     
-    /// The design of the font (e.g., `.default`, `.serif`, `.rounded`, `.monospaced`).
+    /// Design style of the font (e.g., `.serif`, `.monospaced`, `.rounded`).
     var fontDesign: Font.Design
     
-    /// Optional explicit font size. If provided, overrides `font` with a system font of given size, weight, and design.
+    /// Optional font size override. If provided, it replaces the `font` value with a `system` font.
     var fontSize: CGFloat?
     
-    /// The spacing between individual characters in the title.
+    /// Letter spacing for the button label.
     var kerning: CGFloat
     
-    /// The color to apply to the text.
+    // MARK: - Styling
+    
+    /// Text color for the button label.
     var foregroundColor: Color
+    
+    /// Optional background color for the button’s capsule. If `nil`, background is transparent.
+    var backgroundColor: Color?
+    
+    // MARK: - View Body
     
     var body: some View {
         Button(action: {
-            // Execute the provided action, if any.
             buttonAction?()
         }) {
-            // Render the button with a consistent appearance for the app's design.
             Text(buttonText)
                 .font(
                     fontSize != nil
@@ -53,25 +86,48 @@ struct StoryHomeNavigationButtonView: View {
                 .kerning(kerning)
                 .foregroundColor(foregroundColor)
                 .padding()
-                .frame(width: 250) // Maintain a standard width for all buttons of this type.
-                .background(Color.blue)
-                .cornerRadius(20) // Ensure the button fits the app's rounded design language.
+                .frame(width: 350)
+                .background(backgroundColor)
+                .cornerRadius(20)
         }
     }
 }
 
-// MARK: - Preview
+// MARK: - Previews
 
 #Preview {
-    StoryHomeNavigationButtonView(
-        buttonText: "Start New Story",
-        buttonAction: {},
-        font: .largeTitle,
-        fontWeight: .black,
-        fontWidth: .expanded,
-        fontDesign: .serif,
-        fontSize: 80,
-        kerning: 3.5,
-        foregroundColor: .white.opacity(0.9)
+    StoryHomeView(
+        story: StoryCard(
+            storyTitle: "Survive",
+            storyCardImage: "SurviveStoryCardImage",
+            storyCompletion: 0,
+            storyDetails: "DETAILS NOT SHOWN"
+        ),
+        playerStatsViewModel: PlayerStatsViewModel(),
+        achievementsViewModel: AchievementsViewModel(),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
+        ),
+        onNavigateButton: { _ in }
     )
+}
+
+#Preview {
+    ZStack {
+        Color.black.ignoresSafeArea()
+        
+        StoryHomeNavigationButtonView(
+            buttonText: "Start New Story",
+            buttonAction: {},
+            font: .largeTitle,
+            fontWeight: .black,
+            fontWidth: .expanded,
+            fontDesign: .serif,
+            fontSize: 18,
+            kerning: 3.5,
+            foregroundColor: .white.opacity(0.9),
+            backgroundColor: Color.white.opacity(0.15)
+        )
+    }
 }
