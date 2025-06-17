@@ -7,47 +7,63 @@
 
 import SwiftUI
 
-/// A view that displays the user's story progression as a percentage and visual progress bar.
+/// A visual indicator of the user's story progression, combining a percentage label and progress bar.
 ///
-/// This view renders a customizable completion percentage label alongside a modern linear `ProgressView`.
-/// It's commonly used in views like `StoryHomeView` to give users visual feedback on how far they’ve progressed
-/// through a given story.
+/// `StoryProgressDisplayView` communicates how far the user has advanced through a story.
+/// It includes a customizable percentage text and a sleek linear progress bar that adapts visually
+/// as progress updates.
 ///
-/// You can customize the typography, layout spacing, and colors to match the app’s branding.
+/// Typically placed in `StoryHomeView`, it reinforces narrative momentum and encourages completion.
+///
+/// ### Example
+/// ```swift
+/// StoryProgressDisplayView(
+///     storyContentViewModel: viewModel,
+///     font: .body,
+///     fontWeight: .bold,
+///     fontWidth: .expanded,
+///     fontDesign: .serif,
+///     fontSize: 18,
+///     kerning: 2.5,
+///     foregroundColor: .white
+/// )
+/// ```
 struct StoryProgressDisplayView: View {
     
-    // MARK: - Properties
+    // MARK: - Dependencies
     
-    /// ViewModel that provides real-time updates for story progress, including percentage completion.
+    /// ViewModel that publishes live updates to story completion percentage.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
+
+    // MARK: - Typography
     
-    /// The base `Font` to use when no explicit `fontSize` is provided.
+    /// Fallback font if no specific size is defined.
     var font: Font
     
-    /// The weight of the font (e.g., `.regular`, `.bold`, `.black`).
+    /// Weight of the text label (e.g., `.regular`, `.black`, etc.).
     var fontWeight: Font.Weight
     
-    /// The width of the font characters (e.g., `.standard`, `.condensed`, `.expanded`).
+    /// Width variant of the font (e.g., `.expanded`, `.condensed`).
     var fontWidth: Font.Width
     
-    /// The design of the font (e.g., `.default`, `.serif`, `.rounded`, `.monospaced`).
+    /// Font design family (e.g., `.default`, `.serif`, `.monospaced`).
     var fontDesign: Font.Design
     
-    /// Optional explicit font size. When set, overrides the `font` with a system font of the specified size.
+    /// Optional font size. If present, it overrides the base `font` with a system font.
     var fontSize: CGFloat?
     
-    /// The amount of spacing between each character in the text.
+    /// Letter spacing applied to the percentage text.
     var kerning: CGFloat
     
-    /// The color to apply to the text.
+    /// Color applied to the percentage text.
     var foregroundColor: Color
-    
-    // MARK: - Body
+
+    // MARK: - View Body
     
     var body: some View {
         VStack(spacing: 5) {
-            /// Displays the text label for the completion percentage.
-            Text("Completed: \(storyContentViewModel.completionPercentage)%")
+            // MARK: - Completion Percentage Text
+            Text("\(storyContentViewModel.completionPercentage)%")
                 .font(
                     fontSize != nil
                     ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
@@ -58,7 +74,7 @@ struct StoryProgressDisplayView: View {
                 .kerning(kerning)
                 .foregroundColor(foregroundColor)
             
-            /// Displays a linear progress bar to visually represent completion.
+            // MARK: - Progress Bar
             ProgressView(value: Double(storyContentViewModel.completionPercentage), total: 100)
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.blue.opacity(0.9)))
                 .frame(height: 6)
@@ -84,8 +100,8 @@ struct StoryProgressDisplayView: View {
             fontWeight: .black,
             fontWidth: .expanded,
             fontDesign: .serif,
-            fontSize: 25,
-            kerning: 3.5,
+            fontSize: 18,
+            kerning: 3.0,
             foregroundColor: .white.opacity(0.9)
         )
     }
