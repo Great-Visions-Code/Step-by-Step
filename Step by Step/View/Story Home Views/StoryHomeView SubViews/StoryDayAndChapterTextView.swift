@@ -68,7 +68,7 @@ struct StoryDayAndChapterTextView: View {
     // MARK: - View Body
     
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 30) {
             if let currentChapter = storyContentViewModel.currentChapter {
                 
                 // MARK: - Headline
@@ -88,7 +88,7 @@ struct StoryDayAndChapterTextView: View {
                 
                 // MARK: - Subheadline
                 // Shows story progress: current day out of total days.
-                Text("Day \(currentChapter.storyDay) out of \(storyContentViewModel.totalDays)")
+                Text("Days Survived \(currentChapter.storyDay)/\(storyContentViewModel.totalDays)")
                     .font(
                         subheadlineSize != nil
                         ? Font.system(size: subheadlineSize!, weight: fontWeight, design: fontDesign)
