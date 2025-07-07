@@ -26,6 +26,7 @@ struct StoryDetailsView: View {
 
     var body: some View {
         VStack(spacing: 20) {
+            
             // MARK: - Banner Section
             ZStack(alignment: .bottom) {
                 Image(bannerImageName)
@@ -36,6 +37,7 @@ struct StoryDetailsView: View {
                     .clipped()
                 
                 Rectangle()
+                    .fill(Color.black)
                     .opacity(0.4)
                     .frame(maxWidth: .infinity, minHeight: 75, maxHeight: 75)
                 
