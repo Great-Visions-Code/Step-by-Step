@@ -66,7 +66,7 @@ struct StoryHomeView: View {
                     fontWeight: .black,
                     fontWidth: .expanded,
                     fontDesign: .serif,
-                    fontSize: 80,
+                    fontSize: 75,
                     kerning: 6.0,
                     foregroundColor: .white.opacity(0.95)
                 )
@@ -197,7 +197,7 @@ struct StoryHomeView: View {
 #Preview {
     StoryHomeView(
         story: StoryCard(
-            storyTitle: "Survive",
+            storyTitle: "SURVIVE",
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: "DETAILS NOT SHOWN"
