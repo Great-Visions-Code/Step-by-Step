@@ -54,8 +54,8 @@ struct StoryHomeView: View {
             
             // Overlay to increase text contrast
             Color.black
+                .opacity(0.75)
                 .ignoresSafeArea()
-                .opacity(0.4)
             
             VStack {
                 // MARK: - Story Title
@@ -113,31 +113,31 @@ struct StoryHomeView: View {
                 
                 // MARK: - Story Status Info
                 
-                VStack(spacing: 20) {
+                VStack(spacing: 5) {
                     StoryDayAndChapterTextView(
                         storyContentViewModel: storyContentViewModel,
                         font: .largeTitle,
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 25,
+                        fontSize: 30,
                         subheadlineSize: 18,
                         kerning: 1.0,
                         subheadlineKerning: 3.0,
                         foregroundColor: .white.opacity(0.95)
                     )
                     
-                    // Dynamic progress display as percentage bar
-                    StoryProgressDisplayView(
-                        storyContentViewModel: storyContentViewModel,
-                        font: .largeTitle,
-                        fontWeight: .black,
-                        fontWidth: .expanded,
-                        fontDesign: .serif,
-                        fontSize: 18,
-                        kerning: 3.0,
-                        foregroundColor: .white.opacity(0.95)
-                    )
+//                    // Dynamic progress display as percentage bar
+//                    StoryProgressDisplayView(
+//                        storyContentViewModel: storyContentViewModel,
+//                        font: .largeTitle,
+//                        fontWeight: .black,
+//                        fontWidth: .expanded,
+//                        fontDesign: .serif,
+//                        fontSize: 18,
+//                        kerning: 3.0,
+//                        foregroundColor: .white.opacity(0.95)
+//                    )
                     
                     // Track number of story attempts (resets)
                     StoryAttemptsTrackerView(
@@ -146,7 +146,7 @@ struct StoryHomeView: View {
                         fontWeight: .black,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 25,
+                        fontSize: 18,
                         kerning: 1.0,
                         foregroundColor: .white.opacity(0.95)
                     )
