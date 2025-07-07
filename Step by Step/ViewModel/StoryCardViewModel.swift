@@ -24,7 +24,7 @@ class StoryCardViewModel: ObservableObject {
         /// A zombie apocalypse adventure where the player's goal is to survive 10 in-game days
         /// and reach the evacuation center.
         StoryCard(
-            storyTitle: "Survive",
+            storyTitle: "SURVIVE",
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: """
