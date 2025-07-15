@@ -54,7 +54,7 @@ struct StoryHomeView: View {
             
             // Overlay to increase text contrast
             Color.black
-                .opacity(0.75)
+                .opacity(0.7)
                 .ignoresSafeArea()
             
             VStack {
@@ -77,7 +77,7 @@ struct StoryHomeView: View {
                 VStack(spacing: 20) {
                     StoryStatsBarView(
                         font: .largeTitle,
-                        fontWeight: .black,
+                        fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .serif,
                         fontSize: 18,
@@ -94,7 +94,7 @@ struct StoryHomeView: View {
                     
                     StoryStatsBarView(
                         font: .largeTitle,
-                        fontWeight: .black,
+                        fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .serif,
                         fontSize: 18,
@@ -118,6 +118,7 @@ struct StoryHomeView: View {
                         storyContentViewModel: storyContentViewModel,
                         font: .largeTitle,
                         fontWeight: .black,
+                        subheadlineFontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .serif,
                         fontSize: 30,
@@ -143,7 +144,7 @@ struct StoryHomeView: View {
                     StoryAttemptsTrackerView(
                         achievementsViewModel: achievementsViewModel,
                         font: .largeTitle,
-                        fontWeight: .black,
+                        fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .serif,
                         fontSize: 18,
@@ -152,7 +153,7 @@ struct StoryHomeView: View {
                     )
                 }
                 .padding()
-                .padding(.bottom, 20)
+                .padding(.bottom, 50)
                 
                 // MARK: - Navigation Buttons
                 
