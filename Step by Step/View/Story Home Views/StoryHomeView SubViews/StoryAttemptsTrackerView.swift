@@ -60,7 +60,7 @@ struct StoryAttemptsTrackerView: View {
     // MARK: - View Body
     
     var body: some View {
-        Text("Attempt #\(achievementsViewModel.achievements.attempts)")
+        Text("Attempt: \(achievementsViewModel.achievements.attempts)")
             .font(
                 fontSize != nil
                 ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
