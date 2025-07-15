@@ -7,57 +7,59 @@
 
 import SwiftUI
 
-/// The main hub screen for a selected story.
+/// The primary hub view for a selected story in the app.
 ///
-/// `StoryHomeView` displays the current status of the player's journey within the story,
-/// including their health, energy, story day and chapter, completion progress, and total attempts.
-/// This view also allows the user to resume their progress, start a new run, or view story-specific achievements.
+/// `StoryHomeView` provides a summary of the player's progress in the current story.
+/// It visually displays health, energy, current day, chapter progress, total attempts, and offers navigation
+/// to resume the story, restart it, or view achievements.
+///
+/// This view acts as the central starting point before entering active gameplay.
 struct StoryHomeView: View {
     
     // MARK: - Dependencies
     
-    /// The selected story metadata (title, completion %, image, and details).
+    /// The selected story metadata used to populate this view.
     let story: StoryCard
     
-    /// View model tracking player's current health and energy stats.
+    /// View model providing player stats (health, energy) for this story.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
-    /// View model tracking player achievements such as attempts and milestone unlocks.
+    /// View model providing achievement data (attempt count, milestones) for this story.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     
-    /// View model for loading and progressing through story content.
+    /// View model managing the story chapters, progress, and content flow.
     @ObservedObject var storyContentViewModel: StoryContentViewModel
     
-    /// A closure that handles navigation based on button action identifiers.
-    /// For example: `"ResumeStoryView"` or `"StoryAchievementsView"`
+    /// A closure called with the navigation destination identifier (e.g., `"ResumeStoryView"`).
     let onNavigateButton: (String) -> Void
     
     // MARK: - Navigation Button Configuration
     
-    /// A list of navigation button labels and corresponding navigation actions.
+    /// Titles and action identifiers for navigation buttons.
     let buttonActions: [(title: String, action: String)] = [
         ("Resume Story", "ResumeStoryView"),
         ("Start New Story", "StoryView"),
-        ("Story Achievements", "StoryAchievementsView"),
+        ("Achievements", "StoryAchievementsView"),
     ]
     
     // MARK: - View Body
     
     var body: some View {
         ZStack {
-            // MARK: - Background Styling
+            // MARK: - Background
             
-            // Background image related to story theme
             Image("survive-day1-homeImage")
                 .resizable()
                 .ignoresSafeArea()
             
-            // Overlay to increase text contrast
             Color.black
                 .opacity(0.7)
                 .ignoresSafeArea()
             
-            VStack {
+            // MARK: - Main Content Stack
+            
+            VStack(spacing: 50) {
+                
                 // MARK: - Story Title
                 
                 StoryTitleTextView(
@@ -66,12 +68,12 @@ struct StoryHomeView: View {
                     fontWeight: .black,
                     fontWidth: .expanded,
                     fontDesign: .serif,
-                    fontSize: 75,
-                    kerning: 6.0,
+                    fontSize: 82,
+                    kerning: 3.0,
                     foregroundColor: .white.opacity(0.95)
                 )
-                .padding()
-                
+                .padding(.horizontal)
+                    
                 // MARK: - Player Stats (Health & Energy)
                 
                 VStack(spacing: 20) {
@@ -79,9 +81,9 @@ struct StoryHomeView: View {
                         font: .largeTitle,
                         fontWeight: .bold,
                         fontWidth: .expanded,
-                        fontDesign: .serif,
-                        fontSize: 18,
-                        kerning: 3.0,
+                        fontDesign: .monospaced,
+                        fontSize: 19,
+                        kerning: 0.0,
                         foregroundColor: .white.opacity(0.95),
                         currentPoints: playerStatsViewModel.playerStats.health,
                         maxPoints: 10,
@@ -96,9 +98,9 @@ struct StoryHomeView: View {
                         font: .largeTitle,
                         fontWeight: .bold,
                         fontWidth: .expanded,
-                        fontDesign: .serif,
-                        fontSize: 18,
-                        kerning: 3.0,
+                        fontDesign: .monospaced,
+                        fontSize: 19,
+                        kerning: 0.0,
                         foregroundColor: .white.opacity(0.95),
                         currentPoints: playerStatsViewModel.playerStats.energy,
                         maxPoints: 10,
@@ -109,51 +111,37 @@ struct StoryHomeView: View {
                         iconOutlineColor: Color.white.opacity(0.95)
                     )
                 }
-                .padding()
                 
-                // MARK: - Story Status Info
+                // MARK: - Story Info
                 
-                VStack(spacing: 5) {
-                    StoryDayAndChapterTextView(
+                VStack(spacing: 25) {
+                    StoryChapterTextView(
                         storyContentViewModel: storyContentViewModel,
                         font: .largeTitle,
                         fontWeight: .black,
-                        subheadlineFontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .serif,
-                        fontSize: 30,
-                        subheadlineSize: 18,
-                        kerning: 1.0,
-                        subheadlineKerning: 3.0,
+                        fontSize: 32,
+                        kerning: 0.0,
                         foregroundColor: .white.opacity(0.95)
                     )
                     
-//                    // Dynamic progress display as percentage bar
-//                    StoryProgressDisplayView(
-//                        storyContentViewModel: storyContentViewModel,
-//                        font: .largeTitle,
-//                        fontWeight: .black,
-//                        fontWidth: .expanded,
-//                        fontDesign: .serif,
-//                        fontSize: 18,
-//                        kerning: 3.0,
-//                        foregroundColor: .white.opacity(0.95)
-//                    )
-                    
-                    // Track number of story attempts (resets)
-                    StoryAttemptsTrackerView(
+                    // Shows story attempts and current day progress.
+                    StoryDayAndAttemptsTrackerView(
                         achievementsViewModel: achievementsViewModel,
+                        storyContentViewModel: StoryContentViewModel(
+                            achievementsViewModel: AchievementsViewModel(),
+                            playerStatsViewModel: PlayerStatsViewModel()
+                        ),
                         font: .largeTitle,
                         fontWeight: .bold,
                         fontWidth: .expanded,
-                        fontDesign: .serif,
-                        fontSize: 18,
-                        kerning: 1.0,
+                        fontDesign: .monospaced,
+                        fontSize: 19,
+                        kerning: 0.0,
                         foregroundColor: .white.opacity(0.95)
                     )
                 }
-                .padding()
-                .padding(.bottom, 50)
                 
                 // MARK: - Navigation Buttons
                 
@@ -162,7 +150,7 @@ struct StoryHomeView: View {
                         StoryHomeNavigationButtonView(
                             buttonText: button.title,
                             buttonAction: {
-                                // Handle special setup logic before navigation
+                                // Perform specific actions before navigation
                                 switch button.action {
                                 case "ResumeStoryView":
                                     storyContentViewModel.resumeStory()
@@ -175,21 +163,13 @@ struct StoryHomeView: View {
                                     break
                                 }
                                 onNavigateButton(button.action)
-                            },
-                            font: .largeTitle,
-                            fontWeight: .black,
-                            fontWidth: .expanded,
-                            fontDesign: .serif,
-                            fontSize: 25,
-                            kerning: 1.0,
-                            foregroundColor: .white.opacity(0.95),
-                            backgroundColor: .white.opacity(0.30)
+                            }
                         )
                     }
                 }
             }
         }
-        .navigationBarBackButtonHidden(true) // Hides the default back button
+        .navigationBarBackButtonHidden(true)
     }
 }
 
