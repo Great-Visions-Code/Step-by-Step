@@ -1,5 +1,5 @@
 //
-//  StoryAttemptsTrackerView.swift
+//  StoryDayAndAttemptsTrackerView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 12/8/24.
@@ -16,7 +16,7 @@ import SwiftUI
 ///
 /// ## Example
 /// ```swift
-/// StoryAttemptsTrackerView(
+/// StoryDayAndAttemptsTrackerView(
 ///     achievementsViewModel: AchievementsViewModel(),
 ///     font: .title2,
 ///     fontWeight: .bold,
@@ -27,12 +27,15 @@ import SwiftUI
 ///     foregroundColor: .white
 /// )
 /// ```
-struct StoryAttemptsTrackerView: View {
+struct StoryDayAndAttemptsTrackerView: View {
     
     // MARK: - Dependencies
     
     /// ViewModel that holds story attempt data and updates dynamically.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
+    
+    @ObservedObject var storyContentViewModel: StoryContentViewModel
+
     
     // MARK: - Typography Configuration
     
@@ -60,16 +63,31 @@ struct StoryAttemptsTrackerView: View {
     // MARK: - View Body
     
     var body: some View {
-        Text("Attempt: \(achievementsViewModel.achievements.attempts)")
-            .font(
-                fontSize != nil
-                ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
-                : font
-            )
-            .fontWeight(fontWeight)
-            .fontWidth(fontWidth)
-            .kerning(kerning)
-            .foregroundColor(foregroundColor)
+        VStack{
+            // MARK: - In-game Day Tracker
+            // Shows story progress: current day out of total days.
+            Text("Days Survived: \(storyContentViewModel.currentChapter!.storyDay) of \(storyContentViewModel.totalDays)")
+                .font(
+                    fontSize != nil
+                    ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
+                    : font
+                )
+                .fontWeight(fontWeight)
+                .fontWidth(fontWidth)
+                .kerning(kerning)
+                .foregroundColor(foregroundColor)
+            
+            Text("Attempt: \(achievementsViewModel.achievements.attempts)")
+                .font(
+                    fontSize != nil
+                    ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
+                    : font
+                )
+                .fontWeight(fontWeight)
+                .fontWidth(fontWidth)
+                .kerning(kerning)
+                .foregroundColor(foregroundColor)
+        }
     }
 }
 
@@ -79,8 +97,12 @@ struct StoryAttemptsTrackerView: View {
     ZStack {
         Color.black.ignoresSafeArea()
         
-        StoryAttemptsTrackerView(
+        StoryDayAndAttemptsTrackerView(
             achievementsViewModel: AchievementsViewModel(),
+            storyContentViewModel: StoryContentViewModel(
+                achievementsViewModel: AchievementsViewModel(),
+                playerStatsViewModel: PlayerStatsViewModel()
+            ),
             font: .largeTitle,
             fontWeight: .black,
             fontWidth: .expanded,
