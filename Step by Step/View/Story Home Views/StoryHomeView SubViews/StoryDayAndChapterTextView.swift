@@ -44,6 +44,9 @@ struct StoryDayAndChapterTextView: View {
     /// Font weight for both the headline and subheadline.
     var fontWeight: Font.Weight
     
+    /// Font weight for both the subheadline.
+    var subheadlineFontWeight: Font.Weight
+    
     /// Font width (e.g., `.standard`, `.condensed`, `.expanded`) for both lines of text.
     var fontWidth: Font.Width
     
@@ -88,13 +91,13 @@ struct StoryDayAndChapterTextView: View {
                 
                 // MARK: - Subheadline
                 // Shows story progress: current day out of total days.
-                Text("Days Survived \(currentChapter.storyDay)/\(storyContentViewModel.totalDays)")
+                Text("Days Survived: \(currentChapter.storyDay) of \(storyContentViewModel.totalDays)")
                     .font(
                         subheadlineSize != nil
                         ? Font.system(size: subheadlineSize!, weight: fontWeight, design: fontDesign)
                         : font
                     )
-                    .fontWeight(fontWeight)
+                    .fontWeight(subheadlineFontWeight)
                     .fontWidth(fontWidth)
                     .kerning(subheadlineKerning)
                     .foregroundColor(foregroundColor)
@@ -141,6 +144,7 @@ struct StoryDayAndChapterTextView: View {
             ),
             font: .largeTitle,
             fontWeight: .black,
+            subheadlineFontWeight: .bold,
             fontWidth: .expanded,
             fontDesign: .serif,
             fontSize: 25,
