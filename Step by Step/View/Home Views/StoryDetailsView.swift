@@ -7,28 +7,40 @@
 
 import SwiftUI
 
-/// Displays detailed information about a selected story, including a dynamic banner,
-/// completion status, and a description with an action to enter the story.
+/// A detailed view showcasing the selected story's banner, completion progress, description, and entry action.
+///
+/// `StoryDetailsView` is responsible for presenting the player with an overview of a specific story.
+/// This includes dynamic completion data (when available), a title banner, descriptive text, and a button to begin the story.
+///
+/// Typically accessed after selecting a story card from the dashboard or library.
 struct StoryDetailsView: View {
-    // The story object containing title, color, and details to be displayed.
-    var story: StoryCard
+    
+    // MARK: - Dependencies
+    
+    /// The selected `StoryCard` containing metadata like title, completion, and descriptive text.
+    let story: StoryCard
 
-    // Optional ViewModel to observe the current story's completion percentage dynamically.
-    var storyContentViewModel: StoryContentViewModel?
+    /// Optional view model for dynamically reflecting the current completion percentage.
+    let storyContentViewModel: StoryContentViewModel?
 
-    // Closure to handle the action when the "Enter Story" button is pressed.
-    var onEnterStoryButton: () -> Void
-
-    /// Determines which banner image to use based on the story's title.
+    /// Closure to handle the "Enter Story" button action.
+    let onEnterStoryButton: () -> Void
+    
+    // MARK: - Dynamic Banner Logic
+    
+    /// Determines which banner image to display based on the `story` title.
     private var bannerImageName: String {
-        story.storyTitle == "Survive" ? "SurviveBannerImage" : "ComingSoonBannerImage"
+        story.storyTitle == "SURVIVE" ? "SurviveBannerImage" : "ComingSoonBannerImage"
     }
-
+    
+    // MARK: - View Body
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 0) {
+            // MARK: - Banner Header Section
             
-            // MARK: - Banner Section
             ZStack(alignment: .bottom) {
+                // Story banner image
                 Image(bannerImageName)
                     .resizable()
                     .scaledToFill()
@@ -36,22 +48,35 @@ struct StoryDetailsView: View {
                     .frame(maxWidth: .infinity)
                     .clipped()
                 
+                // Black overlay to increase readability
                 Rectangle()
                     .fill(Color.black)
                     .opacity(0.4)
-                    .frame(maxWidth: .infinity, minHeight: 75, maxHeight: 75)
+                    .frame(maxWidth: .infinity, minHeight: 80, maxHeight: 80)
                 
-                // MARK: - Story Title & Completion
-                VStack(spacing: 8) {
-                    Text(story.storyTitle)
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundStyle(.white)
+                // MARK: - Story Title & Completion Progress
+                
+                VStack {
+                    StoryTitleTextView(
+                        title: story.storyTitle,
+                        font: .largeTitle,
+                        fontWeight: .black,
+                        fontWidth: .expanded,
+                        fontDesign: .serif,
+                        fontSize: 45,
+                        kerning: 20,
+                        foregroundColor: .white.opacity(0.75)
+                    )
+                    .padding(.leading)
                     
-                    if story.storyTitle == "Survive" {
-                        Text("Completion: \(storyContentViewModel?.completionPercentage ?? 0)%")
+                    if story.storyTitle == "SURVIVE" {
+                        Text("Progress: \(storyContentViewModel?.completionPercentage ?? 0)%")
                             .font(.subheadline)
-                            .foregroundStyle(.white)
+                            .fontWeight(.black)
+                            .fontWidth(.expanded)
+                            .fontDesign(.serif)
+                            .foregroundStyle(.white.opacity(0.75))
+                            .kerning(1)
                     } else {
                         Text("More adventures in the works!")
                             .font(.subheadline)
@@ -61,46 +86,61 @@ struct StoryDetailsView: View {
                 .padding(.bottom, 7)
             }
 
-            // MARK: - Description & Enter Button
-            ScrollView {
-                VStack(spacing: 20) {
-                    Text(story.storyDetails)
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .padding()
-
-                    if story.storyTitle != "Stay Tuned" {
-                        Button(action: onEnterStoryButton) {
-                            Text("Enter Story")
-                                .font(.title2)
-                                .bold()
-                                .frame(width: 300, height: 70)
-                                .background(Color.blue)
-                                .foregroundStyle(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
+            // MARK: - Description & Enter Story Button
+            
+            ZStack {
+                Color.black.ignoresSafeArea(edges: .all)
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Story descriptive text
+                        Text(story.storyDetails)
+                            .font(.body)
+                            .fontDesign(.monospaced)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.white)
+                            .padding(.top)
+                        
+                        // Enter Story button (hidden if "Stay Tuned")
+                        if story.storyTitle != "Stay Tuned" {
+                            Button(action: onEnterStoryButton) {
+                                Text("Enter Story")
+                                    .font(.largeTitle)
+                                    .fontWeight(.black)
+                                    .fontDesign(.monospaced)
+                                    .frame(width: 350, height: 70)
+                                    .background(Color.white.opacity(0.30))
+                                    .foregroundStyle(.white.opacity(0.95))
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .padding()
+                            }
                         }
                     }
                 }
             }
         }
-        .edgesIgnoringSafeArea(.top) // Allow banner to extend to screen top
-        .navigationBarBackButtonHidden(true)
+        .edgesIgnoringSafeArea(.top) // Allows banner to reach screen's top edge
+        .navigationBarBackButtonHidden(true) // Removes the default back button
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     StoryDetailsView(
         story: StoryCard(
-            storyTitle: "Survive",
+            storyTitle: "SURVIVE",
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: """
-                    SAMPLE: 'Story Title', this is where we would show the details of the story.
-                    
-                     Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
-                                        
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia inceptos magna enim nec neque dictum erat himenaeos integer. Purus dolor posuere parturient sapien elit venenatis ante felis. Id placerat facilisi magna habitasse velit tortor. Cras eu duis quam vehicula arcu. Purus pulvinar eros suspendisse leo ligula scelerisque pulvinar. Tincidunt sem massa luctus egestas ligula vehicula. Nostra velit mollis ac tortor nisi pellentesque. Semper curae venenatis ultrices libero fusce primis quisque.
-                    """
+            In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
+
+            Your goal is simple yet daunting: survive for 5 in-game days and reach the evacuation center at the city's edge, where safety awaits. Each day presents new challenges, from scavenging for supplies to fending off zombies and navigating the unpredictable dangers of a collapsing society.
+
+            This story is not just about survival—it's about taking steps to secure your fate. Literally. Your real-life steps fuel your progress in the game. The more steps you take, the more energy you earn to make critical decisions and advance through the story. But beware: impulsive choices may cost you dearly, whether it’s starvation, accidents, or hostile survivors.
+
+            Will you make it to safety, or will you succumb to the chaos? Step into the story and find out!
+            """
         ),
         storyContentViewModel: StoryContentViewModel(
             achievementsViewModel: AchievementsViewModel(),
