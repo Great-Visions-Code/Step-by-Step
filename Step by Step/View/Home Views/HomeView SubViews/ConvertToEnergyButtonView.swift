@@ -12,24 +12,28 @@ import SwiftUI
 /// This view encourages user activity by converting real-world steps into
 /// game energy, rewarding progress toward their daily step goal.
 struct ConvertToEnergyButtonView: View {
+    
     /// ViewModel for managing player stats, such as health and energy points.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
 
     /// ViewModel for managing steps taken and goals.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
+    /// Computed property to calculate how many energy points would be earned on tap.
+    private var energyPoints: Int {
+        ConvertToEnergyViewModel.calculateStepsToEnergy(
+            stepsToConvert: stepTrackerViewModel.stepTracker.stepsToConvert,
+            totalStepsGoal: stepTrackerViewModel.stepTracker.totalStepsGoal
+        ).energyPoints
+    }
+    
     var body: some View {
         VStack {
             // A button that performs the steps-to-energy conversion and resets steps.
             Button(action: {
-                // Calculate energy points based on the user's progress toward their step goal in ViewModel.
-                // Add calculatedEnergyPoints to current energy.
                 let newEnergy = stepTrackerViewModel.calculateEnergyPoints() + playerStatsViewModel.playerStats.energy
-                
-                // Update the energy points in the player stats ViewModel.
                 playerStatsViewModel.updateEnergy(to: newEnergy)
                 
-                // Reset the current steps in ViewModel.
                 stepTrackerViewModel.commitStepsToTotal { energyPoints in
                     playerStatsViewModel.updateEnergy(
                         to: playerStatsViewModel.playerStats.energy + energyPoints
@@ -38,17 +42,22 @@ struct ConvertToEnergyButtonView: View {
             }) {
                 VStack {
                     HStack {
-                        Text("\(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
+                        Text("Convert \(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
                             .font(.title2)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
 
-                        Text("available to convert")
+                        Image(systemName: "arrow.right.circle")
+                            .font(.system(size: 20))
+
+                        Text("\(energyPoints)") // Displays accurate energy conversion.
                             .font(.title3)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
+
+                        Image(systemName: "bolt.fill")
+                            .font(.system(size: 20))
                     }
-  
                 }
                 .frame(width: 300, height: 40)
                 .bold()
@@ -57,7 +66,8 @@ struct ConvertToEnergyButtonView: View {
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            Text("Tap to convert steps into energy")
+            
+            Text("Tap to charge your Energy")
                 .font(.callout)
         }
     }
