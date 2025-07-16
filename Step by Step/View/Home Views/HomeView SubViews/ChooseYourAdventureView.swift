@@ -36,7 +36,7 @@ struct ChooseYourAdventureView: View {
                 HStack(spacing: 20) {
                     ForEach($stories, id: \.storyTitle) { $story in
                         // "Survive" supports live dynamic tracking.
-                        if story.storyTitle == "Survive" {
+                        if story.storyTitle == "SURVIVE" {
                             StoryCardView(
                                 story: $story,
                                 storyContentViewModel: storyContentViewModel,
@@ -65,7 +65,7 @@ struct ChooseYourAdventureView: View {
 #Preview {
     @Previewable @State var stories = [
         StoryCard(
-            storyTitle: "Survive",
+            storyTitle: "SURVIVE",
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 50,
             storyDetails: "Dynamic completion story."
