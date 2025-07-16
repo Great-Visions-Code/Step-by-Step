@@ -35,7 +35,8 @@ struct StoryCardView: View {
                 .resizable()
                 .frame(width: 350, height: 185)
                 .clipped()
-
+            
+            if let percentage = storyContentViewModel?.completionPercentage {
             // MARK: - Bottom Overlay for Progress
             Rectangle()
                 .fill(.black)
@@ -44,7 +45,6 @@ struct StoryCardView: View {
                 .frame(maxHeight: .infinity, alignment: .bottom)
 
             // MARK: - Progress Text + Bar
-            if let percentage = storyContentViewModel?.completionPercentage {
                 VStack(spacing: 4) {
                     Text("Completed: \(percentage)%")
                         .font(.footnote.bold())
@@ -81,7 +81,7 @@ struct StoryCardView: View {
         }
         .onChange(of: storyContentViewModel?.completionPercentage, initial: false) { _, newValue in
             // Update bound model with new completion value (only for live-tracked stories)
-            if let newValue, story.storyTitle == "Survive" {
+            if let newValue, story.storyTitle == "SURVIVE" {
                 story.storyCompletion = newValue
             }
         }
@@ -92,7 +92,7 @@ struct StoryCardView: View {
     StoryCardView(
         story: .constant(
             StoryCard(
-                storyTitle: "Survive",
+                storyTitle: "SURVIVE",
                 storyCardImage: "SurviveStoryCardImage",
                 storyCompletion: 50,
                 storyDetails: "Dynamic story details."
