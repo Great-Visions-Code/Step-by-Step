@@ -52,6 +52,8 @@ struct StoryTitleTextView: View {
             .fontWidth(fontWidth)
             .kerning(kerning)
             .foregroundColor(foregroundColor)
+            .lineLimit(1)
+            .minimumScaleFactor(0.35)
     }
 }
 
