@@ -40,9 +40,9 @@ struct StoryHomeNavigationButtonView: View {
         }) {
             Text(buttonText)
                 .font(.largeTitle)               
-                .fontWeight(.black)
-                .fontDesign(.serif)
-                .frame(width: 350, height: 70)
+                .fontWeight(.bold)
+                .fontDesign(.monospaced)
+                .frame(width: 352, height: 68)
                 .background(Color.white.opacity(0.30))
                 .foregroundStyle(.white.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 20))

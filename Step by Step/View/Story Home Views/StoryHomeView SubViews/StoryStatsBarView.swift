@@ -102,7 +102,7 @@ struct StoryStatsBarView: View {
     var body: some View {
         VStack {
             // Label showing current stat value
-            Text("\(currentPoints)/\(maxPoints) \(iconType == .health ? "Health" : "Energy")")
+            Text("\(iconType == .health ? "HEALTH" : "ENERGY") \(currentPoints)/\(maxPoints) ")
                 .font(
                     fontSize != nil
                     ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
@@ -117,7 +117,7 @@ struct StoryStatsBarView: View {
             ZStack {
                 Capsule()
                     .fill(capsuleColor)
-                    .frame(height: 30)
+                    .frame(height: 32)
                 
                 HStack(spacing: iconSpacing) {
                     ForEach(0..<maxPoints, id: \.self) { index in
@@ -142,7 +142,7 @@ struct StoryStatsBarView: View {
                 }
                 .padding(.horizontal, 10)
             }
-            .frame(width: 200, height: 30)
+            .frame(width: 200, height: 32)
         }
         .onAppear {
             triggerAnimation()
@@ -172,9 +172,9 @@ struct StoryStatsBarView: View {
         VStack(spacing: 20) {
             StoryStatsBarView(
                 font: .largeTitle,
-                fontWeight: .black,
+                fontWeight: .bold,
                 fontWidth: .expanded,
-                fontDesign: .serif,
+                fontDesign: .monospaced,
                 fontSize: 18,
                 kerning: 3.0,
                 foregroundColor: .white.opacity(0.95),
@@ -189,9 +189,9 @@ struct StoryStatsBarView: View {
             
             StoryStatsBarView(
                 font: .largeTitle,
-                fontWeight: .black,
+                fontWeight: .bold,
                 fontWidth: .expanded,
-                fontDesign: .serif,
+                fontDesign: .monospaced,
                 fontSize: 18,
                 kerning: 3.0,
                 foregroundColor: .white.opacity(0.95),

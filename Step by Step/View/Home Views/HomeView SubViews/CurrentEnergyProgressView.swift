@@ -28,7 +28,7 @@ struct CurrentEnergyProgressView: View {
                 // Background for alignment
                 Capsule()
                     .fill(Color.gray.opacity(0.2))
-                    .frame(width: 350, height: 50)
+                    .frame(width: 352, height: 48)
                 
                 // Energy bar using lightning bolt icons.
                 HStack(spacing: 5) {

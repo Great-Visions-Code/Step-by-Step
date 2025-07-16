@@ -64,9 +64,8 @@ struct StoryChapterTextView: View {
         VStack(spacing: 30) {
             if let currentChapter = storyContentViewModel.currentChapter {
                 
-                // MARK: - Headline Text
                 // Displays the chapter title, visually styled to align with app branding.
-                Text("\"\(currentChapter.chapterTitle)\"")
+                Text(currentChapter.chapterTitle)
                     .font(
                         fontSize != nil
                         ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)

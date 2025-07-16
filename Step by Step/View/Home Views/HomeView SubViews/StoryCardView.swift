@@ -33,7 +33,7 @@ struct StoryCardView: View {
             // MARK: - Background Story Art
             Image(story.storyCardImage)
                 .resizable()
-                .frame(width: 350, height: 185)
+                .frame(width: 352, height: 184)
                 .clipped()
             
             if let percentage = storyContentViewModel?.completionPercentage {
@@ -53,7 +53,7 @@ struct StoryCardView: View {
                     ProgressView(value: Double(percentage), total: 100)
                         .progressViewStyle(.linear)
                         .tint(.white)
-                        .frame(height: 5)
+                        .frame(height: 4)
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(3)
                         .padding(.horizontal, 20)
@@ -62,7 +62,7 @@ struct StoryCardView: View {
                 .frame(maxHeight: .infinity, alignment: .bottom)
             }
         }
-        .frame(width: 350, height: 185)
+        .frame(width: 352, height: 184)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(radius: 5)
         .scaleEffect(isPressed ? 0.95 : 1.0)

@@ -37,9 +37,9 @@ struct StoryHomeView: View {
     
     /// Titles and action identifiers for navigation buttons.
     let buttonActions: [(title: String, action: String)] = [
-        ("Resume Story", "ResumeStoryView"),
-        ("Start New Story", "StoryView"),
-        ("Achievements", "StoryAchievementsView"),
+        ("RESUME", "ResumeStoryView"),
+        ("NEW ATTEMPT", "StoryView"),
+        ("ACHIEVEMENTS", "StoryAchievementsView"),
     ]
     
     // MARK: - View Body
@@ -58,7 +58,7 @@ struct StoryHomeView: View {
             
             // MARK: - Main Content Stack
             
-            VStack(spacing: 50) {
+            VStack(spacing: 52) {
                 
                 // MARK: - Story Title
                 
@@ -68,9 +68,9 @@ struct StoryHomeView: View {
                     fontWeight: .black,
                     fontWidth: .expanded,
                     fontDesign: .serif,
-                    fontSize: 82,
+                    fontSize: 80,
                     kerning: 3.0,
-                    foregroundColor: .white.opacity(0.95)
+                    foregroundColor: .white.opacity(0.9)
                 )
                 .padding(.horizontal)
                     
@@ -82,16 +82,16 @@ struct StoryHomeView: View {
                         fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .monospaced,
-                        fontSize: 19,
+                        fontSize: 18,
                         kerning: 0.0,
-                        foregroundColor: .white.opacity(0.95),
+                        foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.health,
                         maxPoints: 10,
                         iconType: .health,
                         iconSpacing: 8,
                         capsuleColor: Color.white.opacity(0.3),
                         iconColor: Color.red.opacity(0.95),
-                        iconOutlineColor: Color.white.opacity(0.95)
+                        iconOutlineColor: Color.white.opacity(0.9)
                     )
                     
                     StoryStatsBarView(
@@ -99,22 +99,22 @@ struct StoryHomeView: View {
                         fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .monospaced,
-                        fontSize: 19,
+                        fontSize: 18,
                         kerning: 0.0,
-                        foregroundColor: .white.opacity(0.95),
+                        foregroundColor: .white.opacity(0.9),
                         currentPoints: playerStatsViewModel.playerStats.energy,
                         maxPoints: 10,
                         iconType: .energy,
                         iconSpacing: 14,
                         capsuleColor: Color.white.opacity(0.3),
                         iconColor: Color.blue.opacity(0.95),
-                        iconOutlineColor: Color.white.opacity(0.95)
+                        iconOutlineColor: Color.white.opacity(0.9)
                     )
                 }
                 
                 // MARK: - Story Info
                 
-                VStack(spacing: 25) {
+                VStack(spacing: 24) {
                     StoryChapterTextView(
                         storyContentViewModel: storyContentViewModel,
                         font: .largeTitle,
@@ -123,7 +123,7 @@ struct StoryHomeView: View {
                         fontDesign: .serif,
                         fontSize: 32,
                         kerning: 0.0,
-                        foregroundColor: .white.opacity(0.95)
+                        foregroundColor: .white.opacity(0.9)
                     )
                     
                     // Shows story attempts and current day progress.
@@ -137,9 +137,9 @@ struct StoryHomeView: View {
                         fontWeight: .bold,
                         fontWidth: .expanded,
                         fontDesign: .monospaced,
-                        fontSize: 19,
+                        fontSize: 18,
                         kerning: 0.0,
-                        foregroundColor: .white.opacity(0.95)
+                        foregroundColor: .white.opacity(0.9)
                     )
                 }
                 

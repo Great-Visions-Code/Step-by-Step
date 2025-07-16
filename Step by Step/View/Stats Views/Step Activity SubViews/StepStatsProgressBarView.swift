@@ -19,7 +19,7 @@ struct StepStatsProgressBarView: View {
         VStack {
             // Step count with dynamic font scaling
             Text("\(value)")
-                .font(.system(size: 14, weight: .bold)) // Default size
+                .font(.system(size: 16, weight: .bold)) // Default size
                 .minimumScaleFactor(0.7) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents multiple lines
                 .frame(width: 40) // Ensures width consistency

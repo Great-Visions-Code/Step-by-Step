@@ -66,7 +66,7 @@ struct StoryDayAndAttemptsTrackerView: View {
         VStack{
             // MARK: - In-game Day Tracker
             // Shows story progress: current day out of total days.
-            Text("Days Survived: \(storyContentViewModel.currentChapter!.storyDay) of \(storyContentViewModel.totalDays)")
+            Text("SURVIVED \(storyContentViewModel.currentChapter!.storyDay)/\(storyContentViewModel.totalDays) DAYS")
                 .font(
                     fontSize != nil
                     ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
@@ -77,7 +77,7 @@ struct StoryDayAndAttemptsTrackerView: View {
                 .kerning(kerning)
                 .foregroundColor(foregroundColor)
             
-            Text("Attempt: \(achievementsViewModel.achievements.attempts)")
+            Text("ATTEMPT \(achievementsViewModel.achievements.attempts)")
                 .font(
                     fontSize != nil
                     ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
@@ -104,9 +104,9 @@ struct StoryDayAndAttemptsTrackerView: View {
                 playerStatsViewModel: PlayerStatsViewModel()
             ),
             font: .largeTitle,
-            fontWeight: .black,
+            fontWeight: .bold,
             fontWidth: .expanded,
-            fontDesign: .serif,
+            fontDesign: .monospaced,
             fontSize: 25,
             kerning: 1.0,
             foregroundColor: .white.opacity(0.95)

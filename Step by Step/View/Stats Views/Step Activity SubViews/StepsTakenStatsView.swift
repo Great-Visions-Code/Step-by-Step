@@ -21,7 +21,7 @@ struct StepsTakenStatsView: View {
                     .foregroundStyle(.gray)
                 
                 Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
-                    .font(.system(size: 50, weight: .bold))
+                    .font(.system(size: 52, weight: .bold))
                 
                 
                 HStack {

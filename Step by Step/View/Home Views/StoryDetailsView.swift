@@ -44,7 +44,7 @@ struct StoryDetailsView: View {
                 Image(bannerImageName)
                     .resizable()
                     .scaledToFill()
-                    .frame(height: 225)
+                    .frame(height: 224)
                     .frame(maxWidth: .infinity)
                     .clipped()
                 
@@ -70,7 +70,7 @@ struct StoryDetailsView: View {
                     .padding(.leading)
                     
                     if story.storyTitle == "SURVIVE" {
-                        Text("Progress: \(storyContentViewModel?.completionPercentage ?? 0)%")
+                        Text("PROGRESS \(storyContentViewModel?.completionPercentage ?? 0)%")
                             .font(.subheadline)
                             .fontWeight(.black)
                             .fontWidth(.expanded)
@@ -108,11 +108,11 @@ struct StoryDetailsView: View {
                         // Enter Story button (hidden if "Stay Tuned")
                         if story.storyTitle != "Stay Tuned" {
                             Button(action: onEnterStoryButton) {
-                                Text("Enter Story")
+                                Text("ENTER STORY")
                                     .font(.largeTitle)
                                     .fontWeight(.black)
                                     .fontDesign(.monospaced)
-                                    .frame(width: 350, height: 70)
+                                    .frame(width: 352, height: 68)
                                     .background(Color.white.opacity(0.30))
                                     .foregroundStyle(.white.opacity(0.95))
                                     .clipShape(RoundedRectangle(cornerRadius: 20))

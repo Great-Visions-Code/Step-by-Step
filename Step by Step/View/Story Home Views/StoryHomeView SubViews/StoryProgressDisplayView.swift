@@ -77,7 +77,7 @@ struct StoryProgressDisplayView: View {
             // MARK: - Progress Bar
             ProgressView(value: Double(storyContentViewModel.completionPercentage), total: 100)
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.blue.opacity(0.9)))
-                .frame(height: 6)
+                .frame(height: 4)
                 .background(Color.white.opacity(0.15))
                 .cornerRadius(3)
                 .padding(.horizontal, 80)
