@@ -80,7 +80,11 @@ struct StoryDetailsView: View {
                     } else {
                         Text("More adventures in the works!")
                             .font(.subheadline)
-                            .foregroundStyle(.white)
+                            .fontWeight(.black)
+                            .fontWidth(.expanded)
+                            .fontDesign(.serif)
+                            .foregroundStyle(.white.opacity(0.75))
+                            .kerning(1)
                     }
                 }
                 .padding(.bottom, 7)
