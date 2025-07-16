@@ -46,7 +46,7 @@ struct StoryCardView: View {
 
             // MARK: - Progress Text + Bar
                 VStack(spacing: 4) {
-                    Text("Completed: \(percentage)%")
+                    Text("Progress \(percentage)%")
                         .font(.footnote.bold())
                         .foregroundStyle(.white)
 

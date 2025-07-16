@@ -21,7 +21,7 @@ struct CurrentEnergyProgressView: View {
     var body: some View {
         VStack {
             // Title displaying "Current Energy" for clarity.
-            Text("Current Energy:   \(playerStatsViewModel.playerStats.energy)/10")
+            Text("Energy Reserves \(playerStatsViewModel.playerStats.energy)/10")
                 .font(.headline)
                 .bold()
             ZStack(alignment: .center) {
