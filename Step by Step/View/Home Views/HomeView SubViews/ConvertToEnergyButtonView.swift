@@ -19,12 +19,14 @@ struct ConvertToEnergyButtonView: View {
     /// ViewModel for managing steps taken and goals.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
-    /// Computed property to calculate how many energy points would be earned on tap.
+    /// Computed property to calculate how many energy points would be earned on tap, capped at 10.
     private var energyPoints: Int {
-        ConvertToEnergyViewModel.calculateStepsToEnergy(
+        let rawEnergy = ConvertToEnergyViewModel.calculateStepsToEnergy(
             stepsToConvert: stepTrackerViewModel.stepTracker.stepsToConvert,
             totalStepsGoal: stepTrackerViewModel.stepTracker.totalStepsGoal
         ).energyPoints
+        
+        return min(rawEnergy, 10)
     }
     
     var body: some View {
@@ -50,7 +52,7 @@ struct ConvertToEnergyButtonView: View {
                         Image(systemName: "arrow.right.circle")
                             .font(.system(size: 20))
 
-                        Text("\(energyPoints)") // Displays accurate energy conversion.
+                        Text("\(energyPoints)") // Displays capped energy conversion.
                             .font(.title3)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
