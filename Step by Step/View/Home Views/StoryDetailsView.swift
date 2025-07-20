@@ -87,7 +87,7 @@ struct StoryDetailsView: View {
                             .kerning(1)
                     }
                 }
-                .padding(.bottom, 7)
+                .padding(.bottom, 8)
             }
 
             // MARK: - Description & Enter Story Button
@@ -115,7 +115,7 @@ struct StoryDetailsView: View {
                                     .frame(width: 352, height: 68)
                                     .background(Color.white.opacity(0.30))
                                     .foregroundStyle(.white.opacity(0.95))
-                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
                                     .padding()
                             }
                         }

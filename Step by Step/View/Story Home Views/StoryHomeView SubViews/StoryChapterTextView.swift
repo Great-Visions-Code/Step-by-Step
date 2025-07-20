@@ -61,32 +61,31 @@ struct StoryChapterTextView: View {
     // MARK: - View Body
     
     var body: some View {
-        VStack(spacing: 30) {
-            if let currentChapter = storyContentViewModel.currentChapter {
-                
-                // Displays the chapter title, visually styled to align with app branding.
-                Text(currentChapter.chapterTitle)
-                    .font(
-                        fontSize != nil
-                        ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
-                        : font
-                    )
-                    .fontWeight(fontWeight)
-                    .fontWidth(fontWidth)
-                    .kerning(kerning)
-                    .foregroundColor(foregroundColor)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2) // Prevent excessive vertical expansion
-            } else {
-                // MARK: - Fallback Message
-                // Displayed if no chapter data is available, helping users recover gracefully.
-                Text("Story not found: Please return home.")
-                    .foregroundColor(.red)
-                    .multilineTextAlignment(.center)
-            }
+        if let currentChapter = storyContentViewModel.currentChapter {
+            
+            // Displays the chapter title, visually styled to align with app branding.
+            Text(currentChapter.chapterTitle)
+                .font(
+                    fontSize != nil
+                    ? Font.system(size: fontSize!, weight: fontWeight, design: fontDesign)
+                    : font
+                )
+                .fontWeight(fontWeight)
+                .fontWidth(fontWidth)
+                .kerning(kerning)
+                .foregroundColor(foregroundColor)
+                .multilineTextAlignment(.center)
+                .lineLimit(2) // Prevent excessive vertical expansion
+        } else {
+            // MARK: - Fallback Message
+            // Displayed if no chapter data is available, helping users recover gracefully.
+            Text("Story not found: Please return home.")
+                .foregroundColor(.red)
+                .multilineTextAlignment(.center)
         }
     }
 }
+
 
 // MARK: - Preview
 
