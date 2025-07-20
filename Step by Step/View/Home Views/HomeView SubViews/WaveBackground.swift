@@ -71,7 +71,7 @@ struct WaveBackground: View {
     private var skyGradient: some View {
         LinearGradient(
             colors: scheme == .dark
-                ? [Color.black, Color("SkyMidDark")]
+                ? [Color("SkyTopDark"), Color("SkyMidDark")]
                 : [Color("SkyTopLight"), Color("SkyMidLight")],
             startPoint: .top,
             endPoint: .bottom
