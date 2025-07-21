@@ -7,66 +7,110 @@
 
 import SwiftUI
 
-/// Displays the user's current steps progress toward their daily goal.
+/// A circular progress indicator representing the user's current step count progress toward their daily goal.
 ///
-/// This view provides real-time feedback on the player's step count and progress toward a daily step goal.
-/// The progress is visualized using a circular progress bar that updates dynamically.
-/// Future enhancements may include animations and color customizations.
+/// Displays real-time feedback on steps taken, including a motivational helper message and visual progress ring.
 struct CurrentStepsTakenProgressView: View {
-    /// The ViewModel for managing step tracking data.
+    
+    /// ViewModel managing the user's step tracking data.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
+    /// Computes progress as a normalized value (0.0–1.0).
+    ///
+    /// Progress is capped at 100%. Additional steps beyond the goal won't extend the ring.
+    private var progress: Double {
+        min(Double(stepTrackerViewModel.stepTracker.totalStepsTaken) /
+            Double(stepTrackerViewModel.stepTracker.totalStepsGoal), 1.0)
+    }
+    
+    /// Provides motivational text based on progress milestones.
+    private var progressHelperText: String {
+        switch progress {
+        case ..<0.10:
+            return "Let's get started."
+        case ..<0.25:
+            return "Good start - keep it going."
+        case ..<0.50:
+            return "Nearly halfway - nice pace."
+        case ..<0.75:
+            return "Over halfway - keep pushing."
+        case ..<1.0:
+            return "Almost there - close the ring."
+        default:
+            return "Goal met! Go for a new record?"
+        }
+    }
+    
     var body: some View {
-        /// Calculates progress as a percentage of steps taken versus the total goal.
-        /// Ensures the value remains within a valid range (0.0 - 1.0).
-        let progress = min(Double(stepTrackerViewModel.stepTracker.totalStepsTaken) /
-                           Double(stepTrackerViewModel.stepTracker.totalStepsGoal), 1.0)
-        
         ZStack {
             // Background Circle (Unfilled)
             Circle()
-                .stroke(lineWidth: 15)
-                .opacity(0.3)
-                .foregroundStyle(.gray)
+                .stroke(lineWidth: 16)
+                .foregroundStyle(.wave3)
+                .opacity(0.2)
             
-            // Progress Circle
+            // Animated Progress Circle
             Circle()
                 .trim(from: 0.0, to: progress)
-                .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
-                .rotationEffect(Angle(degrees: -90))
-                .foregroundStyle(.blue)
-                .animation(.easeInOut(duration: 0.6), value: stepTrackerViewModel.stepTracker.totalStepsTaken)
+                .stroke(
+                    AngularGradient(
+                        gradient: Gradient(colors: [.wave3, .blue]),
+                        center: .center,
+                        startAngle: .degrees(0),
+                        endAngle: .degrees(360 * progress)
+                    ),
+                    style: StrokeStyle(lineWidth: 16, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
+                .animation(.easeInOut(duration: 0.6), value: progress)
             
-            // Icon, Step Count, Goal
-            VStack {
+            // Step Count, Icon, Goal
+            VStack(spacing: 4) {
                 Image(systemName: "figure.walk.motion")
-                    .font(.system(size: 28))
-                
-                Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
-                    .font(.largeTitle)
-                    .bold()
-                
-                Text("Today's Steps")
                     .font(.title2)
                 
-                Text("Keep moving to earn more energy!")
-                    .font(.caption2)
+                VStack(spacing: 0) {
+                    Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
+                        .font(.largeTitle)
+                        .fontDesign(.rounded)
+                        .monospacedDigit()
+                        .bold()
+                    
+                    Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken == 1 ? "step" : "steps")")
+                        .font(.title3)
+                }
                 
-                Text("Goal \(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps")
-                    .font(.subheadline)
-                    .bold()
-                    .padding(.top, 5)
+                Text(progressHelperText)
+                    .font(.footnote)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                
+                Text("Goal \(stepTrackerViewModel.stepTracker.totalStepsGoal)")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.secondary)
             }
         }
-        .frame(width: 240, height: 240)
-        .padding()
+        .frame(width: 232, height: 232)
     }
 }
 
 #Preview {
     let stepTrackerViewModel = StepTrackerViewModel()
-    
-    stepTrackerViewModel.setTotalStepsTaken(500)
-
+    stepTrackerViewModel.setTotalStepsTaken(5000)
     return CurrentStepsTakenProgressView(stepTrackerViewModel: stepTrackerViewModel)
+}
+
+#Preview {
+    HomeView(
+        storyCardViewModel: StoryCardViewModel(),
+        playerStatsViewModel: PlayerStatsViewModel(),
+        stepTrackerViewModel: StepTrackerViewModel(),
+        achievementsViewModel: AchievementsViewModel(),
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: AchievementsViewModel(),
+            playerStatsViewModel: PlayerStatsViewModel()
+        )
+    )
 }
