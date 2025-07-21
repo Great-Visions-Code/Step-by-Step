@@ -45,7 +45,7 @@ struct CurrentStepsTakenProgressView: View {
         ZStack {
             // Background Circle (Unfilled)
             Circle()
-                .stroke(lineWidth: 16)
+                .stroke(lineWidth: 20)
                 .foregroundStyle(.wave3)
                 .opacity(0.2)
             
@@ -59,8 +59,9 @@ struct CurrentStepsTakenProgressView: View {
                         startAngle: .degrees(0),
                         endAngle: .degrees(360 * progress)
                     ),
-                    style: StrokeStyle(lineWidth: 16, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 20, lineCap: .round)
                 )
+                .shadow(color: .black.opacity(0.25), radius: 4)
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut(duration: 0.6), value: progress)
             
@@ -98,7 +99,7 @@ struct CurrentStepsTakenProgressView: View {
 
 #Preview {
     let stepTrackerViewModel = StepTrackerViewModel()
-    stepTrackerViewModel.setTotalStepsTaken(5000)
+    stepTrackerViewModel.setTotalStepsTaken(2500)
     return CurrentStepsTakenProgressView(stepTrackerViewModel: stepTrackerViewModel)
 }
 
