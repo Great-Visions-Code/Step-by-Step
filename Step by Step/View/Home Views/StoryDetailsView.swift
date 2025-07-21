@@ -125,6 +125,7 @@ struct StoryDetailsView: View {
         }
         .edgesIgnoringSafeArea(.top) // Allows banner to reach screen's top edge
         .navigationBarBackButtonHidden(true) // Removes the default back button
+        .toolbarBackground(.black, for: .tabBar)
     }
 }
 
