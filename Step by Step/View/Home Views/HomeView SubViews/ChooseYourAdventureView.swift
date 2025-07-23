@@ -26,7 +26,7 @@ struct ChooseYourAdventureView: View {
     var body: some View {
         VStack() {
             // MARK: - Title
-            Text("Pick Your Story")
+            Text("Stories")
                 .font(.title2.bold())
                 .padding(.horizontal)
                 .padding(.top)

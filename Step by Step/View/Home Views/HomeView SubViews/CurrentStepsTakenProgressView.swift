@@ -93,7 +93,7 @@ struct CurrentStepsTakenProgressView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .frame(width: 232, height: 232)
+        .frame(width: 236, height: 236)
     }
 }
 
