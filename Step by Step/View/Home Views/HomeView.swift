@@ -33,10 +33,13 @@ struct HomeView: View {
         // NavigationStack manages the navigation flow and associated destinations.
         NavigationStack(path: $path) {
             ZStack {
-                VStack {
-                    Spacer()
+                WaveBackground()
+                
+                VStack(spacing: 28) {
+                    
+                    // MARK: - Circular Step Tracker
                     // Displays the user's progress toward their daily step goal.
-                    CurrentStepsTakenProgressView(
+                    ConvertedStepsProgressRingView(
                         stepTrackerViewModel: stepTrackerViewModel
                     )
                     .onAppear {
@@ -48,18 +51,28 @@ struct HomeView: View {
                         // HealthKit provides new step data.
                         stepTrackerViewModel.updateCurrentSteps(to: newSteps)
                     }
+                    .padding()
                     
-                    // Button to convert steps into energy points for use in the game.
-                    ConvertToEnergyButtonView(
-                        playerStatsViewModel: playerStatsViewModel,
-                        stepTrackerViewModel: stepTrackerViewModel
+                    // MARK: - Energy Card
+                    EnergyCardView(playerStatsViewModel: playerStatsViewModel,
+                                   stepTrackerViewModel: stepTrackerViewModel
                     )
-                    // Displays the player's current energy level.
-                    CurrentEnergyProgressView(
-                        playerStatsViewModel: playerStatsViewModel
-                    )
+                    
+//                    // Button to convert steps into energy points for use in the game.
+//                    ConvertToEnergyButtonView(
+//                        playerStatsViewModel: playerStatsViewModel,
+//                        stepTrackerViewModel: stepTrackerViewModel
+//                    )
+//                    
+//                    // Displays the player's current energy level.
+//                    CurrentEnergyProgressView(
+//                        playerStatsViewModel: playerStatsViewModel
+//                    )
+//                    .padding(.horizontal)
+                    
+                    // MARK: - Story Scroll View
                     // A horizontal scrollable list of available adventures for the player to choose from.
-                    ChooseYourAdventureView(
+                    StoryCarouselView(
                         stories: $storyCardViewModel.stories,
                         storyContentViewModel: storyContentViewModel,
                         onStorySelected: { story in
@@ -71,9 +84,7 @@ struct HomeView: View {
                             }
                         }
                     )
-                    Spacer()
                 }
-                .padding()
             }
             
             // MARK: - Navigation Destinations
