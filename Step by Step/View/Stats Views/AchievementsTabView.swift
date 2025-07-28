@@ -20,9 +20,9 @@ struct AchievementsTabView: View {
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .background(isSelected ? Color.blue : Color.clear)
                 .foregroundStyle(isSelected ? .white : .gray)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.gray, lineWidth: isSelected ? 0 : 1)
                 )
         }
