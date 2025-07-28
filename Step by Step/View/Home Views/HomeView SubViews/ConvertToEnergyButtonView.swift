@@ -31,13 +31,20 @@ struct ConvertToEnergyButtonView: View {
         return min(rawEnergy, 10)
     }
     
+    private var stepsUntilNextEnergyPoint: Int {
+        let stepsPerEnergy = max(stepTrackerViewModel.stepTracker.totalStepsGoal / 10, 1)
+        let remainingSteps = stepsPerEnergy - (stepTrackerViewModel.stepTracker.stepsToConvert % stepsPerEnergy)
+        return remainingSteps == stepsPerEnergy ? 0 : remainingSteps
+    }
+    
     /// Determines if the button should be active.
     private var isButtonEnabled: Bool {
+        // CHANGE FOR PREVIEW > or ==
         energyPoints > 0
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
             Button(action: {
                 guard isButtonEnabled else { return }
                 let newEnergy = stepTrackerViewModel.calculateEnergyPoints() + playerStatsViewModel.playerStats.energy
@@ -49,25 +56,41 @@ struct ConvertToEnergyButtonView: View {
                     )
                 }
             }) {
-                HStack(spacing: 8) {
-                    Text("Convert \(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
-                        .font(.title2)
-                        .lineLimit(1)
-
-                    Image(systemName: "arrow.right.circle")
-                        .font(.title2)
-
-                    Text("\(energyPoints)") // Displays capped energy conversion.
-                        .font(.title2)
-                        .lineLimit(1)
-
-                    Image(systemName: "bolt.fill")
-                        .font(.title2)
+                VStack(spacing: 4) {
+                    HStack(spacing: 8) {
+                        Text("Convert \(stepTrackerViewModel.stepTracker.stepsToConvert) steps")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        Image(systemName: "arrow.right.circle")
+                            .font(.headline)
+                        Text("\(energyPoints)") // Displays capped energy conversion.
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        Image(systemName: "bolt.fill")
+                            .font(.headline)
+                    }
+                    .lineLimit(1)
+                    .monospacedDigit()
+                    
+                    HStack {
+                        // CHANGE FOR PREVIEW TO > or ==
+                        if energyPoints > 0 {
+                            Text("+1")
+                            Image(systemName: "bolt.fill")
+                            Text("for every \(stepTrackerViewModel.stepTracker.totalStepsGoal / 10) steps")
+                        } else {
+                            Text("\(stepsUntilNextEnergyPoint) steps to next")
+                            Image(systemName: "bolt.fill")
+                        }
+                    }
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
                 }
                 .frame(width: 352, height: 68)
                 .background(
                     LinearGradient(
-                        colors: isButtonEnabled ? [.blue.opacity(0.9), .blue] : [.gray.opacity(0.5), .gray.opacity(0.4)],
+                        colors: isButtonEnabled ? [.blue.opacity(0.95), .blue] : [.gray.opacity(0.4), .gray.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -82,7 +105,6 @@ struct ConvertToEnergyButtonView: View {
                 .shadow(color: isButtonEnabled ? Color.black.opacity(0.2) : .clear, radius: 6, x: 0, y: 4)
                 .scaleEffect(isPressed && isButtonEnabled ? 0.97 : 1.0)
                 .animation(.easeInOut(duration: 0.2), value: isPressed)
-                .padding()
             }
             .disabled(!isButtonEnabled)
             .onLongPressGesture(minimumDuration: 0, maximumDistance: 50, pressing: { pressing in
@@ -90,10 +112,6 @@ struct ConvertToEnergyButtonView: View {
                     isPressed = pressing
                 }
             }, perform: {})
-            
-            Text("Tap to charge your Energy")
-                .font(.callout)
-                .foregroundStyle(isButtonEnabled ? .primary : .secondary)
         }
     }
 }
@@ -109,14 +127,19 @@ struct ConvertToEnergyButtonView: View {
 }
 
 #Preview {
-    HomeView(
-        storyCardViewModel: StoryCardViewModel(),
-        playerStatsViewModel: PlayerStatsViewModel(),
-        stepTrackerViewModel: StepTrackerViewModel(),
-        achievementsViewModel: AchievementsViewModel(),
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
+    
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
         storyContentViewModel: StoryContentViewModel(
-            achievementsViewModel: AchievementsViewModel(),
-            playerStatsViewModel: PlayerStatsViewModel()
-        )
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
     )
 }
