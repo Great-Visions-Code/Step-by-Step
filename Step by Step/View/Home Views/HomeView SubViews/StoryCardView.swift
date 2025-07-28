@@ -47,8 +47,10 @@ struct StoryCardView: View {
             // MARK: - Progress Text + Bar
                 VStack(spacing: 4) {
                     Text("Progress \(percentage)%")
-                        .font(.footnote.bold())
+                        .font(.footnote)
+                        .fontWeight(.semibold)
                         .foregroundStyle(.white)
+                        .monospacedDigit()
 
                     ProgressView(value: Double(percentage), total: 100)
                         .progressViewStyle(.linear)
@@ -63,7 +65,7 @@ struct StoryCardView: View {
             }
         }
         .frame(width: 352, height: 184)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 5)
         .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)

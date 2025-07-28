@@ -29,7 +29,7 @@ struct StoryCarouselView: View {
             
             // MARK: - Title
             Text("Stories")
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
