@@ -61,7 +61,7 @@ struct ConvertedStepsProgressRingView: View {
                     ),
                     style: StrokeStyle(lineWidth: 20, lineCap: .round)
                 )
-                .shadow(color: .black.opacity(0.25), radius: 4)
+                .shadow(color: .black.opacity(0.24), radius: 4)
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut(duration: 0.6), value: progress)
             
@@ -73,7 +73,10 @@ struct ConvertedStepsProgressRingView: View {
                 
                 VStack(spacing: 0) {
                     Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
-                        .font(.system(size: 41, weight: .bold, design: .rounded))
+                        .font(.system(size: 41,
+                                      weight: .bold,
+                                      design: .rounded)
+                        )
                         .monospacedDigit()
                     
                     Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken == 1 ? "step" : "steps") converted")
