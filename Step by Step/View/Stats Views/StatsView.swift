@@ -24,17 +24,23 @@ struct StatsView: View {
                 WaveBackground()
                 VStack(spacing: 0) {
                     // MARK: - Custom Segmented Control
-                    HStack {
-                        AchievementsTabView(title: "Step Activity", isSelected: selectedTab == .stepActivity){
+                    HStack(spacing: 20) {
+                        StatsTopTabBarView(title: "Steps",
+                                            systemImage: "shoeprints.fill",
+                                            isSelected: selectedTab == .stepActivity
+                        ) {
                             selectedTab = .stepActivity
                         }
                         
-                        AchievementsTabView(title: "Achievements", isSelected: selectedTab == .achievements) {
+                        StatsTopTabBarView(title: "Milestones",
+                                            systemImage: "rosette",
+                                            isSelected: selectedTab == .achievements
+                        ) {
                             selectedTab = .achievements
                         }
                     }
                     .padding(.horizontal)
-                    .padding(.top, 20)
+                    .padding(.top, 4)
                     
                     // MARK: - Content Switching Based on Selected Tab
                     if selectedTab == .stepActivity {
@@ -50,7 +56,6 @@ struct StatsView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                .padding(.bottom, 8)
             }
         }
     }
@@ -58,4 +63,22 @@ struct StatsView: View {
 
 #Preview {
     StatsView()
+}
+
+#Preview {
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
+    
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
+    )
 }
