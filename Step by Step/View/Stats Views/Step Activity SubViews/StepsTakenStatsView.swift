@@ -64,7 +64,6 @@ struct StepsTakenStatsView: View {
                     .padding()
             }
         }
-        .padding(.top, 20)
     }
 }
 
