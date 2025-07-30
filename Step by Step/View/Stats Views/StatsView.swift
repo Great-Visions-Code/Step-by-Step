@@ -19,39 +19,39 @@ struct StatsView: View {
     }
 
     var body: some View {
-        ZStack {
-            WaveBackground()
-                .ignoresSafeArea()
-
-            VStack(spacing: 0) {
-                // MARK: - Custom Segmented Control
-                HStack {
-                    AchievementsTabView(title: "Step Activity", isSelected: selectedTab == .stepActivity) {
-                        selectedTab = .stepActivity
+        NavigationStack {
+            ZStack {
+                WaveBackground()
+                VStack(spacing: 0) {
+                    // MARK: - Custom Segmented Control
+                    HStack {
+                        AchievementsTabView(title: "Step Activity", isSelected: selectedTab == .stepActivity){
+                            selectedTab = .stepActivity
+                        }
+                        
+                        AchievementsTabView(title: "Achievements", isSelected: selectedTab == .achievements) {
+                            selectedTab = .achievements
+                        }
                     }
-
-                    AchievementsTabView(title: "Achievements", isSelected: selectedTab == .achievements) {
-                        selectedTab = .achievements
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 20)
-
-                // MARK: - Content Switching Based on Selected Tab
-                if selectedTab == .stepActivity {
-                    StepActivityView()
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                    
+                    // MARK: - Content Switching Based on Selected Tab
+                    if selectedTab == .stepActivity {
+                        StepActivityView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        AchievementsListView(
+                            achievementsViewModel: AchievementsViewModel(),
+                            stepTrackerViewModel: StepTrackerViewModel(),
+                            healthKitViewModel: HealthKitViewModel()
+                        )
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    AchievementsListView(
-                        achievementsViewModel: AchievementsViewModel(),
-                        stepTrackerViewModel: StepTrackerViewModel(),
-                        healthKitViewModel: HealthKitViewModel()
-                    )
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .padding(.bottom, 8)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.bottom, 8) // Helps separate from tab bar
         }
     }
 }
