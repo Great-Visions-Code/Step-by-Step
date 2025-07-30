@@ -46,19 +46,30 @@ struct AchievementsListView: View {
 
                                 Text("Track your story achievements")
                                     .font(.subheadline)
-                                    .foregroundStyle(.gray)
+                                    .foregroundStyle(.secondary)
                             }
 
                             Spacer()
 
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(.gray)
+                                .foregroundStyle(.secondary)
                         }
                         .padding()
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(12)
-                        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
-                        .padding(.horizontal)
+                        .frame(width: 352, height: 68)
+                        .background(
+                            LinearGradient(
+                                colors: [.blue.opacity(0.95), .blue],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                                .blendMode(.overlay)
+                        )
                     }
                 }
 
@@ -88,7 +99,7 @@ struct AchievementsListView: View {
                 )
             }
             .padding(.horizontal)
-            .padding(.top, 16)
+            .padding(.top, 20)
             .padding(.bottom, 88)
         }
     }
