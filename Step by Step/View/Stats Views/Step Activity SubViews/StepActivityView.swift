@@ -27,7 +27,7 @@ struct StepActivityView: View {
                 stepTrackerViewModel: StepTrackerViewModel()
             )
         }
-        .padding(.bottom, 37) // Extra padding to prevent bottom from getting cut off by TabBar
+//        .padding(.bottom, 37) // Extra padding to prevent bottom from getting cut off by TabBar
     }
 }
 
