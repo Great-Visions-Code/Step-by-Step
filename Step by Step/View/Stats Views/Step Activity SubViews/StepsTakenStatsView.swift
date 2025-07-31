@@ -72,3 +72,21 @@ struct StepsTakenStatsView: View {
         stepTrackerViewModel: StepTrackerViewModel()
     )
 }
+
+#Preview {
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
+    
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
+    )
+}
