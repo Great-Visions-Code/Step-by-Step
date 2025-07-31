@@ -1,5 +1,5 @@
 //
-//  StatsView.swift
+//  StatsNavigationView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/27/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// View displaying user achievements and step activity, toggleable with tab buttons.
-struct StatsView: View {
+struct StatsNavigationView: View {
     /// State to track the selected tab: Achievements or Step Activity
     @State private var selectedTab: AchievementTab = .stepActivity
 
@@ -44,7 +44,7 @@ struct StatsView: View {
                     
                     // MARK: - Content Switching Based on Selected Tab
                     if selectedTab == .stepActivity {
-                        StepActivityView()
+                        StatsView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         AchievementsListView(
@@ -62,7 +62,7 @@ struct StatsView: View {
 }
 
 #Preview {
-    StatsView()
+    StatsNavigationView()
 }
 
 #Preview {
