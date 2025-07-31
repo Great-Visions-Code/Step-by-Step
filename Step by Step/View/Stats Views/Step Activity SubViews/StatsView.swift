@@ -1,5 +1,5 @@
 //
-//  StepActivityView.swift
+//  StatsView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/14/25.
@@ -12,7 +12,7 @@ import SwiftUI
 /// Combines both the current day's summary via `StepsTakenStatsView` and the multi-day bar chart
 /// via `StepStatsGraphView`. Used within the Achievements tab to provide users with insight into
 /// their walking patterns and overall progress.
-struct StepActivityView: View {
+struct StatsView: View {
     var body: some View {
         VStack {
             // MARK: - Daily Step Summary
@@ -27,10 +27,9 @@ struct StepActivityView: View {
                 stepTrackerViewModel: StepTrackerViewModel()
             )
         }
-//        .padding(.bottom, 37) // Extra padding to prevent bottom from getting cut off by TabBar
     }
 }
 
 #Preview {
-    StepActivityView()
+    StatsView()
 }
