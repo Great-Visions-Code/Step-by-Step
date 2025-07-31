@@ -13,23 +13,64 @@ import SwiftUI
 /// via `StepStatsGraphView`. Used within the Achievements tab to provide users with insight into
 /// their walking patterns and overall progress.
 struct StatsView: View {
+    /// Observed ViewModel to track step count dynamically
+    @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    
     var body: some View {
         VStack {
             // MARK: - Daily Step Summary
             // Displays today's step count, distance, and goal progress percentage
             StepsTakenStatsView(
-                stepTrackerViewModel: StepTrackerViewModel()
+                stepTrackerViewModel: stepTrackerViewModel
             )
+            
+            // MARK: - Distance & Goal Progress
+            HStack(spacing: 16) {
+                StepsCardStatsView(
+                    title: "DISTANCE",
+                    value: "\(String(format: "%.2f", stepTrackerViewModel.stepTracker.currentDistance)) mi"
+                )
+                StepsCardStatsView(
+                    title: "GOAL PROGRESS",
+                    value: stepTrackerViewModel.goalProgress
+                )
+            }
+            .padding()
 
             // MARK: - Step History Graph
             // Shows a horizontal scrollable bar chart of recent days' step counts
             StepStatsGraphView(
-                stepTrackerViewModel: StepTrackerViewModel()
+                stepTrackerViewModel: stepTrackerViewModel
             )
+        }
+        .onAppear {
+            stepTrackerViewModel.updateCurrentStepCount()
+            stepTrackerViewModel.updateCurrentDistance()
+            stepTrackerViewModel.updateSevenDayStepAverage()
         }
     }
 }
 
 #Preview {
-    StatsView()
+    StatsView(
+        stepTrackerViewModel: StepTrackerViewModel()
+    )
+}
+
+#Preview("DashboardView") {
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
+    
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
+    )
 }
