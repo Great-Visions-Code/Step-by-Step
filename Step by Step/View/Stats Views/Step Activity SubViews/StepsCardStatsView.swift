@@ -11,34 +11,55 @@ import SwiftUI
 struct StepsCardStatsView: View {
     var title: String
     var value: String
-    var colorScheme: ColorScheme
     
     var body: some View {
         VStack {
             Text(title)
                 .font(.caption)
-                .foregroundStyle(.gray)
+                .foregroundStyle(.white)
             
             Text(value)
                 .font(.title3)
+                .foregroundStyle(.white)
                 .bold()
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(colorScheme == .dark ? Color(.systemGray6) : Color.white) // Adapts to dark mode
+        .background(.blue)
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
     }
 }
 
 #Preview {
-    StepsCardStatsView(
-        title: "DISTANCE",
-        value: "1.3 mi",
-        colorScheme: .light)
+    // MARK: - Distance & Goal Progress
+    HStack(spacing: 16) {
+        StepsCardStatsView(
+            title: "DISTANCE",
+            value: "2.1 mi"
+        )
+        StepsCardStatsView(
+            title: "GOAL PROGRESS",
+            value: "2%"
+        )
+    }
+    .padding()
+}
+
+#Preview("DashboardView") {
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
     
-    StepsCardStatsView(
-        title: "GOAL PROGRESS",
-        value: "2%",
-        colorScheme: .light)
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
+    )
 }
