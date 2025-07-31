@@ -10,60 +10,30 @@ import SwiftUI
 struct StepsTakenStatsView: View {
     /// Observed ViewModel to track step count dynamically
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
-    @Environment(\.colorScheme) var colorScheme // Detect system theme
 
     var body: some View {
-        VStack(spacing: 1) {
-            // MARK: - Steps & 7-Day Average
-            VStack {
-                Text("STEPS")
+        // MARK: - Steps & 7-Day Average
+        VStack {
+            Text("STEPS")
+                .font(.callout)
+                .foregroundStyle(.gray)
+            
+            Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
+                .font(.system(size: 52, weight: .bold))
+            
+            
+            HStack {
+                Text("7-DAY AVERAGE")
                     .font(.callout)
                     .foregroundStyle(.gray)
                 
-                Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
-                    .font(.system(size: 52, weight: .bold))
-                
-                
-                HStack {
-                    Text("7-DAY AVERAGE")
-                        .font(.callout)
-                        .foregroundStyle(.gray)
-                    
-                    Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
-                        .font(.body)
-                        .bold()
-                }
-                .padding(.top, 4)
-            }
-            .padding()
-            .onAppear {
-                stepTrackerViewModel.updateCurrentStepCount()
-                stepTrackerViewModel.updateCurrentDistance()
-                stepTrackerViewModel.updateSevenDayStepAverage()
-            }
-            
-            // MARK: - Distance & Goal Progress
-            HStack(spacing: 16) {
-                StepsCardStatsView(
-                    title: "DISTANCE",
-                    value: "\(String(format: "%.2f", stepTrackerViewModel.stepTracker.currentDistance)) mi",
-                    colorScheme: colorScheme
-                )
-                StepsCardStatsView(
-                    title: "GOAL PROGRESS",
-                    value: stepTrackerViewModel.goalProgress,
-                    colorScheme: colorScheme
-                )
-            }
-            .padding()
-            // MARK: - Step Count History
-            VStack {
-                Text("Step Count History")
-                    .font(.title2)
+                Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
+                    .font(.body)
                     .bold()
-                    .padding()
             }
+            .padding(.top, 4)
         }
+        .padding()
     }
 }
 
@@ -73,7 +43,7 @@ struct StepsTakenStatsView: View {
     )
 }
 
-#Preview {
+#Preview("DashboardView") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()
