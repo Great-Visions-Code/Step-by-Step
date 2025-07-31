@@ -40,11 +40,13 @@ struct StatsNavigationView: View {
                         }
                     }
                     .padding(.horizontal)
-                    .padding(.top, 4)
+                    .padding(.top, 8)
                     
                     // MARK: - Content Switching Based on Selected Tab
                     if selectedTab == .stepActivity {
-                        StatsView()
+                        StatsView(
+                            stepTrackerViewModel: StepTrackerViewModel()
+                        )
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         AchievementsListView(
@@ -65,7 +67,7 @@ struct StatsNavigationView: View {
     StatsNavigationView()
 }
 
-#Preview {
+#Preview("DashboardView") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()
