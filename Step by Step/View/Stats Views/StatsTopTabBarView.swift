@@ -28,14 +28,14 @@ struct StatsTopTabBarView: View {
             VStack(spacing: 4) {
                 // Tab icon
                 Image(systemName: systemImage)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
 
                 // Tab label
                 Text(title)
-                    .font(.footnote)
+                    .font(.caption2)
                     .fontWeight(isSelected ? .bold : .regular)
             }
-            .frame(maxWidth: .infinity, minHeight: 40)
+            .frame(maxWidth: .infinity, minHeight: 36)
             .padding(.vertical, 4)
 
             // Dynamic foreground color based on selection
@@ -65,15 +65,24 @@ struct StatsTopTabBarView: View {
 }
 
 #Preview {
-    StatsTopTabBarView(
-        title: "Step Activity",
-        systemImage: "shoeprints.fill",
-        isSelected: false,
-        action: {}
-    )
+    HStack(spacing: 20) {
+        StatsTopTabBarView(title: "Steps",
+                           systemImage: "shoeprints.fill",
+                           isSelected: true,
+                           action: {}
+        )
+        
+        StatsTopTabBarView(title: "Milestones",
+                           systemImage: "rosette",
+                           isSelected: false,
+                           action: {}
+        )
+    }
+    .padding(.horizontal)
+    .padding(.top, 8)
 }
 
-#Preview {
+#Preview("DashboarView") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()

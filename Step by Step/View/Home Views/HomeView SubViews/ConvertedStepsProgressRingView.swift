@@ -73,7 +73,7 @@ struct ConvertedStepsProgressRingView: View {
                 
                 VStack(spacing: 0) {
                     Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
-                        .font(.system(size: 41,
+                        .font(.system(size: 52,
                                       weight: .bold,
                                       design: .rounded)
                         )

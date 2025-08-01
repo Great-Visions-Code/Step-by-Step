@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Displays a user's step activity breakdown including current stats and historical graph.
 ///
-/// Combines both the current day's summary via `StepsTakenStatsView` and the multi-day bar chart
+/// Combines both the current day's summary via `StepsStatsView` and the multi-day bar chart
 /// via `StepStatsGraphView`. Used within the Achievements tab to provide users with insight into
 /// their walking patterns and overall progress.
 struct StatsView: View {
@@ -20,9 +20,10 @@ struct StatsView: View {
         VStack {
             // MARK: - Daily Step Summary
             // Displays today's step count, distance, and goal progress percentage
-            StepsTakenStatsView(
+            StepsStatsView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
+            .padding(.top, 28)
             
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {

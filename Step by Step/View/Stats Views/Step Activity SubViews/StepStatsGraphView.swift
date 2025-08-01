@@ -13,7 +13,7 @@ struct StepStatsGraphView: View {
 
     var body: some View {
         VStack {
-            Text("Step Count History")
+            Text("Daily Step History")
                 .font(.title2)
                 .bold()
                 .padding()

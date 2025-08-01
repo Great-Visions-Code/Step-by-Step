@@ -57,19 +57,7 @@ struct HomeView: View {
                     EnergyCardView(playerStatsViewModel: playerStatsViewModel,
                                    stepTrackerViewModel: stepTrackerViewModel
                     )
-                    
-//                    // Button to convert steps into energy points for use in the game.
-//                    ConvertToEnergyButtonView(
-//                        playerStatsViewModel: playerStatsViewModel,
-//                        stepTrackerViewModel: stepTrackerViewModel
-//                    )
-//                    
-//                    // Displays the player's current energy level.
-//                    CurrentEnergyProgressView(
-//                        playerStatsViewModel: playerStatsViewModel
-//                    )
-//                    .padding(.horizontal)
-                    
+                                        
                     // MARK: - Story Scroll View
                     // A horizontal scrollable list of available adventures for the player to choose from.
                     StoryCarouselView(

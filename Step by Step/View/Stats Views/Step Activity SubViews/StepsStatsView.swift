@@ -1,5 +1,5 @@
 //
-//  StepsTakenStatsView.swift
+//  StepsStatsView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/15/25.
@@ -7,38 +7,42 @@
 
 import SwiftUI
 
-struct StepsTakenStatsView: View {
+struct StepsStatsView: View {
     /// Observed ViewModel to track step count dynamically
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
 
     var body: some View {
-        // MARK: - Steps & 7-Day Average
         VStack {
-            Text("STEPS")
+            // MARK: - Todays Steps
+            Text("TODAYS \(stepTrackerViewModel.stepTracker.currentStepCount == 1 ? "STEP" : "STEPS")")
                 .font(.callout)
-                .foregroundStyle(.gray)
+                .kerning(1)
+                .foregroundStyle(.secondary)
             
             Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
-                .font(.system(size: 52, weight: .bold))
+                .font(.system(size: 52,
+                              weight: .bold,
+                              design: .rounded)
+                )
+                .monospacedDigit()
+                .padding(.bottom, 28)
             
-            
+            // MARK: - 7-Day Average
             HStack {
-                Text("7-DAY AVERAGE")
+                Text("7-Day Avg")
                     .font(.callout)
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.secondary)
                 
                 Text("\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))")
                     .font(.body)
                     .bold()
             }
-            .padding(.top, 4)
         }
-        .padding()
     }
 }
 
 #Preview {
-    StepsTakenStatsView(
+    StepsStatsView(
         stepTrackerViewModel: StepTrackerViewModel()
     )
 }
