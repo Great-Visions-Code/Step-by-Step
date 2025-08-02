@@ -22,12 +22,12 @@ struct EnergyCardView: View {
             
             VStack(spacing: 20){
                 // MARK: - Displays the player's current energy level.
-                CurrentEnergyProgressView(
+                EnergyProgressView(
                     playerStatsViewModel: playerStatsViewModel
                 )
                                 
                 // MARK: - Button to convert steps into energy points for use in the game.
-                ConvertToEnergyButtonView(
+                ConvertStepsButtonView(
                     playerStatsViewModel: playerStatsViewModel,
                     stepTrackerViewModel: stepTrackerViewModel
                 )
@@ -43,7 +43,7 @@ struct EnergyCardView: View {
     )
 }
 
-#Preview {
+#Preview("HomeView") {
     HomeView(
         storyCardViewModel: StoryCardViewModel(),
         playerStatsViewModel: PlayerStatsViewModel(),

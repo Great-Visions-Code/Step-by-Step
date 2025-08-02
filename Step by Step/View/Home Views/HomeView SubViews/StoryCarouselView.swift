@@ -30,6 +30,7 @@ struct StoryCarouselView: View {
             // MARK: - Title
             Text("Stories")
                 .font(.title)
+                .opacity(0.9)
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
@@ -76,7 +77,6 @@ struct StoryCarouselView: View {
     }
 }
 
-// MARK: - Preview: Standalone Component
 #Preview {
     @Previewable @State var stories = [
         StoryCard(
@@ -103,8 +103,7 @@ struct StoryCarouselView: View {
     )
 }
 
-// MARK: - Preview: Integrated in Dashboard
-#Preview {
+#Preview("Dashboard") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()

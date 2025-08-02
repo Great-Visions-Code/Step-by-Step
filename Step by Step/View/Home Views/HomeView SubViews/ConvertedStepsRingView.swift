@@ -1,5 +1,5 @@
 //
-//  ConvertedStepsProgressRingView.swift
+//  ConvertedStepsRingView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/25/24.
@@ -10,7 +10,7 @@ import SwiftUI
 /// A circular progress indicator representing the user's current step count progress toward their daily goal.
 ///
 /// Displays real-time feedback on steps taken, including a motivational helper message and visual progress ring.
-struct ConvertedStepsProgressRingView: View {
+struct ConvertedStepsRingView: View {
     
     /// ViewModel managing the user's step tracking data.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
@@ -70,24 +70,27 @@ struct ConvertedStepsProgressRingView: View {
                 Image(systemName: "figure.walk.motion")
                     .font(.title2)
                     .fontWeight(.semibold)
+                    .opacity(0.9)
                 
-                VStack(spacing: 0) {
-                    Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
-                        .font(.system(size: 52,
-                                      weight: .bold,
-                                      design: .rounded)
+                Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
+                    .font(.system(size: 52,
+                                  weight: .bold,
+                                  design: .rounded)
                         )
-                        .monospacedDigit()
+                    .opacity(0.9)
+                    .monospacedDigit()
                     
-                    Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken == 1 ? "step" : "steps") converted")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                }
+                Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken == 1 ? "step" : "steps") converted")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .opacity(0.9)
                 
                 Text(progressHelperText)
                     .font(.footnote)
-                    .lineLimit(2)
+                    .opacity(0.9)
+                    .lineLimit(1)
                     .multilineTextAlignment(.center)
+                    .padding(.bottom, 12)
                 
                 Text("Goal \(stepTrackerViewModel.stepTracker.totalStepsGoal)")
                     .font(.caption)
@@ -102,10 +105,10 @@ struct ConvertedStepsProgressRingView: View {
 #Preview {
     let stepTrackerViewModel = StepTrackerViewModel()
     stepTrackerViewModel.setTotalStepsTaken(2500)
-    return ConvertedStepsProgressRingView(stepTrackerViewModel: stepTrackerViewModel)
+    return ConvertedStepsRingView(stepTrackerViewModel: stepTrackerViewModel)
 }
 
-#Preview {
+#Preview("Dashboard") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()

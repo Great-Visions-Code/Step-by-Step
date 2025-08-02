@@ -49,7 +49,7 @@ struct StoryCardView: View {
                     Text("Progress \(percentage)%")
                         .font(.footnote)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.9))
                         .monospacedDigit()
 
                     ProgressView(value: Double(percentage), total: 100)

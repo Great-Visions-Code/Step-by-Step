@@ -1,5 +1,5 @@
 //
-//  CurrentEnergyProgressView.swift
+//  EnergyProgressView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 11/27/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CurrentEnergyProgressView: View {
+struct EnergyProgressView: View {
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
     private let maxEnergy = 10.0          // keeps the magic number central
@@ -17,26 +17,30 @@ struct CurrentEnergyProgressView: View {
             HStack(spacing: 4) {
                 Image(systemName: "bolt.fill")
                     .font(.headline)
+                    .opacity(0.9)
+
                 Text("Energy")
                     .font(.headline)
+                    .opacity(0.9)
+
                 Spacer()
                 Text("\(playerStatsViewModel.playerStats.energy)/\(Int(maxEnergy))")
                     .font(.title3)
                     .fontWeight(.bold)
+                    .opacity(0.9)
                     .monospacedDigit()
             }
-            HStack(spacing: 20) {
-                ProgressView(
-                    value: Double(playerStatsViewModel.playerStats.energy),
-                    total: maxEnergy
-                )
-                .progressViewStyle(.linear)                 // iOS 14+ linear bar
-                .tint(.blue)                               // optional brand color
-                .frame(height: 4)                          // makes the bar thicker
-                .clipShape(Capsule())                       // rounded ends
-                .animation(.easeInOut(duration: 0.35),      // smooth fill change
-                           value: playerStatsViewModel.playerStats.energy)
-            }
+            
+            ProgressView(
+                value: Double(playerStatsViewModel.playerStats.energy),
+                total: maxEnergy
+            )
+            .progressViewStyle(.linear)                 // iOS 14+ linear bar
+            .tint(.blue.opacity(0.9))                   // optional brand color
+            .frame(height: 4)                           // makes the bar thicker
+            .clipShape(Capsule())                       // rounded ends
+            .animation(.easeInOut(duration: 0.35),      // smooth fill change
+                        value: playerStatsViewModel.playerStats.energy)
         }
         .frame(width: 352)
     }
@@ -45,10 +49,10 @@ struct CurrentEnergyProgressView: View {
 #Preview {
     let vm = PlayerStatsViewModel()
     vm.updateEnergy(to: 5)
-    return CurrentEnergyProgressView(playerStatsViewModel: vm)
+    return EnergyProgressView(playerStatsViewModel: vm)
 }
 
-#Preview {
+#Preview("Dashboard") {
     let previewAchievementsViewModel = AchievementsViewModel()
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()

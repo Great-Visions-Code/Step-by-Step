@@ -39,7 +39,7 @@ struct HomeView: View {
                     
                     // MARK: - Circular Step Tracker
                     // Displays the user's progress toward their daily step goal.
-                    ConvertedStepsProgressRingView(
+                    ConvertedStepsRingView(
                         stepTrackerViewModel: stepTrackerViewModel
                     )
                     .onAppear {

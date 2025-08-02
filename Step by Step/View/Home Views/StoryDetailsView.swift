@@ -96,13 +96,13 @@ struct StoryDetailsView: View {
                 Color.black.ignoresSafeArea(edges: .all)
                 
                 ScrollView {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 52) {
                         // Story descriptive text
                         Text(story.storyDetails)
                             .font(.body)
                             .fontDesign(.monospaced)
                             .multilineTextAlignment(.center)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.white.opacity(0.9))
                             .padding(.top)
                         
                         // Enter Story button (hidden if "Stay Tuned")
@@ -128,8 +128,6 @@ struct StoryDetailsView: View {
         .toolbarBackground(.black, for: .tabBar)
     }
 }
-
-// MARK: - Preview
 
 #Preview {
     StoryDetailsView(
