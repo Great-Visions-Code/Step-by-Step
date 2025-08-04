@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A stylized segmented tab used in `StatsNavigationView` for switching between step activity and achievements views.
+/// A stylized segmented tab used in `StatsDashboardView` for switching between step activity and achievements views.
 ///
 /// This tab displays an icon and a title stacked vertically. The selected state is visually emphasized
 /// using a colored background, bold text, and a subtle scaling animation for interactivity.

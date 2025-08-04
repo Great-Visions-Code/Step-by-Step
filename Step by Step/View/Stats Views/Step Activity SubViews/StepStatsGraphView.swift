@@ -17,9 +17,7 @@ struct StepStatsGraphView: View {
                 .font(.title2)
                 .bold()
                 .padding()
-            
-            Spacer()
-            
+                        
             ScrollViewReader { scrollProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     let stepData = stepTrackerViewModel.sortedStepData()
