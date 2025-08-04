@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Displays a user's step activity breakdown including current stats and historical graph.
 ///
-/// Combines both the current day's summary via `StepsStatsView` and the multi-day bar chart
+/// Combines both the current day's summary via `TodaysStatsCardView` and the multi-day bar chart
 /// via `StepStatsGraphView`. Used within the Achievements tab to provide users with insight into
 /// their walking patterns and overall progress.
 struct StatsView: View {
@@ -17,23 +17,34 @@ struct StatsView: View {
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
     var body: some View {
-        VStack {
+        
+        let maxStepCount = stepTrackerViewModel.maxStepCount
+        let bestDayDate = stepTrackerViewModel.bestDayDateFormatted
+        
+        VStack(spacing: 2) {
             // MARK: - Daily Step Summary
             // Displays today's step count, distance, and goal progress percentage
-            StepsStatsView(
+            TodaysStatsCardView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
-            .padding(.top, 28)
+            .padding(.top, 24)
             
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {
-                StepsCardStatsView(
-                    title: "DISTANCE",
-                    value: "\(String(format: "%.2f", stepTrackerViewModel.stepTracker.currentDistance)) mi"
+                StepsStatsCardView(
+                    title: "Streak",
+                    value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")"
                 )
-                StepsCardStatsView(
-                    title: "GOAL PROGRESS",
-                    value: stepTrackerViewModel.goalProgress
+                
+                StepsStatsCardView(
+                    title: "Best Day",
+                    value: "\(maxStepCount)",
+                    subheading: bestDayDate
+                )
+                
+                StepsStatsCardView(
+                    title: "7-day avg",
+                    value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))"
                 )
             }
             .padding()
