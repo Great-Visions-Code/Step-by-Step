@@ -31,6 +31,64 @@ class StepTrackerViewModel: ObservableObject {
         return String(format: "%.1f%%", min(progress, 5000)) // Cap at 5000%
     }
     
+    /// Returns the highest step count from step history.
+    var maxStepCount: Int {
+        return stepTracker.stepHistory.map { $0.steps }.max() ?? 0
+    }
+
+    /// Returns the formatted date (e.g., "Jul 18") of the day with the most steps.
+    var bestDayDateFormatted: String {
+        // Create a formatter to match the original string format from HealthKit
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "M/d/yy"
+
+        // Formatter for the displayed format (e.g., "Jul 18")
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "MMM d"
+
+        // Get the day with the most steps
+        guard let bestDayEntry = stepTracker.stepHistory.max(by: { $0.steps < $1.steps }),
+              let date = inputFormatter.date(from: bestDayEntry.date) else {
+            return "-"
+        }
+
+        return outputFormatter.string(from: date)
+    }
+    
+    /// Calculates the longest streak of consecutive days where step count met or exceeded the goal.
+    var longestStepStreak: Int {
+        let goal = stepTracker.totalStepsGoal
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d/yy"
+
+        // Convert to sorted [(Date, steps)] array
+        let sorted = stepTracker.stepHistory.compactMap { entry -> (Date, Int)? in
+            guard let date = dateFormatter.date(from: entry.date) else { return nil }
+            return (date, entry.steps)
+        }
+        .sorted(by: { $0.0 < $1.0 })
+
+        var longest = 0
+        var current = 0
+        var previousDate: Date?
+
+        for (date, steps) in sorted {
+            if steps >= goal {
+                if let prev = previousDate, Calendar.current.dateComponents([.day], from: prev, to: date).day == 1 {
+                    current += 1
+                } else {
+                    current = 1
+                }
+            } else {
+                current = 0
+            }
+            previousDate = date
+            longest = max(longest, current)
+        }
+
+        return longest
+    }
+    
     /// Key for UserDefaults storage.
     private static let totalStepsTakenKey = "totalStepsTaken"
     private static let lastResetDateKey = "lastResetDate"
