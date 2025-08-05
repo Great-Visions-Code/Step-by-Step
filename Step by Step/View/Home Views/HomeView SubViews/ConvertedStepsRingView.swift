@@ -45,7 +45,7 @@ struct ConvertedStepsRingView: View {
         ZStack {
             // Background Circle (Unfilled)
             Circle()
-                .stroke(lineWidth: 20)
+                .stroke(lineWidth: 22)
                 .foregroundStyle(.wave3)
                 .opacity(0.2)
             
@@ -59,36 +59,36 @@ struct ConvertedStepsRingView: View {
                         startAngle: .degrees(0),
                         endAngle: .degrees(360 * progress)
                     ),
-                    style: StrokeStyle(lineWidth: 20, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 24, lineCap: .round)
                 )
-                .shadow(color: .black.opacity(0.24), radius: 4)
+                .shadow(color: .black.opacity(0.28), radius: 8)
                 .rotationEffect(.degrees(-90))
-                .animation(.easeInOut(duration: 0.6), value: progress)
+                .animation(.easeInOut(duration: 0.65), value: progress)
             
             // Step Count, Icon, Goal
             VStack(spacing: 4) {
                 Image(systemName: "figure.walk.motion")
                     .font(.title2)
-                    .fontWeight(.semibold)
-                    .opacity(0.9)
+                    .fontWeight(.bold)
+                    .opacity(0.95)
                 
                 Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken)")
                     .font(.system(size: 52,
                                   weight: .bold,
                                   design: .rounded)
                         )
-                    .opacity(0.9)
+                    .opacity(0.95)
                     .monospacedDigit()
                     
                 Text("\(stepTrackerViewModel.stepTracker.totalStepsTaken == 1 ? "step" : "steps") converted")
                     .font(.title3)
                     .fontWeight(.semibold)
-                    .opacity(0.9)
+                    .opacity(0.95)
                 
                 Text(progressHelperText)
                     .font(.footnote)
-                    .opacity(0.9)
-                    .lineLimit(1)
+                    .opacity(0.95)
+                    .lineLimit(2)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 12)
                 

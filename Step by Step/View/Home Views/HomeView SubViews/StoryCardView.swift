@@ -49,12 +49,12 @@ struct StoryCardView: View {
                     Text("Progress \(percentage)%")
                         .font(.footnote)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white.opacity(0.9))
+                        .foregroundStyle(.white.opacity(0.95))
                         .monospacedDigit()
 
                     ProgressView(value: Double(percentage), total: 100)
                         .progressViewStyle(.linear)
-                        .tint(.white)
+                        .tint(.white.opacity(0.95))
                         .frame(height: 4)
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(3)
@@ -66,9 +66,9 @@ struct StoryCardView: View {
         }
         .frame(width: 352, height: 184)
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(radius: 5)
+        .shadow(radius: 8)
         .scaleEffect(isPressed ? 0.95 : 1.0)
-        .animation(.easeInOut(duration: 0.1), value: isPressed)
+        .animation(.easeInOut(duration: 0.24), value: isPressed)
         .onTapGesture {
             withAnimation {
                 isPressed = true

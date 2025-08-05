@@ -17,17 +17,17 @@ struct EnergyProgressView: View {
             HStack(spacing: 4) {
                 Image(systemName: "bolt.fill")
                     .font(.headline)
-                    .opacity(0.9)
+                    .opacity(0.95)
 
                 Text("Energy")
                     .font(.headline)
-                    .opacity(0.9)
+                    .opacity(0.95)
 
                 Spacer()
                 Text("\(playerStatsViewModel.playerStats.energy)/\(Int(maxEnergy))")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .opacity(0.9)
+                    .opacity(0.95)
                     .monospacedDigit()
             }
             
@@ -36,10 +36,10 @@ struct EnergyProgressView: View {
                 total: maxEnergy
             )
             .progressViewStyle(.linear)                 // iOS 14+ linear bar
-            .tint(.blue.opacity(0.9))                   // optional brand color
-            .frame(height: 4)                           // makes the bar thicker
+            .tint(.blue.opacity(0.95))                   // optional brand color
+            .frame(height: 6)                           // makes the bar thicker
             .clipShape(Capsule())                       // rounded ends
-            .animation(.easeInOut(duration: 0.35),      // smooth fill change
+            .animation(.easeInOut(duration: 0.45),      // smooth fill change
                         value: playerStatsViewModel.playerStats.energy)
         }
         .frame(width: 352)

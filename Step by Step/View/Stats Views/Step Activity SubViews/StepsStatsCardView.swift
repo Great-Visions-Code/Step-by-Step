@@ -28,7 +28,7 @@ struct StepsStatsCardView: View {
     var subheading: String?
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             // Background style and shape
             Rectangle()
                 .foregroundStyle(.wave3)

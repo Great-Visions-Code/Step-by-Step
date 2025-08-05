@@ -19,10 +19,8 @@ struct StoryDetailsView: View {
     
     /// The selected `StoryCard` containing metadata like title, completion, and descriptive text.
     let story: StoryCard
-
     /// Optional view model for dynamically reflecting the current completion percentage.
     let storyContentViewModel: StoryContentViewModel?
-
     /// Closure to handle the "Enter Story" button action.
     let onEnterStoryButton: () -> Void
     
@@ -76,7 +74,7 @@ struct StoryDetailsView: View {
                             .fontWidth(.expanded)
                             .fontDesign(.serif)
                             .foregroundStyle(.white.opacity(0.75))
-                            .kerning(1)
+                            .kerning(2.5)
                     } else {
                         Text("More adventures in the works!")
                             .font(.subheadline)
@@ -84,10 +82,10 @@ struct StoryDetailsView: View {
                             .fontWidth(.expanded)
                             .fontDesign(.serif)
                             .foregroundStyle(.white.opacity(0.75))
-                            .kerning(1)
+                            .kerning(2)
                     }
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, 6)
             }
 
             // MARK: - Description & Enter Story Button
@@ -96,20 +94,20 @@ struct StoryDetailsView: View {
                 Color.black.ignoresSafeArea(edges: .all)
                 
                 ScrollView {
-                    VStack(spacing: 52) {
+                    VStack(spacing: 56) {
                         // Story descriptive text
                         Text(story.storyDetails)
                             .font(.body)
                             .fontDesign(.monospaced)
                             .multilineTextAlignment(.center)
-                            .foregroundStyle(.white.opacity(0.9))
+                            .foregroundStyle(.white.opacity(0.95))
                             .padding(.top)
                         
                         // Enter Story button (hidden if "Stay Tuned")
                         if story.storyTitle != "Stay Tuned" {
                             Button(action: onEnterStoryButton) {
                                 Text("ENTER STORY")
-                                    .font(.largeTitle)
+                                    .font(.title)
                                     .fontWeight(.black)
                                     .fontDesign(.monospaced)
                                     .frame(width: 352, height: 68)
@@ -136,13 +134,13 @@ struct StoryDetailsView: View {
             storyCardImage: "SurviveStoryCardImage",
             storyCompletion: 0,
             storyDetails: """
-            In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
+                In 'Survive,' you wake up to the sound of blaring sirens and chaos outside your window. Overnight, your city has been overtaken by a zombie apocalypse, plunging your once-familiar world into danger and disarray.
 
-            Your goal is simple yet daunting: survive for 5 in-game days and reach the evacuation center at the city's edge, where safety awaits. Each day presents new challenges, from scavenging for supplies to fending off zombies and navigating the unpredictable dangers of a collapsing society.
+                Your goal is simple yet daunting: survive for 5 in-game days and reach the evacuation center at the city's edge, where safety awaits. Each day presents new challenges, from scavenging for supplies to fending off zombies and navigating the unpredictable dangers of a collapsing society.
 
-            This story is not just about survival—it's about taking steps to secure your fate. Literally. Your real-life steps fuel your progress in the game. The more steps you take, the more energy you earn to make critical decisions and advance through the story. But beware: impulsive choices may cost you dearly, whether it’s starvation, accidents, or hostile survivors.
+                This story is not just about survival—it's about taking steps to secure your fate. Literally. Your real-life steps fuel your progress in the game. The more steps you take, the more energy you earn to make critical decisions and advance through the story. But beware: impulsive choices may cost you dearly, whether it’s starvation, accidents, or hostile survivors.
 
-            Will you make it to safety, or will you succumb to the chaos? Step into the story and find out!
+                Will you make it to safety, or will you succumb to the chaos? Step into the story and find out!
             """
         ),
         storyContentViewModel: StoryContentViewModel(
