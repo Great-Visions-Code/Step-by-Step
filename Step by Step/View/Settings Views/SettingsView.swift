@@ -60,6 +60,38 @@ struct SettingsView: View {
                         icon: "wrench.and.screwdriver",
                         action: { isDeveloperOptionsPresented = true }
                     )
+                    
+                    Text("About")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    ZStack {
+                        Rectangle()
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .foregroundStyle(.wave3)
+                        VStack(spacing: 24) {
+                            HStack {
+                                Text("Version")
+                                
+                                Spacer()
+                                
+                                Text("0.0.0")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.horizontal)
+                            
+                            HStack {
+                                Text("Developer")
+                                
+                                Spacer()
+                                
+                                Text("Great-Visions-Code")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                    .frame(width: 340, height: 88)
                 }
                 .padding(.horizontal)
                 
