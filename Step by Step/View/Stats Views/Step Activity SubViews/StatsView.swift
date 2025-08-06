@@ -21,13 +21,13 @@ struct StatsView: View {
         let maxStepCount = stepTrackerViewModel.maxStepCount
         let bestDayDate = stepTrackerViewModel.bestDayDateFormatted
         
-        VStack(spacing: 2) {
+        VStack(spacing: 0) {
             // MARK: - Daily Step Summary
             // Displays today's step count, distance, and goal progress percentage
             TodaysStatsCardView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
-            .padding(.top, 24)
+            .padding(.top, 16)
             
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {
@@ -47,13 +47,14 @@ struct StatsView: View {
                     value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))"
                 )
             }
-            .padding()
+            .padding(.vertical)
 
             // MARK: - Step History Graph
             // Shows a horizontal scrollable bar chart of recent days' step counts
             StepStatsGraphView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
+            .padding(.bottom)
         }
         .onAppear {
             stepTrackerViewModel.updateCurrentStepCount()

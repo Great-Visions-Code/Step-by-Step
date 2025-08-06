@@ -19,15 +19,16 @@ struct StepStatsProgressBarView: View {
         VStack {
             // Step count with dynamic font scaling
             Text("\(value)")
-                .font(.system(size: 16, weight: .bold)) // Default size
-                .minimumScaleFactor(0.7) // Allows it to shrink if needed
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .minimumScaleFactor(0.5) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents multiple lines
                 .frame(width: 40) // Ensures width consistency
                 .foregroundStyle(isToday ? Color.blue : Color.primary)
 
             // Bar representation of steps
             RoundedRectangle(cornerRadius: 5)
-                .fill(isToday ? Color.blue.opacity(0.8) : Color.blue.opacity(0.6))
+                .fill(isToday ? Color.blue.opacity(0.95) : Color.blue.opacity(0.75))
                 .frame(
                     width: 35,
                     height: maxHeight * CGFloat(value) / CGFloat(maxValue)
@@ -35,11 +36,11 @@ struct StepStatsProgressBarView: View {
 
             // Day label with dynamic font scaling
             Text(label)
-                .font(.system(size: 12, weight: .medium)) // Default size
-                .minimumScaleFactor(0.7) // Allows it to shrink if needed
+                .font(.caption)
+                .minimumScaleFactor(0.6) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents wrapping
                 .frame(width: 40) // Ensures consistent width
-                .foregroundStyle(isToday ? Color.blue : .gray)
+                .foregroundStyle(isToday ? Color.blue : .secondary)
         }
     }
 }
@@ -47,7 +48,7 @@ struct StepStatsProgressBarView: View {
 #Preview {
     StepStatsProgressBarView(
         value: 5000,
-        label: "Mon",
+        label: "8/2/25",
         maxValue: 2094,
         maxHeight: 200
     )
