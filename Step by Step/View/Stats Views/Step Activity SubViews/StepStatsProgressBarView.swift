@@ -37,7 +37,7 @@ struct StepStatsProgressBarView: View {
             // Day label with dynamic font scaling
             Text(label)
                 .font(.caption)
-                .minimumScaleFactor(0.6) // Allows it to shrink if needed
+                .minimumScaleFactor(0.5) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents wrapping
                 .frame(width: 40) // Ensures consistent width
                 .foregroundStyle(isToday ? Color.blue : .secondary)

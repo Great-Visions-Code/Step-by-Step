@@ -55,7 +55,7 @@ struct StepsStatsCardView: View {
             }
             .padding()
         }
-        .frame(width: 122, height: 100) // Fixed card size for layout consistency
+        .frame(width: 122, height: 118) // Fixed card size for layout consistency
     }
 }
 
