@@ -23,29 +23,43 @@ The flagship story, **_Survive_**, drops players into a zombie apocalypse where 
   - Encourages consistent daily movement
 
 - **Dashboard View**  
-  - View daily steps, energy, health, and conversion stats  
+  - View daily steps, energy, distance, and conversion stats  
   - One-tap step-to-energy conversion  
-  - Circular progress ring showing step goals
+  - Circular progress ring for visualizing step goals  
+  - Dynamic feedback tied to walking progress  
 
 ### 📖 Story-Based Gameplay  
 - **Interactive, Text-Based RPG**  
   - Choose-your-adventure style format  
   - Each decision costs energy or affects health  
-  - Multiple endings, branching paths, and high-stakes survival (In Progress)  
-  - 5-day story structure for long-term engagement
+  - Branching paths, reactive consequences, and replayability  
+  - In-progress 5-day challenge in the _Survive_ storyline  
+  - Story progress tied directly to real-world step count  
 
 - **Step-Powered Progression**  
-  - Can’t move forward in the story unless you move in real life  
-  - Replayable chapters and dynamic choices tied to your real steps
+  - You can't move forward unless you move in real life  
+  - Energy limitations require walking to continue the story  
+  - Multiple attempts encouraged — death is part of the journey
 
-### 🏆 Achievements & Progress  
-- **Fitness Milestones**  
-  - Max steps in a day, total steps, and distance traveled  
-  - Achievements show progress and unlock with persistence  
+### 📊 Visual Step Insights  
+- **Stats View**  
+  - Displays today's steps, best day, and 7-day step average  
+  - Longest walking streak shown dynamically  
+  - Animated, scrollable graph of daily step history  
+  - Highlights best step count with a trophy icon  
+  - (Planned) Dotted line showing 7-day average on graph  
 
-- **Story Milestones**  
-  - Unlock badges for completing each story day  
-  - Tracks how far you’ve made it and how many times you’ve tried  
+### 🏆 Achievements & Milestones  
+- **Fitness Achievements**  
+  - Max steps in a day  
+  - Total cumulative steps  
+  - Total distance walked  
+
+- **Story Achievements**  
+  - Unlock badges for completing story days  
+  - Tracks how far you’ve made it and how many times you've tried  
+  - Shows date earned and milestone history  
+
 ---
 
 ## ✅ Current Status
@@ -53,9 +67,11 @@ The flagship story, **_Survive_**, drops players into a zombie apocalypse where 
 ### Finished Features  
 - Real-time HealthKit syncing  
 - Step-to-energy conversion  
-- Player stat management (energy, health, progression)  
-- Story + fitness achievements  
-- Stats view with animated progress bars
+- Player stat management (energy, health, streaks, averages)  
+- Story + fitness achievement systems with persistent tracking  
+- Animated stat views and progress cards  
+- Story progress view with resume/restart/history  
+- Bar graph with trophy icon for best day  
 
 ---
 
@@ -78,14 +94,18 @@ The flagship story, **_Survive_**, drops players into a zombie apocalypse where 
 ## 🧭 Roadmap  
 
 ### Short-Term Goals  
-- Complete all 5 days of the _Survive_ story  
-- Save story checkpoints and add history log  
-- Work on UI/UX
-- *Settings* tab complete (personalization and accessibility)
+- Finish all 5 in-game days of the _Survive_ storyline  
+- Add 7-day average line to graph (visual indicator)  
+- Refine UI/UX for streaks, stats, and conversion feedback  
+- Complete Settings tab (accessibility, personalization)  
+- Finalize and save story checkpoints with decision history  
 
 ### Long-Term Goals  
-- Multiple story expansions (sci-fi, mystery, fantasy)  
-- Story map visualizing progress and choices  
+- Expand with new interactive stories (sci-fi, fantasy, mystery)  
+- Visual story map with branching paths and milestones  
+- iCloud sync for step history and story progress across devices  
+- Shareable achievements and social walking challenges  
+
 ---
 
 ## 🤝 Let's Connect  
@@ -95,5 +115,3 @@ Have suggestions or want to collaborate?
 📫 [Great Visions Code – GitHub Page](https://great-visions-code.github.io/)  
 
 Thanks for following the journey! 🚶‍♂️
-
----
