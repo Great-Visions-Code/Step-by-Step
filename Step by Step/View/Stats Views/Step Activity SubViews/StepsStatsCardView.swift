@@ -38,7 +38,7 @@ struct StepsStatsCardView: View {
             VStack(alignment: .leading, spacing: 4) {
                 // Top label
                 Text(title)
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
                 // Primary value
@@ -50,7 +50,7 @@ struct StepsStatsCardView: View {
                 
                 // Optional bottom label (e.g., date)
                 Text(subheading ?? "")
-                    .font(.caption2)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
             }
             .padding()
@@ -72,16 +72,16 @@ struct StepsStatsCardView: View {
     // Preview of three example cards side-by-side
     HStack(spacing: 16) {
         StepsStatsCardView(
-            title: "7-Day Average",
-            value: "6,344"
+            title: "Streak",
+            value: "4 days"
         )
         StepsStatsCardView(
             title: "Best Day",
             value: "14,115"
         )
         StepsStatsCardView(
-            title: "Current Streak",
-            value: "4 days"
+            title: "7-day avg",
+            value: "5,877"
         )
     }
     .padding()

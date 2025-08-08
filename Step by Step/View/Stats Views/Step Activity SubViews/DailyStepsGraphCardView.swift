@@ -1,5 +1,5 @@
 //
-//  StepStatsGraphView.swift
+//  DailyStepsGraphCardView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/15/25.
@@ -15,7 +15,7 @@ import SwiftUI
 /// - Automatically scrolls to the latest entry when data changes
 ///
 /// Used inside `StatsView` to provide historical step context.
-struct StepStatsGraphView: View {
+struct DailyStepsGraphCardView: View {
     /// Tracks and provides step data from HealthKit
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
@@ -33,9 +33,9 @@ struct StepStatsGraphView: View {
             VStack {
                 // Section title
                 Text("Daily Steps")
-                    .font(.title)
-                    .opacity(0.95)
+                    .font(.title3)
                     .fontWeight(.semibold)
+                    .foregroundStyle(.secondary)
                     .padding()
                 
                 // Horizontal scrolling container
@@ -53,6 +53,7 @@ struct StepStatsGraphView: View {
                                     Image(systemName: "trophy")
                                         .font(.footnote)
                                         .fontWeight(.semibold)
+                                        .foregroundStyle(.secondary)
                                     
                                     Text("Best Step Count: \(maxStepCount)")
                                         .font(.caption)
@@ -72,7 +73,7 @@ struct StepStatsGraphView: View {
                                 ForEach(stepData.indices, id: \.self) { index in
                                     let entry = stepData[index]
                                     
-                                    StepStatsProgressBarView(
+                                    DayStepCountProgressBarView(
                                         value: entry.steps,
                                         label: entry.date,
                                         maxValue: maxStepCount,
@@ -128,7 +129,7 @@ class MockStepTrackerViewModel: StepTrackerViewModel {
 // MARK: - SwiftUI Previews
 
 #Preview {
-    StepStatsGraphView(stepTrackerViewModel: MockStepTrackerViewModel())
+    DailyStepsGraphCardView(stepTrackerViewModel: MockStepTrackerViewModel())
 }
 
 #Preview("DashboardView") {

@@ -10,7 +10,7 @@ import SwiftUI
 /// Displays a user's step activity breakdown including current stats and historical graph.
 ///
 /// Combines both the current day's summary via `TodaysStatsCardView` and the multi-day bar chart
-/// via `StepStatsGraphView`. Used within the Achievements tab to provide users with insight into
+/// via `DailyStepsGraphCardView`. Used within the Achievements tab to provide users with insight into
 /// their walking patterns and overall progress.
 struct StatsView: View {
     /// Observed ViewModel to track step count dynamically
@@ -38,19 +38,19 @@ struct StatsView: View {
                 
                 StepsStatsCardView(
                     title: "Best Day",
-                    value: "\(maxStepCount)",
+                    value: "\(maxStepCount.formatted())",
                     subheading: bestDayDate
                 )
                 
                 StepsStatsCardView(
                     title: "7-day avg",
-                    value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage))"
+                    value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())"
                 )
             }
 
             // MARK: - Step History Graph
             // Shows a horizontal scrollable bar chart of recent days' step counts
-            StepStatsGraphView(
+            DailyStepsGraphCardView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
             

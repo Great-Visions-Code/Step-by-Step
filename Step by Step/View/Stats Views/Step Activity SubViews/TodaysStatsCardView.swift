@@ -40,6 +40,7 @@ struct TodaysStatsCardView: View {
                         .font(.system(size: 52, weight: .bold, design: .rounded))
                         .opacity(0.9)
                         .monospacedDigit()
+                        .padding(.bottom, 2)
 
                     // Daily goal label
                     Text("of \(stepTrackerViewModel.stepTracker.totalStepsGoal)")

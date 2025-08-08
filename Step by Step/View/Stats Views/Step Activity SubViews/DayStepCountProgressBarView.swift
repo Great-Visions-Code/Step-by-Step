@@ -1,5 +1,5 @@
 //
-//  StepStatsProgressBarView.swift
+//  DayStepCountProgressBarView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/15/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// **Reusable Bar View for Step Data**
-struct StepStatsProgressBarView: View {
+struct DayStepCountProgressBarView: View {
     var value: Int
     var label: String
     var isToday: Bool = false
@@ -46,7 +46,7 @@ struct StepStatsProgressBarView: View {
 }
 
 #Preview {
-    StepStatsProgressBarView(
+    DayStepCountProgressBarView(
         value: 5000,
         label: "8/2/25",
         maxValue: 2094,
