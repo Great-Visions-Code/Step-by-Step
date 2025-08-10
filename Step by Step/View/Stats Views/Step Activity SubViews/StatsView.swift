@@ -32,8 +32,9 @@ struct StatsView: View {
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {
                 StepsStatsCardView(
-                    title: "Streak",
-                    value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")"
+                    title: "Current Streak",
+                    value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")",
+                    subheading: "Best \(stepTrackerViewModel.longestStepStreak)"
                 )
                 
                 StepsStatsCardView(
@@ -47,12 +48,14 @@ struct StatsView: View {
                     value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())"
                 )
             }
+            .padding(.horizontal)
 
             // MARK: - Step History Graph
             // Shows a horizontal scrollable bar chart of recent days' step counts
             DailyStepsGraphCardView(
                 stepTrackerViewModel: stepTrackerViewModel
             )
+            .padding(.horizontal)
             
             Spacer()
         }

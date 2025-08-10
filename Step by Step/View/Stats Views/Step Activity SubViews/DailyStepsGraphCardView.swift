@@ -30,7 +30,7 @@ struct DailyStepsGraphCardView: View {
                 .opacity(0.25)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             
-            VStack {
+            VStack(alignment: .leading) {
                 // Section title
                 Text("Daily Steps")
                     .font(.title3)
@@ -91,7 +91,7 @@ struct DailyStepsGraphCardView: View {
                         }
                         .scrollTargetLayout()
                     }
-                    .scrollTargetBehavior(.paging) // Optional: enables automatic snap-to-element scrolling
+                    .scrollTargetBehavior(.viewAligned) // Optional: enables automatic snap-to-element scrolling
                     
                     // Scrolls to latest bar when new step history loads
                     .onChange(of: stepTrackerViewModel.sortedStepData().map(\.date)) { oldDates, newDates in

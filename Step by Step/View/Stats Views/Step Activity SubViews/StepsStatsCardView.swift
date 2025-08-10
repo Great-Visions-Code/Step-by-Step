@@ -35,10 +35,10 @@ struct StepsStatsCardView: View {
                 .opacity(0.25)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 // Top label
                 Text(title)
-                    .font(.subheadline)
+                    .font(.footnote)
                     .foregroundStyle(.secondary)
                 
                 // Primary value
@@ -72,7 +72,7 @@ struct StepsStatsCardView: View {
     // Preview of three example cards side-by-side
     HStack(spacing: 16) {
         StepsStatsCardView(
-            title: "Streak",
+            title: "Current Streak",
             value: "4 days"
         )
         StepsStatsCardView(
