@@ -9,64 +9,89 @@ import SwiftUI
 
 /// ViewModel for managing step tracking data and logic.
 ///
-/// This ViewModel provides functionality for managing the user's steps,
-/// including setting goals, resetting steps, and converting steps into energy points.
+/// `StepTrackerViewModel` is the single source of truth for all step-related state used
+/// across the app. It:
+/// - Pulls live metrics from HealthKit (via `HealthKitViewModel`)
+/// - Tracks the daily goal and progress
+/// - Maintains a rolling step history for charts/achievements
+/// - Calculates derived values such as current/longest streaks and best day
+///
+/// State updates are published via the `@Published` `stepTracker` value to drive SwiftUI UIs.
 class StepTrackerViewModel: ObservableObject {
-    /// Published property for step tracking data, allowing views to observe changes.
-    /// Any updates to this property will automatically refresh the associated UI.
+
+    // MARK: - Published State
+
+    /// The model that stores user step data and history.
+    ///
+    /// Use `private(set)` to ensure external code cannot mutate the model directly.
+    /// All writes should happen through ViewModel methods to keep behavior consistent.
     @Published private(set) var stepTracker: StepTracker
-    
-    /// Instance of HealthKitViewModel to fetch real step count data.
+
+    // MARK: - Dependencies
+
+    /// Bridges to HealthKit for live values (steps, distance, averages).
     private let healthKitViewModel = HealthKitViewModel()
+
+    /// Evaluates milestones/achievements when history updates.
     private let achievementsViewModel = AchievementsViewModel()
-    
-    /// Computed Property for Total Step Goal Progress
+
+    // MARK: - Derived Display Properties
+
+    /// A formatted percentage representing how close the current step count is to the daily goal.
+    ///
+    /// - Returns: A percentage string (e.g., `"42.6%"`), capped at `5000%` as a sanity limit.
     var goalProgress: String {
         let stepsTaken = stepTracker.currentStepCount
         let goal = stepTracker.totalStepsGoal
-        
-        guard goal > 0 else { return "0%"} // Prevent division by zero
-        
+
+        guard goal > 0 else { return "0%" } // Prevent division by zero
         let progress = (Double(stepsTaken) / Double(goal)) * 100
-        return String(format: "%.1f%%", min(progress, 5000)) // Cap at 5000%
-    }
-    
-    /// Returns the highest step count from step history.
-    var maxStepCount: Int {
-        return stepTracker.stepHistory.map { $0.steps }.max() ?? 0
+        return String(format: "%.1f%%", min(progress, 5000))
     }
 
-    /// Returns the formatted date (e.g., "Jul 18") of the day with the most steps.
+    /// The highest step count found in the current `stepHistory`.
+    ///
+    /// - Note: Returns `0` if no history is present.
+    var maxStepCount: Int {
+        stepTracker.stepHistory.map { $0.steps }.max() ?? 0
+    }
+
+    /// A formatted date (e.g., `"Jul 18"`) for the best step day in `stepHistory`.
+    ///
+    /// If there is no history or the date cannot be parsed, returns `"-"`.
     var bestDayDateFormatted: String {
-        // Create a formatter to match the original string format from HealthKit
+        // Formatter used to parse stored history dates from HealthKit bridge (e.g., "M/d/yy").
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "M/d/yy"
 
-        // Formatter for the displayed format (e.g., "Jul 18")
+        // Desired output format for UI.
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "MMM d"
 
-        // Get the day with the most steps
         guard let bestDayEntry = stepTracker.stepHistory.max(by: { $0.steps < $1.steps }),
               let date = inputFormatter.date(from: bestDayEntry.date) else {
             return "-"
         }
-
         return outputFormatter.string(from: date)
     }
-    
-    /// Calculates the longest streak of consecutive days where step count met or exceeded the goal.
+
+    /// The longest streak of **consecutive** days where steps met or exceeded the daily goal.
+    ///
+    /// - Important: This is an **all-time max** based on the currently loaded `stepHistory`.
+    /// - Note: `stepHistory` is expected to represent unique days; if duplicates exist,
+    ///   behavior depends on their chronological order after sorting.
     var longestStepStreak: Int {
         let goal = stepTracker.totalStepsGoal
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yy"
 
-        // Convert to sorted [(Date, steps)] array
-        let sorted = stepTracker.stepHistory.compactMap { entry -> (Date, Int)? in
-            guard let date = dateFormatter.date(from: entry.date) else { return nil }
-            return (date, entry.steps)
-        }
-        .sorted(by: { $0.0 < $1.0 })
+        // Convert history into `(Date, steps)` and ensure chronological order.
+        let sorted = stepTracker.stepHistory
+            .compactMap { entry -> (Date, Int)? in
+                guard let date = dateFormatter.date(from: entry.date) else { return nil }
+                return (date, entry.steps)
+            }
+            .sorted(by: { $0.0 < $1.0 })
 
         var longest = 0
         var current = 0
@@ -74,12 +99,16 @@ class StepTrackerViewModel: ObservableObject {
 
         for (date, steps) in sorted {
             if steps >= goal {
-                if let prev = previousDate, Calendar.current.dateComponents([.day], from: prev, to: date).day == 1 {
+                // If yesterday was also a success and today is exactly 1 day later, extend streak.
+                if let prev = previousDate,
+                   Calendar.current.dateComponents([.day], from: prev, to: date).day == 1 {
                     current += 1
                 } else {
+                    // New streak starting at this date.
                     current = 1
                 }
             } else {
+                // Missed the goal → reset the running streak.
                 current = 0
             }
             previousDate = date
@@ -88,90 +117,150 @@ class StepTrackerViewModel: ObservableObject {
 
         return longest
     }
-    
-    /// Key for UserDefaults storage.
+
+    /// The **current** streak of consecutive days meeting/exceeding the goal, counting backwards from the latest day.
+    ///
+    /// - Behavior:
+    ///   - If the most recent day misses the goal, this returns `0`.
+    ///   - Otherwise, we count backward as long as days are consecutive and met the goal.
+    var currentStepStreak: Int {
+        let goal = stepTracker.totalStepsGoal
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d/yy"
+
+        // Convert and sort ascending by date so we can iterate in reverse (latest → earliest).
+        let sorted = stepTracker.stepHistory
+            .compactMap { entry -> (Date, Int)? in
+                guard let date = dateFormatter.date(from: entry.date) else { return nil }
+                return (date, entry.steps)
+            }
+            .sorted(by: { $0.0 < $1.0 })
+
+        var streak = 0
+        var previousDate: Date?
+
+        for (date, steps) in sorted.reversed() {
+            if steps >= goal {
+                if let prev = previousDate {
+                    // Ensure the previous (more recent) date is exactly one day ahead of this `date`.
+                    let gap = Calendar.current.dateComponents([.day], from: date, to: prev).day ?? 0
+                    if gap == 1 {
+                        streak += 1
+                    } else {
+                        // Non-consecutive gap breaks the current streak.
+                        break
+                    }
+                } else {
+                    // First qualifying day encountered from the end.
+                    streak = 1
+                }
+            } else {
+                // Most recent miss → no current streak.
+                break
+            }
+            previousDate = date
+        }
+
+        return streak
+    }
+
+    // MARK: - Persistence Keys
+
+    /// Storage keys for persisted values.
     private static let totalStepsTakenKey = "totalStepsTaken"
-    private static let lastResetDateKey = "lastResetDate"
-    private static let totalStepsGoalKey = "totalStepsGoal"
-    
-    /// Initializes the ViewModel with persistent values for steps and goals.
+    private static let lastResetDateKey   = "lastResetDate"
+    private static let totalStepsGoalKey  = "totalStepsGoal"
+
+    // MARK: - Initialization
+
+    /// Initializes the ViewModel with persisted goal/steps and primes HealthKit updates.
+    ///
+    /// - Note: This triggers async updates from `HealthKitViewModel` to populate
+    ///   `currentStepCount`, `currentDistance`, the 7-day average, and the step history.
     init() {
+        // Load saved goal (fallback to 5,000 if never set).
         let savedTotalStepsGoal = UserDefaults.standard.integer(forKey: Self.totalStepsGoalKey)
-        let finalTotalStepsGoal = savedTotalStepsGoal > 0 ? savedTotalStepsGoal : 5000 // Ensure fallback
-        
-        let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken() // Load persisted value
+        let finalTotalStepsGoal = savedTotalStepsGoal > 0 ? savedTotalStepsGoal : 5000
+
+        // Load persisted lifetime steps (app-specific accumulation).
+        let savedTotalStepsTaken = StepTrackerViewModel.loadTotalStepsTaken()
+
+        // Seed the model; live values below will override as HealthKit updates arrive.
         self.stepTracker = StepTracker(
-            currentStepCount: 0, // Initially 0, will update from HealthKit.
-            totalStepsGoal: finalTotalStepsGoal, // Load from UserDefaults,
-            currentDistance: 0.0, // Initially 0, will update from HealthKit.
+            currentStepCount: 0,
+            totalStepsGoal: finalTotalStepsGoal,
+            currentDistance: 0.0,
             totalStepsTaken: savedTotalStepsTaken
         )
+
+        // Midnight reset (daily accumulation), then kick off data refreshes.
         checkAndResetStepsAtMidnight()
         updateCurrentStepCount()
         updateCurrentDistance()
         updateSevenDayStepAverage()
         updateStepHistory()
     }
-    
-    /// Updates `currentStepCount` by fetching the latest step count from HealthKit.
+
+    // MARK: - Live Value Updates (HealthKit Bridges)
+
+    /// Refreshes `currentStepCount` from HealthKit and publishes it to the model.
+    ///
+    /// - Important: Assignment is dispatched to the main thread for UI safety.
     func updateCurrentStepCount() {
         healthKitViewModel.updateStepCount()
-        
-        // Assign the fetched step count to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.currentStepCount = self?.healthKitViewModel.hkCurrentStepsCount ?? 0
         }
     }
-    
-    /// Updates `currentDistance` by fetching the latest distance traveled data from HealthKit.
+
+    /// Refreshes `currentDistance` from HealthKit and publishes it to the model.
     func updateCurrentDistance() {
         healthKitViewModel.updateDistance()
-        
-        // Assign the fetched distance data to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.currentDistance = self?.healthKitViewModel.hkCurrentDistance ?? 0
         }
     }
-    
-    /// Updates `sevenDayStepAverage` by fetching the calculated step average for the past 7-days.
+
+    /// Refreshes the 7‑day average from HealthKit and publishes it to the model.
     func updateSevenDayStepAverage() {
         healthKitViewModel.updateSevenDayStepAverage()
-        
-        // Assign the fetched 7-day step data to stepTracker
         DispatchQueue.main.async { [weak self] in
             self?.stepTracker.sevenDayStepAverage = self?.healthKitViewModel.hkSevenDayStepAverage ?? 0
         }
     }
-    
-    /// Updates `stepHistory` by fetching the step data history and ensuring proper chronological order.
+
+    /// Refreshes `stepHistory` from `HealthKitManager`, sorts it, and notifies achievements.
+    ///
+    /// - Note: Dates are expected to arrive as `"M/d/yy"`. We parse to `Date` to sort chronologically,
+    ///   then store the original string back for display to avoid reformatting cost elsewhere.
     func updateStepHistory() {
         HealthKitManager.shared.fetchStepHistory { [weak self] stepData, error in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                
+
                 if let stepData = stepData {
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "M/d/yy" // Expected HealthKit format
-                    
-                    // Convert date strings to tuples (Date, String, Steps)
+                    dateFormatter.dateFormat = "M/d/yy"
+
+                    // Convert to `(Date, "M/d/yy", steps)` while discarding entries with bad dates.
                     let dateStepArray: [(date: Date, formattedDate: String, steps: Int)] = stepData.compactMap { dateString, steps in
-                        if let date = dateFormatter.date(from: dateString) {
-                            return (date, dateString, steps) // Keep both Date and formatted string
-                        } else {
+                        guard let date = dateFormatter.date(from: dateString) else {
                             print("⚠️ (STVM) Failed to parse date: \(dateString)")
                             return nil
                         }
+                        return (date, dateString, steps)
                     }
 
-                    // 🔹 Sort by actual Date values
+                    // Sort by actual date value to ensure accurate chronological order.
                     let sortedDateStepArray = dateStepArray.sorted { $0.date < $1.date }
 
-                    // 🔹 Convert back into display-friendly format
+                    // Keep the original string for lightweight UI usage.
                     let sortedData = sortedDateStepArray.map { (date: $0.formattedDate, steps: $0.steps) }
 
                     self.stepTracker.stepHistory = sortedData
                     print("(STVM) Correctly Sorted Step History: \(sortedData) ✅")
-                    // Notify AchievementsViewModel
+
+                    // Let Achievements know the latest data set.
                     self.achievementsViewModel.evaluateAllStepMilestones(from: sortedData)
                 } else {
                     print("❌ (STVM) Failed to fetch step history: \(error?.localizedDescription ?? "Unknown error")")
@@ -179,73 +268,91 @@ class StepTrackerViewModel: ObservableObject {
             }
         }
     }
-    
-    /// Returns sorted step history for consistent order.
-    func sortedStepData() -> [(date: String, steps: Int)] {
-        return stepTracker.stepHistory
-    }
-    
-    /// Updates the current step count from HealthKit.
+
+    /// Convenience accessor for already-sorted step history.
     ///
-    /// - Parameter newStepCount: The updated step count retrieved from HealthKit.
+    /// - Returns: An array of tuples `(date: String, steps: Int)` in chronological order.
+    func sortedStepData() -> [(date: String, steps: Int)] {
+        stepTracker.stepHistory
+    }
+
+    // MARK: - Event/Mutation Helpers
+
+    /// Updates the current step count directly (e.g., when a live HealthKit stream pushes a delta).
+    ///
+    /// - Parameter newStepCount: Fresh step count to apply to the model.
     func updateCurrentSteps(to newStepCount: Int) {
         stepTracker.currentStepCount = newStepCount
         print("(STVM) StepTrackerViewModel updated step count (newStepCount): \(newStepCount) ✅")
     }
-    
-    /// Converts steps into energy and updates the tracker.
+
+    /// Converts pending steps into energy and updates accumulated totals.
     ///
-    /// Ensures that only full intervals of `energyCost` are converted, leaving
-    /// any unconverted steps available for the next conversion.
+    /// This uses `ConvertToEnergyViewModel` to determine:
+    /// - How many steps convert to energy *now*
+    /// - How many remain to roll over
     ///
-    /// - Parameter updateEnergy: A closure that updates energy in `PlayerStatsViewModel`.
+    /// Converted steps are added into `totalStepsTaken` and persisted.
+    ///
+    /// - Parameter updateEnergy: Closure to push awarded energy into `PlayerStatsViewModel`.
+    ///   (Callers typically pass a method reference.)
     func commitStepsToTotal(updateEnergy: (Int) -> Void) {
         let (energyPoints, remainingSteps) = ConvertToEnergyViewModel.calculateStepsToEnergy(
             stepsToConvert: stepTracker.stepsToConvert,
             totalStepsGoal: stepTracker.totalStepsGoal
         )
 
-        // Update total steps taken by subtracting only the converted steps.
+        // Increase lifetime total by *only* the converted portion (drop the remainder).
         stepTracker.totalStepsTaken += (stepTracker.stepsToConvert - remainingSteps)
 
-        // Persist the updated total steps.
+        // Persist lifetime steps for continuity across launches.
         StepTrackerViewModel.saveTotalStepsTaken(stepTracker.totalStepsTaken)
 
         print("(STVM) Energy Added: \(energyPoints) ⚡️ | Remaining Steps: \(remainingSteps) 🚶‍♂️")
+        // Note: `updateEnergy` is invoked by the caller; we leave energy wiring to that layer.
     }
-    
-    /// Checks if it's a new day and resets  `totalStepsTaken` if needed.
+
+    // MARK: - Daily Reset
+
+    /// Resets the daily accumulation at midnight, recorded by a `lastResetDate` flag.
+    ///
+    /// - Note: This resets **`totalStepsTaken`** (your app’s cumulative counter),
+    ///   not HealthKit’s history. Adjust if you intend a different reset policy.
     private func checkAndResetStepsAtMidnight() {
-        let lastResetDate = UserDefaults.standard.object(forKey: Self.lastResetDateKey) as? Date ?? Date.distantPast
+        let lastResetDate = UserDefaults.standard.object(forKey: Self.lastResetDateKey) as? Date ?? .distantPast
         let calendar = Calendar.current
-        
+
+        // If we don't have a reset recorded for today, clear and store now.
         if !calendar.isDate(lastResetDate, inSameDayAs: Date()) {
             stepTracker.totalStepsTaken = 0
-            StepTrackerViewModel.saveTotalStepsTaken(0) // Reset value in storage
-            UserDefaults.standard.set(Date(), forKey: Self.lastResetDateKey) // Save new reset date
+            StepTrackerViewModel.saveTotalStepsTaken(0)
+            UserDefaults.standard.set(Date(), forKey: Self.lastResetDateKey)
             print("Total steps reset at midnight")
         }
     }
-    
-    // MARK: - Persistence Functions
-    
-    /// Saves the total steps taken persistently
+
+    // MARK: - Persistence
+
+    /// Persists the app’s lifetime total steps value.
     ///
-    /// - Parameter totalSteps: The updated total steps value.
+    /// - Parameter totalSteps: New lifetime total to store.
     static func saveTotalStepsTaken(_ totalSteps: Int) {
         UserDefaults.standard.set(totalSteps, forKey: totalStepsTakenKey)
     }
-    
-    /// Loads the persisted total steps taken value.
+
+    /// Loads the persisted lifetime total steps value.
     ///
-    /// - Returns: The saved total steps or 0 if no value exists.
+    /// - Returns: The saved value, or `0` if none exists.
     static func loadTotalStepsTaken() -> Int {
-        return UserDefaults.standard.integer(forKey: totalStepsTakenKey)
+        UserDefaults.standard.integer(forKey: totalStepsTakenKey)
     }
-    
-    /// Updates the total step goal and persists the value.
+
+    /// Updates the user’s daily step goal and persists it.
     ///
-    /// - Parameter newGoal: The updated daily step goal.
+    /// - Parameter newGoal: New daily goal (steps).
+    ///
+    /// - Note: This recreates the `StepTracker` value to ensure the
+    ///   struct’s `let`/`var` semantics are respected for SwiftUI updates.
     func updateTotalStepsGoal(to newGoal: Int) {
         stepTracker = StepTracker(
             currentStepCount: stepTracker.currentStepCount,
@@ -253,17 +360,14 @@ class StepTrackerViewModel: ObservableObject {
             currentDistance: stepTracker.currentDistance,
             totalStepsTaken: stepTracker.totalStepsTaken
         )
-        
-        UserDefaults.standard.set(newGoal, forKey: Self.totalStepsGoalKey) // Persist updated goal
+
+        UserDefaults.standard.set(newGoal, forKey: Self.totalStepsGoalKey)
         print("(STVM) Updated Step Goal: \(newGoal) Steps 🎯")
     }
-    
-    /// Calculates the energy points based on the user's steps and goal.
+
+    /// Calculates how many energy points can be awarded from the current `stepsToConvert`.
     ///
-    /// This method retrieves the energy points from the `ConvertToEnergyViewModel`,
-    /// ensuring only full `energyCost` intervals are converted.
-    ///
-    /// - Returns: The calculated energy points (capped at 10).
+    /// - Returns: Energy points (uncapped here; caller may cap if desired in UI).
     func calculateEnergyPoints() -> Int {
         let (energyPoints, _) = ConvertToEnergyViewModel.calculateStepsToEnergy(
             stepsToConvert: stepTracker.stepsToConvert,
@@ -271,12 +375,12 @@ class StepTrackerViewModel: ObservableObject {
         )
         return energyPoints
     }
-    
-    // MARK: - Functions primarily used for testing/debugging purposes
-    
-    /// Updates `totalStepsTaken` manually (for testing/debugging purposes).
+
+    // MARK: - Testing / Debug Utilities
+
+    /// Overwrites the lifetime total steps (for previews/testing).
     ///
-    /// - Parameter steps: The new total steps taken value.
+    /// - Parameter steps: New lifetime total to display.
     func setTotalStepsTaken(_ steps: Int) {
         stepTracker = StepTracker(
             currentStepCount: stepTracker.currentStepCount,
