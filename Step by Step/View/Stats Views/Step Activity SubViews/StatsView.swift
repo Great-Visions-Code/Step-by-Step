@@ -32,9 +32,9 @@ struct StatsView: View {
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {
                 StepsStatsCardView(
-                    title: "Current Streak",
+                    title: "Best Streak",
                     value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")",
-                    subheading: "Best \(stepTrackerViewModel.longestStepStreak)"
+                    subheading: "Current \(stepTrackerViewModel.currentStepStreak)"
                 )
                 
                 StepsStatsCardView(
