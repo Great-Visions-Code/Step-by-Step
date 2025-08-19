@@ -118,51 +118,51 @@ class StepTrackerViewModel: ObservableObject {
         return longest
     }
 
-    /// The **current** streak of consecutive days meeting/exceeding the goal, counting backwards from the latest day.
-    ///
-    /// - Behavior:
-    ///   - If the most recent day misses the goal, this returns `0`.
-    ///   - Otherwise, we count backward as long as days are consecutive and met the goal.
-    var currentStepStreak: Int {
-        let goal = stepTracker.totalStepsGoal
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M/d/yy"
+        /// The **current** streak of consecutive days meeting/exceeding the goal,
+        /// ending at the most recent day that already met the goal.
+        ///
+        /// Examples:
+        /// - If today hasn't hit the goal yet but yesterday did (and the day before too),
+        ///   you'll still see a non-zero streak.
+        /// - As soon as today crosses the goal, the streak will include today.
+        var currentStepStreak: Int {
+            let goal = stepTracker.totalStepsGoal
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M/d/yy"
 
-        // Convert and sort ascending by date so we can iterate in reverse (latest → earliest).
-        let sorted = stepTracker.stepHistory
-            .compactMap { entry -> (Date, Int)? in
-                guard let date = dateFormatter.date(from: entry.date) else { return nil }
-                return (date, entry.steps)
-            }
-            .sorted(by: { $0.0 < $1.0 })
-
-        var streak = 0
-        var previousDate: Date?
-
-        for (date, steps) in sorted.reversed() {
-            if steps >= goal {
-                if let prev = previousDate {
-                    // Ensure the previous (more recent) date is exactly one day ahead of this `date`.
-                    let gap = Calendar.current.dateComponents([.day], from: date, to: prev).day ?? 0
-                    if gap == 1 {
-                        streak += 1
-                    } else {
-                        // Non-consecutive gap breaks the current streak.
-                        break
-                    }
-                } else {
-                    // First qualifying day encountered from the end.
-                    streak = 1
+            // Convert and sort ascending by date for deterministic ordering.
+            let sorted: [(date: Date, steps: Int)] = stepTracker.stepHistory
+                .compactMap { entry in
+                    guard let d = dateFormatter.date(from: entry.date) else { return nil }
+                    return (d, entry.steps)
                 }
-            } else {
-                // Most recent miss → no current streak.
-                break
-            }
-            previousDate = date
-        }
+                .sorted { $0.date < $1.date }
 
-        return streak
-    }
+            // Find the most-recent index that *meets or exceeds* the goal.
+            guard let anchorIndex = sorted.indices.last(where: { sorted[$0].steps >= goal }) else {
+                return 0 // No qualifying day at all → streak is 0
+            }
+
+            var streak = 1 // Start with the anchor day itself
+            var prevDate = sorted[anchorIndex].date
+
+            // Walk backwards from the day before the anchor, while days are consecutive and meet the goal.
+            var i = anchorIndex - 1
+            while i >= 0 {
+                let (d, steps) = sorted[i]
+                guard steps >= goal else { break }
+
+                // Check that this day is exactly one day before the previous (more recent) day.
+                let gap = Calendar.current.dateComponents([.day], from: d, to: prevDate).day ?? 0
+                guard gap == 1 else { break }
+
+                streak += 1
+                prevDate = d
+                i -= 1
+            }
+
+            return streak
+        }
 
     // MARK: - Persistence Keys
 
