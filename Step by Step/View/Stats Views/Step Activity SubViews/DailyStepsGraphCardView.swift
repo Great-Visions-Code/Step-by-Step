@@ -28,7 +28,7 @@ struct DailyStepsGraphCardView: View {
             Rectangle()
                 .foregroundStyle(.wave3)
                 .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
             
             VStack(alignment: .leading) {
                 // Section title

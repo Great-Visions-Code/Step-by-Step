@@ -43,13 +43,13 @@ struct StatsTopTabBarView: View {
 
             // Background uses blue fill if selected, soft gray if not
             .background(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: AppStyle.cornerRadius)
                     .fill(isSelected ? Color.blue : Color.gray.opacity(0.05))
             )
 
             // Subtle border to separate tab segments
             .overlay(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: AppStyle.cornerRadius)
                     .strokeBorder(Color.primary.opacity(0.15), lineWidth: 1)
             )
 
