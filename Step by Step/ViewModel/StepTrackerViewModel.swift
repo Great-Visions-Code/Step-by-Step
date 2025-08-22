@@ -119,18 +119,15 @@ class StepTrackerViewModel: ObservableObject {
     }
 
         /// The **current** streak of consecutive days meeting/exceeding the goal,
-        /// ending at the most recent day that already met the goal.
-        ///
-        /// Examples:
-        /// - If today hasn't hit the goal yet but yesterday did (and the day before too),
-        ///   you'll still see a non-zero streak.
-        /// - As soon as today crosses the goal, the streak will include today.
+        /// strictly ending at the most recent day in `stepHistory`.
+        /// - If the most recent day (today) is below goal → returns 0.
+        /// - Otherwise, counts back through prior **consecutive** days that also met the goal.
         var currentStepStreak: Int {
             let goal = stepTracker.totalStepsGoal
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "M/d/yy"
 
-            // Convert and sort ascending by date for deterministic ordering.
+            // Convert to [(Date, steps)] and sort ascending by date.
             let sorted: [(date: Date, steps: Int)] = stepTracker.stepHistory
                 .compactMap { entry in
                     guard let d = dateFormatter.date(from: entry.date) else { return nil }
@@ -138,21 +135,21 @@ class StepTrackerViewModel: ObservableObject {
                 }
                 .sorted { $0.date < $1.date }
 
-            // Find the most-recent index that *meets or exceeds* the goal.
-            guard let anchorIndex = sorted.indices.last(where: { sorted[$0].steps >= goal }) else {
-                return 0 // No qualifying day at all → streak is 0
-            }
+            guard let last = sorted.last else { return 0 }
 
-            var streak = 1 // Start with the anchor day itself
-            var prevDate = sorted[anchorIndex].date
+            // If "today" (latest entry) didn't meet the goal, there is no current streak.
+            guard last.steps >= goal else { return 0 }
 
-            // Walk backwards from the day before the anchor, while days are consecutive and meet the goal.
-            var i = anchorIndex - 1
+            var streak = 1
+            var prevDate = last.date
+
+            // Walk backwards from the day before "today".
+            var i = sorted.count - 2
             while i >= 0 {
                 let (d, steps) = sorted[i]
-                guard steps >= goal else { break }
 
-                // Check that this day is exactly one day before the previous (more recent) day.
+                // Must meet goal AND be exactly one calendar day before the previous date.
+                guard steps >= goal else { break }
                 let gap = Calendar.current.dateComponents([.day], from: d, to: prevDate).day ?? 0
                 guard gap == 1 else { break }
 
