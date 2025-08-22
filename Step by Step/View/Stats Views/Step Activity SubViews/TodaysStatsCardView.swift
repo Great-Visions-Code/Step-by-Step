@@ -23,7 +23,7 @@ struct TodaysStatsCardView: View {
             Rectangle()
                 .foregroundStyle(.wave3)
                 .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
             
             HStack {
                 // MARK: - Left Column: Step Count
