@@ -33,7 +33,7 @@ struct DailyStepsGraphCardView: View {
             VStack(alignment: .leading) {
                 // Section title
                 Text("Daily Steps")
-                    .font(.title3)
+                    .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.secondary)
                     .padding()

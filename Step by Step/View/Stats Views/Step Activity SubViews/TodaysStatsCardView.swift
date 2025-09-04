@@ -27,14 +27,12 @@ struct TodaysStatsCardView: View {
             
             HStack {
                 // MARK: - Left Column: Step Count
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 8) {
                     // Auto-pluralizes based on step count (e.g. "Step" vs "Steps")
                     Text("Today's \(stepTrackerViewModel.stepTracker.currentStepCount == 1 ? "Step" : "Steps")")
                         .font(.headline)
                         .foregroundStyle(.secondary)
-                    
-                    Spacer()
-                    
+                                        
                     // Large bold step count with monospaced digits for better visual alignment
                     Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
                         .font(.system(size: 52, weight: .bold, design: .rounded))

@@ -24,23 +24,23 @@ struct StatsDashboardView: View {
                 WaveBackground()
                 VStack(spacing: 0) {
                     // MARK: - Custom Segmented Control
-                    HStack(spacing: 20) {
-                        StatsTopTabBarView(title: "Steps",
-                                            systemImage: "shoeprints.fill",
-                                            isSelected: selectedTab == .stepActivity
-                        ) {
-                            selectedTab = .stepActivity
-                        }
-                        
-                        StatsTopTabBarView(title: "Milestones",
-                                            systemImage: "rosette",
-                                            isSelected: selectedTab == .achievements
-                        ) {
-                            selectedTab = .achievements
-                        }
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 8)
+//                    HStack(spacing: 20) {
+//                        StatsTopTabBarView(title: "Steps",
+//                                            systemImage: "shoeprints.fill",
+//                                            isSelected: selectedTab == .stepActivity
+//                        ) {
+//                            selectedTab = .stepActivity
+//                        }
+//                        
+//                        StatsTopTabBarView(title: "Milestones",
+//                                            systemImage: "rosette",
+//                                            isSelected: selectedTab == .achievements
+//                        ) {
+//                            selectedTab = .achievements
+//                        }
+//                    }
+//                    .padding(.horizontal)
+//                    .padding(.top, 8)
                     
                     // MARK: - Content Switching Based on Selected Tab
                     if selectedTab == .stepActivity {

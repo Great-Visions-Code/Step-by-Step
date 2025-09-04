@@ -11,5 +11,5 @@ import SwiftUI
 enum AppStyle {
     // MARK: - Corner Radius
     /// Default corner radius for cards, buttons, and containers.
-    static let cornerRadius: CGFloat = 28 // Better fit iOS 16 rounder corners style
+    static let cornerRadius: CGFloat = 32 // Better fit iOS 16 rounder corners style
 }
