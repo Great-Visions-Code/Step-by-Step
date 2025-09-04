@@ -45,7 +45,8 @@ struct StatsView: View {
                 
                 StepsStatsCardView(
                     title: "7-day avg",
-                    value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())"
+                    value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())",
+                    subheading: nil
                 )
             }
             .padding(.horizontal)
@@ -56,6 +57,19 @@ struct StatsView: View {
                 stepTrackerViewModel: stepTrackerViewModel
             )
             .padding(.horizontal)
+            
+            // MARK: - Card Navigation Link
+            // NavigationLink to AchievementsListView.swift
+            AchievementNavigationCardView(
+                title: "Achievements",
+                value: "View",
+                subheading: nil,
+                destination: AchievementsListView(
+                    achievementsViewModel: AchievementsViewModel(),
+                    stepTrackerViewModel: StepTrackerViewModel(),
+                    healthKitViewModel: HealthKitViewModel()
+                )
+            )
             
             Spacer()
         }
