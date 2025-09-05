@@ -118,51 +118,68 @@ class StepTrackerViewModel: ObservableObject {
         return longest
     }
 
-        /// The **current** streak of consecutive days meeting/exceeding the goal,
-        /// ending at the most recent day that already met the goal (today is ignored
-        /// until it crosses the goal).
-        ///
-        /// Example: if 8/22, 8/23, 8/24 met goal but 8/25 hasn't (yet), this returns 3.
-        var currentStepStreak: Int {
-            let goal = stepTracker.totalStepsGoal
-            guard goal > 0 else { return 0 }
-
-            let calendar = Calendar.current
-            let tz = calendar.timeZone
-
-            // Parse dates exactly as stored in stepHistory and normalize to startOfDay.
-            let df = DateFormatter()
-            df.dateFormat = "M/d/yy"
-            df.timeZone = tz
-
-            // Build a dictionary keyed by startOfDay(Date) for O(1) lookups when walking backwards.
-            let entriesByDay: [Date: Int] = stepTracker.stepHistory.reduce(into: [:]) { dict, entry in
-                if let d = df.date(from: entry.date) {
-                    dict[calendar.startOfDay(for: d)] = entry.steps
-                }
+    /// The **current streak** of consecutive days where the user met/exceeded their step goal.
+    ///
+    /// - Behavior:
+    ///   - If today already meets the goal, the streak includes today and counts backward.
+    ///   - If today has not met the goal yet, we check if yesterday met the goal and start from there.
+    ///   - If neither today nor yesterday meet the goal, the streak is `0`.
+    ///   - Once an eligible start day is found, we continue counting backward day-by-day
+    ///     as long as each day’s steps also met the goal.
+    /// - Example:
+    ///   - Today = 500 steps, Yesterday = 8,000 steps, Day Before = 9,000 steps, Goal = 7,000.
+    ///     → Current streak = 2 (yesterday + day before).
+    var currentStepStreak: Int {
+        let goal = stepTracker.totalStepsGoal
+        guard goal > 0 else { return 0 } // No valid goal → streak always 0
+        
+        let calendar = Calendar.current
+        let tz = calendar.timeZone
+        
+        // Formatter to convert stored string dates (e.g., "M/d/yy") into Date objects.
+        let df = DateFormatter()
+        df.dateFormat = "M/d/yy"
+        df.timeZone = tz
+        
+        // Build a dictionary keyed by the start of each day for O(1) lookups.
+        // Example: [2025-08-24 00:00:00: 13276 steps]
+        let entriesByDay: [Date: Int] = stepTracker.stepHistory.reduce(into: [:]) { dict, entry in
+            if let d = df.date(from: entry.date) {
+                dict[calendar.startOfDay(for: d)] = entry.steps
             }
-
-            // Find the most recent day that met/exceeded the goal (this may or may not be today).
-            guard let anchorDay = entriesByDay
-                .filter({ $0.value >= goal })
-                .map({ $0.key })
-                .max()
-            else {
-                return 0 // No day has met the goal yet.
-            }
-
-            // Count backwards in 1-day steps while each day exists and meets the goal.
-            var streak = 0
-            var day = anchorDay
-            while let steps = entriesByDay[day], steps >= goal {
-                streak += 1
-                // Move to previous calendar day.
-                guard let prev = calendar.date(byAdding: .day, value: -1, to: day) else { break }
-                day = prev
-            }
-
-            return streak
         }
+        
+        let today = calendar.startOfDay(for: Date())
+        let todaySteps = entriesByDay[today] ?? 0
+        
+        // Anchor day = where the streak "starts".
+        // If today qualifies, start from today; otherwise, check if yesterday qualifies.
+        var anchorDay: Date?
+        if todaySteps >= goal {
+            anchorDay = today
+        } else if let yesterday = calendar.date(byAdding: .day, value: -1, to: today),
+                    (entriesByDay[yesterday] ?? 0) >= goal {
+            anchorDay = yesterday
+        }
+        
+        // If neither today nor yesterday qualify, streak is 0.
+        guard let startDay = anchorDay else {
+            return 0
+        }
+        
+        // Count backward day by day as long as each day meets/exceeds the goal.
+        var streak = 0
+        var day = startDay
+        
+        while let steps = entriesByDay[day], steps >= goal {
+            streak += 1
+            // Move one day back
+            guard let prev = calendar.date(byAdding: .day, value: -1, to: day) else { break }
+            day = prev
+        }
+        
+        return streak
+    }
 
     // MARK: - Persistence Keys
 
