@@ -61,6 +61,7 @@ struct DailyStepsGraphCardView: View {
                                         .padding(.trailing, 24)
                                 }
                                 
+                                // Horizontal line to show maxStepCount
                                 Rectangle()
                                     .fill(Color.wave3.opacity(0.95))
                                     .frame(height: 1)

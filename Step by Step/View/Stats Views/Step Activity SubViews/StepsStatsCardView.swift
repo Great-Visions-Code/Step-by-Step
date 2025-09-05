@@ -35,10 +35,10 @@ struct StepsStatsCardView: View {
                 .opacity(0.25)
                 .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
             
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 // Top label
                 Text(title)
-                    .font(.footnote)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
                 // Primary value

@@ -19,7 +19,7 @@ struct DayStepCountProgressBarView: View {
         VStack {
             // Step count with dynamic font scaling
             Text("\(value)")
-                .font(.subheadline)
+                .font(.caption)
                 .fontWeight(.semibold)
                 .minimumScaleFactor(0.5) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents multiple lines
