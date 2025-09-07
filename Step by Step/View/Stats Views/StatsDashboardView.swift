@@ -22,6 +22,7 @@ struct StatsDashboardView: View {
         NavigationStack {
             ZStack {
                 WaveBackground()
+                
                 VStack(spacing: 0) {
                     // MARK: - Custom Segmented Control
 //                    HStack(spacing: 20) {

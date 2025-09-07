@@ -21,7 +21,7 @@ struct DayStepCountProgressBarView: View {
             Text("\(value)")
                 .font(.caption)
                 .fontWeight(.semibold)
-                .minimumScaleFactor(0.5) // Allows it to shrink if needed
+                .minimumScaleFactor(0.9) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents multiple lines
                 .frame(width: 40) // Ensures width consistency
                 .foregroundStyle(isToday ? Color.blue : Color.primary)
@@ -37,7 +37,7 @@ struct DayStepCountProgressBarView: View {
             // Day label with dynamic font scaling
             Text(label)
                 .font(.caption)
-                .minimumScaleFactor(0.5) // Allows it to shrink if needed
+                .minimumScaleFactor(0.8) // Allows it to shrink if needed
                 .lineLimit(1) // Prevents wrapping
                 .frame(width: 40) // Ensures consistent width
                 .foregroundStyle(isToday ? Color.blue : .secondary)
