@@ -23,8 +23,7 @@ struct AchievementSectionView: View {
             // Section Title
             Text(title)
                 .font(.headline)
-                .foregroundStyle(.gray)
-                .padding(.top, 16)
+                .foregroundStyle(.secondary)
 
             // Render each achievement as a card
             ForEach(achievements) { achievement in
@@ -39,6 +38,7 @@ struct AchievementSectionView: View {
                 )
             }
         }
+        .padding(.horizontal)
     }
 }
 

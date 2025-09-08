@@ -28,6 +28,7 @@ struct StatsView: View {
                 stepTrackerViewModel: stepTrackerViewModel
             )
             .padding(.top)
+            .padding(.horizontal)
             
             // MARK: - Distance & Goal Progress
             HStack(spacing: 16) {

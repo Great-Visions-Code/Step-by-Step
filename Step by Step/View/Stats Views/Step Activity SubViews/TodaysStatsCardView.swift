@@ -74,7 +74,7 @@ struct TodaysStatsCardView: View {
                 .padding()
             }
         }
-        .frame(width: 400, height: 140)
+        .frame(height: 140)
     }
 }
 
