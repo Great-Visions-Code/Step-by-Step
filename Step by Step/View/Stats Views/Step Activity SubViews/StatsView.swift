@@ -61,7 +61,7 @@ struct StatsView: View {
             
             // MARK: - Card Navigation Link
             // NavigationLink to AchievementsListView.swift
-            AchievementNavigationCardView(
+            NavigationCardView(
                 title: "Achievements",
                 value: "View",
                 subheading: nil,
@@ -71,6 +71,7 @@ struct StatsView: View {
                     healthKitViewModel: HealthKitViewModel()
                 )
             )
+            .padding(.horizontal)
             
             Spacer()
         }

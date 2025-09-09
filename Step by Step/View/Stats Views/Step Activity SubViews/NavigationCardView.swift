@@ -1,5 +1,5 @@
 //
-//  AchievementNavigationCardView.swift
+//  NavigationCardView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 8/26/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A card-styled navigation link that matches the look of `StepsStatsCardView`.
-struct AchievementNavigationCardView<Destination: View>: View {
+struct NavigationCardView<Destination: View>: View {
     var title: String
     var value: String
     var subheading: String?
@@ -48,14 +48,14 @@ struct AchievementNavigationCardView<Destination: View>: View {
                 }
                 .padding()
             }
-            .frame(width: 400, height: 92)
+            .frame(height: 92)
         }
         .buttonStyle(.plain) // keeps it looking like a card, not a button
     }
 }
 
 #Preview {
-    AchievementNavigationCardView(
+    NavigationCardView(
         title: "Achievements",
         value: "View",
         subheading: nil,
