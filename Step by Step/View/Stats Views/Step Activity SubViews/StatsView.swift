@@ -62,7 +62,7 @@ struct StatsView: View {
             // MARK: - Card Navigation Link
             // NavigationLink to AchievementsListView.swift
             NavigationCardView(
-                title: "Achievements",
+                title: "Milestones",
                 value: "View",
                 subheading: nil,
                 destination: AchievementsListView(

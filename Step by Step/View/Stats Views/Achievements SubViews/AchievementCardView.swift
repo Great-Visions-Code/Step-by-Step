@@ -83,7 +83,7 @@
                     // Extra label reinforcement when an achievement is done.
                     if achievementCardItems.isCompleted {
                         Text("Completed")
-                            .font(.footnote)
+                            .font(.caption)
                             .foregroundStyle(.blue)
                     }
                 }
