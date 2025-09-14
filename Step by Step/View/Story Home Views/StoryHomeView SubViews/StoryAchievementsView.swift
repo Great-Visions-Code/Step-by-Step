@@ -60,7 +60,6 @@ struct StoryAchievementsView: View {
                     )
                 }
                 .padding(.horizontal)
-                .padding(.top, 16)
             }
         }
     }

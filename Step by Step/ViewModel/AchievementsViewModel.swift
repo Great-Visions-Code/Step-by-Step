@@ -10,7 +10,7 @@ import SwiftUI
 /// ViewModel responsible for managing and persisting achievement progress.
 ///
 /// Handles logic for unlocking milestones, tracking step totals, resetting progress, and
-/// generating display-ready achievement data for views like `AchievementsListView` and `StoryAchievementsView`.
+/// generating display-ready achievement data for views like `AchievementsView` and `StoryAchievementsView`.
 class AchievementsViewModel: ObservableObject {
     // MARK: - Published Properties
 
