@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A card-styled navigation link that matches the look of `StepsStatsCardView`.
+/// A card-styled navigation link that matches the look of `StatsCardView`.
 struct NavigationCardView<Destination: View>: View {
     var title: String
     var value: String
@@ -17,10 +17,7 @@ struct NavigationCardView<Destination: View>: View {
     var body: some View {
         NavigationLink(destination: destination) {
             ZStack(alignment: .leading) {
-                Rectangle()
-                    .foregroundStyle(.wave3)
-                    .opacity(0.25)
-                    .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
+                StatsCardBackgroundView()
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
@@ -59,7 +56,7 @@ struct NavigationCardView<Destination: View>: View {
         title: "Achievements",
         value: "View",
         subheading: nil,
-        destination: AchievementsListView(
+        destination: AchievementsView(
             achievementsViewModel: AchievementsViewModel(),
             stepTrackerViewModel: StepTrackerViewModel(),
             healthKitViewModel: HealthKitViewModel())
