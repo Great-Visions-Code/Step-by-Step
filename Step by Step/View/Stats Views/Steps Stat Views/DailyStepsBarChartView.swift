@@ -1,5 +1,5 @@
 //
-//  DailyStepsGraphCardView.swift
+//  DailyStepsBarChartView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/15/25.
@@ -15,7 +15,7 @@ import SwiftUI
 /// - Automatically scrolls to the latest entry when data changes
 ///
 /// Used inside `StatsView` to provide historical step context.
-struct DailyStepsGraphCardView: View {
+struct DailyStepsBarChartView: View {
     /// Tracks and provides step data from HealthKit
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
@@ -25,10 +25,7 @@ struct DailyStepsGraphCardView: View {
     var body: some View {
         ZStack {
             // Background card with style
-            Rectangle()
-                .foregroundStyle(.wave3)
-                .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
+            StatsCardBackgroundView()
             
             VStack(alignment: .leading) {
                 // Section title
@@ -74,7 +71,7 @@ struct DailyStepsGraphCardView: View {
                                 ForEach(stepData.indices, id: \.self) { index in
                                     let entry = stepData[index]
                                     
-                                    DayStepCountProgressBarView(
+                                    DailyStepsBarView(
                                         value: entry.steps,
                                         label: entry.date,
                                         maxValue: maxStepCount,
@@ -126,7 +123,7 @@ class MockStepTrackerViewModel: StepTrackerViewModel {
 // MARK: - SwiftUI Previews
 
 #Preview {
-    DailyStepsGraphCardView(stepTrackerViewModel: MockStepTrackerViewModel())
+    DailyStepsBarChartView(stepTrackerViewModel: MockStepTrackerViewModel())
 }
 
 #Preview("DashboardView") {
