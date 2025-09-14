@@ -1,5 +1,5 @@
     //
-    //  AchievementsListView.swift
+    //  AchievementsView.swift
     //  Step by Step
     //
     //  Created by Gustavo Vazquez on 3/15/25.
@@ -24,7 +24,7 @@
     /// - A `WaveBackground` provides visual consistency across screens.
     /// - Achievements are grouped into sections using `AchievementSectionView`.
     /// - Story achievements are displayed via a tappable `NavigationCardView`.
-    struct AchievementsListView: View {
+    struct AchievementsView: View {
         /// Tracks and manages achievement unlocking and milestone logic.
         @ObservedObject var achievementsViewModel: AchievementsViewModel
         
@@ -64,7 +64,7 @@
                         
                         // MARK: - Steps In A Day Achievements
                         AchievementSectionView(
-                            title: "Steps In A Day",
+                            title: "Steps in a Day",
                             achievements: achievementsViewModel.stepsInADayDisplayItems(
                                 currentSteps: healthKitViewModel.hkCurrentStepsCount,
                                 stepHistory: stepTrackerViewModel.sortedStepData()
@@ -98,7 +98,7 @@
     // MARK: - SwiftUI Previews
     #Preview {
         NavigationStack {
-            AchievementsListView(
+            AchievementsView(
                 achievementsViewModel: AchievementsViewModel(),
                 stepTrackerViewModel: StepTrackerViewModel(),
                 healthKitViewModel: HealthKitViewModel()
