@@ -6,56 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		5F834A9E2D0182A100ABD4FD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F0A44A72CB0CBE4001779E8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F0A44AE2CB0CBE4001779E8;
-			remoteInfo = "Step by Step";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		5F0A44AF2CB0CBE4001779E8 /* Step by Step.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Step by Step.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F834A9A2D0182A100ABD4FD /* Step by StepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Step by StepTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		5F834AA62D01844300ABD4FD /* Exceptions for "Step by Step" folder in "Step by StepTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				ViewModel/ConvertToEnergyViewModel.swift,
-			);
-			target = 5F834A992D0182A100ABD4FD /* Step by StepTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5F0A44B12CB0CBE4001779E8 /* Step by Step */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				5F834AA62D01844300ABD4FD /* Exceptions for "Step by Step" folder in "Step by StepTests" target */,
-			);
 			path = "Step by Step";
-			sourceTree = "<group>";
-		};
-		5F834A9B2D0182A100ABD4FD /* Step by StepTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Step by StepTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5F0A44AC2CB0CBE4001779E8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F834A972D0182A100ABD4FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -69,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				5F0A44B12CB0CBE4001779E8 /* Step by Step */,
-				5F834A9B2D0182A100ABD4FD /* Step by StepTests */,
 				5F0A44B02CB0CBE4001779E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				5F0A44AF2CB0CBE4001779E8 /* Step by Step.app */,
-				5F834A9A2D0182A100ABD4FD /* Step by StepTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,29 +70,6 @@
 			productReference = 5F0A44AF2CB0CBE4001779E8 /* Step by Step.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5F834A992D0182A100ABD4FD /* Step by StepTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5F834AA22D0182A100ABD4FD /* Build configuration list for PBXNativeTarget "Step by StepTests" */;
-			buildPhases = (
-				5F834A962D0182A100ABD4FD /* Sources */,
-				5F834A972D0182A100ABD4FD /* Frameworks */,
-				5F834A982D0182A100ABD4FD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5F834A9F2D0182A100ABD4FD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5F834A9B2D0182A100ABD4FD /* Step by StepTests */,
-			);
-			name = "Step by StepTests";
-			packageProductDependencies = (
-			);
-			productName = "Step by StepTests";
-			productReference = 5F834A9A2D0182A100ABD4FD /* Step by StepTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -143,11 +82,6 @@
 				TargetAttributes = {
 					5F0A44AE2CB0CBE4001779E8 = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					5F834A992D0182A100ABD4FD = {
-						CreatedOnToolsVersion = 16.1;
-						LastSwiftMigration = 1610;
-						TestTargetID = 5F0A44AE2CB0CBE4001779E8;
 					};
 				};
 			};
@@ -168,20 +102,12 @@
 			projectRoot = "";
 			targets = (
 				5F0A44AE2CB0CBE4001779E8 /* Step by Step */,
-				5F834A992D0182A100ABD4FD /* Step by StepTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5F0A44AD2CB0CBE4001779E8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F834A982D0182A100ABD4FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,22 +124,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5F834A962D0182A100ABD4FD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5F834A9F2D0182A100ABD4FD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F0A44AE2CB0CBE4001779E8 /* Step by Step */;
-			targetProxy = 5F834A9E2D0182A100ABD4FD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5F0A44BB2CB0CBE5001779E8 /* Debug */ = {
@@ -347,7 +258,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Step by Step/Step by Step.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Step by Step/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Step by Step/Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Step-by-Step-Info.plist";
@@ -384,7 +295,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Step by Step/Step by Step.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Step by Step/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Step by Step/Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Step-by-Step-Info.plist";
@@ -413,53 +324,6 @@
 			};
 			name = Release;
 		};
-		5F834AA02D0182A100ABD4FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GVDev.Step-by-StepTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Step by Step.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Step by Step";
-			};
-			name = Debug;
-		};
-		5F834AA12D0182A100ABD4FD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GVDev.Step-by-StepTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Step by Step.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Step by Step";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -477,15 +341,6 @@
 			buildConfigurations = (
 				5F0A44BE2CB0CBE5001779E8 /* Debug */,
 				5F0A44BF2CB0CBE5001779E8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5F834AA22D0182A100ABD4FD /* Build configuration list for PBXNativeTarget "Step by StepTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5F834AA02D0182A100ABD4FD /* Debug */,
-				5F834AA12D0182A100ABD4FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
