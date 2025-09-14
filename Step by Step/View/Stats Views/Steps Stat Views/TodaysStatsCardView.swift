@@ -19,11 +19,8 @@ struct TodaysStatsCardView: View {
 
     var body: some View {
         ZStack {
-            // Background wave color with rounded corners
-            Rectangle()
-                .foregroundStyle(.wave3)
-                .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
+            // Background color with rounded corners
+            StatsCardBackgroundView()
             
             HStack {
                 // MARK: - Left Column: Step Count
