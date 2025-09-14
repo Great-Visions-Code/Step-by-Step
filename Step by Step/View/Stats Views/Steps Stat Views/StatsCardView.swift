@@ -1,5 +1,5 @@
 //
-//  StepsStatsCardView.swift
+//  StatsCardView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 3/15/25.
@@ -9,14 +9,14 @@ import SwiftUI
 
 /// A reusable visual card that displays small step-related stats like streaks, best day, and averages.
 ///
-/// This card is used in the `StatsView` to show contextual metrics in a compact form.
+/// This card is used in the `StepsStatsView` to show contextual metrics in a compact form.
 /// The layout includes a title, value, and optional subheading (e.g., a date or supporting info).
 ///
 /// Example use cases:
 /// - "Best Day" with a step count and date
 /// - "7-Day Avg" with just a number
 /// - "Streak" with a pluralized day count
-struct StepsStatsCardView: View {
+struct StatsCardView: View {
     
     /// Title displayed at the top of the card (e.g., "Streak")
     var title: String
@@ -30,10 +30,7 @@ struct StepsStatsCardView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             // Background style and shape
-            Rectangle()
-                .foregroundStyle(.wave3)
-                .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: AppStyle.cornerRadius))
+            StatsCardBackgroundView()
             
             VStack(alignment: .leading, spacing: 8) {
                 // Top label
@@ -61,7 +58,7 @@ struct StepsStatsCardView: View {
 
 #Preview {
     // Single preview card
-    StepsStatsCardView(
+    StatsCardView(
         title: "Best Day",
         value: "14,115",
         subheading: "Jul 18"
@@ -71,15 +68,15 @@ struct StepsStatsCardView: View {
 #Preview("Cards") {
     // Preview of three example cards side-by-side
     HStack(spacing: 16) {
-        StepsStatsCardView(
+        StatsCardView(
             title: "Current Streak",
             value: "4 days"
         )
-        StepsStatsCardView(
+        StatsCardView(
             title: "Best Day",
             value: "14,115"
         )
-        StepsStatsCardView(
+        StatsCardView(
             title: "7-day avg",
             value: "5,877"
         )
