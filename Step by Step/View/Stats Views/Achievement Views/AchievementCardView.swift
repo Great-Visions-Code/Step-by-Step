@@ -28,13 +28,7 @@
         var body: some View {
             ZStack {
                 // MARK: - Background Card
-                // Light translucent rectangle styled as a card container.
-                Rectangle()
-                    .foregroundStyle(.wave3)   // Custom app color
-                    .opacity(0.25)             // Semi-transparent for subtlety
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: AppStyle.cornerRadius)
-                    )
+                StatsCardBackgroundView()
                 
                 // MARK: - Card Content
                 HStack(spacing: 13) {
