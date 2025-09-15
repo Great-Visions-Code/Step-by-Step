@@ -20,7 +20,7 @@ struct TodaysStatsCardView: View {
     var body: some View {
         ZStack {
             // Background color with rounded corners
-            StatsCardBackgroundView()
+            CardBackgroundView()
             
             HStack {
                 // MARK: - Left Column: Step Count

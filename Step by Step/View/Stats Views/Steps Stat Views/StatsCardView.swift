@@ -30,7 +30,7 @@ struct StatsCardView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             // Background style and shape
-            StatsCardBackgroundView()
+            CardBackgroundView()
             
             VStack(alignment: .leading, spacing: 8) {
                 // Top label

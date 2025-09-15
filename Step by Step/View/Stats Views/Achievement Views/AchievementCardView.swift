@@ -28,7 +28,7 @@
         var body: some View {
             ZStack {
                 // MARK: - Background Card
-                StatsCardBackgroundView()
+                CardBackgroundView()
                 
                 // MARK: - Card Content
                 HStack(spacing: 13) {
