@@ -33,7 +33,6 @@ struct SettingsView: View {
         ZStack {
             // MARK: - Background Layer
             WaveBackground()
-                .ignoresSafeArea()
             
             // MARK: - Main Content
             VStack(spacing: 32) {
@@ -48,16 +47,14 @@ struct SettingsView: View {
                     // Daily Step Goal
                     SettingsButtonView(
                         title: "Daily Step Goal",
-                        subtitle: "\(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps",
-                        icon: "figure.walk",
+                        value: "\(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps",
                         action: { isStepGoalEditorPresented = true }
                     )
                     
                     // Developer Options
                     SettingsButtonView(
                         title: "Developer Testing",
-                        subtitle: "Adjust Stats",
-                        icon: "wrench.and.screwdriver",
+                        value: "Adjust Stats",
                         action: { isDeveloperOptionsPresented = true }
                     )
                     
