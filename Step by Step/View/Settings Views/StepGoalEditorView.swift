@@ -26,7 +26,6 @@ struct StepGoalEditorView: View {
         ZStack {
             // MARK: - Background
             WaveBackground()
-                .ignoresSafeArea()
             
             VStack(spacing: 20) {
                 Spacer()
