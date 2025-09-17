@@ -11,7 +11,7 @@
     ///
     /// ### Purpose
     /// - Provides a single source of truth for design constants (corner radius, colors, fonts, spacing).
-    /// - Ensures consistent UI across views (`StatsView`, `AchievementsListView`, `NavigationCardView`, etc.).
+    /// - Ensures consistent UI across views (`StatsView`, `AchievementsListView`, `CardNavigationView`, etc.).
     /// - Makes future design updates easier: change values here and they update app-wide.
     /// - Helps avoid "magic numbers" and inline styling scattered throughout the codebase.
     ///
@@ -30,7 +30,7 @@
         
         // MARK: - Card Styling
         /// Shared style tokens for reusable "card-like" components,
-        /// such as `StepsStatsCardView`, `NavigationCardView`, and `StatsCardBackgroundView`.
+        /// such as `StepsStatsCardView`, `CardNavigationView`, and `StatsCardBackgroundView`.
         enum Card {
             /// Default corner radius applied to cards, buttons, and containers.
             ///
@@ -53,7 +53,7 @@
         }
         
         // MARK: - Stats View Styling
-        /// Tokens specific to `StatsView` and related components (`StepsStatsCardView`, `NavigationCardView`).
+        /// Tokens specific to `StatsView` and related components (`StepsStatsCardView`, `CardNavigationView`).
         enum StatsView {
             // MARK: Navigation Card Colors
             /// Font color for **navigation card titles**.

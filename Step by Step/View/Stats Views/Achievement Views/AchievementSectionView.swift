@@ -25,16 +25,20 @@ import SwiftUI
 struct AchievementSectionView: View {
     /// The title shown above the section (e.g., "Steps In A Day").
     var title: String
+    
     /// The list of achievements to display in the section.
     /// Each entry is rendered into its own `AchievementCardView`.
     var achievements: [AchievementCardItems]
+    
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 12) {
             // MARK: - Section Title
             // Describes the category of achievements (e.g., "Total Distance Traveled").
             Text(title)
                 .font(.headline)
                 .foregroundStyle(.secondary)
+            
             // MARK: - Achievement Cards
             // Render each achievement directly without reconstructing it.
             ForEach(achievements) { achievement in
@@ -43,6 +47,7 @@ struct AchievementSectionView: View {
         }
     }
 }
+
 // MARK: - SwiftUI Preview
 #Preview {
     AchievementSectionView(

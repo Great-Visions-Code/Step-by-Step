@@ -9,7 +9,7 @@ import SwiftUI
 ///
 /// ### Purpose
 /// - Acts as a **foundational building block**: provides the background layer,
-///   while higher-level views (`StepsStatsCardView`, `NavigationCardView`) add content on top.
+///   while higher-level views (`StepsStatsCardView`, `CardNavigationView`) add content on top.
 /// - Ensures all cards across the app share the same consistent background
 ///   style (color, opacity, rounded corners).
 /// - Centralizes styling: pulls design constants from `AppStyle` so that
@@ -27,7 +27,7 @@ import SwiftUI
 /// ### Design Notes
 /// - Uses a `Rectangle` with `clipShape(RoundedRectangle)` for flexibility:
 ///   this allows different shapes to be swapped in later if design evolves.
-/// - Matches the card appearance used in `StatsView`, `NavigationCardView`,
+/// - Matches the card appearance used in `StatsView`, `CardNavigationView`,
 ///   and `StepsStatsCardView`.
 struct CardBackgroundView: View {
     var body: some View {

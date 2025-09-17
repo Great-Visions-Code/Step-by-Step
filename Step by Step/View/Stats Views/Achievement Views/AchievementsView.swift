@@ -21,7 +21,7 @@ import SwiftUI
 /// ### Layout:
 /// - A `WaveBackground` provides visual consistency across screens.
 /// - Achievements are grouped into sections using `AchievementSectionView`.
-/// - Story achievements are displayed via a tappable `NavigationCardView`.
+/// - Story achievements are displayed via a tappable `CardNavigationView`.
 struct AchievementsView: View {
     /// Tracks and manages achievement unlocking and milestone logic.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
@@ -48,7 +48,7 @@ struct AchievementsView: View {
                             .foregroundStyle(.secondary)
                         
                         // NavigationCardView leads to dedicated Story Achievements screen
-                        NavigationCardView(
+                        CardNavigationView(
                             title: "Survive Achievements",
                             value: "View",
                             subheading: nil,
