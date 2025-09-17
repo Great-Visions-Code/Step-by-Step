@@ -1,5 +1,5 @@
 //
-//  NavigationCardView.swift
+//  CardNavigationView.swift
 //  Step by Step
 //
 //  Created by Gustavo Vazquez on 8/26/25.
@@ -14,14 +14,14 @@ import SwiftUI
 ///
 /// Example:
 /// ```swift
-/// NavigationCardView(
+/// CardNavigationView(
 ///     title: "Achievements",
 ///     value: "View",
 ///     subheading: "Unlocked: 3 of 10",
 ///     destination: AchievementsListView(...)
 /// )
 /// ```
-struct NavigationCardView<Destination: View>: View {
+struct CardNavigationView<Destination: View>: View {
     /// Primary title displayed at the top of the card.
     /// Example: `"Achievements"`
     var title: String
@@ -84,7 +84,7 @@ struct NavigationCardView<Destination: View>: View {
 }
 // MARK: - SwiftUI Previews
 #Preview {
-    NavigationCardView(
+    CardNavigationView(
         title: "Achievements",
         value: "View",
         subheading: nil,
