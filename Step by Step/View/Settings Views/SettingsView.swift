@@ -4,114 +4,133 @@
 //
 //  Created by Gustavo Vazquez on 11/27/24.
 //
-
 import SwiftUI
-
-/// A custom settings screen that allows users to modify app preferences,
-/// such as their daily step goal, and access developer testing tools.
+/// A custom **Settings screen** where users can manage app preferences and view app info.
 ///
-/// This view uses a custom background (`WaveBackground`) and styled buttons (`SettingsButtonView`)
-/// for a cohesive look and feel that aligns with the app’s design language.
+/// ### Features:
+/// - Edit the **daily step goal**.
+/// - Access **developer testing tools** (for debugging / internal testing).
+/// - View app metadata (version, developer info).
+///
+/// ### Design Notes:
+/// - Uses a custom `WaveBackground` for visual consistency with the rest of the app.
+/// - Reuses card-style components (`CardNavigationView`, `CardBackgroundView`)
+///   for a unified, polished look.
+/// - Organized with clear section headers (e.g., "About").
 struct SettingsView: View {
     
-    /// ViewModel responsible for managing player health and energy stats.
+    // MARK: - ViewModels
+    
+    /// Manages player health, energy, and progression stats.
     @ObservedObject var playerStatsViewModel: PlayerStatsViewModel
     
-    /// ViewModel responsible for step tracking and goal management.
+    /// Manages step tracking, history, and daily step goal.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
-    /// ViewModel responsible for managing achievement progress and state.
+    /// Manages achievement progress and unlock logic.
     @ObservedObject var achievementsViewModel: AchievementsViewModel
     
-    /// Tracks whether the step goal editor modal is presented.
-    @State private var isStepGoalEditorPresented = false
-    
-    /// Tracks whether the developer options modal is presented.
-    @State private var isDeveloperOptionsPresented = false
+    // MARK: - Body
     
     var body: some View {
-        ZStack {
-            // MARK: - Background Layer
-            WaveBackground()
-            
-            // MARK: - Main Content
-            VStack(spacing: 32) {
-                // Title
-                Text("Settings")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(.top, 40)
+        NavigationStack {
+            ZStack {
+                // MARK: - Background Layer
+                WaveBackground()
                 
-                // Settings Options
-                VStack(spacing: 16) {
-                    // Daily Step Goal
-                    SettingsButtonView(
+                // MARK: - Main Content
+                VStack(spacing: 12) {
+                    
+                    // Title section
+                    Text("Settings")
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                    
+                    // MARK: - Preferences Section
+                    // Daily step goal navigation card
+                    CardNavigationView(
                         title: "Daily Step Goal",
                         value: "\(stepTrackerViewModel.stepTracker.totalStepsGoal) Steps",
-                        action: { isStepGoalEditorPresented = true }
+                        subheading: nil,
+                        destination: StepGoalEditorView(
+                            stepTrackerViewModel: stepTrackerViewModel
+                        )
                     )
                     
-                    // Developer Options
-                    SettingsButtonView(
+                    // Developer testing / debugging card
+                    CardNavigationView(
                         title: "Developer Testing",
                         value: "Adjust Stats",
-                        action: { isDeveloperOptionsPresented = true }
+                        subheading: nil,
+                        destination: DeveloperOptionsView(
+                            playerStatsViewModel: playerStatsViewModel,
+                            achievementsViewModel: achievementsViewModel
+                        )
                     )
                     
+                    // MARK: - About Section
+                    // Title Section
                     Text("About")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
                     
                     ZStack {
-                        Rectangle()
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .foregroundStyle(.wave3)
-                        VStack(spacing: 24) {
+                        CardBackgroundView() // Card background layer
+                        
+                        VStack(spacing: 18) {
+                            // App version info
                             HStack {
                                 Text("Version")
-                                
                                 Spacer()
-                                
-                                Text("0.0.0")
+                                Text("0.0.00")
                                     .foregroundStyle(.secondary)
                             }
+                            .font(.headline)
                             .padding(.horizontal)
                             
+                            // Developer info
                             HStack {
                                 Text("Developer")
-                                
                                 Spacer()
-                                
                                 Text("Great-Visions-Code")
                                     .foregroundStyle(.secondary)
                             }
+                            .font(.headline)
                             .padding(.horizontal)
                         }
                     }
-                    .frame(width: 340, height: 88)
+                    .frame(height: 92)
+                    
+                    Spacer() // Pushes all content towards the top
                 }
                 .padding(.horizontal)
-                
-                Spacer()
             }
-        }
-        // MARK: - Modals
-        .sheet(isPresented: $isStepGoalEditorPresented) {
-            StepGoalEditorView(stepTrackerViewModel: stepTrackerViewModel)
-        }
-        .sheet(isPresented: $isDeveloperOptionsPresented) {
-            DeveloperOptionsView(
-                playerStatsViewModel: playerStatsViewModel,
-                achievementsViewModel: achievementsViewModel
-            )
         }
     }
 }
-
+// MARK: - Preview
 #Preview {
     SettingsView(
         playerStatsViewModel: PlayerStatsViewModel(),
         stepTrackerViewModel: StepTrackerViewModel(),
         achievementsViewModel: AchievementsViewModel()
+    )
+}
+
+#Preview("Dashboard") {
+    let previewAchievementsViewModel = AchievementsViewModel()
+    let previewStepTrackerViewModel = StepTrackerViewModel()
+    let previewStoryCardViewModel = StoryCardViewModel()
+    let previewPlayerStatsViewModel = PlayerStatsViewModel()
+    
+    DashboardView(
+        stepTrackerViewModel: previewStepTrackerViewModel,
+        achievementsViewModel: previewAchievementsViewModel,
+        storyContentViewModel: StoryContentViewModel(
+            achievementsViewModel: previewAchievementsViewModel,
+            playerStatsViewModel: previewPlayerStatsViewModel
+        ),
+        playerStatsViewModel: previewPlayerStatsViewModel,
+        storyCardViewModel: previewStoryCardViewModel
     )
 }
