@@ -78,15 +78,9 @@ struct StepGoalEditorView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .frame(width: 352, height: 68)
-                        .background(
-                            LinearGradient(
-                                colors: [.blue.opacity(0.95), .blue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .background(AppStyle.Card.backgroundColor)
+                        .foregroundStyle(AppStyle.StatsView.valueFontColor)
+                        .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius))
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.white.opacity(0.2), lineWidth: 1)
