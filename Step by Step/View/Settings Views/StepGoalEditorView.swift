@@ -74,22 +74,18 @@ struct StepGoalEditorView: View {
                 
                 // MARK: - Done Button
                 Button(action: { dismiss() }) {
-                    Text("Done")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .frame(width: 352, height: 68)
-                        .background(AppStyle.Card.backgroundColor)
-                        .foregroundStyle(AppStyle.StatsView.valueFontColor)
-                        .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                                .blendMode(.overlay)
-                        )
+                    ZStack {
+                        CardBackgroundView()
+                        
+                        Text("Done")
+                            .font(AppStyle.StatsView.valueFont)
+                            .foregroundStyle(AppStyle.StatsView.valueFontColor)
+                            .bold()
+                    }
+                    .frame(height: 92)
                 }
-                .padding(.horizontal)
+                .padding()
             }
-            .padding()
         }
     }
 }

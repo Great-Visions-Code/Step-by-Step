@@ -95,6 +95,7 @@ struct CardNavigationView<Destination: View>: View {
         )
     )
 }
+
 #Preview("StatsView") {
     StatsView(
         stepTrackerViewModel: StepTrackerViewModel()

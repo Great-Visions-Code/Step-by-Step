@@ -22,6 +22,7 @@ struct AchievementCardView: View {
     /// A structured representation of the achievement to be displayed.
     /// Provides all the data needed to populate the card.
     let achievementCardItems: AchievementCardItems
+    
     var body: some View {
         ZStack {
             // MARK: - Background Card
