@@ -15,10 +15,7 @@ struct EnergyCardView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .foregroundStyle(.wave3)
-                .opacity(0.25)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+            CardBackgroundView()
             
             VStack(spacing: 20){
                 // MARK: - Displays the player's current energy level.

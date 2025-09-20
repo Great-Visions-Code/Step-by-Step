@@ -89,20 +89,9 @@ struct ConvertStepsButtonView: View {
                 .monospacedDigit()
             }
             .frame(width: 352, height: 68)
-            .background(
-                LinearGradient(
-                    colors: isButtonEnabled ? [.blue.opacity(0.95), .blue] : [.gray.opacity(0.45)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
+            .background(isButtonEnabled ? .blue : .gray.opacity(0.45))
             .foregroundStyle(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                    .blendMode(.overlay)
-            )
+            .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius))
             .shadow(color: isButtonEnabled ? Color.black.opacity(0.32) : .clear, radius: 8, x: 0, y: 4)
             .scaleEffect(isPressed && isButtonEnabled ? 0.97 : 1.0)
             .animation(.easeInOut(duration: 0.2), value: isPressed)

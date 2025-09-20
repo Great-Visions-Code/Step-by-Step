@@ -65,7 +65,7 @@ struct StoryCardView: View {
             }
         }
         .frame(width: 352, height: 184)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius))
         .shadow(radius: 8)
         .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.24), value: isPressed)
