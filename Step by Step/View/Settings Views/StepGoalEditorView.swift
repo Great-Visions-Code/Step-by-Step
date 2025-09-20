@@ -78,8 +78,8 @@ struct StepGoalEditorView: View {
                         CardBackgroundView()
                         
                         Text("Done")
-                            .font(AppStyle.StatsView.valueFont)
-                            .foregroundStyle(AppStyle.StatsView.valueFontColor)
+                            .font(AppStyle.Typography.valueFont)
+                            .foregroundStyle(AppStyle.Colors.primaryText)
                             .bold()
                     }
                     .frame(height: 92)

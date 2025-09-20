@@ -49,13 +49,13 @@ struct CardNavigationView<Destination: View>: View {
                     VStack(alignment: .leading, spacing: 4) {
                         // Title (small top label)
                         Text(title)
-                            .font(AppStyle.StatsView.titleFont)
-                            .foregroundStyle(AppStyle.StatsView.titleFontColor)
+                            .font(AppStyle.Typography.titleFont)
+                            .foregroundStyle(AppStyle.Colors.secondaryText)
                         
                         // Main value (bigger, bold text)
                         Text(value)
-                            .font(AppStyle.StatsView.valueFont)
-                            .foregroundStyle(AppStyle.StatsView.valueFontColor)
+                            .font(AppStyle.Typography.valueFont)
+                            .foregroundStyle(AppStyle.Colors.primaryText)
                             .bold()
                         
                         Spacer()
@@ -63,8 +63,8 @@ struct CardNavigationView<Destination: View>: View {
                         // Subheading (optional extra info, shown at bottom left)
                         if let subheading = subheading {
                             Text(subheading)
-                                .font(AppStyle.StatsView.subheadlineFont)
-                                .foregroundStyle(AppStyle.StatsView.titleFontColor)
+                                .font(AppStyle.Typography.subheadlineFont)
+                                .foregroundStyle(AppStyle.Colors.secondaryText)
                                 .lineLimit(2) // Wraps to 2 lines max
                         }
                     }
@@ -73,8 +73,8 @@ struct CardNavigationView<Destination: View>: View {
                     
                     // MARK: - Right Side Content (Chevron)
                     Image(systemName: "chevron.right")
-                        .font(AppStyle.StatsView.valueFont)
-                        .foregroundStyle(AppStyle.StatsView.titleFontColor)
+                        .font(AppStyle.Typography.valueFont)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
                 }
                 .padding()
             }

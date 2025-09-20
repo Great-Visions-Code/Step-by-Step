@@ -35,7 +35,8 @@ struct CardBackgroundView: View {
         Rectangle()
             .foregroundStyle(AppStyle.Card.backgroundColor)   // Pulls unified color from AppStyle
             .opacity(AppStyle.Card.backgroundOpacity)         // Adjustable opacity from AppStyle
-            .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius)) // Consistent rounded corners
+            .clipShape(RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius) // Consistent rounded corners
+            )
     }
 }
 // MARK: - SwiftUI Preview

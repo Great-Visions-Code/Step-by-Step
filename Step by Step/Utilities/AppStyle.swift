@@ -26,11 +26,16 @@
     /// - Add new groups (`Spacing`, `Button`, `Graph`, etc.) as needed.
     /// - Keep related tokens together inside nested enums.
     /// - Use descriptive names so it’s clear where each style should be applied.
+    ///
+    /// ### Current Groups
+    /// - `Card` → Styles for reusable card-like components
+    /// - `Colors` → App-wide semantic color tokens
+    /// - `Typography` → Fonts for titles, values, and sublabels
     enum AppStyle {
         
         // MARK: - Card Styling
-        /// Shared style tokens for reusable "card-like" components,
-        /// such as `StepsStatsCardView`, `CardNavigationView`, and `StatsCardBackgroundView`.
+        /// Shared style tokens for reusable **card-like** components,
+        /// such as `StepsStatsCardView`, `CardNavigationView`, and `CardBackgroundView`.
         enum Card {
             /// Default corner radius applied to cards, buttons, and containers.
             ///
@@ -52,30 +57,43 @@
             static let backgroundOpacity: Double = 0.25
         }
         
-        // MARK: - Stats View Styling
-        /// Tokens specific to `StatsView` and related components (`StepsStatsCardView`, `CardNavigationView`).
-        enum StatsView {
-            // MARK: Navigation Card Colors
-            /// Font color for **navigation card titles**.
-            ///
-            /// - Uses system-provided `.secondaryLabel` for dynamic light/dark mode support.
-            /// - Best for secondary/emphasis text such as section titles or sublabels.
-            static let titleFontColor: Color = Color(.secondaryLabel)
+        // MARK: - Colors
+        /// Semantic color tokens used across the app.
+        ///
+        /// - Centralizing here allows for easy theme updates (e.g., light/dark mode tuning).
+        /// - These colors should **describe purpose** (e.g., CTA, secondary text) instead of hard-coded names.
+        enum Colors {
+            /// Primary color for **call-to-action (CTA) elements**.
+            /// - Example usage: "Continue" button, primary action highlights.
+            static let ctaPrimary: Color = .blue
             
-            /// Font color for **navigation card values** (the main highlighted number or text).
-            ///
-            /// - Uses system-provided `.label` for strong readability in both light and dark modes.
-            /// - Applied to primary values (e.g., "14,115", "View").
-            static let valueFontColor: Color = Color(.label)
+            /// Color for **secondary text** labels.
+            /// - Example usage: subtitles, metadata, supporting labels.
+            static let secondaryText: Color = Color(.secondaryLabel)
             
+            /// Color for **primary text**.
+            /// - Example usage: stat values, card titles, and main labels.
+            static let primaryText: Color = Color(.label)
+        }
+        
+        // MARK: - Typography
+        /// Tokens specific to text styling across the app.
+        ///
+        /// - Primarily used in views like `StepsStatsCardView`, `CardNavigationView`, etc.
+        /// - These are **role-based fonts** rather than hardcoded sizes.
+        enum Typography {
             // MARK: Typography Tokens
+            
             /// Default font for **section/card titles** (e.g., "Best Day", "7-Day Avg").
+            /// - Usage: smaller, secondary emphasis text.
             static let titleFont: Font = .headline
             
             /// Default font for **stat values** (e.g., "14,115").
+            /// - Usage: large numbers, main highlights, primary values.
             static let valueFont: Font = .title3
             
             /// Default font for **secondary/subheadline text** (e.g., dates, progress notes).
+            /// - Usage: metadata, completion dates, optional sublabels.
             static let subheadlineFont: Font = .caption
         }
     }
