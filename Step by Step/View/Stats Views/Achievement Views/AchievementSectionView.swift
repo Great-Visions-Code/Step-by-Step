@@ -36,8 +36,8 @@ struct AchievementSectionView: View {
             // MARK: - Section Title
             // Describes the category of achievements (e.g., "Total Distance Traveled").
             Text(title)
-                .font(.headline)
-                .foregroundStyle(.secondary)
+                .font(AppStyle.Typography.sectionTitleFont)
+                .foregroundStyle(AppStyle.Colors.secondaryText)
             
             // MARK: - Achievement Cards
             // Render each achievement directly without reconstructing it.

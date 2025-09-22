@@ -27,8 +27,8 @@ struct TodaysStatsCardView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     // Auto-pluralizes based on step count (e.g. "Step" vs "Steps")
                     Text("Today's \(stepTrackerViewModel.stepTracker.currentStepCount == 1 ? "Step" : "Steps")")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
+                        .font(AppStyle.Card.titleFont)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
                                         
                     // Large bold step count with monospaced digits for better visual alignment
                     Text("\(stepTrackerViewModel.stepTracker.currentStepCount)")
@@ -40,7 +40,7 @@ struct TodaysStatsCardView: View {
                     // Daily goal label
                     Text("of \(stepTrackerViewModel.stepTracker.totalStepsGoal)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
                         .monospacedDigit()
                 }
                 .padding()
@@ -50,8 +50,8 @@ struct TodaysStatsCardView: View {
                 // MARK: - Right Column: Goal Progress & Distance
                 VStack(alignment: .leading) {
                     Text("Goal Progress")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .font(AppStyle.Card.titleFont)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
 
                     Text(stepTrackerViewModel.goalProgress)
                         .font(.title3)
@@ -60,8 +60,8 @@ struct TodaysStatsCardView: View {
                     Spacer()
                     
                     Text("Distance")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .font(AppStyle.Card.titleFont)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
                     
                     // Distance formatted to 2 decimal places
                     Text("\(String(format: "%.2f", stepTrackerViewModel.stepTracker.currentDistance)) mi")

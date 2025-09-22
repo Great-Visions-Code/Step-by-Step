@@ -49,12 +49,12 @@ struct CardNavigationView<Destination: View>: View {
                     VStack(alignment: .leading, spacing: 4) {
                         // Title (small top label)
                         Text(title)
-                            .font(AppStyle.Typography.titleFont)
+                            .font(AppStyle.Card.titleFont)
                             .foregroundStyle(AppStyle.Colors.secondaryText)
                         
                         // Main value (bigger, bold text)
                         Text(value)
-                            .font(AppStyle.Typography.valueFont)
+                            .font(AppStyle.Card.headlineFont)
                             .foregroundStyle(AppStyle.Colors.primaryText)
                             .bold()
                         
@@ -63,7 +63,7 @@ struct CardNavigationView<Destination: View>: View {
                         // Subheading (optional extra info, shown at bottom left)
                         if let subheading = subheading {
                             Text(subheading)
-                                .font(AppStyle.Typography.subheadlineFont)
+                                .font(AppStyle.Card.subheadlineFont)
                                 .foregroundStyle(AppStyle.Colors.secondaryText)
                                 .lineLimit(2) // Wraps to 2 lines max
                         }
@@ -73,7 +73,7 @@ struct CardNavigationView<Destination: View>: View {
                     
                     // MARK: - Right Side Content (Chevron)
                     Image(systemName: "chevron.right")
-                        .font(AppStyle.Typography.valueFont)
+                        .font(AppStyle.Card.headlineFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                 }
                 .padding()

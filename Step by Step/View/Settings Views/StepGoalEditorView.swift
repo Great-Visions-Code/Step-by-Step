@@ -78,7 +78,7 @@ struct StepGoalEditorView: View {
                         CardBackgroundView()
                         
                         Text("Done")
-                            .font(AppStyle.Typography.valueFont)
+                            .font(AppStyle.Card.headlineFont)
                             .foregroundStyle(AppStyle.Colors.primaryText)
                             .bold()
                     }
