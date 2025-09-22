@@ -55,6 +55,18 @@
             /// - Creates a subtle, layered appearance instead of flat opaque blocks.
             /// - Lets background visuals (like `WaveBackground`) show through slightly.
             static let backgroundOpacity: Double = 0.25
+            
+            /// Default font for **section/card titles** (e.g., "Best Day", "7-Day Avg").
+            /// - Usage: smaller, secondary emphasis text.
+            static let titleFont: Font = .headline
+            
+            /// Default font for **stat values** (e.g., "14,115") and action oriented values like "View".
+            /// - Usage: large numbers, main highlights, primary values.
+            static let headlineFont: Font = .title3.bold()
+        
+            /// Default font for **secondary/subheadline text** (e.g., dates, progress notes).
+            /// - Usage: metadata, completion dates, optional sublabels.
+            static let subheadlineFont: Font = .caption
         }
         
         // MARK: - Colors
@@ -83,18 +95,7 @@
         /// - These are **role-based fonts** rather than hardcoded sizes.
         enum Typography {
             // MARK: Typography Tokens
-            
-            /// Default font for **section/card titles** (e.g., "Best Day", "7-Day Avg").
-            /// - Usage: smaller, secondary emphasis text.
-            static let titleFont: Font = .headline
-            
-            /// Default font for **stat values** (e.g., "14,115").
-            /// - Usage: large numbers, main highlights, primary values.
-            static let valueFont: Font = .title3
-            
-            /// Default font for **secondary/subheadline text** (e.g., dates, progress notes).
-            /// - Usage: metadata, completion dates, optional sublabels.
-            static let subheadlineFont: Font = .caption
+            static let sectionTitleFont: Font = .headline
         }
     }
 
