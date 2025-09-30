@@ -15,7 +15,7 @@ struct EnergyCardView: View {
     
     var body: some View {
         ZStack {
-            CardBackgroundView()
+            CardView()
             
             VStack(spacing: 20){
                 // MARK: - Displays the player's current energy level.

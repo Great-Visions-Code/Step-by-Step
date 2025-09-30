@@ -25,7 +25,7 @@ struct DailyStepsBarChartView: View {
     var body: some View {
         ZStack {
             // Background card with style
-            CardBackgroundView()
+            CardView()
             
             VStack(alignment: .leading) {
                 // Section title

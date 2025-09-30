@@ -20,7 +20,7 @@ struct TodaysStatsCardView: View {
     var body: some View {
         ZStack {
             // Background color with rounded corners
-            CardBackgroundView()
+            CardView()
             
             HStack {
                 // MARK: - Left Column: Step Count
@@ -50,7 +50,7 @@ struct TodaysStatsCardView: View {
                 // MARK: - Right Column: Goal Progress & Distance
                 VStack(alignment: .leading) {
                     Text("Goal Progress")
-                        .font(AppStyle.Card.titleFont)
+                        .font(.subheadline)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
 
                     Text(stepTrackerViewModel.goalProgress)
@@ -60,7 +60,7 @@ struct TodaysStatsCardView: View {
                     Spacer()
                     
                     Text("Distance")
-                        .font(AppStyle.Card.titleFont)
+                        .font(.subheadline)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                     
                     // Distance formatted to 2 decimal places

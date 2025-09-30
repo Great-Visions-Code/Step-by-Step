@@ -42,7 +42,7 @@ struct CardNavigationView<Destination: View>: View {
         NavigationLink(destination: destination) {
             ZStack(alignment: .leading) {
                 // Reusable background view for consistent card styling
-                CardBackgroundView()
+                CardView()
                 
                 HStack {
                     // MARK: - Left Side Content (Textual Info)
@@ -54,26 +54,18 @@ struct CardNavigationView<Destination: View>: View {
                         
                         // Main value (bigger, bold text)
                         Text(value)
-                            .font(AppStyle.Card.headlineFont)
+                            .font(AppStyle.Card.ctaFont)
                             .foregroundStyle(AppStyle.Colors.primaryText)
                             .bold()
                         
                         Spacer()
-                        
-                        // Subheading (optional extra info, shown at bottom left)
-                        if let subheading = subheading {
-                            Text(subheading)
-                                .font(AppStyle.Card.subheadlineFont)
-                                .foregroundStyle(AppStyle.Colors.secondaryText)
-                                .lineLimit(2) // Wraps to 2 lines max
-                        }
                     }
                     
                     Spacer()
                     
                     // MARK: - Right Side Content (Chevron)
                     Image(systemName: "chevron.right")
-                        .font(AppStyle.Card.headlineFont)
+                        .font(AppStyle.Card.ctaFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                 }
                 .padding()
@@ -82,6 +74,7 @@ struct CardNavigationView<Destination: View>: View {
         }
     }
 }
+
 // MARK: - SwiftUI Previews
 #Preview {
     CardNavigationView(

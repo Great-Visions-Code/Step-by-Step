@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// ### Design Notes:
 /// - Uses a custom `WaveBackground` for visual consistency with the rest of the app.
-/// - Reuses card-style components (`CardNavigationView`, `CardBackgroundView`)
+/// - Reuses card-style components (`CardNavigationView`, `CardView`)
 ///   for a unified, polished look.
 /// - Organized with clear section headers (e.g., "About").
 struct SettingsView: View {
@@ -75,7 +75,7 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
                     
                     ZStack {
-                        CardBackgroundView() // Card background layer
+                        CardView() // Card background layer
                         
                         VStack(spacing: 18) {
                             // App version info

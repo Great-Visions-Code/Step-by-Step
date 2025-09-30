@@ -35,7 +35,7 @@
         
         // MARK: - Card Styling
         /// Shared style tokens for reusable **card-like** components,
-        /// such as `StepsStatsCardView`, `CardNavigationView`, and `CardBackgroundView`.
+        /// such as `StepsStatsCardView`, `CardNavigationView`, and `CardView`.
         enum Card {
             /// Default corner radius applied to cards, buttons, and containers.
             ///
@@ -62,11 +62,7 @@
             
             /// Default font for **stat values** (e.g., "14,115") and action oriented values like "View".
             /// - Usage: large numbers, main highlights, primary values.
-            static let headlineFont: Font = .title3.bold()
-        
-            /// Default font for **secondary/subheadline text** (e.g., dates, progress notes).
-            /// - Usage: metadata, completion dates, optional sublabels.
-            static let subheadlineFont: Font = .caption
+            static let ctaFont: Font = .title3.bold()
         }
         
         // MARK: - Colors
@@ -97,11 +93,4 @@
             // MARK: Typography Tokens
             static let sectionTitleFont: Font = .headline
         }
-    }
-
-    // MARK: - SwiftUI Preview
-    #Preview("Stats View") {
-        StatsView(
-            stepTrackerViewModel: StepTrackerViewModel()
-        )
     }

@@ -30,13 +30,13 @@ struct StatsCardView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             // Background style and shape
-            CardBackgroundView()
+            CardView()
             
             VStack(alignment: .leading, spacing: 8) {
                 // Top label
                 Text(title)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppStyle.Colors.secondaryText)
                 
                 // Primary value
                 Text(value)
@@ -48,7 +48,7 @@ struct StatsCardView: View {
                 // Optional bottom label (e.g., date)
                 Text(subheading ?? "")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppStyle.Colors.secondaryText)
             }
             .padding()
         }

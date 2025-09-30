@@ -26,7 +26,7 @@ struct AchievementCardView: View {
     var body: some View {
         ZStack {
             // MARK: - Background Card
-            CardBackgroundView()
+            CardView()
             
             // MARK: - Card Content
             HStack(spacing: 13) {

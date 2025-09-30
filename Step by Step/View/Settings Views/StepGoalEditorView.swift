@@ -75,12 +75,11 @@ struct StepGoalEditorView: View {
                 // MARK: - Done Button
                 Button(action: { dismiss() }) {
                     ZStack {
-                        CardBackgroundView()
+                        CardView()
                         
                         Text("Done")
-                            .font(AppStyle.Card.headlineFont)
+                            .font(AppStyle.Card.ctaFont)
                             .foregroundStyle(AppStyle.Colors.primaryText)
-                            .bold()
                     }
                     .frame(height: 92)
                 }
