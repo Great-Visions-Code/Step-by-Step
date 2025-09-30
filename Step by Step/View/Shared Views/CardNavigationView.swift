@@ -17,7 +17,7 @@ import SwiftUI
 /// CardNavigationView(
 ///     title: "Achievements",
 ///     value: "View",
-///     subheading: "Unlocked: 3 of 10",
+///     subStat: "Unlocked: 3 of 10",
 ///     destination: AchievementsListView(...)
 /// )
 /// ```
@@ -30,7 +30,7 @@ struct CardNavigationView<Destination: View>: View {
     /// Example: `"View"` or `"Continue"`
     var value: String
     
-    /// An optional subheading providing supporting info.
+    /// An optional subStat providing supporting info.
     /// Example: `"Locked"`
     var subheading: String?
     
@@ -66,7 +66,7 @@ struct CardNavigationView<Destination: View>: View {
                     // MARK: - Right Side Content (Chevron)
                     Image(systemName: "chevron.right")
                         .font(AppStyle.Card.ctaFont)
-                        .foregroundStyle(AppStyle.Colors.secondaryText)
+                        .foregroundStyle(AppStyle.Colors.primaryText)
                 }
                 .padding()
             }

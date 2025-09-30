@@ -10,7 +10,7 @@ import SwiftUI
 /// A reusable visual card that displays small step-related stats like streaks, best day, and averages.
 ///
 /// This card is used in the `StepsStatsView` to show contextual metrics in a compact form.
-/// The layout includes a title, value, and optional subheading (e.g., a date or supporting info).
+/// The layout includes a title, value, and optional subStat (e.g., a date or supporting info).
 ///
 /// Example use cases:
 /// - "Best Day" with a step count and date
@@ -24,8 +24,8 @@ struct StatsCardView: View {
     /// Main value (e.g., "4 days", "7,412", etc.)
     var value: String
     
-    /// Optional subheading text (e.g., a date like "Jul 18")
-    var subheading: String?
+    /// Optional subStat text (e.g., a date like "Jul 18")
+    var subStat: String?
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -35,19 +35,18 @@ struct StatsCardView: View {
             VStack(alignment: .leading, spacing: 8) {
                 // Top label
                 Text(title)
-                    .font(.subheadline)
+                    .font(AppStyle.Card.subtitleFont)
                     .foregroundStyle(AppStyle.Colors.secondaryText)
                 
                 // Primary value
                 Text(value)
-                    .font(.title3)
-                    .bold()
+                    .font(AppStyle.Card.statFont)
                 
                 Spacer()
                 
                 // Optional bottom label (e.g., date)
-                Text(subheading ?? "")
-                    .font(.caption)
+                Text(subStat ?? "")
+                    .font(AppStyle.Card.subStatFont)
                     .foregroundStyle(AppStyle.Colors.secondaryText)
             }
             .padding()
@@ -61,7 +60,7 @@ struct StatsCardView: View {
     StatsCardView(
         title: "Best Day",
         value: "14,115",
-        subheading: "Jul 18"
+        subStat: "Jul 18"
     )
 }
 

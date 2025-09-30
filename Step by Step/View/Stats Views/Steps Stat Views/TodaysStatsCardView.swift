@@ -39,7 +39,7 @@ struct TodaysStatsCardView: View {
 
                     // Daily goal label
                     Text("of \(stepTrackerViewModel.stepTracker.totalStepsGoal)")
-                        .font(.caption)
+                        .font(AppStyle.Card.subStatFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                         .monospacedDigit()
                 }
@@ -50,23 +50,21 @@ struct TodaysStatsCardView: View {
                 // MARK: - Right Column: Goal Progress & Distance
                 VStack(alignment: .leading) {
                     Text("Goal Progress")
-                        .font(.subheadline)
+                        .font(AppStyle.Card.subtitleFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
 
                     Text(stepTrackerViewModel.goalProgress)
-                        .font(.title3)
-                        .bold()
+                        .font(AppStyle.Card.statFont)
                     
                     Spacer()
                     
                     Text("Distance")
-                        .font(.subheadline)
+                        .font(AppStyle.Card.subtitleFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                     
                     // Distance formatted to 2 decimal places
                     Text("\(String(format: "%.2f", stepTrackerViewModel.stepTracker.currentDistance)) mi")
-                        .font(.title3)
-                        .bold()
+                        .font(AppStyle.Card.statFont)
                 }
                 .padding()
             }

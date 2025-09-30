@@ -39,19 +39,19 @@ struct StatsView: View {
                             StatsCardView(
                                 title: "Best Streak",
                                 value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")",
-                                subheading: "Current \(stepTrackerViewModel.currentStepStreak)"
+                                subStat: "Current \(stepTrackerViewModel.currentStepStreak)"
                             )
                             
                             StatsCardView(
                                 title: "Best Day",
                                 value: "\(maxStepCount.formatted())",
-                                subheading: bestDayDate
+                                subStat: bestDayDate
                             )
                             
                             StatsCardView(
                                 title: "7-day avg",
                                 value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())",
-                                subheading: nil
+                                subStat: nil
                             )
                         }
                         .padding(.horizontal)
