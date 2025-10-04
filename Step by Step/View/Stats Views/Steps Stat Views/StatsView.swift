@@ -7,61 +7,88 @@
 
 import SwiftUI
 
-/// Displays a user's step activity breakdown including current stats and historical graph.
+/// A vertically scrollable dashboard that summarizes the user’s step activity.
 ///
-/// Combines both the current day's summary via `TodaysStatsCardView` and the multi-day bar chart
-/// via `DailyStepsBarChartView`. Used within the Achievements tab to provide users with insight into
-/// their walking patterns and overall progress.
+/// ## Responsibilities
+/// - Presents a high-level overview: today’s stats, streaks/best day/7-day average, and a historical bar chart.
+/// - Provides a navigational entry point to detailed achievements.
+///
+/// ## Design
+/// - Uses the app’s background (`WaveBackground`) and card components to maintain visual consistency.
+/// - Respects Dynamic Type by relying on semantic fonts and avoiding hardcoded sizes where practical.
+/// - Content is grouped with comfortable spacing and large tap targets.
+///
+/// ## Ownership & State
+/// - Observes `StepTrackerViewModel` (owned by the parent) to render live step information.
+/// - Maintains a private `didLoad` flag to avoid duplicate fetches across navigations.
+/// - All fetching is performed via `refreshAll()` which is expected to be `@MainActor`.
+///
+/// > Note: Strings are currently hard-coded. See the `TODO(gustavo)` to localize user-visible text.
+///
 struct StatsView: View {
-    /// Observed ViewModel to track step count dynamically
+    // MARK: - Dependencies
+    /// Observed ViewModel to track step count dynamically.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
-    
-    var body: some View {
         
+    // MARK: - State
+    /// Prevents repeated data loads when navigating back to this screen.
+    @State private var didLoad = false
+    
+    // MARK: - User-Facing Strings (to localize)
+    // TODO(gustavo): Localize user-visible strings and consider an accessibility-only summary string.
+    private let titleAchievements = "Achievements"
+    private let ctaView = "View"
+    private let sectionDailySteps = "7-day avg"
+    private let sectionBestDay = "Best Day"
+    private let sectionBestStreak = "Best Streak"
+    private let sectionCurrentPrefix = "Current "
+    private let screenTitle = "Daily Steps" // Used in nested cards only; top-level uses section headers
+        
+    // MARK: - Body
+    var body: some View {
+        // Pre-compute derived values once per render for readability.
+        // The view model provides these values already, so no heavy work occurs here.
         let maxStepCount = stepTrackerViewModel.maxStepCount
         let bestDayDate = stepTrackerViewModel.bestDayDateFormatted
+        
         NavigationStack {
-            ZStack{
+            ZStack {
+                // MARK: Background
+                // Decorative; no semantic meaning for VoiceOver.
                 WaveBackground()
-                
+                    
+                // MARK: Scrollable Content
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20) {
-                            // MARK: - Daily Step Summary
-                            // Displays today's step count, distance, and goal progress percentage
+                        // MARK: - Today’s Summary Card
+                        // Displays today's step count, distance, and goal progress percentage.
                         TodaysStatsCardView(
                             stepTrackerViewModel: stepTrackerViewModel
                         )
                         .padding(.top)
                         .padding(.horizontal)
-                        
-                            // MARK: - Distance & Goal Progress
+                            
+                        // MARK: - KPI Cards Row (streaks, best day, 7-day average)
                         HStack(spacing: 16) {
                             StatsCardView(
-                                title: "Best Streak",
+                                title: sectionBestStreak,
                                 value: "\(stepTrackerViewModel.longestStepStreak) \(stepTrackerViewModel.longestStepStreak == 1 ? "day" : "days")",
-                                subStat: "Current \(stepTrackerViewModel.currentStepStreak)"
+                                subStat: "\(sectionCurrentPrefix)\(stepTrackerViewModel.currentStepStreak)"
                             )
                             
                             StatsCardView(
-                                title: "Best Day",
+                                title: sectionBestDay,
                                 value: "\(maxStepCount.formatted())",
                                 subStat: bestDayDate
                             )
-                            
+                                
                             StatsCardView(
-                                title: "7-day avg",
+                                title: sectionDailySteps,
                                 value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())",
                                 subStat: nil
                             )
                         }
                         .padding(.horizontal)
-                        
-                            // MARK: - Step History Graph
-//                            // Shows a horizontal scrollable bar chart of recent days' step counts
-//                        DailyStepsBarChartView(
-//                            stepTrackerViewModel: stepTrackerViewModel
-//                        )
-//                        .padding(.horizontal)
                         
                         // MARK: - Step History Bar Chart
                         StepsBarChartView(
@@ -69,11 +96,10 @@ struct StatsView: View {
                         )
                         .padding(.horizontal)
                         
-                            // MARK: - Card Navigation Link
-                            // NavigationLink to AchievementsView.swift
+                        // MARK: - Card Navigation Link → Achievements
                         CardNavigationView(
-                            title: "Achievements",
-                            value: "View",
+                            title: titleAchievements,
+                            value: ctaView,
                             subheading: nil,
                             destination: AchievementsView(
                                 achievementsViewModel: AchievementsViewModel(),
@@ -83,24 +109,46 @@ struct StatsView: View {
                         )
                         .padding(.horizontal)
                         
-                        Spacer()
-                        
+                        Spacer(minLength: 8)
                     }
+                }
+                .refreshable {
+                    // Safe: hops to @MainActor because the method is annotated.
+                    await stepTrackerViewModel.refreshAll()
                 }
             }
         }
-        .onAppear {
-            stepTrackerViewModel.updateCurrentStepCount()
-            stepTrackerViewModel.updateCurrentDistance()
-            stepTrackerViewModel.updateSevenDayStepAverage()
+        // Runs once per instance; avoids repeated fetches when navigating back.
+        .task {
+            guard !didLoad else { return }
+            didLoad = true
+            await stepTrackerViewModel.refreshAll()
         }
     }
 }
 
+extension StepTrackerViewModel {
+    /// Call from .task and .refreshable. Runs on the main actor so all @Published writes are safe.
+    @MainActor
+    func refreshAll() async {
+        // If these do work off-main (HealthKit callbacks), keep them as-is;
+        // this method just guarantees the *publishing* happens from main.
+        updateStepHistory()
+        updateCurrentStepCount()
+        updateCurrentDistance()
+        updateSevenDayStepAverage()
+    }
+}
+
+// MARK: - Previews (Preview-only mock VM)
+//
+// Keeps previews fast, deterministic enough, and independent of HealthKit.
+// NOTE: This type is file-private to avoid polluting app scope.
 fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewModel {
     private let mockHistory: [(date: String, steps: Int)]
 
     /// Build random-ish step history for the last `historyDays` days.
+    /// Values are generated oldest → newest with a baseline plus variance.
     init(historyDays: Int = 30, base: Int = 4000, variance: Int = 6000) {
         // Generate "M/d/yy" strings to match your VM expectations.
         let cal = Calendar.current
@@ -124,12 +172,13 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
     override func sortedStepData() -> [(date: String, steps: Int)] {
         mockHistory
     }
-
+    
     override func updateStepHistory() {
         // no-op in previews
     }
 }
 
+// MARK: - Previews
 #Preview {
     StatsView(
         stepTrackerViewModel: StepHistoryMockStepTrackerViewModel(historyDays: 30)
@@ -141,7 +190,7 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
     let previewStepTrackerViewModel = StepTrackerViewModel()
     let previewStoryCardViewModel = StoryCardViewModel()
     let previewPlayerStatsViewModel = PlayerStatsViewModel()
-    
+        
     DashboardView(
         stepTrackerViewModel: previewStepTrackerViewModel,
         achievementsViewModel: previewAchievementsViewModel,
@@ -153,3 +202,12 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
         storyCardViewModel: previewStoryCardViewModel
     )
 }
+
+// MARK: - Maintenance Notes
+//
+// - Keep network/HealthKit fetches out of `body` to avoid repeated work.
+// - Prefer semantic fonts and colors for Dynamic Type and Dark Mode compatibility.
+// - If step loading gets heavier, consider a lightweight skeleton state.
+// - Consider localizing all user-visible strings.
+// - If `refreshAll()` ever does heavy work, confirm `@MainActor` usage and add progress indicators.
+//
