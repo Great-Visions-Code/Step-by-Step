@@ -73,6 +73,8 @@ struct TodaysStatsCardView: View {
     }
 }
 
+
+
 #Preview {
     TodaysStatsCardView(
         stepTrackerViewModel: StepTrackerViewModel()
