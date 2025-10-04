@@ -20,10 +20,6 @@
     /// ## Ownership & State
     /// - Pure value namespace (no state). Safe to access from any thread, but apply tokens on the main thread when updating UI.
     ///
-    /// ## Accessibility
-    /// - Colors rely on system-provided variants (`.label`, `.secondaryLabel`) to respect Light/Dark Mode and contrast settings.
-    /// - Fonts are semantic (`.headline`, `.title3`, `.caption`) to work with Dynamic Type scaling.
-    ///
     /// > Important: Treat these as **tokens**. If you need a new role (e.g., a warning chip), add a new semantic token
     /// rather than reusing an unrelated one.
     ///
@@ -37,7 +33,6 @@
     /// ### How to Extend
     /// - Add new groups (`Spacing`, `Button`, `Graph`, etc.) as needs emerge.
     /// - Keep names role-based and descriptive.
-    /// - Prefer system colors and fonts for accessibility unless brand constraints require custom assets.
     ///
     /// ### Current Groups
     /// - `Card` → Styles for reusable card-like components
