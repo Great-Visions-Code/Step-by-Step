@@ -38,7 +38,7 @@ struct StatsView: View {
     // TODO(gustavo): Localize user-visible strings and consider an accessibility-only summary string.
     private let titleAchievements = "Achievements"
     private let ctaView = "View"
-    private let sectionDailySteps = "7-day avg"
+    private let section7DayAvg = "7-day avg"
     private let sectionBestDay = "Best Day"
     private let sectionBestStreak = "Best Streak"
     private let sectionCurrentPrefix = "Current "
@@ -83,7 +83,7 @@ struct StatsView: View {
                             )
                                 
                             StatsCardView(
-                                title: sectionDailySteps,
+                                title: section7DayAvg,
                                 value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())",
                                 subStat: nil
                             )
