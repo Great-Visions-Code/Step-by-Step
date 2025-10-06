@@ -128,19 +128,20 @@ final class HealthKitManager {
     /// - Parameter completion: Completion handler with average step count or error.
     func fetchSevenDayStepAverage(completion: @escaping (Double?, Error?) -> Void) {
         let calendar = Calendar.current
-        let endDate = Date()
-        guard let startDate = calendar.date(byAdding: .day, value: -6, to: endDate) else {
+        // Use the last 7 FULL days, excluding today, to avoid partial-day bias.
+        let startOfToday = calendar.startOfDay(for: Date())
+        guard let startDate = calendar.date(byAdding: .day, value: -7, to: startOfToday) else {
             let error = NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid start date"])
             completion(nil, error)
             return
         }
-        
+
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
-            end: endDate,
+            end: startOfToday,
             options: .strictStartDate
         )
-        
+
         let query = HKStatisticsQuery(
             quantityType: stepCountType,
             quantitySamplePredicate: predicate,
@@ -152,20 +153,21 @@ final class HealthKitManager {
                     completion(nil, error)
                     return
                 }
-                
+
                 guard let quantity = result?.sumQuantity() else {
-                    print("❌ (HKM) No step data for 7-day range.")
+                    print("❌ (HKM) No step data for last 7 full days.")
                     completion(0, nil)
                     return
                 }
-                
+
                 let totalSteps = quantity.doubleValue(for: .count())
                 let average = totalSteps / 7.0
-                print("(HKM) 7-Day Step Average: \(Int(average)) ✅")
+                let rounded = Int(average.rounded())
+                print("(HKM) 7-Day Step Average (last 7 full days): \(rounded) (raw: \(average)) ✅")
                 completion(average, nil)
             }
         }
-        
+
         healthStore.execute(query)
     }
     
