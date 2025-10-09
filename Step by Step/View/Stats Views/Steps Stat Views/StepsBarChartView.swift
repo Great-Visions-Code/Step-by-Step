@@ -23,41 +23,79 @@ import Charts
 /// - Thin horizontal rule lines indicate:
 ///   - The **maximum** step count line (`RuleMark` at `maxStepCount`)
 ///   - The **7-day average** line (`RuleMark` at `sevenDayAvg`)
+///   - The **goal/target** line (`RuleMark` at `totalStepsGoal`)
 ///
 /// ## Ownership & State
 /// - Observes a parent-owned `StepTrackerViewModel`.
 /// - Pulls chronological data (oldest → newest) via `sortedStepData()`.
 ///
-/// > Note: If you need VoiceOver to speak both the axis date and the bar’s value in one phrase,
-/// consider adding a `.accessibilityLabel` to the `BarMark` content or wrapping with a
-/// `ChartContent` that supplies a custom label.
+/// ## Accessibility
+/// - Chart marks inherit accessible labels from their data encodings (date, value).
+///   If you need a custom combined announcement, add a label on the mark or wrapper container.
+///
+/// ## Threading & Performance
+/// - Reads derived values from the observed view model; avoids heavy work in `body`.
+/// - The Charts framework virtualizes content when scrolled; this view does not keep extra state.
+///
+/// > Note:
+/// > If you need VoiceOver to speak both the axis date and the bar’s value in one phrase,
+/// > consider adding a `.accessibilityLabel` to the `BarMark` content or wrapping with a
+/// > `ChartContent` that supplies a custom label.
+///
+/// > TODO(gustavo): Localize visible strings ("Daily Steps", "Best", "7-Day Avg", "Goal").
+
 struct StepsBarChartView: View {
+    
+    // MARK: - Dependencies
     
     /// View model providing sorted step history data.
     /// - Important: This view does not own the view model; the parent is responsible for lifecycle.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
     
+    // MARK: - Body
+    
     var body: some View {
+        // Pull step data once for this render pass.
+        // Invariant: `sortedStepData()` returns oldest → newest; Charts will respect order and axes formatting.
+        let stepData = stepTrackerViewModel.sortedStepData()
+        
+        // Precompute lines' inputs for clarity (and to avoid repeated property lookups).
+        let maxStepCount = stepTrackerViewModel.maxStepCount
+        // Keep Double for rule value, Int for label/formatting where needed.
+        let sevenDayAvg = max(0, stepTrackerViewModel.stepTracker.sevenDayStepAverage)
+        // Stores Step Goal Value
+        let stepGoal = stepTrackerViewModel.stepTracker.totalStepsGoal
+        
         ZStack {
             // Decorative card background; visually groups the chart with other dashboard cards.
-            // If VoiceOver verbosity becomes an issue, consider `.accessibilityHidden(true)` here.
             CardView()
             
             VStack(alignment: .leading) {
-                // Section title
-                Text("Daily Steps")
-                    .font(AppStyle.Card.titleFont)
-                    .foregroundStyle(AppStyle.Colors.secondaryText)
-                    .padding()
-                
-                // Pull step data once for this render pass.
-                // Invariant: `sortedStepData()` returns oldest → newest; Charts will respect order andaxes formatting.
-                let stepData = stepTrackerViewModel.sortedStepData()
-                
-                // Precompute lines' inputs for clarity (and to avoid repeated property lookups).
-                let maxStepCount = stepTrackerViewModel.maxStepCount
-                // Keep Double for rule value, Int for label/formatting where needed.
-                let sevenDayAvg = max(0, stepTrackerViewModel.stepTracker.sevenDayStepAverage)
+                HStack {
+                    // Section title
+                    Text("Daily Steps")
+                        .font(AppStyle.Card.titleFont)
+                        .foregroundStyle(AppStyle.Colors.secondaryText)
+                    Spacer()
+                    
+                    // Compact, reusable legend chips (color + label).
+                    // Keep labels short to preserve space in narrow layouts.
+                    ChartLegendChipView(
+                        color: .blue,
+                        label: "Best"
+                    )
+                    
+                    ChartLegendChipView(
+                        color: .yellow,
+                        label: "7-Day Avg"
+                    )
+                    
+                    ChartLegendChipView(
+                        color: .orange,
+                        label: "Goal"
+                    )
+                }
+                .padding([.horizontal, .top])
                 
                 // Main chart body.
                 // The `Chart` DSL is declarative; each mark describes a part of the chart.
@@ -68,23 +106,23 @@ struct StepsBarChartView: View {
                             x: .value("Date", stepHistoryData.date),
                             y: .value("Steps", stepHistoryData.steps)
                         )
-                        .cornerRadius(8) // Rounded corners to match modern iOS styling and the cardlanguage.
+                        .cornerRadius(8) // Rounded corners to match modern iOS styling and the card language.
                         .annotation(position: .top) {
                             // Compact annotation above the bar with comma separators.
                             Text(stepHistoryData.steps.formatted())
                                 .font(.caption2)
                                 .foregroundStyle(AppStyle.Colors.primaryText)
                             // NOTE(gustavo): If numbers regularly overlap at smaller sizes,
-                            // consider .minimumScaleFactor(0.8) or hiding labels below a threshold.
+                            // consider `.minimumScaleFactor(0.8)` or hiding labels below a threshold.
                         }
                     }
                     
-                    // MARK: - maxStepCount line
+                    // MARK: - Max step line
                     // Horizontal line at `maxStepCount`; provides a quick "best on window" visual reference.
                     if maxStepCount > 0 {
                         RuleMark(y: .value("Max Steps", maxStepCount))
-                            .foregroundStyle(.secondary)
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [4]))
+                            .foregroundStyle(.blue)
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
                         // TODO(gustavo): Optionally add `.annotation` to label the rule (e.g., "Best").
                     }
                     
@@ -92,9 +130,16 @@ struct StepsBarChartView: View {
                     // Horizontal dashed rule for the 7-day average across the shown domain.
                     if sevenDayAvg > 0 {
                         RuleMark(y: .value("7-Day Avg", sevenDayAvg))
-                            .foregroundStyle(.secondary)
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [8]))
-                        // NOTE: Consider a legend chip in the header if you want users to recognize this line quickly.
+                            .foregroundStyle(.yellow)
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                    }
+                    
+                    // MARK: - Goal line
+                    // Reference line for the current daily step goal.
+                    if stepGoal > 0 {
+                        RuleMark(y: .value("Target", stepGoal))
+                            .foregroundStyle(.orange)
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
                     }
                 }
                 .padding()
@@ -119,6 +164,8 @@ struct StepsBarChartView: View {
     }
 }
 
+// MARK: - Preview Utilities
+
 /// Preview-only mock version of `StepTrackerViewModel`.
 ///
 /// - Generates random-ish step history for a configurable number of days.
@@ -127,6 +174,7 @@ struct StepsBarChartView: View {
 /// > Note: Dates are formatted `"M/d/yy"` to match the expected format in the app.
 fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewModel {
     private let mockHistory: [(date: String, steps: Int)]
+    
     /// Initializes with synthetic random step data for the past `historyDays`.
     ///
     /// - Parameters:
@@ -151,13 +199,16 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
         }
         self.mockHistory = hist
         super.init()
+        
         // Seed today's step count for preview alignment with the last bar.
         self.updateCurrentSteps(to: hist.last?.steps ?? 0)
     }
+    
     /// Returns the synthetic sorted step history.
     override func sortedStepData() -> [(date: String, steps: Int)] {
         mockHistory
     }
+    
     /// No-op in previews. Real implementation would pull from HealthKit or cache.
     override func updateStepHistory() {
         // no-op
@@ -165,11 +216,11 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
 }
 
 // MARK: - Previews
-#Preview("Steps Bar Chart • 14 Days") {
+
+#Preview("Steps Bar Chart - 14 Days") {
     StepsBarChartView(
         stepTrackerViewModel: StepHistoryMockStepTrackerViewModel(historyDays: 14)
     )
-    .background(Color(.systemBackground)) // Preview against system background for Light/Dark verification.
-    // TODO(gustavo): Add an additional preview with .environment(\.sizeCategory,.accessibilityExtraExtraExtraLarge)
-    // to validate Dynamic Type clamping/overlap behaviors.
+    // TODO(gustavo): Add an additional preview with `.environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)`
+    // to validate Dynamic Type clamping/overlap behaviors for annotations and the legend row.
 }
