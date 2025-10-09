@@ -1,122 +1,134 @@
-    //
-    //  AppStyle.swift
-    //  Step by Step
-    //
-    //  Created by Gustavo Vazquez on 8/21/25.
-    //
+//
+//  AppStyle.swift
+//  Step by Step
+//
+//  Created by Gustavo Vazquez on 8/21/25.
+//
 
-    import SwiftUI
+import SwiftUI
 
-    /// `AppStyle` is a centralized **design system / style token container** for the app.
-    ///
-    /// ## Responsibilities
-    /// - Acts as the single source of truth for app-wide visual tokens (corner radii, colors, fonts).
-    /// - Enables consistent UI across views (`StatsView`, `AchievementsListView`, `CardNavigationView`, etc.).
-    ///
-    /// ## Design
-    /// - Organized into semantic nested groups (`Card`, `Colors`, `Typography`) so usage sites are self-documenting.
-    /// - Tokens are **role-based** (e.g., `ctaPrimary`, `sectionTitleFont`) rather than tied to numeric sizes or hard colors.
-    ///
-    /// ## Ownership & State
-    /// - Pure value namespace (no state). Safe to access from any thread, but apply tokens on the main thread when updating UI.
-    ///
-    /// > Important: Treat these as **tokens**. If you need a new role (e.g., a warning chip), add a new semantic token
-    /// rather than reusing an unrelated one.
-    ///
-    /// ### Example Usage
-    /// ```swift
-    /// RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius)
-    ///     .foregroundStyle(AppStyle.Card.backgroundColor)
-    ///     .opacity(AppStyle.Card.backgroundOpacity)
-    /// ```
-    ///
-    /// ### How to Extend
-    /// - Add new groups (`Spacing`, `Button`, `Graph`, etc.) as needs emerge.
-    /// - Keep names role-based and descriptive.
-    ///
-    /// ### Current Groups
-    /// - `Card` → Styles for reusable card-like components
-    /// - `Colors` → App-wide semantic color tokens
-    /// - `Typography` → Fonts for titles, values, and sublabels
-    enum AppStyle {
-        
-        // MARK: - Card Styling
-        /// Shared style tokens for reusable **card-like** components,
-        /// such as `StepsStatsCardView`, `CardNavigationView`, and `CardView`.
-        enum Card {
-            /// Default corner radius applied to cards, buttons, and containers.
-            ///
-            /// - Rationale: Matches modern iOS design language (iOS 16+), which favors rounder corners
-            ///   for a softer, friendlier look. Keeping this here ensures consistency everywhere.
-            static let cornerRadius: CGFloat = 32
-            
-            /// Background color used for stat/info cards.
-            ///
-            /// - Defined in the Asset Catalog as `Color.wave3`.
-            /// - Centralizing avoids ad-hoc usage of `.gray` or `.blue`, which can break theme consistency.
-            static let backgroundColor: Color = .wave3
-            
-            /// Default opacity applied to card backgrounds.
-            ///
-            /// - Creates a subtle, layered appearance instead of flat opaque blocks.
-            /// - Lets background visuals (like `WaveBackground`) show through slightly.
-            static let backgroundOpacity: Double = 0.25
-            
-            /// Default font for **section/card titles** (e.g., "Today's Steps").
-            ///
-            /// - Role: Smaller, secondary-emphasis text used as a section or card title.
-            /// - A11y: Semantic text style to respect Dynamic Type.
-            static let titleFont: Font = .headline
-            
-            /// Default font for subheads within card layouts (e.g., "Best Day", "7-Day Avg")..
-            ///
-            /// - Role: One step below headline for supportive labels.
-            static let subtitleFont: Font = .subheadline
+/// `AppStyle` is a centralized **design system / style token container** for the app.
+///
+/// ## Responsibilities
+/// - Acts as the **single source of truth** for app-wide visual tokens (corner radii, colors, fonts).
+/// - Enables consistent UI across views (`StatsView`, `AchievementsListView`, `CardNavigationView`, etc.).
+///
+/// ## Design
+/// - Organized into semantic nested groups (`Card`, `Colors`, `Typography`) so usage sites are self-documenting.
+/// - Tokens are **role-based** (e.g., `primaryText`, `titleFont`) rather than fixed sizes or raw colors.
+/// - Values are intentionally **opinionated defaults**—override at the call site only when necessary.
+///
+/// ## Ownership & State
+/// - Pure value namespace (no stored state). Safe to access anywhere; apply on the main thread when updating the UI.
+///
+/// > Important: Treat these as **tokens**. If you need a new role (e.g., a warning chip), add a new semantic token
+/// rather than reusing an unrelated one. This keeps semantics clear and the design system maintainable.
+///
+/// ### Example Usage
+/// ```swift
+/// RoundedRectangle(cornerRadius: AppStyle.Card.cornerRadius)
+///     .foregroundStyle(AppStyle.Card.backgroundColor)
+///     .opacity(AppStyle.Card.backgroundOpacity)
+/// ```
+///
+/// ### How to Extend
+/// - Add new groups (`Spacing`, `Button`, `Graph`, etc.) as needs emerge.
+/// - Keep names **role-based** and descriptive (e.g., `graphGridLine`, not `lightGray`).
+///
+/// ### Current Groups
+/// - `Card` → Styles for reusable card-like components
+/// - `Colors` → App-wide semantic color tokens
+/// - `Typography` → Fonts for titles, values, and sublabels
 
-            /// Default font for primary stat numbers displayed within cards.
-            ///
-            /// - Role: The “stat” value (e.g., “3.42 mi”). Bold to provide strong emphasis.
-            /// - Note: Keep labels readable under large Dynamic Type; prefer truncation or scaling if needed.
-            static let statFont: Font = .title3.bold()
-            
-            /// Default font for small supporting values, captions, or metadata within cards (e.g., "Current 1").
-            static let subStatFont: Font = .caption
-
-            /// Default font for prominent call-to-action text within a card context.
-            ///
-            /// - Example: “Continue”, “Convert”, “View”, "Done".
-            static let ctaFont: Font = .title3.bold()
-        }
-        
-        // MARK: - Colors
-        /// Semantic color tokens used across the app.
+enum AppStyle {
+    
+    // MARK: - Card Styling
+    /// Shared style tokens for reusable **card-like** components,
+    /// such as `StepsStatsCardView`, `CardNavigationView`, and any custom card containers.
+    enum Card {
+        /// Default corner radius applied to cards, buttons, and containers.
         ///
-        /// - Centralizing here allows for easy theme updates (e.g., light/dark tuning).
-        /// - Tokens should **describe purpose** (e.g., CTA, secondary text) rather than hard-coded names.
-        enum Colors {
-            /// Color for **secondary text** labels.
-            ///
-            /// - Example: Subtitles, metadata, supporting labels.
-            /// - A11y: System-managed contrast via `.secondaryLabel`.
-            static let secondaryText: Color = Color(.secondaryLabel)
-            
-            /// Color for **primary text**.
-            ///
-            /// - Example: Stat values, card titles, and main labels.
-            /// - A11y: System-managed contrast via `.label`.
-            static let primaryText: Color = Color(.label)
-        }
+        /// - Rationale: Matches modern iOS design language (iOS 16+), which favors rounder corners
+        ///   for a softer, friendlier look. Keeping this here ensures consistency everywhere.
+        static let cornerRadius: CGFloat = 32
         
-        // MARK: - Typography
-        /// Tokens specific to text styling across the app.
+        /// Background color used for stat/info cards.
         ///
-        /// - Used in views like `StepsStatsCardView`, `CardNavigationView`, etc.
-        /// - These are **role-based fonts** rather than hard-coded sizes to better support Dynamic Type.
-        enum Typography {
-            /// Default font for **section titles** across screens.
-            ///
-            /// - Example: “Steps in a Day", “Story Achievements”.
-            /// - Rationale: Using semantic text styles keeps scaling consistent and predictable.
-            static let sectionTitleFont: Font = .headline
-        }
+        /// - Defined in the Asset Catalog as `Color.wave3`.
+        /// - Centralizing avoids ad-hoc usage of `.gray` or `.blue`, which can break theme consistency.
+        static let backgroundColor: Color = .wave3
+        
+        /// Default opacity applied to card backgrounds.
+        ///
+        /// - Creates a subtle, layered appearance instead of flat opaque blocks.
+        /// - Lets background visuals (like `WaveBackground`) show through slightly.
+        static let backgroundOpacity: Double = 0.25
+        
+        /// Default font for primary stat numbers displayed within cards.
+        ///
+        /// - Role: The prominent “stat” value (e.g., **14,115** steps).
+        /// - Note: Prefer semantic fonts to support Dynamic Type; keep truncation/scaling at the usage site.
+        static let statFont: Font = .title3.bold()
+    
+        /// Default font for prominent call-to-action text within a card context.
+        ///
+        /// - Example: “Continue”, “Convert”, “View”, “Done”.
+        /// - Use to maintain consistent emphasis for tappable actions styled as cards.
+        static let ctaFont: Font = .title3.bold()
+        
+        /// Default font for **section/card titles** (e.g., "Today's Steps").
+        ///
+        /// - Role: Smaller, secondary-emphasis text used as a section or card title.
+        /// - Use with `.foregroundStyle(AppStyle.Colors.secondaryText)` for secondary emphasis.
+        static let titleFont: Font = .headline
+        
+        /// Default font for subheads within card layouts (e.g., "Best Day", "7-Day Avg").
+        ///
+        /// - Role: One step below headline for supportive labels.
+        static let subtitleFont: Font = .subheadline
+        
+        /// Default font for small supporting values, captions, or metadata within cards (e.g., "Current 1").
+        ///
+        /// - Role: Compact, tertiary information where hierarchy should remain subtle.
+        static let subStatFont: Font = .caption
     }
+    
+    // MARK: - Colors
+    /// Semantic color tokens used across the app.
+    ///
+    /// - Centralizing here allows for easy theme updates (e.g., light/dark tuning).
+    /// - Tokens should **describe purpose** (e.g., CTA, secondary text) rather than hard-coded names.
+    enum Colors {
+        /// Color for **secondary text** labels.
+        ///
+        /// - Example: Subtitles, metadata, supporting labels.
+        /// - System-provided dynamic color to ensure adequate contrast.
+        static let secondaryText: Color = Color(.secondaryLabel)
+        
+        /// Color for **primary text**.
+        ///
+        /// - Example: Stat values, card titles, and main labels.
+        /// - System-provided dynamic color to ensure adequate contrast.
+        static let primaryText: Color = Color(.label)
+    }
+    
+    // MARK: - Typography
+    /// Tokens specific to text styling across the app.
+    ///
+    /// - Used in views like `StepsStatsCardView`, `CardNavigationView`, etc.
+    /// - These are **role-based fonts** rather than hard-coded sizes to better support Dynamic Type.
+    enum Typography {
+        /// Default font for **section titles** across screens.
+        ///
+        /// - Example: “Steps in a Day”, “Story Achievements”.
+        /// - Rationale: Using semantic text styles keeps scaling consistent and predictable.
+        static let sectionTitleFont: Font = .headline
+    }
+}
+// MARK: - Maintenance Notes
+// TODO(gustavo): Introduce AppStyle.Spacing with standard paddings/gaps (e.g., xSmall=4, small=8, medium=12, large=16, xLarge=24).
+// TODO(gustavo): Add AppStyle.Button for shared CTA styles (height, corner radius, hit area) to unify action controls.
+// TODO(gustavo): Consider an AppStyle.Graph sub-namespace for chart colors (avg line, best line), bar widths, and gridline opacity.
+// TODO(gustavo): If we adopt light/dark theming variants, introduce a `dynamic(_:)` helper to swap tokens per color scheme.
+// NOTE: Keep tokens semantic and avoid view-specific names. This preserves flexibility as the app grows.
+// NOTE: Prefer using these tokens at composition time (e.g., modifiers) rather than embedding raw values in views.
