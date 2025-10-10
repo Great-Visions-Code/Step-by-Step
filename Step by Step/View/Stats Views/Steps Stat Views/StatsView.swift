@@ -85,7 +85,9 @@ struct StatsView: View {
                             StatsCardView(
                                 title: section7DayAvg,
                                 value: "\(Int(stepTrackerViewModel.stepTracker.sevenDayStepAverage).formatted())",
-                                subStat: nil
+                                subStat: nil,
+                                trend: stepTrackerViewModel.sevenDayAvgTrendDirection,
+                                deltaText: stepTrackerViewModel.sevenDayAvgDeltaText
                             )
                         }
                         .padding(.horizontal)
