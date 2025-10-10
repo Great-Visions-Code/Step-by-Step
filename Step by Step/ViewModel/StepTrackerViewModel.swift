@@ -347,6 +347,77 @@ class StepTrackerViewModel: ObservableObject {
             print("Total steps reset at midnight")
         }
     }
+    
+    // MARK: - 7-Day Average Trend (Calendar-accurate, exclude today)
+
+    /// Builds a dictionary of steps keyed by start-of-day dates.
+    private var stepsByDay: [Date: Int] {
+        let df = DateFormatter()
+        df.dateFormat = "M/d/yy"
+        df.timeZone = Calendar.current.timeZone
+            
+        return stepTracker.stepHistory.reduce(into: [:]) { acc, item in
+            if let d = df.date(from: item.date) {
+                acc[Calendar.current.startOfDay(for: d)] = item.steps
+            }
+        }
+    }
+
+    /// Returns a series of daily step totals for the last `n` **calendar** days,
+    /// in chronological order (oldest → newest).
+    /// - Parameters:
+    ///   - n: number of days
+    ///   - excludeToday: if true, the most recent day is **yesterday**.
+    private func lastNDaysSeries(_ n: Int, excludeToday: Bool = true) -> [Int] {
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        let endDay = excludeToday ? cal.date(byAdding: .day, value: -1, to: today)! : today
+
+        // Oldest → newest
+        return (0..<n).reversed().map { offset in
+            let day = cal.date(byAdding: .day, value: -offset, to: endDay)!
+            return stepsByDay[day] ?? 0
+        }
+    }
+
+    /// Current 7-day window (e.g., if today is Oct 9, this is Oct 2–8)
+    private var current7CalendarDaysExcludingToday: [Int] {
+        lastNDaysSeries(7, excludeToday: true)
+    }
+
+    /// Previous 7-day window immediately before the current window
+    /// (e.g., Sep 25–Oct 1)
+    private var previous7CalendarDaysExcludingToday: [Int] {
+        let last14 = lastNDaysSeries(14, excludeToday: true) // oldest → newest
+        return Array(last14.prefix(7))
+    }
+
+    /// Percent change between the current 7-day calendar window and the previous 7-day window.
+    /// Returns `nil` if comparison isn’t meaningful.
+    var sevenDayAvgDeltaPercent: Double? {
+        let cur = current7CalendarDaysExcludingToday
+        let prev = previous7CalendarDaysExcludingToday
+        guard cur.count == 7, prev.count == 7 else { return nil }
+
+        let curAvg = Double(cur.reduce(0, +)) / 7.0
+        let prevAvg = Double(prev.reduce(0, +)) / 7.0
+        guard curAvg > 0, prevAvg > 0 else { return nil }
+
+        let change = ((curAvg - prevAvg) / prevAvg) * 100
+        let epsilon = 0.5 // treat tiny changes as flat
+        if abs(change) < epsilon { return 0 }
+        return change
+    }
+
+    var sevenDayAvgDeltaText: String? {
+        guard let pct = sevenDayAvgDeltaPercent else { return nil }
+        return String(format: "%+0.0f%%", pct)
+    }
+    
+    var sevenDayAvgTrendDirection: TrendDirection? {
+        guard let pct = sevenDayAvgDeltaPercent else { return nil }
+        return pct > 0 ? .up : (pct < 0 ? .down : .flat)
+    }
 
     // MARK: - Persistence
 
