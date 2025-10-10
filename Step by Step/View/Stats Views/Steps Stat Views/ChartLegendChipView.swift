@@ -64,21 +64,25 @@ struct ChartLegendChipView: View {
 // MARK: - Previews
 #Preview {
     // Example usage with multiple chips to demonstrate spacing and visual rhythm.
-    HStack(spacing: 12) {
-        ChartLegendChipView(
-            color: .yellow,
-            label: "Max Step Count"
-        )
+    ZStack {
+        CardView()
         
-        ChartLegendChipView(
-            color: .blue,
-            label: "7-Day Avg"
-        )
-        
-        ChartLegendChipView(
-            color: .orange,
-            label: "Goal"
-        )
+        HStack(spacing: 12) {
+            ChartLegendChipView(
+                color: .yellow,
+                label: "Max Step Count"
+            )
+            
+            ChartLegendChipView(
+                color: .blue,
+                label: "7-Day Avg"
+            )
+            
+            ChartLegendChipView(
+                color: .orange,
+                label: "Goal"
+            )
+        }
     }
     .padding()
 }
