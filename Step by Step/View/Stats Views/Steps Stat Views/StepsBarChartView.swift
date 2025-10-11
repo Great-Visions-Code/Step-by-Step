@@ -9,62 +9,68 @@ import Foundation
 import SwiftUI
 import Charts
 
-/// A horizontally scrollable bar chart that visualizes daily step counts.
+/// A horizontally scrollable, selection-enabled bar chart for daily step counts.
 ///
 /// ## Responsibilities
-/// - Display daily steps as bars with labels above each bar.
-/// - Show **7 days at a time** and allow horizontal scrolling for more history.
-/// - Integrate with `StepTrackerViewModel` to reflect step-history updates.
+/// - Visualize historical daily steps as bars, oldest → newest (7 visible by default).
+/// - Surface reference rules for **Best**, **7-Day Avg**, and **Goal**.
+/// - Support **tap/drag selection** to focus a single day while dimming others.
 ///
 /// ## Design
-/// - Wrapped in `CardView` to match the app’s card UI style (consistent with other stat cards).
-/// - Bars use rounded corners and concise annotations for readability.
-/// - The Y-axis is aligned to the trailing side for visual balance with left-aligned titles.
-/// - Thin horizontal rule lines indicate:
-///   - The **maximum** step count line (`RuleMark` at `maxStepCount`)
-///   - The **7-day average** line (`RuleMark` at `sevenDayAvg`)
-///   - The **goal/target** line (`RuleMark` at `totalStepsGoal`)
+/// - Wrapped in `CardView` to match the app’s card visual language (rounded, subtle depth).
+/// - Header row shows a title plus compact legend chips aligned to the trailing edge.
+/// - Bars display **always-on** numeric labels above each column (clamped via `minimumScaleFactor`).
+/// - “Today” is treated as active when no explicit selection exists, so the latest day stands out.
 ///
 /// ## Ownership & State
-/// - Observes a parent-owned `StepTrackerViewModel`.
-/// - Pulls chronological data (oldest → newest) via `sortedStepData()`.
+/// - Observes a **parent-owned** `StepTrackerViewModel`; this view does not manage its lifecycle.
+/// - Stores local UI state for the selected bar (`selectedDay`) to control dimming/highlighting.
 ///
 /// ## Accessibility
-/// - Chart marks inherit accessible labels from their data encodings (date, value).
-///   If you need a custom combined announcement, add a label on the mark or wrapper container.
+/// - Bars use the Charts framework’s built-in semantics for x/y encodings.
+/// - Value annotations include simple, readable labels (e.g., “7,583”).
+/// - Legend chips use text + color to avoid relying on color alone.
 ///
 /// ## Threading & Performance
-/// - Reads derived values from the observed view model; avoids heavy work in `body`.
-/// - The Charts framework virtualizes content when scrolled; this view does not keep extra state.
+/// - Computations in `body` are O(n) over `stepData` and limited to simple aggregates.
+/// - Headroom (`topY`) avoids label clipping without extra layout passes.
+/// - Charts handles virtualized scrolling; avoid heavy per-bar work in closures.
 ///
-/// > Note:
-/// > If you need VoiceOver to speak both the axis date and the bar’s value in one phrase,
-/// > consider adding a `.accessibilityLabel` to the `BarMark` content or wrapping with a
-/// > `ChartContent` that supplies a custom label.
+/// > Note: If you introduce expensive formatting or date parsing, move that out of `body`
+/// into a memoized helper or view model property to keep scrolling smooth.
 ///
-/// > TODO(gustavo): Localize visible strings ("Daily Steps", "Best", "7-Day Avg", "Goal").
-
 struct StepsBarChartView: View {
     
     // MARK: - Dependencies
     
     /// View model providing sorted step history data.
-    /// - Important: This view does not own the view model; the parent is responsible for lifecycle.
+    /// - Important: This view does **not** own the view model; the parent is responsible for lifecycle.
     @ObservedObject var stepTrackerViewModel: StepTrackerViewModel
+    
+    // MARK: - Selection State
+    
+    /// The currently selected day (string key `"M/d/yy"`). `nil` means no explicit selection.
+    /// When `nil`, the chart treats **today** (if present) as the active bar for subtle emphasis.
+    @State private var selectedDay: String? = nil
+    
+    /// Opacity used to dim non-selected bars.
+    /// - Rationale: Keeps context visible while gently spotlighting the focus day.
+    private let dimmedOpacity: Double = 0.18
     
     // MARK: - Body
     
     var body: some View {
         // Pull step data once for this render pass.
-        // Invariant: `sortedStepData()` returns oldest → newest; Charts will respect order and axes formatting.
+        // Invariant: `sortedStepData()` returns oldest → newest; Charts respects the domain ordering.
         let stepData = stepTrackerViewModel.sortedStepData()
         
-        // Precompute lines' inputs for clarity (and to avoid repeated property lookups).
-        let maxStepCount = stepTrackerViewModel.maxStepCount
-        // Keep Double for rule value, Int for label/formatting where needed.
-        let sevenDayAvg = max(0, stepTrackerViewModel.stepTracker.sevenDayStepAverage)
-        // Stores Step Goal Value
-        let stepGoal = stepTrackerViewModel.stepTracker.totalStepsGoal
+        // Precompute inputs for reference rules (avoid repeated property lookups).
+        let maxStepCount = stepTrackerViewModel.maxStepCount                                // Int
+        let sevenDayAvg = max(0.0, stepTrackerViewModel.stepTracker.sevenDayStepAverage)   // Double
+        let stepGoal = stepTrackerViewModel.stepTracker.totalStepsGoal                     // Int
+        
+        // Build a "today key" using the same format that `sortedStepData()` provides: "M/d/yy".
+        // This allows a lightweight equality check rather than parsing dates for each row.
         let todayKey: String = {
             let df = DateFormatter()
             df.locale = Locale(identifier: "en_US_POSIX")
@@ -73,108 +79,132 @@ struct StepsBarChartView: View {
             return df.string(from: Calendar.current.startOfDay(for: Date()))
         }()
         
+        // Calculate headroom above the tallest reference so annotations do not clip.
+        // We consider: tallest bar, best line, average line, and goal line.
+        let dataMax = Double(stepData.map(\.steps).max() ?? 0)
+        let maxStepCountD = Double(maxStepCount)
+        let stepGoalD = Double(stepGoal)
+        let tallest = max(dataMax, max(maxStepCountD, max(sevenDayAvg, stepGoalD)))
+        let topY = tallest * 1.12  // ~12% headroom; tweak if labels still risk clipping.
+        
         ZStack {
             // Decorative card background; visually groups the chart with other dashboard cards.
             CardView()
             
             VStack(alignment: .leading) {
+                // MARK: Header (title + legend)
                 HStack {
-                    // Section title
                     Text("Daily Steps")
                         .font(AppStyle.Card.titleFont)
                         .foregroundStyle(AppStyle.Colors.secondaryText)
                     Spacer()
-                    
-                    // Compact, reusable legend chips (color + label).
-                    // Keep labels short to preserve space in narrow layouts.
-                    ChartLegendChipView(
-                        color: .blue,
-                        label: "Best"
-                    )
-                    
-                    ChartLegendChipView(
-                        color: .yellow,
-                        label: "7-Day Avg"
-                    )
-                    
-                    ChartLegendChipView(
-                        color: .orange,
-                        label: "Goal"
-                    )
+                    ChartLegendChipView(color: .blue,   label: "Best")
+                    ChartLegendChipView(color: .yellow, label: "7-Day Avg")
+                    ChartLegendChipView(color: .orange, label: "Goal")
                 }
                 .padding([.horizontal, .top])
                 
-                // Main chart body.
-                // The `Chart` DSL is declarative; each mark describes a part of the chart.
-                Chart {
-                    // Bars (one per day). We key by .date string which is unique per day in history.
-                    ForEach(stepData, id: \.date) { stepHistoryData in
-                        let isToday = (stepHistoryData.date == todayKey)
-                        BarMark(
-                            x: .value("Date", stepHistoryData.date),
-                            y: .value("Steps", stepHistoryData.steps)
-                        )
-                        .cornerRadius(8) // Rounded corners to match modern iOS styling and the card language.
-                        .foregroundStyle(isToday ? .blue : .blue.opacity(0.4))
-                        .annotation(position: .top) {
-                            // Compact annotation above the bar with comma separators.
-                            Text(stepHistoryData.steps.formatted())
-                                .font(.caption2)
-                                .foregroundStyle(AppStyle.Colors.primaryText)
-                            // NOTE(gustavo): If numbers regularly overlap at smaller sizes,
-                            // consider `.minimumScaleFactor(0.8)` or hiding labels below a threshold.
+                // MARK: Chart / Empty State
+                Group {
+                    if stepData.isEmpty {
+                        // Empty state: shown when there is no step history.
+                        // Keeps the card height consistent and communicates state clearly.
+                        VStack(spacing: 8) {
+                            Text("No step history yet") // TODO(gustavo): Localize
+                                .font(.footnote)
+                                .foregroundStyle(AppStyle.Colors.secondaryText)
                         }
-                    }
-                    
-                    // MARK: - Max step line
-                    // Horizontal line at `maxStepCount`; provides a quick "best on window" visual reference.
-                    if maxStepCount > 0 {
-                        RuleMark(y: .value("Max Steps", maxStepCount))
-                            .foregroundStyle(.blue)
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
-                        // TODO(gustavo): Optionally add `.annotation` to label the rule (e.g., "Best").
-                    }
-                    
-                    // MARK: - 7-day average line
-                    // Horizontal dashed rule for the 7-day average across the shown domain.
-                    if sevenDayAvg > 0 {
-                        RuleMark(y: .value("7-Day Avg", sevenDayAvg))
-                            .foregroundStyle(.yellow)
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
-                    }
-                    
-                    // MARK: - Goal line
-                    // Reference line for the current daily step goal.
-                    if stepGoal > 0 {
-                        RuleMark(y: .value("Target", stepGoal))
-                            .foregroundStyle(.orange)
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding()
+                    } else {
+                        
+                        // Main chart body. Each mark describes a part of the visualization.
+                        Chart {
+                            // MARK: Bars (one per day)
+                            ForEach(stepData, id: \.date) { d in
+                                let isToday = (d.date == todayKey)
+                                // If we have a selection, only the selected bar is “active”.
+                                let isActive = (selectedDay == nil ? isToday : selectedDay == d.date)
+                                // Dimming rules for bars and labels when selection is set.
+                                let barOpacity = selectedDay == nil ? 1 : (isActive ? 1 : 0.35)
+                                let labelOpacity = selectedDay == nil
+                                    ? (isToday ? 1 : 0.55)
+                                    : (isActive ? 1 : 0.45)
+                                BarMark(
+                                    x: .value("Date", d.date),
+                                    y: .value("Steps", d.steps)
+                                )
+                                .cornerRadius(8) // Rounded columns to match the rest of our card language.
+                                .foregroundStyle(isActive ? .blue : .blue.opacity(dimmedOpacity))
+                                .opacity(barOpacity)
+                                .annotation(position: .top) {
+                                    // Always show a label; dim it when not selected to reduce clutter.
+                                    Text(d.steps.formatted()) // e.g., "7,583" (no compact "k" formatting)
+                                        .font(.caption2)
+                                        .foregroundStyle(AppStyle.Colors.primaryText)
+                                        .opacity(labelOpacity)
+                                        .minimumScaleFactor(0.75)
+                                        .allowsTightening(true)
+                                        .lineLimit(1)
+                                        .accessibilityLabel("\(d.steps) steps")
+                                }
+                                // NOTE: Charts provides default accessibility for marks (x/y encodings).
+                            }
+                            
+                            // MARK: Best (max) rule
+                            if maxStepCount > 0 {
+                                RuleMark(y: .value("Max Steps", Double(maxStepCount)))
+                                    .foregroundStyle(.blue)
+                                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                                // TODO(gustavo): Consider adding `.annotation` for “Best” if users miss the legend.
+                            }
+                            
+                            // MARK: 7-Day Avg rule
+                            if sevenDayAvg > 0 {
+                                RuleMark(y: .value("7-Day Avg", sevenDayAvg))
+                                    .foregroundStyle(.yellow)
+                                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                            }
+                            
+                            // MARK: Goal rule
+                            if stepGoal > 0 {
+                                RuleMark(y: .value("Target", Double(stepGoal)))
+                                    .foregroundStyle(.orange)
+                                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                            }
+                        }
+                        .padding()
+                        .chartXAxis {
+                            // Show ~7 ticks for readability; Charts will pick appropriate labels for the string domain.
+                            AxisMarks(position: .bottom, values: .automatic(desiredCount: 7))
+                        }
+                        .chartYAxis {
+                            // Trailing y-axis complements the left-aligned title and keeps values close to bars.
+                            AxisMarks(position: .trailing)
+                        }
+                        .chartScrollableAxes(.horizontal) // Enables horizontal panning through history.
+                        .chartXVisibleDomain(length: 7)   // Target 7 visible days (Charts will adapt as needed).
+                        .chartYScale(domain: 0...topY)    // Reserve headroom to avoid annotation clipping.
+                        // Start scrolled to the most recent 7 days (safe index when dataset is small/empty).
+                        .chartScrollPosition(initialX: stepData[max(stepData.count - 7, 0)].date)
+                        // MARK: Interaction: selection
+                        .chartXSelection(value: $selectedDay) // Tap/drag to select a bar by its x-value (date key)
+                        .onChange(of: selectedDay) { old, new in
+                            // Optional behavior: tapping the same bar clears selection (toggles focus).
+                            if old == new { selectedDay = nil }
+                        }
+                        // FIXME(gustavo): If scroll “jumps” during live updates, consider tracking
+                        // and restoring explicit scroll position with an @State value.
                     }
                 }
-                .padding()
-                .chartXAxis {
-                    // Show ~7 ticks for readability; Charts will pick nice labels (using the string domain).
-                    AxisMarks(position: .bottom, values: .automatic(desiredCount: 7))
-                }
-                .chartYAxis {
-                    // Trailing Y-axis fits with left-aligned title; easier to read values near bars.
-                    AxisMarks(position: .trailing)
-                }
-                .chartScrollableAxes(.horizontal) // Enables horizontal scrolling through history.
-                .chartXVisibleDomain(length: 7)   // Attempt to show exactly 7 days within the visible domain.
-                // Start scroll so the last 7 days are visible (safe when empty due to max(..., 0)).
-                .chartScrollPosition(initialX: stepData[max(stepData.count - 7, 0)].date)
-                // FIXME(gustavo): If you observe "jumping" when data refreshes, consider
-                // maintaining explicit `@State` for scroll position and update it inside `onChange`.
             }
         }
         .frame(height: 300) // Fixed container height to align with surrounding dashboard cards.
-        // TODO(gustavo): Consider injecting a flexible max height via initializer if needed for iPad layouts.
+        // TODO(gustavo): Consider making height configurable for iPad / compact widgets.
     }
 }
 
 // MARK: - Preview Utilities
-
 /// Preview-only mock version of `StepTrackerViewModel`.
 ///
 /// - Generates random-ish step history for a configurable number of days.
@@ -225,11 +255,11 @@ fileprivate final class StepHistoryMockStepTrackerViewModel: StepTrackerViewMode
 }
 
 // MARK: - Previews
-
 #Preview("Steps Bar Chart - 14 Days") {
     StepsBarChartView(
         stepTrackerViewModel: StepHistoryMockStepTrackerViewModel(historyDays: 14)
     )
-    // TODO(gustavo): Add an additional preview with `.environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)`
-    // to validate Dynamic Type clamping/overlap behaviors for annotations and the legend row.
+    // TODO(gustavo): Add an additional preview with
+    // `.environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)` to validate
+    // Dynamic Type behaviors for annotations and the legend row.
 }
