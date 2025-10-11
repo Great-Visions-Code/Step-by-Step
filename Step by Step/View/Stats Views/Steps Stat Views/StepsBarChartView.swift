@@ -65,6 +65,13 @@ struct StepsBarChartView: View {
         let sevenDayAvg = max(0, stepTrackerViewModel.stepTracker.sevenDayStepAverage)
         // Stores Step Goal Value
         let stepGoal = stepTrackerViewModel.stepTracker.totalStepsGoal
+        let todayKey: String = {
+            let df = DateFormatter()
+            df.locale = Locale(identifier: "en_US_POSIX")
+            df.calendar = Calendar(identifier: .gregorian)
+            df.dateFormat = "M/d/yy"
+            return df.string(from: Calendar.current.startOfDay(for: Date()))
+        }()
         
         ZStack {
             // Decorative card background; visually groups the chart with other dashboard cards.
@@ -102,11 +109,13 @@ struct StepsBarChartView: View {
                 Chart {
                     // Bars (one per day). We key by .date string which is unique per day in history.
                     ForEach(stepData, id: \.date) { stepHistoryData in
+                        let isToday = (stepHistoryData.date == todayKey)
                         BarMark(
                             x: .value("Date", stepHistoryData.date),
                             y: .value("Steps", stepHistoryData.steps)
                         )
                         .cornerRadius(8) // Rounded corners to match modern iOS styling and the card language.
+                        .foregroundStyle(isToday ? .blue : .blue.opacity(0.4))
                         .annotation(position: .top) {
                             // Compact annotation above the bar with comma separators.
                             Text(stepHistoryData.steps.formatted())
