@@ -1,117 +1,120 @@
-# 🚶‍♂️ Step By Step 🎮  
-**A Fitness-Powered Text-RPG Adventure**
+# 🚶‍♂️ Step By Step — A Fitness-Powered Text RPG for iOS
+
+> Turn your real-world steps into “energy” to survive branching stories. Walk more, go farther in the narrative.
+
+[![UI](https://img.shields.io/badge/Framework-SwiftUI-informational)](#)
+[![HealthKit](https://img.shields.io/badge/HealthKit-enabled-informational)](#)
 
 ---
 
-## Overview  
-**Step By Step** is a gamified step counter that transforms your real-world movement into energy for interactive storytelling. It's part fitness tracker, part narrative RPG — empowering users to walk, earn energy, and survive through immersive storylines.
-
-The flagship story, **_Survive_**, drops players into a zombie apocalypse where every choice costs energy and survival depends on how much you've walked. New stories, genres, and experiences are planned for future releases.
-
----
-
-## ⚙️ Features  
-
-### 🧠 Core Functionality  
-- **Apple HealthKit Integration**  
-  - Automatically pulls real-time step data  
-  - No manual input needed — just walk!
-
-- **Energy System**  
-  - Steps convert into energy  
-  - Energy fuels story decisions  
-  - Encourages consistent daily movement
-
-- **Dashboard View**  
-  - View daily steps, energy, distance, and conversion stats  
-  - One-tap step-to-energy conversion  
-  - Circular progress ring for visualizing step goals  
-  - Dynamic feedback tied to walking progress  
-
-### 📖 Story-Based Gameplay  
-- **Interactive, Text-Based RPG**  
-  - Choose-your-adventure style format  
-  - Each decision costs energy or affects health  
-  - Branching paths, reactive consequences, and replayability  
-  - In-progress 5-day challenge in the _Survive_ storyline  
-  - Story progress tied directly to real-world step count  
-
-- **Step-Powered Progression**  
-  - You can't move forward unless you move in real life  
-  - Energy limitations require walking to continue the story  
-  - Multiple attempts encouraged — death is part of the journey
-
-### 📊 Visual Step Insights  
-- **Stats View**  
-  - Displays today's steps, best day, and 7-day step average  
-  - Longest walking streak shown dynamically  
-  - Animated, scrollable graph of daily step history  
-  - Highlights best step count with a trophy icon  
-  - (Planned) Dotted line showing 7-day average on graph  
-
-### 🏆 Achievements & Milestones  
-- **Fitness Achievements**  
-  - Max steps in a day  
-  - Total cumulative steps  
-  - Total distance walked  
-
-- **Story Achievements**  
-  - Unlock badges for completing story days  
-  - Tracks how far you’ve made it and how many times you've tried  
-  - Shows date earned and milestone history  
+## Table of Contents
+- [Overview](#overview)
+- [Core Features](#core-features)
+- [Current Status](#current-status)
+- [Get Started (Dev)](#get-started-dev)
+- [Architecture](#architecture)
+- [Configuration](#configuration)
+- [Roadmap](#roadmap)
+- [Changelog (high level)](#changelog-high-level)
+- [Privacy & Data](#privacy--data)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ---
 
-## ✅ Current Status
+## Overview
 
-### Finished Features  
-- Real-time HealthKit syncing  
-- Step-to-energy conversion  
-- Player stat management (energy, health, streaks, averages)  
-- Story + fitness achievement systems with persistent tracking  
-- Animated stat views and progress cards  
-- Story progress view with resume/restart/history  
-- Bar graph with trophy icon for best day  
+**Step By Step** is a mobile RPG where your daily steps fuel your progress. The more you walk, the more energy you earn to unlock story paths. The flagship story, _**Survive**_, is set during a zombie apocalypse, with choices that affect survival over a tense 5-day narrative. Each day includes critical decisions and branching outcomes, encouraging real-world movement and replayability.
 
 ---
 
-## 📸 Screenshots  
+## Core Features
 
-<table>  
-  <tr>  
-    <td align="center"><b>Chapter View</b><br><img src="ReadMe Images/IMG_4093.jpg" width="300"></td>  
-    <td align="center"><b>Decision View</b><br><img src="ReadMe Images/IMG_4094.jpg" width="300"></td>  
-  </tr>  
-  <tr><td colspan="2" style="height: 20px;"></td></tr>  
-  <tr>  
-    <td align="center"><b>Story Progress</b><br><img src="ReadMe Images/IMG_4095.jpg" width="300"></td>  
-    <td align="center"><b>Dashboard</b><br><img src="ReadMe Images/IMG_4096.jpg" width="300"></td>  
-  </tr>  
-</table>
+### 🧠 Story & Gameplay
+- ✅ **Branching narrative** with multiple endings and failure states  
+- ✅ **Energy-driven choices** — every decision costs real-world-earned energy  
+- ✅ **Checkpointing** and **attempt tracker** for replays  
+- ✅ **Story Home View**: resume, restart, view stats and decision history  
+- ✅ **Dynamic story progression**: unlock chapters with energy use
 
----
+### 🏃 Fitness Integration
+- ✅ **HealthKit-powered step tracking**  
+- ✅ **Step → Energy conversion logic**  
+- ✅ **Dashboard** with daily goal progress and energy management  
+- ✅ **Streak tracking**, **7-day history**, **year-to-date (YTD)** stats  
+- ✅ **7-day moving average overlay** and **week-over-week comparison**  
+- ✅ **Achievements system**: max steps, total steps, and distance milestones  
+- ✅ **Persistent fitness stat storage** with date-earned badges
 
-## 🧭 Roadmap  
-
-### Short-Term Goals  
-- Finish all 5 in-game days of the _Survive_ storyline  
-- Add 7-day average line to graph (visual indicator)  
-- Refine UI/UX for streaks, stats, and conversion feedback  
-- Complete Settings tab (accessibility, personalization)  
-- Finalize and save story checkpoints with decision history  
-
-### Long-Term Goals  
-- Expand with new interactive stories (sci-fi, fantasy, mystery)  
-- Visual story map with branching paths and milestones  
-- iCloud sync for step history and story progress across devices  
-- Shareable achievements and social walking challenges  
+### 🏆 Achievements
+- ✅ Unlocks for fitness and story milestones  
+- ✅ Badge view with date earned  
+- ✅ Persistent local tracking  
+- ⏳ Planned: multiple endings per story, story-linked unlocks  
+- ⏳ Planned: more depth to fitness milestone tiers  
 
 ---
 
-## 🤝 Let's Connect  
+## Current Status
 
-Have suggestions or want to collaborate?
+### 📍 Story Content
+- **Days 1–5** of _Survive_ are fully playable  
+- Multiple endings and branching logic currently being developed  
 
-📫 [Great Visions Code – GitHub Page](https://great-visions-code.github.io/)  
+### 🔧 Systems
+- ✅ HealthKit integration and permissions  
+- ✅ Energy logic and conversion  
+- ✅ Full achievement logic, with unlock date  
+- ✅ Dashboard + stat visualization (ring, YTD, charts, 7-day avg)  
+- ✅ Story flow and state management (resume, restart, history)
 
-Thanks for following the journey! 🚶‍♂️
+### 🎨 UI / Design
+- ⏳ UI/UX visuals polished  
+- ⏳ Story achievements (by ending and milestones)  
+- ⏳ New story branches and alternate endings  
+
+---
+
+## Roadmap
+
+| Feature                              | Status        |
+|--------------------------------------|---------------|
+| Alternate endings for Survive        | 🔨 In progress |
+| Story achievements per branch        | 🧠 Exploring   |
+| Fitness tier expansion               | ⚙️ Planned     |
+| Settings screen                      | ⚙️ Planned     |
+| New story arcs (up to 5 total)       | 💡 Ideation    |
+
+---
+
+## Changelog (High Level)
+
+- **Oct 2025** — Achievements tracking and progress persistence  
+- **Sep 2025** — Chart view launched with scroll, avg line, and YTD stats  
+- **Aug 2025** — Story logic refactor; state & checkpoint support  
+- **Jul 2025** — Dashboard and HealthKit core logic implemented  
+- **Jun 2025** — First storyboard concepts of _Survive_ drafted
+
+---
+
+## Privacy & Data
+
+- App requests **HealthKit** permission (step data only)  
+- All data stays **on device**  
+- No 3rd-party tracking or analytics  
+- Future cloud sync will be opt-in only  
+
+---
+
+## Contributing
+
+This is a solo dev project (for now), but feedback, design ideas are always welcome. If you’re into gamified health, narrative design, or just building unique shit, let’s connect!
+
+---
+
+## Contact
+
+- **Portfolio**: [great-visions-code.github.io](https://great-visions-code.github.io)
+- **Email**: great.visions@icloud.com
+- **GitHub**: [@Great-Visions-Code](https://github.com/Great-Visions-Code)
