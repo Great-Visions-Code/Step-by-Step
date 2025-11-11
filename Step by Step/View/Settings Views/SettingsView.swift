@@ -90,7 +90,7 @@ struct SettingsView: View {
                     CardNavigationView(
                         title: "Report a Bug",
                         value: "Email Developer",
-                        subheading: "Template + screenshots + diagnostics",
+                        subheading: nil,
                         destination: BugReportEmail(
                             appMetrics: [
                                 "Step Goal": "\(stepTrackerViewModel.stepTracker.totalStepsGoal)"
