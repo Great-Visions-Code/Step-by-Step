@@ -15,93 +15,268 @@ import Foundation
 struct SurviveStory {
     /// An array of `StoryContent` objects representing the chapters in the "Survive" story.
     static let chapters: [StoryContent] = [
-        // MARK: DAY 1 - chapterIDs: 11-16
         
-        // MARK: ChapterID: 11 - DAY 1
+        // MARK: DAY 1 - chapterIDs: 10101 -
+        
+        // MARK: ChapterID: 10101 - DAY 1
         StoryContent(
-            chapterID: 11,
+            chapterID: 10101,
             storyDay: 1,
             chapterTitle: "DAY 1",
             chapterImages: ["survive-11-bedroom-image"],
-            chapterText: """
-                    The sound pulls you violently from sleep—piercing, relentless, and unfamiliar. Not an alarm clock. Not a car horn. It’s something darker, sharper. The kind of noise that makes your chest clench and your pulse race before your mind even has time to process.
+            chapterText:
+                """
+                You come awake mid-fall.
 
-                    Your breath catches as you bolt upright, eyes darting around your room. Shadows flicker on the walls, faint and jagged, cast by a dim, pulsing light sneaking through the edges of your curtains. The air feels heavy, electric, like the world outside is holding its breath.
+                The whole building shudders with a deep, metallic boom from somewhere outside, rattling your windows and picture frames. Your body reacts before your brain does—you flail out of bed, catch nothing but air, and hit the floor hard on your shoulder.
 
-                    That sound—it’s blaring, vibrating through your skull like an air raid siren. You’ve never heard anything like it before, except maybe in disaster movies. But this isn’t a movie. This is your life, your neighborhood. And neighborhoods like yours don’t make noises like this.
+                For a second you just lie there, cheek pressed to the cool wood, ears ringing. The only sound is your fan whirring in the corner.
 
-                    You swing your legs off the bed, your heart pounding in your chest. The floor feels cold under your feet as you stumble toward the window. Every instinct screams at you to stay put, but the pull of curiosity is too strong. With trembling fingers, you grab the edge of the curtain and peel it back.
+                Then it hits you: sirens.
 
-                Your stomach lurches.
+                Not one, but layers of them—police, fire, something lower and harsher that you don’t recognize. They rise and fall outside, overlapping like a single, continuous scream.
 
-                    Outside, the world is chaos. Cars are stopped in the middle of the street, some still running, headlights cutting weakly through a haze of smoke. People are running—sprinting, really—screaming as they scatter in all directions. A woman stumbles over a curb, clutching a child in her arms. Behind her, something follows.
+                You stay low on instinct, heart pounding. The bedroom is a dim gray box; blackout curtains seal most of the light. You fumble for your phone on the nightstand, fingers knocking over a glass before closing around it.
 
-                Not someone. Something.
+                The screen punches a rectangle of light into the room.
 
-                    The figure lurches after her, its movements wrong, unnatural. Its head jerks sharply, snapping toward her like it’s on a string. It moves faster than you expect, closing the gap. She screams again, the sound piercing through the sirens, before it leaps. You see her fall. You see her stop moving.
+                6:02 A.M.
+                Battery: 81%
 
-                    You stagger back from the window, bile rising in your throat. Your mind races, trying to piece together what you just saw. No. This can’t be real. It doesn’t make sense.
+                Your notification bar is stacked — missed calls, texts, emergency alerts. Your brain focuses on the name at the top.
 
-                    The sirens drone on, loud and unrelenting, pressing into your thoughts like a vice. You glance at your nightstand. Your phone sits there, vibrating frantically, its screen lighting up with notifications. Emergency alerts? Texts? A loved one trying to reach you?
+                MOM (3 missed calls).
+                One voicemail. Two texts.
 
-                    Your eyes flick to the TV remote on the dresser. Maybe the news will explain this—maybe it’ll tell you it’s some kind of hoax, some kind of terrible mistake.
+                You don’t hit play yet. You just stare, because for some reason it feels like whatever is in that voicemail is worse than not knowing.
 
-                    But then your gaze shifts to the door. The pull of the unknown outside, the need to know if this is really happening, feels overwhelming. Maybe if you just open the door, step outside, you’ll see something that makes this all make sense. Or maybe you won’t.
+                Another siren screams past outside, closer this time. Somewhere in the building, something heavy slams—a door? A body? You can’t tell.
 
-                    Your hands tremble as the weight of the moment presses down on you. What do you do?
+                You push yourself up, staying on your knees, and grab the remote from the nightstand. The TV across from your bed flickers on, bathing the room in cold blue.
+
+                Every channel you flip to looks wrong.
+
+                One station is running looping footage of streets in some other city—crowds surging, police lines folding. Another shows a hospital corridor, abandoned gurneys lined up like they were dropped mid-shift. One anchor sits alone at a desk, eyes puffy, talking fast over a red “BREAKING” banner.
+
+                You land on a local channel.
+
+                “…repeat, authorities are advising all residents to remain indoors and avoid physical contact with anyone displaying symptoms. Persons affected show extreme aggression and—”
+
+                The feed cuts for a moment, jumps to a shaky clip from a phone. Someone is screaming in a parking lot, trying to push a man away as he snaps at them, teeth bared. There’s blood already on the asphalt.
+
+                A crawl at the bottom of the screen rolls past:
+
+                …no response to pain… possible neuro-viral component… initial outbreak still under investigation. Early evidence suggests a containment breach at a CDC-affiliated research facility outside of—
+
+                They say your town’s name.
+
+                Your stomach drops.
+
+                You mute the TV without meaning to, thumb just slamming the button. The silence makes the sirens outside feel even louder, like they’ve crawled into your apartment.
+
+                You finally tap the voicemail from your mom.
+
+                Her voice bursts into your ear, too loud, too close.
+
+                “Hey, mijo, it’s me. I… I don’t know what’s going on. Your father—” She sucks in a breath. In the background you hear other voices, traffic, something slamming. “We went to the store and this man, he just… he tried to grab your dad, like he was trying to bite him. Your father pushed him off, we got away, it was crazy—he’s got a scratch on his arm and he keeps saying he's fine, but he doesn’t look good.”
+
+                Your mouth goes dry.
+
+                “We’re going to the checkpoint they talked about on the news, over on the edge of town. They said to go there, that the military is there. Please, please stay inside, okay? Lock the doors. Call me when you get this. I love you. Just—just stay safe.”
+
+                The message ends with a rustle and a half-cut curse from your dad in the background.
+
+                You stare at the wall.
+
+                Checkpoint. Scratch. “Doesn’t look good.”
+
+                Your thumb hovers over the call-back button. The signal bars on your phone flicker between three and one. You don’t hit dial yet. You’re not sure what scares you more: them not picking up, or them picking up and sounding worse.
+
+                A fresh emergency alert slides down over the missed calls.
+
+                EMERGENCY ALERT
+                All residents: If close, go to evacuation checkpoints, otherwise, shelter in place. Avoid contact with potentially infected individuals. Do not travel unless directed by authorities. Await further instructions.
+
+                A heavy thump echoes from somewhere above or below you—another apartment on one of the other floors. Then a muffled shout. Then nothing.
+
+                Your apartment suddenly feels very small.
+
+                You’re on the third floor. One hallway outside your door, one stairwell at either end. Front door opens into the central corridor; sliding glass doors in the living room open onto your narrow balcony overlooking the street and parking lot.
+
+                If the building is bad, you have maybe three exits: hallway, balcony, or some desperate climb through somebody else’s fire escape. None of that feels real yet. It’s just geometry in your head.
+
+                You realize you’re still in a T-shirt and underwear, bare feet on the cold floor, listening to the sirens and your own breathing.
+
+                You need to see something. Anything. You need more than shaky news footage and your mom’s terrified voice.
+
+                Your eyes flick toward the closed bedroom door. Through it: the short hall, the front door, the peephole, the stairwell beyond.
+
+                Then you think of the living room and the balcony. From there, you could look down without stepping into the hallway at all—get a view of the street, the parking lot, the world outside, while your door is still locked.
+
+                You can’t do both at once. Every second you spend hesitating is another second that something could change.
+
+                You inhale, steadying yourself, phone still warm in your hand and sirens clawing at the glass.
+
+                You have to decide how to face this first moment.
+
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Open the front door to see if this is real", nextChapterID: 9,
-                                HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Grab your phone or turn on the TV to seek answers", nextChapterID: 12,
-                                HPChange: 0, EPChange: 0)
+                ChapterDecision(decisionText: "Stay inside and move carefully to the living room, keeping low, to peek out from the balcony and windows before you even think about opening your door.", nextChapterID: 10201, HPChange: 0, EPChange: 0),
+                ChapterDecision(decisionText: "Throw on clothes, grab your keys, and rush straight to the front door to look through the peephole and maybe crack it open to see what’s happening in the hallway.", nextChapterID: 9, HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 12 - EMERGENCY ALERT
+        // MARK: ChapterID: 10201 - THROUGH THE GLASS
         StoryContent(
-            chapterID: 12,
+            chapterID: 10201,
             storyDay: 1,
-            chapterTitle: "EMERGENCY ALERT",
+            chapterTitle: "THROUGH THE GLASS",
             chapterImages: ["survive-12-tvBroadcast-image"],
-            chapterText: """
-                    Your hands tremble as you snatch up the phone, its incessant buzzing vibrating against your fingertips. The screen is a blur of red and white—notifications flashing faster than you can process. You swipe at the screen, unlocking it as an emergency alert dominates the display:
+            chapterText:
+                """
+                You slide along the wall, keeping low, every board creak suddenly too loud.
 
-                    “EMERGENCY ALERT: UNKNOWN OUTBREAK. MILITARY CHECKPOINTS ESTABLISHED. SEEK NEAREST CHECKPOINT OR STAY INDOORS. AVOID CONTACT WITH INFECTED.”
+                The living room is a gray, ghosted shape ahead—couch, coffee table, TV, the sliding glass door framed by blackout curtains that don’t quite reach the floor. The sirens are louder here, the sound bleeding in through thin walls and old windows.
 
-                    Your chest tightens, and your throat feels dry as you stare at the words. Military checkpoints? Outbreak? Infected? This can’t be real.
+                You reach the edge of the curtain and pause, listening.
 
-                    The phone buzzes again, its battery indicator flashing: 4% Battery Remaining. You curse under your breath and toss it aside, your eyes darting toward the TV. You grab the remote with shaking hands, fumbling with the buttons until the screen flickers to life.
+                Muffled shouts filter up from outside. A car horn blares and gets cut off mid-note. There’s a low, constant roar you can’t quite place—like distant ocean surf, if the ocean screamed.
 
-                    The news anchor’s voice fills the room, trembling and unsteady:
-                    
-                “…military forces have been deployed to the city. Checkpoints are being established at key locations for evacuation and containment. Residents are strongly urged to remain indoors unless a checkpoint is within immediate reach. Repeat: avoid contact with the infected at all costs.”
+                You hook two fingers into the curtain and drag it back a few inches.
 
-                    The anchor looks off-camera, his eyes wide with fear, before a shaky video feed takes over the screen. It’s a cell phone recording—a street not unlike your own. Figures stumble into view, their jerky, unnatural movements filling you with a sense of dread. In the background, a military convoy barrels down the road, its rumble like thunder. A soldier waves people toward the vehicles, shouting over the chaos, as one of the figures lunges into the frame.
+                Light slashes into the room.
 
-                    The video cuts off abruptly, replaced by the anchor, his voice cracking. “Stay calm. Stay safe. Help is coming.”
+                Your balcony is narrow: concrete slab, dented metal railing, a folding chair, the pot of dead herbs you always mean to replace. Beyond it, the parking lot spreads like a shallow bowl between your building and the next row of apartments. Past that, a strip of trees, the small road, then more quiet streets and houses. To the north, over the rooftops, you can just barely see the ridge where the CDC-related research facility sits—usually just a distant set of buildings you ignore on your commute.
 
-                    The words feel hollow as the TV screen flickers and dies, leaving the room in silence. You’re frozen in place, gripping the remote so tightly your knuckles ache.
+                Not today.
 
-                    Your mind races. Checkpoints. Military. Containment. The words swirl in your head, but they don’t feel real. A cold sweat forms on your brow as you glance toward the door. The sirens outside seem louder now, pulsing like a heartbeat.
+                A column of smoke is rising from that direction, fat and dark against the morning sky.
 
-                    What are you supposed to do? Stay here and wait for help? It feels safer inside… but is it really? What if the infected find you? What if you’re trapped?
+                You thumb the balcony lock, heart kicking up, and slide the glass door open an inch.
 
-                    Your gaze shifts toward the window. The car sits there, motionless, a potential lifeline. If you could get to it, maybe you could reach one of those checkpoints. But how? The thought of stepping outside, of facing whatever’s out there, sends a chill down your spine.
+                The world slams into you.
 
-                    You realize your hands are shaking. Every instinct screams for you to act, to do something. You can’t stand here frozen forever.
+                Sirens wail at full volume. Somewhere nearby, a woman yells a name over and over. A dog barks nonstop. In the distance, the pop of gunfire cracks the air—one shot, then a messy burst of several more.
+
+                Warm air presses in, carrying the smell of exhaust and… something else. Metal. Burnt meat. Under it all, the faint, sticky sweetness of spilled soda from the parking lot below, like the normal world is still trying to leak through.
+
+                You open the door wider and step out.
+
+                From the third floor, you finally see what’s actually happening.
+
+                The parking lot is chaos frozen mid-motion. Three cars have crashed near the exit, as if they all tried to leave at once and chose the same tiny gap. One is nose-first into another’s driver door. The third is pushed sideways against the concrete divider, back wheels still spinning in the air.
+
+                Your car is right there in the middle of it—your little hatchback—its rear quarter panel completely crumpled, taillight smashed to glittering red dust.
+
+                So that’s what threw you out of bed. The impact must’ve rattled the whole building.
+
+                One of the crashed cars is still running, engine revving pathetically as the driver tries to back out. The wheels just spin against the other bumper. There’s nowhere for them to go; the exit lane is blocked solid.
+
+                People are moving between buildings like panicked animals—heads down, hunched, making short, desperate dashes from doorway to doorway. A man in pajama pants sprints from your building’s front door to the one across the lot, clutching a backpack, slipping on something slick. He slams into the far wall and just stays there, breathing hard, peeking around the corner.
+
+                Up and down the row, curtains twitch. Faces hover in windows for a second and then vanish.
+
+                Above all of it, the sky is busy.
+
+                A helicopter thunders overhead, low enough that the wash of its rotors brushes your face in hot bursts. A second one follows, this one painted with a red cross, banking toward the highway that cuts past town. High above them, two jet fighters streak toward the bay, their engines a rising howl that vibrates in your chest.
+
+                You’re still taking that in when the first gunshot rings out closer.
+
+                It snaps from somewhere behind your building—an alley or the side street. Then another shot. Then three in quick succession.
+
+                The sound is wrong here. Gunfire in movies is clean, distant, almost fake. This is sharp and heavy and present, echoing between the buildings. You flinch, instinctively ducking, fingers tightening on the balcony rail.
+
+                On the small road beyond the trees, a sedan jumps the curb, hits a tree at an angle, and comes to a dead stop. The driver’s door flies open. Someone stumbles out, trips, tries to stand.
+
+                Something else is with them.
+
+                For a heartbeat, you think it’s just another person trying to help. Then you see the way it moves—too fast, too direct, hands grabbing, mouth latching onto the driver’s shoulder. They disappear together behind the tree, but the sound carries: a strangled scream, cut off by a wet, tearing noise.
+
+                You jerk backward, almost tripping over the threshold.
+
+                Your balcony suddenly feels like standing on a stage.
+
+                On the third floor opposite yours, across the lot, a woman is pressed to her own sliding glass door, hands flat on the glass, eyes wide. Behind her, two kids huddle on the couch watching the TV over her shoulder.
+
+                She meets your gaze across the gap.
+
+                For a second, the two of you are just… there. Strangers in matching cages.
+
+                Then another burst of gunfire cracks the air, closer, too close—down near the alley where your building’s dumpster is. People are shouting words you can’t make out. Something heavy slams into a metal gate.
+
+                Your body moves before your brain decides. You spin, yank the sliding door shut, and haul the lock down hard.
+
+                The sirens dull to a muffled howl again. Your heartbeat doesn’t.
+
+                You stand there, staring at the pale reflection of your own face in the glass, chest rising and falling fast.
+
+                “What am I supposed to do?” you whisper to no one.
+
+                Your phone buzzes.
+
+                You look down. No new call.
+
+                The signal bars are weak.
+
+                You turn Wi-Fi on and off, like that will fix anything. The apartment’s router icon shows as connected, but whatever network is left is barely hanging on. Every time you try to call your mom back, the screen flashes Call Failed and dumps you back to your contacts.
+
+                You open your social apps instead, more habit than plan.
+
+                For a moment, it looks normal: memes, food pics, somebody’s “good morning” post.
+
+                Then the timeline catches up in jagged bursts.
+
+                Shaky videos fill the screen—people live-streaming in their cars, yelling over the sound of sirens: “They’re not human, they’re not—” stream reconnecting. A clip of a guy banging on a locked store door, screaming to be let in while someone inside sobs. A thread from someone claiming it’s all a false flag to grab guns. Another insists it’s radiation. Someone else says demons.
+
+                A local community page is worse: dozens of posts in all caps, a few with photos from just a few streets over. One shows the grocery store you go to, its front doors flung open, carts everywhere. Something moving in the shadows inside.
+
+                Pinned to the top is a reposted notice from the local emergency channel:
+
+                SHELTER IN PLACE IF POSSIBLE. BARRICADE DOORS. AVOID CONTACT WITH ANYONE DISPLAYING SIGNS OF AGGRESSION OR CONFUSION.
+                EVACUATION CENTERS ESTABLISHED AT DESIGNATED CHECKPOINTS.
+                TRAVEL ONLY IF YOUR LOCATION IS COMPROMISED OR IF YOU ARE WITHIN WALKING DISTANCE OF A CHECKPOINT.
+
+                Under that, someone has tagged the map.
+
+                Your town looks small and fragile on the screen, a web of gray streets between the hills and the bay. The research facility sits to the north, thirty minutes away by car in normal life. Between you and the water lies the high school with its football stadium—one of the designated emergency checkpoints, according to the map. Farther beyond that, hugging the bay, another icon marks a larger evacuation site—a staging area for boats, if the comments are right.
+
+                By car, the stadium is maybe fifteen minutes from your apartment.
+
+                By foot…
+
+                You glance back at the parking lot through the glass.
+
+                Your car is still pinned between the wrecks, blocked in completely. Even if you could get to it, you’re not sure it would start. Even if it did, the exit is clogged with twisted metal, and the main road beyond is filling fast—horns, stopped traffic, angry people trying to go three directions at once.
+
+                On your feed, a video from someone across town auto-plays. They’re filming out their window as cars pile up near an intersection, drivers leaning out to scream at each other. Something darts between the vehicles. The camera jerks as the person filming gasps. You swipe away before you have to see how that ends.
+
+                Your phone pings one last time—a delayed text finally catching up.
+
+                Mom: We’re almost to the checkpoint. It’s crazy. Please don’t drive. They said the roads are blocked. If you come, come on foot only. Love you.
+
+                Your throat tightens.
+
+                You look around your apartment like you’re seeing it for the first time. One bedroom, small kitchen, old couch, sagging bookshelf. Front door with a cheap deadbolt. Thin walls shared with people you barely know.
+
+                You could stay. Lock the door. Barricade it with the dresser. Fill the bathtub. Ration food and hope the worst passes you by.
+
+                Or you could leave. Pack up what you can carry and try to reach the high school stadium on foot, cutting through side streets, staying low, moving fast. The thought makes your stomach flip. It also makes the world feel less like it’s closing in.
+
+                Your eyes land on your backpack by the couch, half-zipped from last weekend. There’s a water bottle in it, maybe some granola bars, a phone charger. You could add more—first aid kit from under the sink, kitchen knife, spare clothes, anything that will fit.
+
+                The sirens keep wailing. Somewhere outside, someone starts to sob—a raw, ugly sound that cuts through the walls.
+
+                You take a slow breath. Whatever you choose, it’s going to define everything that comes next.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Barricade the doors and windows", nextChapterID: 9,
-                                HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Make a run for the car", nextChapterID: 13,
-                                HPChange: 0, EPChange: -2)
+                ChapterDecision(decisionText: "Stay in the apartment and commit to sheltering in place: lock and barricade the door, fill whatever containers you can with water, and prepare to ride this out alone.", nextChapterID: 9, HPChange: 0, EPChange: -2), // Death Chapter
+                ChapterDecision(decisionText: "Start packing your backpack with food, water, basic first aid, and an improvised weapon so you can attempt to reach the high school stadium evacuation checkpoint on foot.", nextChapterID: 10301, HPChange: 0, EPChange: -2)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 13 - Contact
+        // MARK: ChapterID: 10301 - Contact
         StoryContent(
-            chapterID: 13,
+            chapterID: 10301,
             storyDay: 1,
             chapterTitle: "Contact",
             chapterImages: ["survive-13-runToCar-image"],
