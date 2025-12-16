@@ -53,7 +53,7 @@ class StoryContentViewModel: ObservableObject {
     /// Loads the chapters for the "Survive" story and resumes progress if available.
     private func loadSurviveStory() {
         // Load Survive Story
-        chapters = SurviveStory.chapters
+        chapters = SurviveStoryBranch01.chapters
 
         // Load last viewed chapter if available
         let savedChapterID = loadLastViewedChapterID()

@@ -42,6 +42,7 @@ struct StoryView: View {
                 playerStatsViewModel: playerStatsViewModel,
                 storyContentViewModel: storyContentViewModel
             )
+            .fontDesign(.monospaced)
             
             // Separator for visual clarity.
             Divider()
@@ -49,10 +50,11 @@ struct StoryView: View {
             
             // Displays the current chapter's title, content, and options.
             if storyContentViewModel.currentChapter != nil {
-                StoryChapterContentView(
+                StoryContentView(
                     storyContentViewModel: storyContentViewModel,
                     playerStatsViewModel: playerStatsViewModel
                 )
+                .fontDesign(.monospaced)
             } else {
                 Text("No Chapter Available")
                     .font(.headline)
