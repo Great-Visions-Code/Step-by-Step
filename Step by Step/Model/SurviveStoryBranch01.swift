@@ -284,7 +284,7 @@ struct SurviveStoryBranch01 {
                 """
                 You move fast once you decide.
 
-                You check the backback - half-full water bottle, bag of chips, two granola bars, and phone charger. You add a roll of paper towels you cram down the side. From the kitchen you yank open drawers—flashlight, lighter, a cheap first-aid kit you always forget you own. Your hand hovers over the knives for a beat before you grab the heaviest one with a solid handle and slide it into the side pocket of the backpack.
+                You check the backpack - half-full water bottle, bag of chips, two granola bars, and phone charger. You add a roll of paper towels you cram down the side. From the kitchen you yank open drawers—flashlight, lighter, a cheap first-aid kit you always forget you own. Your hand hovers over the knives for a beat before you grab the heaviest one with a solid handle and slide it into the side pocket of the backpack.
 
                 On the way out, you snatch the old broom from behind the fridge, breaking the plastic head off against the counter edge with a crack. Now you’ve got a bare wooden handle — not much, but it’s longer than your arm.
 
@@ -401,63 +401,158 @@ struct SurviveStoryBranch01 {
             chapterDecisions: [
                 ChapterDecision(decisionText: "Stand your ground: grab the broom handle or the knife and fight the infected man, trying to drive him back or finish him before he turns on you next.",
                     nextChapterID: 9, HPChange: -2, EPChange: -3), // Death Chapter
-                ChapterDecision(decisionText: "Turn and run while he’s still occupied with Carlos’s body, bolting out of the building and onto the street to put as much distance between you and this stairwell as                                        possible.",
+                ChapterDecision(decisionText: "Turn and run while he’s still occupied with Carlos’s body, bolting out of the building and onto the street to put as much distance between you and this stairwell as possible.",
                     nextChapterID: 10401, HPChange: -1, EPChange: -3)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 14 - Stay Low
+        // MARK: ChapterID: 10401 - SIDE STREETS
         StoryContent(
             chapterID: 10401,
             storyDay: 1,
-            chapterTitle: "Stay Low",
+            chapterTitle: "SIDE STREETS",
             chapterImages: ["survive-14-hidingBehindCar-image"],
-            chapterText: """
-                    The figure stumbles toward you, its gait jerky and unsteady, but its intent chillingly clear. Your breath catches, and panic seizes your chest like a vice. You can’t fight it—not head-on. You have to move, have to get past it.
+            chapterText:
+                """
+                You hit the push bar on the front door and stagger out into daylight.
 
-                    Summoning every ounce of courage, you lunge forward, your foot connecting with its shin. The impact isn’t much, but it’s enough. The figure stumbles back, its arms flailing for balance as a guttural snarl escapes its throat.
+                The air slaps you in the face—too bright, too loud, too hot. Sirens bounce between buildings. A nearby car alarm shrieks without rhythm. Somewhere behind you, in the stairwell, there’s a wet sound you refuse to name.
 
-                    You don’t wait to see if it recovers. You dart to the side, your legs pumping as you round the car, your breaths ragged and desperate. The air feels thick, suffocating, and every sound—every scream, every siren, every distant crash—presses into your skull like a hammer.
+                You don’t look back.
 
-                    Your body moves on instinct, pure survival taking over as you crouch low behind the car. The metal feels cool against your hands, grounding you for a fleeting moment. Your heart pounds so hard it feels like it might burst.
+                Your feet pound across the cracked concrete toward the parking lot. Your scraped forearm stings, a thin line of blood already drying on the skin. You keep telling yourself it was the concrete, it was the wall, it wasn’t him. You know exactly how that scratch happened, but your brain keeps circling back to your mom’s voicemail: “He’s got a scratch on his arm and he says it’s nothing, but he doesn’t look good.”
 
-                Then, the scream.
+                Not the same, you think. Not the same. Not the same.
 
-                    It cuts through the chaos like a knife, raw and piercing. You peek around the edge of the car just in time to see a woman burst out of a nearby house, her eyes wide with terror. She freezes when she sees the figure.
+                The parking lot is worse up close.
 
-                    “Oh my God!” she screams, backing away, her hands trembling as she fumbles for her door.
+                The three-car pileup at the exit is a twisted knot of metal and glass. One car’s front end is crumpled like paper. Another’s airbags hang half-deflated, smeared with blood where someone’s face must have hit them. Your own car is wedged between them, rear panel crushed, front bumper kissing a concrete divider.
 
-                    The figure snaps its head toward her, its movements unnaturally fast. The woman’s scream rises in pitch as it lurches after her, closing the distance in seconds. She manages to slip inside her house, slamming the door shut, but the figure doesn’t stop.
+                There’s no way you’re driving out of here. Even if the engine turned over, there’s nowhere to go.
 
-                    You watch in horror as it throws itself against the door, again and again, each impact sending splinters flying. The woman’s screams from inside rise to a crescendo, desperate and guttural, until the door gives way.
+                A cluster of neighbors is already out here, weaving between cars. Two are fighting over the same backseat space in an SUV while the driver shouts at both of them to hurry up. A woman tosses a suitcase into the trunk and screams when it bounces back out, zipper breaking and clothes spilling onto the asphalt.
 
-                She doesn’t stand a chance.
+                “Move, move, MOVE!” someone yells.
 
-                    You crouch lower, pressing your hand over your mouth to muffle your shallow, panicked breaths. Tears sting your eyes as you hear the screams inside, followed by a terrible silence that seems to stretch forever.
+                The SUV lurches forward before the trunk is fully closed. One of the arguing passengers clings to the half-shut door, feet scrambling for purchase, half in, half out. Another guy grabs the roof rack, hanging on with one hand, a duffel bag dragging behind him.
 
-                    Your mind races, your body trembling uncontrollably. You don’t understand what’s happening. You don’t even know what you just saw. All you know is that you’re alive, and that you need to stay that way.
+                You find yourself rooted to the spot as the SUV fishtails toward the exit.
 
-                    Using the moment of distraction, you force yourself to move. Your legs feel like jelly as you crawl around the car, your eyes darting to every shadow, every flicker of motion. When you reach the driver’s side, you lunge for the door, wrenching it open and throwing yourself inside.
+                Instead of slowing at the blocked lane, the driver jerks the wheel hard and guns it over the curb, bouncing into the street. The hanging man nearly loses his grip. You hear him scream something you don’t catch.
 
-                    The sound of the door slamming shut feels deafening, but you don’t care. Your fingers fumble for the lock, pressing the button repeatedly until you hear the satisfying click.
+                For one crazy second, you think they made it.
 
-                    You sit there, trembling, staring at the steering wheel as tears spill down your cheeks. You can barely breathe. Your chest feels tight, like a rubber band stretched to its limit. Your mind is a blur of images—the stumbling figure, the woman’s screams, the splintered door.
+                Then a sedan barrels through the intersection from the cross street, horn blaring. There’s no time, no room, no anything.
 
-                    You don’t know what’s happening. You don’t know why. You just know that the world outside has turned into something unrecognizable, something terrifying.
+                The impact is a sideways hammer blow—metal smashing metal with a sickening crunch. The SUV spins, one wheel lifting off the ground. The guy on the roof goes flying, his body tumbling across the pavement like a rag doll. The sound of shattering glass rolls down the block.
 
-                    For a moment, you let your head fall against the steering wheel, your sobs mixing with the sound of sirens and distant chaos. You have to move. You know you have to move. But your body feels paralyzed, your thoughts a tangled mess.
+                You flinch so hard your backpack digs into your shoulders. Your stomach turns over.
+
+                This isn’t a disaster movie. This is your street.
+
+                Someone shoves past you from behind, muttering an apology you barely hear. People are pouring out of the building now, streaming around the wrecked cars like water finding a new path. There’s no plan, no order—just motion. Running, stumbling, clutching whatever they managed to grab.
+
+                You move because they move.
+
+                Your legs pick a direction and your brain follows a second later. You jog with the crowd down the side of the lot, past the smashed cars, past a crying kid being dragged by the hand. Someone shouts, “High school! Go to the high school!” and others echo it, like if they repeat it enough it will become a guarantee.
+
+                The main road ahead is a mess—cars jammed in both directions, some angled on the sidewalk, others dead in the middle of the lane. People weave between them, yelling, pounding on hoods. A delivery truck has jackknifed across half the street, hazard lights blinking like it’s just another breakdown.
+
+                Instinct kicks in. You don’t want any part of that.
+
+                You veer off with a smaller group that peels away from the jam, cutting between two houses toward a narrower street. Trees line the sidewalks here, their leaves casting broken patterns of shade on the ground. Sprinklers still tick-tick-tick in a front yard, spraying water over an abandoned kid’s bike.
+
+                “Stay off the main roads,” someone ahead says, a man in a denim jacket and baseball cap. “They’re saying it’s gridlock. People getting dragged out of cars. Side streets are safer.”
+
+                Safer feels like a lie, but less exposed sounds right.
+
+                You adjust your grip on the backpack straps and follow.
+
+                The neighborhood looks almost normal in flashes. Lawns. Garden gnomes. Mailboxes. But there are cracks in the picture—literal ones in the pavement, and figurative ones everywhere else. A front door stands wide open, TV blaring news inside to an empty living room. A stroller lies on its side by a driveway, one wheel still spinning. A smear of something dark streaks across a white picket fence at knee height.
+
+                You try not to think about what left it.
+
+                Every few blocks, you hear something that makes everyone stop breathing at once—distant screaming, a gunshot, a shriek that might be an animal or might not. Each time, the group ducks behind parked cars or squeezes behind hedges, trying to become part of the scenery.
+
+                You press your back to a rough brick wall at one point, your scraped arm whining in protest. You count your breaths. In, out. In, out. Your phone feels like a stone in your pocket.
+
+                “Keep moving,” the man in the cap whispers when the noises fade. “We’ve got to keep moving.”
+
+                The sun crawls higher. Time smears. Every house you pass looks like it could be yours if you squint—same siding, same porch light, different lives evaporated into thin air.
+
+                You don’t have a clear heading, not really. You know the stadium is roughly southeast—ten, maybe twelve blocks in that direction if you cut through the right streets. But you keep following the cap guy and the others because they look like they know where they’re going, and right now “not alone” feels like the bare minimum.
+
+                By the time you hit what you think is the fifth or sixth block from home, the group has swelled to maybe a dozen people. A woman in scrubs. A teenager with headphones still around his neck. An older man in slippers and a bathrobe, clutching a leash with no dog at the end of it.
+
+                You’re catching your breath behind a tall hedge, peeking toward a slightly wider cross street, when you hear raised voices.
+
+                Another cluster of people is there—ten, maybe fifteen—huddled near a cul-de-sac entrance. Some are sitting on the curb, some pacing. A couple of them carry duffel bags with military patches. One woman has a walkie-talkie clipped to her belt.
+
+                The man in the cap calls out, “You all heading to the high school?”
+
+                A few heads turn.
+
+                A woman with a messy bun and a neon running jacket shakes her head. “Not anymore. It’s done.”
+
+                The words hit you like a slap.
+
+                “What do you mean, ‘done’?” someone from your group asks.
+
+                “They never opened it,” another guy says, stepping forward. He’s got a bandanna tied around his arm, not like a wound, more like a makeshift team badge. “Or they did and it went bad. I’ve got family on the other side of town—said people showed up and there was no real setup, just chaos. They’re shutting it down. They’re not evacuating from there. They’re redirecting everyone to the big site by the bay, down by the water.”
+
+                “Not the CDC place?” the man in the cap says, voice tight.
+
+                The guy with the bandanna shakes his head. “No, opposite direction, away from that mess. Out past the industrial park, near the shoreline. They’ve got checkpoints, real military presence. It’s a longer walk, but that’s where the trucks are going. That’s where they’re moving people out. Stadium’s a mess.”
+
+                You pull your phone out with numb fingers.
+
+                No new alerts. No new texts from your mom.
+
+                You open the map app again. The blue dot of you pulses on a grid of familiar streets that feels like a game board now. The high school stadium is still marked as an evacuation checkpoint, a little red triangle sitting not that far away, relatively speaking.
+
+                But now, near the bay, another symbol blinks—the larger evacuation center by the bay, near the shoreline you used to drive past without thinking about it.
+                
+                Your thumb hovers over the screen.
+
+                “If the stadium’s shut down,” the messy-bun woman says, “they’re not going to keep sending people there. They’ll redirect. Your folks—if they got there and it was bad—they’d move them to the main site. Or the military would take them. That’s what they’re saying on the scanner.”
+
+                “Or they’re trapped there and we’re walking away from them,” someone mutters.
+
+                You don’t realize you said it until a few heads turn toward you.
+
+                The guy with the bandanna softens his tone. “Look, man, nobody knows anything for sure. But if you’re trying to get out, the bay is where they’re actually loading people. Trucks, boats, maybe even helicopters if we’re lucky. The high school?” He shakes his head. “Best case, it’s closed. Worst case, it’s overrun.”
+
+                Your chest tightens.
+
+                Your mom said they were going to the stadium. That was… what, an hour ago? Less? Time is a blur. If they got there and it was chaos, maybe they were pushed toward the other site. Maybe they got in a truck. Maybe they’re already halfway to the bay.
+
+                Or maybe they’re still there, waiting.
+
+                If you go to the stadium and it’s bad—empty, closed, or crawling with infected—you’ll have to backtrack or detour again to reach the bay. Every extra block is more time out in this exposed, broken world.
+
+                But if you skip it and go straight with this group to the bay, trusting the rumor, you might be walking away from the last place your family actually is.
+
+                You check your phone one more time. Still nothing. The little red triangle at the stadium stubbornly glows. So does the icon by the bay.
+
+                Around you, the group is shifting, the air filled with quiet arguments and frayed nerves.
+
+                “Strength in numbers,” the man in the cap says, looking at you. “We’re going with them. Safety in a bigger group, yeah?”
+
+                Your scraped arm throbs in the rising heat. You can feel the weight of the backpack on your shoulders, the knife in the side pocket bumping against your hip. The sky hums faintly with distant helicopter blades.
+
+                Every path you can take feels like a gamble. Every minute you stand here feels like a minute lost.
+
+                You have to decide what kind of risk you’re willing to live with.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Check your phone for information and gather your thoughts", nextChapterID: 9,
-                                HPChange: 0, EPChange: -1), // Death Chapter
-                ChapterDecision(decisionText: "Put the car in drive and get out of there", nextChapterID: 15,
-                                HPChange: 0, EPChange: -1)
+                ChapterDecision(decisionText: "Stay with the larger group and head toward the main evacuation center by the bay near the water, trusting that if the stadium failed, your family would be redirected there too.", nextChapterID: 9, HPChange: 0, EPChange: 0), // Death Chapter
+                ChapterDecision(decisionText: "Break off on your own (or with anyone else who’ll follow) and cut toward the high school stadium first to see for yourself what happened there before deciding your next move.", nextChapterID: 10501, HPChange: 0, EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 15 - What Happened?
+        // MARK: ChapterID: 10501 - What Happened?
         StoryContent(
-            chapterID: 15,
+            chapterID: 10501,
             storyDay: 1,
             chapterTitle: "What Happened?",
             chapterImages: ["survive-15-carCrash-image"],
