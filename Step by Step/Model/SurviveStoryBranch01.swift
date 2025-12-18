@@ -121,8 +121,16 @@ struct SurviveStoryBranch01 {
 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Stay inside and move carefully to the living room, keeping low, to peek out from the balcony and windows before you even think about opening your door.", nextChapterID: 10201, HPChange: 0, EPChange: 0),
-                ChapterDecision(decisionText: "Throw on clothes, grab your keys, and rush straight to the front door to look through the peephole and maybe crack it open to see what’s happening in the hallway.", nextChapterID: 9, HPChange: 0, EPChange: 0)
+                ChapterDecision(
+                    decisionText: "Stay inside and move carefully to the living room, keeping low, to peek out from the balcony and windows before you even think about opening your door.",
+                    nextChapterID: 10201,
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Throw on clothes, grab your keys, and rush straight to the front door to look through the peephole and maybe crack it open to see what’s happening in the hallway.",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
@@ -269,16 +277,24 @@ struct SurviveStoryBranch01 {
                 You take a slow breath. Whatever you choose, it’s going to define everything that comes next.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Stay in the apartment and commit to sheltering in place: lock and barricade the door, fill whatever containers you can with water, and prepare to ride this out alone.", nextChapterID: 9, HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Start packing your backpack with food, water, basic first aid, and an improvised weapon so you can attempt to reach the high school stadium evacuation checkpoint on foot.", nextChapterID: 10301, HPChange: 0, EPChange: 0)
+                ChapterDecision(
+                    decisionText: "Stay in the apartment and commit to sheltering in place: lock and barricade the door, fill whatever containers you can with water, and prepare to ride this out alone.",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Start packing your backpack with food, water, basic first aid, and an improvised weapon so you can attempt to reach the high school stadium evacuation checkpoint on foot.",
+                    nextChapterID: 10301,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 10301 - STAIRWAY
+        // MARK: ChapterID: 10301 - STAIRWELL
         StoryContent(
             chapterID: 10301,
             storyDay: 1,
-            chapterTitle: "STAIRWAY",
+            chapterTitle: "STAIRWELL",
             chapterImages: ["survive-13-runToCar-image"],
             chapterText:
                 """
@@ -399,10 +415,16 @@ struct SurviveStoryBranch01 {
                 You are three floors and one courtyard away from any chance of finding your family. And you are one decision away from whether you make it that far at all.    
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Stand your ground: grab the broom handle or the knife and fight the infected man, trying to drive him back or finish him before he turns on you next.",
-                    nextChapterID: 9, HPChange: -2, EPChange: -3), // Death Chapter
-                ChapterDecision(decisionText: "Turn and run while he’s still occupied with Carlos’s body, bolting out of the building and onto the street to put as much distance between you and this stairwell as possible.",
-                    nextChapterID: 10401, HPChange: -1, EPChange: -3)
+                ChapterDecision(
+                    decisionText: "Stand your ground: grab the broom handle or the knife and fight the infected man, trying to drive him back or finish him before he turns on you next.",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Turn and run while he’s still occupied with Carlos’s body, bolting out of the building and onto the street to put as much distance between you and this stairwell as possible.",
+                    nextChapterID: 10401,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
@@ -545,73 +567,218 @@ struct SurviveStoryBranch01 {
                 You have to decide what kind of risk you’re willing to live with.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Stay with the larger group and head toward the main evacuation center by the bay near the water, trusting that if the stadium failed, your family would be redirected there too.", nextChapterID: 9, HPChange: 0, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Break off on your own (or with anyone else who’ll follow) and cut toward the high school stadium first to see for yourself what happened there before deciding your next move.", nextChapterID: 10501, HPChange: 0, EPChange: 0)
+                ChapterDecision(
+                    decisionText: "Stay with the larger group and head toward the main evacuation center by the bay near the water, trusting that if the stadium failed, your family would be redirected there too.",
+                    nextChapterID: 9,// Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Break off on your own (or with anyone else who’ll follow) and cut toward the high school stadium first to see for yourself what happened there before deciding your next move.",
+                    nextChapterID: 10501,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 10501 - What Happened?
+        // MARK: ChapterID: 10501 - ORANGE LIGHT
         StoryContent(
             chapterID: 10501,
             storyDay: 1,
-            chapterTitle: "What Happened?",
+            chapterTitle: "ORANGE LIGHT",
             chapterImages: ["survive-15-carCrash-image"],
-            chapterText: """
-                    Your hands shake as you fumble with the keys, shoving them into the ignition. The engine roars to life, and for a fleeting moment, the sound drowns out the chaos outside. Your foot slams on the gas pedal, and the car lurches forward, tires screeching against the pavement.
+            chapterText:
+                """
+                You can feel the moment the group realizes you’re serious.
 
-                    The neighborhood blurs past as you grip the wheel tightly, weaving through the street. Abandoned cars sit at awkward angles, some with doors flung wide open. Smoke rises in the distance, and faint screams punctuate the wail of the sirens.
+                The others keep talking—arguing, whispering, trying to convince themselves they’re choosing the “smart” route—but you step back from the circle, adjust your backpack straps, and point at the bright stadium marker on your phone like it’s a promise you can still hold.
 
-                    You hit a parked car with a sickening thud, the impact jolting you in your seat. You curse, your knuckles whitening as you force the car forward, the tires squealing in protest. Your eyes dart to the sky where a formation of military jets roars overhead, their sleek silhouettes cutting through the smoky haze.
+                “I’m not skipping it,” you say, voice low. “Not if my family is going there.”
 
-                    A helicopter follows, its blades slicing the air with a deafening hum. Below, you spot a convoy of military vehicles—trucks and tanks—abandoned in the middle of the main road, their hulking forms blocking the way forward.
+                Someone mutters that you’re crazy. Someone else calls you brave like it’s the same thing.
 
-                    You veer sharply to the left, the tires skidding as you take a side street. For a moment, the road feels eerily quiet, the chaos fading into a pocket of stillness. Then, as you slow to navigate a cluster of crashed cars, a blur of motion appears at the corner of your vision.
+                A guy near the edge of the crowd shifts his weight and follows your movement with his eyes. He’s around your age, maybe a little younger, dark hair, lean build, a hoodie tied around his waist. He’s been quiet the whole time, the kind of quiet that feels like he’s listening for more than just people.
 
-                Bang.
+                “I’ll go,” he says.
 
-                    The car rocks as someone slams their fists against the driver’s side window. Your heart leaps into your throat as a man appears, his face wild with desperation.
+                A few heads turn.
 
-                    “Let me in! Please!” he yells, his voice raw and hoarse. “You can’t leave me out here!”
+                He lifts his hands like he’s not looking for permission. “My sister texted me earlier. She said she was heading to the stadium with my parents. Then nothing. I’m not… I’m not walking away from that without seeing it.”
 
-                    You freeze, your hands locked on the wheel. The man tugs at the door handle, shaking it violently. It holds, but the sound of his frantic yanking sends a surge of panic through your chest.
+                He looks at you. “Nicolas.”
 
-                    “Please, I’ll do anything! Don’t leave me!” His voice cracks, but his grip tightens, his eyes wide with fear.
+                You nod. “I’m—” you almost say your name, then stop. Names feel like a luxury right now, like something you could lose. But he offered his first. “Yeah. Okay. Let’s go.”
 
-                    Your stomach twists, but you can’t move. The sirens seem distant now, the man’s voice filling the air around you.
+                Behind you, the larger group starts moving again—toward the bay, toward whatever feels safest when safety doesn’t exist. Their footsteps fade down the street. For a moment you’re alone with Nicolas and the sound of distant sirens.
 
-                    Then, his demeanor changes. His face hardens, and his shouts turn into snarls. “Open the door!” he screams, slamming his fists against the window. “Let me in, damn it!”
+                And your own heartbeat.
 
-                    The glass cracks under his fists, a spiderweb of fractures spreading across the surface. The sound jolts you into action.
+                You start walking.
 
-                    You slam your foot on the gas pedal, the car lurching forward. The man doesn’t let go. You feel the car jerk as he’s dragged along the side, his screams turning into a guttural yell of rage.
+                Not on the main road. Never the main road.
 
-                    You don’t look. You can’t. Your focus locks on the road ahead, your vision narrowing as adrenaline takes over. The car barrels forward, swerving to avoid another cluster of abandoned vehicles.
+                You cut behind houses first, slipping through side gates and along fences, using trees and hedges like cover. Sometimes you move fast, sometimes you freeze for minutes at a time—crouched behind a parked car, listening for footsteps that don’t sound human, watching shadows slide across windows.
 
-                But you’re not looking.
+                It doesn’t feel like escaping. It feels like sneaking through a world that’s already decided you don’t belong in it anymore.
 
-                    The front bumper collides with a twisted light pole, and the car spins out of control. The world tilts violently as the car flips, rolling down a ditch. Glass shatters, and the sound of screeching metal fills your ears.
+                As the day drags on, the chaos changes shape.
 
-                Then, silence.
-                
-                    When your eyes flutter open, everything is hazy. Your head throbs, and the taste of blood lingers on your lips. The car is upside down, the roof crushed inward, shards of glass glinting in the dim light.
+                Earlier, the town was loud—sirens, helicopters, shouting, engines. Now the sky is emptier. No helicopters thumping overhead. No low-flying medical choppers. Just a distant roar of jet fighters somewhere beyond the rooftops, way out toward the bay.
 
-                    It takes a moment to realize the light is coming from the setting sun. The sky is painted in hues of deep orange and crimson, the day slipping into night. The sirens are faint now, distant echoes of chaos.
+                The silence between sounds is the worst part.
 
-                    You try to move, but every muscle protests. Your fingers fumble at the seatbelt, and with a sharp click, it releases, dropping you onto the car’s roof. The air inside is stifling, tinged with the unpleasant scent of gasoline and smoke.
+                Because it leaves room for other things.
 
-                    You can’t stay here. Your breath comes in shallow gasps as the reality of your situation sinks in.
+                A scream, far away, that rises and falls and then stops abruptly. A single gunshot, then nothing. A dog barking once—twice—and then going quiet like someone grabbed its throat.
+
+                You and Nicolas stay low and keep moving.
+
+                Your forearm throbs where the concrete took skin off. The blood has dried, leaving a tight, stinging line. You’ve tried not to look at it too much, but you catch Nicolas staring at it every time you pause.
+
+                “I’m fine,” you say the first time, a little too sharp.
+
+                He looks away quickly. “Yeah. Yeah, I know. Just… everything is—”
+
+                “I know,” you cut in, softer. “It’s from the stairs. Not a bite.”
+
+                He nods, but the fear stays in his eyes.
+
+                A few streets later, you see why.
+
+                You spot them before they spot you: a tougher-looking group moving down a wider side street toward the bay. They’re not running like everyone else. They’re walking with purpose, spread out, scanning corners. They have weapons—real ones. A shotgun carried like the guy knows how to use it. A pistol tucked into a waistband. A baseball bat wrapped in tape. One man has a hunting rifle slung over his shoulder like this is what he’s been waiting for his whole life.
+
+                You and Nicolas duck behind a minivan with a cracked windshield, peering through the gap between the hood and the curb.
+
+                “They look… organized,” Nicolas whispers.
+
+                “Yeah,” you murmur. “Not good.”
+
+                A smaller group appears from the opposite direction—three people, stumbling, hands up, desperate. A woman is crying. One guy is supporting another who’s limping hard, his sleeve dark with something wet.
+
+                They meet in the middle of the street.
+
+                You can’t hear every word, but you catch enough.
+
+                “—need help—”
+
+                “Is he infected?!”
+
+                “No—no, it’s just a scratch!” the crying woman says. “He fell—he fell when we were running—please—”
+
+                The armed group fans out instantly, weapons rising.
+
+                The limping man tries to speak, but it comes out as a rough, wet cough.
+
+                “Back up,” someone orders.
+
+                “We’re not one of them!” the woman pleads. “We’re not—”
+
+                A voice from the back, quieter than the rest, cuts through like a blade. You can’t see the speaker clearly, but the others look toward him the way people look toward someone whose opinion matters.
+
+                “We take no chances,” the quiet voice says. Calm. Almost bored. “End them.”
+
+                Your stomach drops.
+
+                “No—wait—” the woman starts, and then—
+
+                Three shots, sharp and precise.
+
+                The limping man collapses first. Then the one holding him. Then the woman, like her strings have been cut.
+
+                Silence floods back into the street, thick and unreal.
+
+                One of the armed men flinches at the echo. “Move,” he snaps. “Noise will pull them in.”
+
+                They step over the bodies like they’re stepping over trash and keep walking toward the bay, scanning corners, already forgetting what they did.
+
+                You and Nicolas don’t move.
+
+                You can’t. Your legs feel locked.
+
+                Nicolas’s eyes slide to your forearm again, and this time you don’t even get angry. You just give him a look that says you know. He swallows hard and nods once, like he’s accepting a rule of this new world.
+
+                Don’t bleed. Don’t look weak. Don’t trust anyone with a gun.
+
+                A distant scream rises somewhere behind you, answering the gunshots like the city itself is reacting.
+
+                “That’s… that’s people too,” Nicolas whispers. “Not just them.”
+
+                “Yeah,” you say. Your voice sounds flat, like it belongs to someone else. “People are part of it now.”
+
+                You move.
+
+                You don’t run—running makes noise, running makes you visible—but you walk faster, weaving between houses, cutting through backyards and side alleys until the street with the bodies is gone behind you.
+
+                Time slides again.
+
+                The sun starts to sag. Shadows stretch long across lawns that are too neatly trimmed for the end of the world. The sky turns a bruised orange… not just from sunset, but from distant fires burning across town. It makes the clouds look dirty. It makes everything look like it’s under a warning light.
+
+                You’re only halfway to the stadium.
+
+                It should’ve been quicker. But every time you hear voices, you hide. Every time you see movement, you detour. Every time the town goes quiet, you stop and listen until your nerves stop screaming.
+
+                Step by step.
+
+                That’s the only way you can do it.
+
+                At one point, Nicolas stops dead in the middle of a side street and stares ahead like he’s seeing a ghost.
+
+                “I know this area,” he says, voice suddenly tight.
+
+                You follow his gaze.
+
+                A few blocks down, the silhouette of a church rises above the houses—dark windows, no lights, a heavy front entrance set back from the street. A place that used to mean potlucks and baptisms and quiet Sundays. Now it looks like a shape that might hold anything.
+
+                “My family…” Nicolas swallows. “We used to go there. Sundays. My mom—she’ll go there if she’s scared. That’s… that’s where she’d take them.”
+
+                Hope flickers on his face. Real hope. It’s almost painful to see.
+
+                But you think of the church’s size. Too many rooms. Too many hallways. Too many blind corners. Too many places for something to wait.
+
+                And you think of the stadium.
+
+                Your mom’s voice. The checkpoint. Your dad’s scratch. The time you’re losing with every careful step.
+
+                “We should keep moving,” you say, trying to sound calm. “If the stadium’s still up, it’s the best place to find information. And if it isn’t… we still need somewhere small to hold up for the night. A house. A shed. Something with one entrance.”
+
+                Nicolas shakes his head slowly. “I don’t know why, but… something’s telling me to go there. Like I’m gonna regret it if I don’t. Even if they’re not there… at least I’ll know.”
+
+                You reach a crossroad.
+
+                Straight ahead, the neighborhood slopes toward the stadium direction—more open streets, fewer trees, more exposure but also progress.
+
+                Left, a narrower road curves toward the church, its dark shape waiting like a mouth.
+
+                The sky deepens into orange and gray. Somewhere far away, a burst of gunfire rattles, followed by distant screams. The town is losing daylight, and you can feel the night coming like a weight.
+
+                If you go with Nicolas, you might find his family—and if you do, you gain an ally group, warmth, more hands, more eyes. But it pulls you away from the stadium, away from your own family, away from your primary goal.
+
+                If you leave him, you push forward toward the stadium alone, faster, cleaner—closer to your mom and dad. But you might be abandoning the first person you’ve met who doesn’t feel like a threat.
+
+                And you already know what it feels like to run and leave someone behind.
+
+                Nicolas’s eyes search your face. “I’m going,” he says quietly. Not a demand. A truth. “Are you coming with me?”
+
+                The wind shifts. Smoke rides it. Your scraped arm stings under the cooling air.
+
+                Night is almost here.    
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Yell for help", nextChapterID: 9,
-                                HPChange: 0, EPChange: -1), // Death Chapter
-                ChapterDecision(decisionText: "Try to break out a window and crawl out", nextChapterID: 16,
-                                HPChange: -3, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "YGo with Nicolas to the church, risking the unknown layout in exchange for the chance to find his family—and not face the night alone.",
+                    nextChapterID: 10601,
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Separate from Nicolas and push straight toward the stadium alone, prioritizing your family and the checkpoint before it’s too late.",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 16 - Night
+        // MARK: ChapterID: 10601 - Night
         StoryContent(
-            chapterID: 16,
+            chapterID: 10601,
             storyDay: 1,
             chapterTitle: "Night",
             chapterImages: ["survive-16-shelter-image"],
