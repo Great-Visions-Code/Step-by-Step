@@ -764,7 +764,7 @@ struct SurviveStoryBranch01 {
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "YGo with Nicolas to the church, risking the unknown layout in exchange for the chance to find his family—and not face the night alone.",
+                    decisionText: "Go with Nicolas to the church, risking the unknown layout in exchange for the chance to find his family—and not face the night alone.",
                     nextChapterID: 10601,
                     HPChange: 0,
                     EPChange: 0),
@@ -776,48 +776,266 @@ struct SurviveStoryBranch01 {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 10601 - Night
+        // MARK: ChapterID: 10601 - SANCTUARY
         StoryContent(
             chapterID: 10601,
             storyDay: 1,
-            chapterTitle: "Night",
+            chapterTitle: "SANCTUARY",
             chapterImages: ["survive-16-shelter-image"],
-            chapterText: """
-                The silence is almost worse than the noise.
+            chapterText:
+                """
+                “You took a chance coming with me,” you whisper as you crouch behind the parked sedan, the church looming ahead like a dark ship run aground. “And you stayed. Despite…”
 
-                    You push against the shattered frame of the back window, shards of glass biting into your palms as you force it open just enough to crawl through. Every movement sends a fresh wave of pain through your body—your ribs ache, and your head throbs with every heartbeat.
+                His eyes flick to your forearm. The scrape is ugly in the low light, a thin line of dried blood and raw skin that keeps announcing itself every time you move.
 
-                    Sliding out of the car, you collapse onto the damp grass at the bottom of the ditch. For a moment, you lie there, breathing hard, staring up at the bruised sky. The sun is slipping away, dragging the last threads of light with it. Shadows stretch long and jagged, swallowing the world in creeping darkness.
-
-                    The air feels still. Too still. No sirens, no screams. Just the distant hum of the wind, carrying faint traces of smoke.
-
-                    You push yourself to your feet, every joint protesting as you climb out of the ditch. Your legs feel like lead as you stumble forward, moving on sheer instinct. The car is useless now, and without it, the five miles back to your house feel like an eternity.
+                You hold his gaze anyway. 
                 
-                The neighborhood is a ghost town.
+                “It’s concrete. Not teeth.”
 
-                    The streetlights flicker weakly, casting uneven pools of light on the pavement. Broken glass crunches underfoot as you tread cautiously, every sound amplified in the suffocating silence. Houses stand dark and hollow, their doors hanging open like gaping mouths.
-
-                    A bicycle lies abandoned in the middle of the street, its handlebars twisted. A child’s backpack sits nearby, its contents scattered—books, crayons, a single shoe. You swallow hard, forcing yourself to look away.
-
-                    The deeper you move into the neighborhood, the more the destruction becomes apparent. Burnt-out cars, shattered windows, the faint smell of something unpleasant and metallic lingering in the air. Every so often, you spot movement in the distance—a shadow flitting between houses, a figure standing too still for too long.
-
-                    You freeze each time, your breath caught in your throat, waiting, watching. They don’t come closer. Not yet.
+                He nods, jaw tight. 
                 
-                A house comes into view unexpectedly.
+                “The least I can do is help you check. First sign of trouble—we leave. No questions.”
 
-                    It’s small and unassuming, set back from the street with overgrown hedges lining the yard. The windows are dark, the front door ajar, but not wide enough to suggest someone’s been through recently.
+                “Deal,” you say.
 
-                    Your eyes scan the perimeter, and that’s when you see it—a bathroom window on the side, slightly open. Just enough to squeeze through.
+                “Deal.”
 
-                    You hesitate. The house looks quiet, abandoned even, but the thought of stepping inside sends a chill down your spine. What if someone—or something—is already there? What if the moment you step inside, the safety you crave turns into a trap?
+                You inch forward through the neighborhood as the last of the sun drains out of the sky. You move with purpose now—less wandering, more targeting. The church sits back from the road, squat and heavy, its stained-glass windows dark except for a faint, intermittent flicker that makes your skin crawl.
 
-                    You glance down the street. The shadows feel closer now, the darkness thicker. Your legs ache, your body screaming for rest, but the road ahead feels endless.
+                Firelight.
+
+                Or something pretending to be.
+
+                Out front, a small cluster of figures stands in the courtyard near the steps. Too still. Too quiet. They huddle close, heads angled toward the doors like they’re listening for a sound only they can hear.
+
+                “Those aren’t… normal,” you whisper.
+
+                Nicolas doesn’t answer. He doesn’t need to.
+
+                You and him sink behind the car again, breathing shallow. Your heart feels like it’s trying to rattle out of your ribs.
+
+                “We came,” you murmur. “This doesn’t look right. We move on before they see us.”
+
+                Nicolas stays frozen, staring. “Wait.”
+
+                You follow his gaze.
+
+                That faint flicker pulses again behind the stained glass. Not bright—more like a candle struggling in a room that doesn’t want light. Proof of life. Proof of someone inside.
+
+                Nicolas swallows hard. “If my mom got here… if she made it this far… she’d go inside. She’d—”
+
+                “I’m not saying we won’t,” you cut in, gentler than your tone deserves. “I’m saying we do it smart.”
+
+                “How?” His voice is tight. “They’re right there.”
+
+                You think fast, because the darkness is thickening and the street is emptying and every second you wait is another second the world gets worse.
+
+                “I can draw them,” Nicolas says quietly. “You make a run for the doors. See if it’s even possible.”
+
+                You stare at him like he just offered to light himself on fire.
+
+                “Are you crazy?”
+
+                He lifts a hand, not defensive—just… accepting. “If you want to switch, I’m all for it.”
+
+                You hesitate. Deep breath. A long exhale that trembles at the end.
+
+                “Fine,” you whisper. “I run. But if those doors don’t open, that’s it—we go. Okay?”
+
+                His eyes shine in the dying light. “Yes. Deal.”
+
+                “Deal,” you say again, because saying it twice makes it feel like a contract with the universe.
+
+                You both split around the car—him to one end, you to the other. Nicolas looks back once.
+
+                You nod. He nods.
+
+                Then he creeps out into the open.
+
+                For a heartbeat, nothing happens. The huddled figures remain fixed, swaying almost imperceptibly, like they’re balancing on some internal wire.
+
+                Nicolas takes another step.
+
+                And his hip clips the side mirror of an abandoned car.
+
+                BEEP—BEEP—BEEP—BEEP.
+
+                The alarm screams into the last light.
+
+                Every head in the huddle snaps toward the sound at once.
+
+                Not curious.
+
+                Not confused.
+
+                Immediate. Hungry.
+
+                They move like they’ve been waiting for permission.
+
+                They launch toward Nicolas in a jagged sprint.
+
+                “Go!” he yells, already backing up, eyes wide. “Go—go!”
+
+                You don’t think. You run.
+
+                Your shoes slap pavement, louder than you want, but the alarm is louder. It swallows everything. You cut toward the church steps, hugging the shadow of the wall, lungs already burning like you’ve been sprinting for miles instead of seconds.
+
+                Out of the corner of your eye, you see Nicolas bolt away—drawing the pack with him, peeling them off like a magnet.
+
+                “I’ll circle around!” he shouts, voice cracking as he disappears between parked cars.
+
+                You hit the church steps hard, nearly tripping, catching yourself on the cold stone.
+
+                The doors are massive up close—dark wood, iron bands, handles worn smooth by hands that believed in safety.
+
+                You grab the handle and pull.
+
+                Nothing.
+
+                You yank again, panic sparking.
+
+                Still nothing.
+
+                “Come on,” you hiss, bracing a foot against the step and hauling with your whole body. The doors don’t give even a fraction. They’re locked. Bolted. Or barred from the inside.
+                
+                You realize not all of them chased the alarm.
+
+                A wet breath rasps behind you.
+
+                Not Nicolas.
+
+                You turn—and one of them is already airborne, launching from the shadows like a spring.
+
+                You barely get your arms up before the impact slams you back into the door. Pain flashes through your scraped forearm as it bangs the wood. The thing’s hands claw at your chest, its mouth working, teeth clicking, trying to find the soft part of you.
+
+                You shove, but it’s heavy in that wrong way—dead weight powered by pure instinct.
+
+                “Help!” you scream, voice tearing. “If there’s anyone inside—HELP!”
+
+                The creature’s face is inches from yours. Its eyes are dull and fever-bright at the same time. Its breath reeks of copper and rot.
+
+                Then—
+
+                A violent spray bursts across your face.
+
+                Cold. Pressurized.
+
+                The attacker jerks back, choking, flailing as white foam and mist fill its mouth and eyes.
+
+                A fire extinguisher.
+
+                The thing stumbles, and you see the chance—just a sliver of space where you can breathe.
+
+                “NOW!” someone shouts from behind the door.
+
+                The heavy wood lurches inward.
+
+                Hands hook your jacket and yank you through the gap.
+
+                You spill onto the stone floor inside the church, rolling, gasping, wiping foam from your eyes. The door slams shut behind you with a deep, final thud.
+
+                A bench scrapes. Wood grinds. Something heavy slams into place.
+
+                They’re barricading it—fast, practiced.
+
+                The first bang hits the door almost immediately.
+
+                Then another.
+
+                Then a flurry—fists, bodies, teeth, whatever they have.
+
+                “Shhh,” a woman whispers sharply, as if quiet can keep the door solid. “No noise. No screaming. They’ll linger.”
+
+                You scramble upright.
+
+                Nicolas is dragged in a second later—someone yanks him by the hoodie like a lifeline. He hits the floor hard, chest heaving, eyes wild, but alive.
+
+                You crawl to him. “Nicolas—”
+
+                “I’m okay,” he gasps. “I’m okay—”
+
+                The banging on the door continues for a few long seconds, then fades into wandering scratches and muffled moans as they drift, chasing the next sound.
+
+                In the dim, you see faces. Maybe eight, maybe ten people. Different ages. Different lives. All the same look in their eyes: exhausted terror held together by thin thread.
+
+                They guide you deeper into the church, away from the doors, into a side room where a small, carefully hidden fire burns inside a metal basin. The flame is tight, controlled. Someone is feeding it torn hymn pages a strip at a time, like they’re afraid of feeding it too much.
+
+                The air smells like smoke and old wood and sweat.
+
+                “Name?” an older man asks, voice careful.
+
+                You hesitate—then give it. Something about being pulled out of a death-snap makes honesty spill out.
+
+                “Nicolas,” Nicolas croaks. “And my mom—Marisol. My sister—Elena. They might’ve come here.”
+
+                A woman in scrubs shakes her head, eyes apologetic. “No one by those names. We’ve been here since afternoon.”
+
+                Nicolas’s face tightens like someone punched him without touching him.
+
+                You swallow. “Anyone from the stadium? Anyone come from the checkpoint?”
+
+                A few people exchange looks.
+
+                “Not from there,” someone says. “But we heard it was active earlier. Medical tents. Soldiers.”
+
+                “That was hours ago,” another voice mutters. “Everything changes by the hour.”
+
+                Someone else leans forward, eyes wide with too much information. “It’s worse in the big cities. New York. L.A. Chicago.”
+
+                You blink. “It’s spread that far?”
+
+                A bitter laugh answers you. “It didn’t spread. It… happened. Like a match. Same night.”
+
+                A man in the back, half-hidden in shadow, speaks like he’s repeating something he’s convinced himself is true. “Targeted. Coordinated. They’ve had facilities everywhere. Tonight was the night.”
+
+                “Enough,” the older man snaps. “Ignore him. He thinks it’s aliens.”
+
+                “It is,” the man insists, but someone hisses at him to shut up.
+
+                A younger woman near the fire rubs her hands together for warmth. “All I know is… people are turning on people. Families. Friends. It’s not just the infected. It’s panic. It’s guns. It’s—” She trails off, eyes glossy. “It’s everything breaking at once.”
+
+                Nicolas drags a hand down his face. You watch him try to hold himself together and fail in tiny ways—his shoulders sinking, his breathing shallow, the way he keeps glancing at the stained-glass windows as if his mom might appear there like a miracle.
+
+                You pull your phone out, mostly out of habit.
+
+                No signal.
+
+                Battery: 58%.
+
+                The emergency alerts that came like clockwork earlier have stopped. Nothing new for hours.
+
+                Nicolas looks at you, voice thin. “So… what now?”
+
+                The church feels safer than the street, but safety isn’t the same as progress. Your family is still out there—somewhere between the stadium, the bay, the unknown. Every minute you sit by this fire is another minute you aren’t closing the distance.
+
+                But outside is darkness. Outside is risk. Outside is that door and what waits beyond it.
+
+                You listen.
+
+                It’s quiet now. Quiet in a way that makes you nervous. Like the town is holding its breath.
+
+                The older man watches you weigh it. “Most of us are staying,” he says. “Waiting for military. Waiting for daylight. Waiting for… anything.”
+
+                Nicolas’s eyes search your face.
+
+                You feel your own exhaustion like a weight in your bones, but you also feel the pull of momentum—because once you stop moving, fear has room to grow.
+
+                And you’re starting to understand something simple and brutal:
+
+                If you wait for help, you might be waiting forever.
+
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Keep moving through the neighborhood to find rescue", nextChapterID: 9,
-                                HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Break into the house and rest", nextChapterID: 21,
-                                HPChange: +1, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "Leave the church with Nicolas and push toward the stadium under cover of night, moving faster while the streets are quieter—even if it means higher risk and less visibility. ",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Stay inside the church for the night to rest, let your nerves settle, and conserve strength—then move at first light, even if it costs you precious time. ",
+                    nextChapterID: 20701,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
