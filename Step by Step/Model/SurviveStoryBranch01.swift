@@ -16,7 +16,8 @@ struct SurviveStoryBranch01 {
     /// An array of `StoryContent` objects representing the chapters in the "Survive" story.
     static let chapters: [StoryContent] = [
         
-        // MARK: DAY 1 - chapterIDs: 10101 -
+        // MARK: DAY 1
+        // chapterIDs: 10101-10601
         
         // MARK: ChapterID: 10101 - DAY 1
         StoryContent(
@@ -1040,137 +1041,54 @@ struct SurviveStoryBranch01 {
             isFinalChapter: false
         ),
         
-        // MARK: DAY 2 - chapterIDs: 21-25
+        // MARK: DAY 2
+        // chapterIDs: 20701-2xx01
 
-        // MARK: ChapterID: 21 - DAY 2
+        // MARK: ChapterID: 20701 - DAY 2
         StoryContent(
-            chapterID: 21,
+            chapterID: 20701,
             storyDay: 2,
             chapterTitle: "DAY 2",
             chapterImages: ["survive-21-survivors-image"],
-            chapterText: """
-                    The first thing you feel is warmth. The sun’s rays stream through the broken blinds, golden and soft, painting streaks of light across the room. For a moment, it feels foreign, almost comforting. You blink awake, your head pounding, your body stiff from an unnatural sleep.
+            chapterText:
+                """
 
-                    The ache in your back is unbearable. You realize you spent the night hunched against the wall, sitting upright, clutching a broomstick like your life depended on it. And maybe it did.
-
-                    You glance around the room, the events of the day before slowly crashing back into your mind. The overturned car. The screams. The endless, oppressive chaos. You’re not even sure how you made it here.
-
-                    The house is quiet, unnaturally so. It doesn’t feel like the kind of quiet you’d find in a peaceful home on a lazy morning. It’s the kind of quiet that feels like the world is holding its breath.
-
-                    You flex your fingers, wincing as you realize how tightly you must have gripped the broomstick all night. You don’t let go, though. It’s your only weapon, crude as it is.
-
-                    Your stomach growls, the sound startling in the stillness. You press your hand against it, trying to ignore the gnawing hunger that’s been growing since yesterday. There’s no food here—at least, not that you’ve found. But finding food means leaving, and leaving means…
-
-                    You don’t let yourself finish the thought. Instead, you grab your phone, pressing the power button with a shaky hand. The screen flickers to life, casting a dim light.
-
-                Battery: 2%.
-
-                    You stare at the number, a sinking feeling in your chest. It feels like a lifeline, fragile and fleeting. You scroll through your notifications, but there’s nothing new—no updates, no texts, no hope. You lock the screen quickly, trying to save what little battery remains.
-
-                    Rising to your feet is harder than it should be. Every muscle in your body protests, screaming from the tension of yesterday’s adrenaline. You shuffle to the nearest window, careful to stay low, and peel back the curtain just enough to see outside.
-
-                The street is eerily still.
-
-                    Cars sit abandoned where they were left, some with doors flung open, others with shattered windshields. The chaos of yesterday has left scars—burnt-out husks of vehicles, overturned trash bins, and the occasional splash of dark stains on the pavement that you try not to think about.
-
-                    But it’s the silence that gets to you. There are no sirens now, no screams, no distant growls. Just the faint rustling of leaves in the breeze and the occasional creak of a house settling.
-
-                    You scan the neighborhood, your eyes darting to every shadow. Then, movement.
-
-                    A group of people emerges from behind a house across the street.
-
-                    There are four of them, hunched low, moving quickly but cautiously. They stay close together, their eyes darting around as if they’re expecting something to jump out at them at any moment.
-
-                Your heart skips a beat. Survivors.
-
-                    For a moment, hope flares in your chest. You’re not alone. Maybe they know what’s going on. Maybe they have supplies. Maybe they can help.
-
-                    But then doubt creeps in, faster than you’d like to admit.
-
-                What if they’re dangerous?
-
-                    The way they move is deliberate, practiced. These aren’t amateurs stumbling through a crisis—they know what they’re doing. And that could be good. Or it could be very, very bad.
-
-                    Your grip tightens on the broomstick, the rough wood biting into your palms. You could try to reach them, call out, hope for the best. Or you could turn the other way, avoid them entirely. Stay hidden.
-
-                    Your eyes drift back to the group as they pause at the edge of a yard, huddling together to discuss something you can’t hear. One of them glances around, their gaze sweeping dangerously close to your hiding spot.
-
-                    Your pulse quickens. Whatever you decide, you need to do it now.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Try to join up with the group", nextChapterID: 9,
-                                HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Go the other way", nextChapterID: 22,
-                                HPChange: 0, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "",
+                    nextChapterID: 20801,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 22 - Transportation
+        // MARK: ChapterID: 20801 - Transportation
         StoryContent(
-            chapterID: 22,
+            chapterID: 20801,
             storyDay: 2,
             chapterTitle: "Transportation",
             chapterImages: ["survive-22-bike-image"],
-            chapterText: """
-                    You crouch behind the doorway, gripping the broomstick tightly, your heart hammering in your chest. Outside, the group huddles in the yard, whispering urgently, their heads darting in every direction. They move with precision, their actions deliberate. They’ve done this before.
+            chapterText:
+                """
 
-                    For a moment, you consider stepping out, joining them. Safety in numbers, right?
-
-                    But the thought evaporates as quickly as it forms. Groups are loud, visible, easy to spot. In movies and TV shows, they’re always the first to be targeted—too many voices, too much movement, too many chances for mistakes. And with a group comes trust issues, conflict, and the danger of being dragged into their mistakes.
-
-                    No. Alone is better. You can move quietly, quickly. There’s only you to worry about, no one to hold you back.
-
-                    Your grip on the broomstick tightens as you step away from the door, retreating further into the house. A floorboard creaks beneath your weight, freezing you in place. Your breath catches, your pulse pounding in your ears. But the group outside doesn’t notice.
-
-                    When you reach the back door, you ease it open, the rusted hinges groaning softly. The air outside is thick with the smell of damp earth and smoke. You glance back toward the group one last time, your stomach twisting with uncertainty, before slipping into the backyard. Whatever they’re planning, it’s not your problem.
-                
-                The morning is unnervingly quiet.
-
-                    You tread carefully, each step deliberate. Your body aches from the strain of yesterday’s ordeal, but the need to find a way out keeps you moving.
-
-                    The world around you bears the scars of destruction. Cars are abandoned at odd angles, some with their doors flung open, their interiors ransacked. Clothes, bags, and forgotten possessions lie scattered across lawns. You pass a broken stroller tipped over in the gutter, its contents spilled onto the street.
-
-                    Far in the distance, a scream cuts through the silence. Sharp. Panicked. Then, nothing.
-
-                    You see people, just shadows at first. A figure darts between houses, clutching something tightly. Another person crouches behind a car, their eyes wide with terror as they scan their surroundings. None of them seem to notice you—or perhaps they don’t care. Everyone is focused on their own survival.
-
-                    You keep to the edges of the road, avoiding open spaces, every nerve on edge.
-                
-                    When you round the corner, something catches your eye.
-
-                    A minivan sits parked at the curb, its driver’s side door ajar. Inside, you can see the keys dangling from the ignition. For a moment, hope surges through you.
-
-                    You approach cautiously, your grip tightening on the broomstick as you scan the area. Nothing moves. No sounds. You climb into the driver’s seat, gripping the wheel as you twist the key.
-
-                Nothing happens.
-
-                    The engine doesn’t even sputter. You glance at the fuel gauge—empty. Your stomach sinks as frustration bubbles to the surface. You slam your hand against the steering wheel, letting out a shaky breath.
-
-                    Further down the street, you try another car. And another. Each one is a dead end, the car is either damaged or empty of fuel.
-                
-                    Your legs ache as you move further along the road, your breath coming faster with every step. The thought of walking miles to find safety feels impossible. But you don’t have a choice.
-
-                That’s when you see it.
-                
-                Across the street, chained to a fence, is a bicycle.
-
-                    It looks functional. It’s the first thing you’ve seen today that feels like it might actually work.
-
-                But then you notice it.
-
-                    Not far from the bike, crouched low and unbothered by your presence, is an infected. Its hunched frame quivers as it tears into something—or someone. You can’t make out much, but the sounds are unmistakable: wet, tearing, grotesque.
-
-                Your stomach churns as you take in the scene.
-
-                    The bike is a gamble. If you can get to it, unchain it without making noise, you could have a way out—a faster way to cover ground, to find a military checkpoint. But if the creature notices you, there’s no guarantee you’ll make it out unscathed.
-
-                    Your fingers tighten around the broomstick. You weigh the options carefully, your pulse pounding in your ears.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Inspect the bicycle", nextChapterID: 9,
-                                HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Leave it and continue on foot", nextChapterID: 23,
-                                HPChange: 0, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "Inspect the bicycle",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Leave it and continue on foot",
+                    nextChapterID: 20901,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
