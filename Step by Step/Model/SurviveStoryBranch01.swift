@@ -29,13 +29,13 @@ struct SurviveStoryBranch01 {
                 """
                 You come awake mid-fall.
 
-                The whole building shudders with a deep, metallic boom from somewhere outside, rattling your windows and picture frames. Your body reacts before your brain does—you flail out of bed, catch nothing but air, and hit the floor hard on your shoulder.
+                The whole building shudders with a deep, metallic boom from somewhere outside, rattling your windows and picture frames. Your body reacts before your brain does. You flail out of bed, catch nothing but air, and hit the floor hard on your shoulder.
 
                 For a second you just lie there, cheek pressed to the cool wood, ears ringing. The only sound is your fan whirring in the corner.
 
                 Then it hits you: sirens.
 
-                Not one, but layers of them—police, fire, something lower and harsher that you don’t recognize. They rise and fall outside, overlapping like a single, continuous scream.
+                Not one, but layers of them — police, fire, something lower and harsher that you don’t recognize. They rise and fall outside, overlapping like a single, continuous scream.
 
                 You stay low on instinct, heart pounding. The bedroom is a dim gray box; blackout curtains seal most of the light. You fumble for your phone on the nightstand, fingers knocking over a glass before closing around it.
 
@@ -57,7 +57,7 @@ struct SurviveStoryBranch01 {
 
                 Every channel you flip to looks wrong.
 
-                One station is running looping footage of streets in some other city—crowds surging, police lines folding. Another shows a hospital corridor, abandoned gurneys lined up like they were dropped mid-shift. One anchor sits alone at a desk, eyes puffy, talking fast over a red “BREAKING” banner.
+                One station is running looping footage of streets in some other city — crowds surging, police lines folding. Another shows a hospital corridor, abandoned gurneys lined up like they were dropped mid-shift. One anchor sits alone at a desk, eyes puffy, talking fast over a red “BREAKING” banner.
 
                 You land on a local channel.
 
@@ -98,7 +98,7 @@ struct SurviveStoryBranch01 {
                 EMERGENCY ALERT
                 All residents: If close, go to evacuation checkpoints, otherwise, shelter in place. Avoid contact with potentially infected individuals. Do not travel unless directed by authorities. Await further instructions.
 
-                A heavy thump echoes from somewhere above or below you—another apartment on one of the other floors. Then a muffled shout. Then nothing.
+                A heavy thump echoes from somewhere above or below you — another apartment on one of the other floors. Then a muffled shout. Then nothing.
 
                 Your apartment suddenly feels very small.
 
@@ -112,7 +112,7 @@ struct SurviveStoryBranch01 {
 
                 Your eyes flick toward the closed bedroom door. Through it: the short hall, the front door, the peephole, the stairwell beyond.
 
-                Then you think of the living room and the balcony. From there, you could look down without stepping into the hallway at all—get a view of the street, the parking lot, the world outside, while your door is still locked.
+                Then you think of the living room and the balcony. From there, you could look down without stepping into the hallway at all, get a view of the street, the parking lot, the world outside, while your door is still locked.
 
                 You can’t do both at once. Every second you spend hesitating is another second that something could change.
 
@@ -145,7 +145,7 @@ struct SurviveStoryBranch01 {
                 """
                 You slide along the wall, keeping low, every board creak suddenly too loud.
 
-                The living room is a gray, ghosted shape ahead—couch, coffee table, TV, the sliding glass door framed by blackout curtains that don’t quite reach the floor. The sirens are louder here, the sound bleeding in through thin walls and old windows.
+                The living room is a gray, ghosted shape ahead — couch, coffee table, TV, the sliding glass door framed by blackout curtains that don’t quite reach the floor. The sirens are louder here, the sound bleeding in through thin walls and old windows.
 
                 You reach the edge of the curtain and pause, listening.
 
@@ -155,7 +155,7 @@ struct SurviveStoryBranch01 {
 
                 Light slashes into the room.
 
-                Your balcony is narrow: concrete slab, dented metal railing, a folding chair, the pot of dead herbs you always mean to replace. Beyond it, the parking lot spreads like a shallow bowl between your building and the next row of apartments. Past that, a strip of trees, the small road, then more quiet streets and houses. To the north, over the rooftops, you can just barely see the ridge where the CDC-related research facility sits—usually just a distant set of buildings you ignore on your commute.
+                Your balcony is narrow: concrete slab, dented metal railing, a folding chair, the pot of dead herbs you always mean to replace. Beyond it, the parking lot spreads like a shallow bowl between your building and the next row of apartments. Past that, a strip of trees, the small road, then more quiet streets and houses. To the north, over the rooftops, you can just barely see the ridge where the CDC-related research facility sits — usually just a distant set of buildings you ignore on your commute.
 
                 Not today.
 
@@ -165,7 +165,7 @@ struct SurviveStoryBranch01 {
 
                 The world slams into you.
 
-                Sirens wail at full volume. Somewhere nearby, a woman yells a name over and over. A dog barks nonstop. In the distance, the pop of gunfire cracks the air—one shot, then a messy burst of several more.
+                Sirens wail at full volume. Somewhere nearby, a woman yells a name over and over. A dog barks nonstop. In the distance, the pop of gunfire cracks the air — one shot, then a messy burst of several more.
 
                 Warm air presses in, carrying the smell of exhaust and… something else. Metal. Burnt meat. Under it all, the faint, sticky sweetness of spilled soda from the parking lot below, like the normal world is still trying to leak through.
 
@@ -175,13 +175,13 @@ struct SurviveStoryBranch01 {
 
                 The parking lot is chaos frozen mid-motion. Three cars have crashed near the exit, as if they all tried to leave at once and chose the same tiny gap. One is nose-first into another’s driver door. The third is pushed sideways against the concrete divider, back wheels still spinning in the air.
 
-                Your car is right there in the middle of it—your little hatchback—its rear quarter panel completely crumpled, taillight smashed to glittering red dust.
+                Your car is right there in the middle of it — your little hatchback. Its rear quarter panel completely crumpled, taillight smashed to glittering red dust.
 
                 So that’s what threw you out of bed. The impact must’ve rattled the whole building.
 
                 One of the crashed cars is still running, engine revving pathetically as the driver tries to back out. The wheels just spin against the other bumper. There’s nowhere for them to go; the exit lane is blocked solid.
 
-                People are moving between buildings like panicked animals—heads down, hunched, making short, desperate dashes from doorway to doorway. A man in pajama pants sprints from your building’s front door to the one across the lot, clutching a backpack, slipping on something slick. He slams into the far wall and just stays there, breathing hard, peeking around the corner.
+                People are moving between buildings like panicked animals — heads down, hunched, making short, desperate dashes from doorway to doorway. A man in pajama pants sprints from your building’s front door to the one across the lot, clutching a backpack, slipping on something slick. He slams into the far wall and just stays there, breathing hard, peeking around the corner.
 
                 Up and down the row, curtains twitch. Faces hover in windows for a second and then vanish.
 
@@ -191,7 +191,7 @@ struct SurviveStoryBranch01 {
 
                 You’re still taking that in when the first gunshot rings out closer.
 
-                It snaps from somewhere behind your building—an alley or the side street. Then another shot. Then three in quick succession.
+                It snaps from somewhere behind your building — an alley or the side street. Then another shot. Then three in quick succession.
 
                 The sound is wrong here. Gunfire in movies is clean, distant, almost fake. This is sharp and heavy and present, echoing between the buildings. You flinch, instinctively ducking, fingers tightening on the balcony rail.
 
@@ -199,7 +199,7 @@ struct SurviveStoryBranch01 {
 
                 Something else is with them.
 
-                For a heartbeat, you think it’s just another person trying to help. Then you see the way it moves—too fast, too direct, hands grabbing, mouth latching onto the driver’s shoulder. They disappear together behind the tree, but the sound carries: a strangled scream, cut off by a wet, tearing noise.
+                For a heartbeat, you think it’s just another person trying to help. Then you see the way it moves — too fast, too direct, hands grabbing, mouth latching onto the driver’s shoulder. They disappear together behind the tree, but the sound carries: a strangled scream, cut off by a wet, tearing noise.
 
                 You jerk backward, almost tripping over the threshold.
 
@@ -211,7 +211,7 @@ struct SurviveStoryBranch01 {
 
                 For a second, the two of you are just… there. Strangers in matching cages.
 
-                Then another burst of gunfire cracks the air, closer, too close—down near the alley where your building’s dumpster is. People are shouting words you can’t make out. Something heavy slams into a metal gate.
+                Then another burst of gunfire cracks the air, closer, too close. Down near the alley where your building’s dumpster is. People are shouting words you can’t make out. Something heavy slams into a metal gate.
 
                 Your body moves before your brain decides. You spin, yank the sliding door shut, and haul the lock down hard.
 
@@ -235,7 +235,7 @@ struct SurviveStoryBranch01 {
 
                 Then the timeline catches up in jagged bursts.
 
-                Shaky videos fill the screen—people live-streaming in their cars, yelling over the sound of sirens: “They’re not human, they’re not—” stream reconnecting. A clip of a guy banging on a locked store door, screaming to be let in while someone inside sobs. A thread from someone claiming it’s all a false flag to grab guns. Another insists it’s radiation. Someone else says demons.
+                Shaky videos fill the screen — people live-streaming in their cars, yelling over the sound of sirens: “They’re not human, they’re not—” stream reconnecting. A clip of a guy banging on a locked store door, screaming to be let in while someone inside sobs. A thread from someone claiming it’s all a false flag to grab guns. Another insists it’s radiation. Someone else says demons.
 
                 A local community page is worse: dozens of posts in all caps, a few with photos from just a few streets over. One shows the grocery store you go to, its front doors flung open, carts everywhere. Something moving in the shadows inside.
 
@@ -247,7 +247,7 @@ struct SurviveStoryBranch01 {
 
                 Under that, someone has tagged the map.
 
-                Your town looks small and fragile on the screen, a web of gray streets between the hills and the bay. The research facility sits to the north, thirty minutes away by car in normal life. Between you and the water lies the high school with its football stadium—one of the designated emergency checkpoints, according to the map. Farther beyond that, hugging the bay, another icon marks a larger evacuation site—a staging area for boats, if the comments are right.
+                Your town looks small and fragile on the screen, a web of gray streets between the hills and the bay. The research facility sits to the north, thirty minutes away by car in normal life. Between you and the water lies the high school with its football stadium — one of the designated emergency checkpoints, according to the map. Farther beyond that, hugging the bay, another icon marks a larger evacuation site, a staging area for boats, if the comments are right.
 
                 By car, the stadium is maybe fifteen minutes from your apartment.
 
@@ -255,11 +255,11 @@ struct SurviveStoryBranch01 {
 
                 You glance back at the parking lot through the glass.
 
-                Your car is still pinned between the wrecks, blocked in completely. Even if you could get to it, you’re not sure it would start. Even if it did, the exit is clogged with twisted metal, and the main road beyond is filling fast—horns, stopped traffic, angry people trying to go three directions at once.
+                Your car is still pinned between the wrecks, blocked in completely. Even if you could get to it, you’re not sure it would start. Even if it did, the exit is clogged with twisted metal, and the main road beyond is filling fast - horns, stopped traffic, angry people trying to go three directions at once.
 
                 On your feed, a video from someone across town auto-plays. They’re filming out their window as cars pile up near an intersection, drivers leaning out to scream at each other. Something darts between the vehicles. The camera jerks as the person filming gasps. You swipe away before you have to see how that ends.
 
-                Your phone pings one last time—a delayed text finally catching up.
+                Your phone pings one last time, a delayed text finally catching up.
 
                 Mom: We’re almost to the checkpoint. It’s crazy. Please don’t drive. They said the roads are blocked. If you come, come on foot only. Love you.
 
@@ -271,9 +271,9 @@ struct SurviveStoryBranch01 {
 
                 Or you could leave. Pack up what you can carry and try to reach the high school stadium on foot, cutting through side streets, staying low, moving fast. The thought makes your stomach flip. It also makes the world feel less like it’s closing in.
 
-                Your eyes land on your backpack by the couch, half-zipped from last weekend. There’s a water bottle in it, maybe some granola bars, a phone charger. You could add more—first aid kit from under the sink, kitchen knife, spare clothes, anything that will fit.
+                Your eyes land on your backpack by the couch, half-zipped from last weekend. There’s a water bottle in it, maybe some granola bars, a phone charger. You could add more — first aid kit from under the sink, kitchen knife, spare clothes, anything that will fit.
 
-                The sirens keep wailing. Somewhere outside, someone starts to sob—a raw, ugly sound that cuts through the walls.
+                The sirens keep wailing. Somewhere outside, someone starts to sob, a raw, ugly sound that cuts through the walls.
 
                 You take a slow breath. Whatever you choose, it’s going to define everything that comes next.
                 """,
@@ -301,7 +301,7 @@ struct SurviveStoryBranch01 {
                 """
                 You move fast once you decide.
 
-                You check the backpack - half-full water bottle, bag of chips, two granola bars, and phone charger. You add a roll of paper towels you cram down the side. From the kitchen you yank open drawers—flashlight, lighter, a cheap first-aid kit you always forget you own. Your hand hovers over the knives for a beat before you grab the heaviest one with a solid handle and slide it into the side pocket of the backpack.
+                You check the backpack - half-full water bottle, bag of chips, two granola bars, and phone charger. You add a roll of paper towels you cram down the side. From the kitchen you yank open drawers — flashlight, lighter, a cheap first-aid kit you always forget you own. Your hand hovers over the knives for a beat before you grab the heaviest one with a solid handle and slide it into the side pocket of the backpack.
 
                 On the way out, you snatch the old broom from behind the fridge, breaking the plastic head off against the counter edge with a crack. Now you’ve got a bare wooden handle — not much, but it’s longer than your arm.
 
@@ -311,15 +311,15 @@ struct SurviveStoryBranch01 {
 
                 You lock your phone, stuff it in your pocket, and head for the front door.
 
-                The hallway sounds leak through before you even touch the knob—feet pounding on stairs, someone yelling, a baby crying two doors over. You swallow, fingers tight around the broom handle.
+                The hallway sounds leak through before you even touch the knob — feet pounding on stairs, someone yelling, a baby crying two doors over. You swallow, fingers tight around the broom handle.
 
                 You unlock the deadbolt and ease the door open.
 
-                The building’s corridor is a tunnel of noise. Doors stand open; people you’ve never spoken to in two years of living here are suddenly jammed into the same narrow space—dragging suitcases, clutching backpacks, juggling kids. Someone’s dog trembles under one arm, nails scrabbling against the owner’s chest.
+                The building’s corridor is a tunnel of noise. Doors stand open; people you’ve never spoken to in two years of living here are suddenly jammed into the same narrow space — dragging suitcases, clutching backpacks, juggling kids. Someone’s dog trembles under one arm, nails scrabbling against the owner’s chest.
 
                 The air smells like sweat, cheap cologne, and the faint tang of smoke from outside.
 
-                “Hey!” A neighbor from down the hall—Carlos, you think, the guy who always parks a little crooked—spots you. He’s got a backpack on, car keys between his fingers like brass knuckles. “You heading out?”
+                “Hey!” A neighbor from down the hall — Carlos, you think, the guy who always parks a little crooked — spots you. He’s got a backpack on, car keys between his fingers like brass knuckles. “You heading out?”
 
                 You nod because you don’t know what else to do. “I… my parents. They’re going to the high school. The stadium. I’m trying to get there.”
 
@@ -329,7 +329,7 @@ struct SurviveStoryBranch01 {
 
                 You fall in behind him, broom handle in one hand, the other gripping the railing as you step into the stairwell.
 
-                The stairwell is a concrete well of echoing footsteps and rising panic. People crowd downward, muttering, breathing hard. You pass a couple from the second floor arguing in hushed, frantic Spanish about whether this is “like 2020 but worse” and if they should have left last night. Someone on the fourth floor is banging on a door, shouting for a name that no one answers.
+                The stairwell is a concrete well of echoing footsteps and rising panic. People crowd downward, muttering, breathing hard. You pass a couple from the second floor arguing in hushed, frantic Spanish about whether this is “like 2020 but worse” and if they should leave. Someone on the fourth floor is banging on a door, shouting for a name that no one answers.
 
                 You remember 2020: empty shelves, months of isolation, watching numbers climb on a screen. You remember promising yourself that, if it ever happened again, you wouldn’t just sit and wait for the world to decide your fate.
 
@@ -339,7 +339,7 @@ struct SurviveStoryBranch01 {
 
                 You keep going down.
 
-                By the time you hit the second floor landing, the noise from outside is clearer—sirens, a helicopter somewhere above, a distant, weird chorus of shouts that don’t sound like normal arguments, more like… pleading.
+                By the time you hit the second floor landing, the noise from outside is clearer — sirens, a helicopter somewhere above, a distant, weird chorus of shouts that don’t sound like normal arguments, more like… pleading.
 
                 “Come on,” Carlos mutters as you push toward the ground floor. “If we get to the cars before everybody—”
 
@@ -359,11 +359,11 @@ struct SurviveStoryBranch01 {
 
                 For a second you can’t move.
 
-                The thing on top of Carlos is all motion and sound—wet snarls, teeth snapping. You see a flash of its face and your stomach twists. It was a person, but now its eyes are unfocused and wild, pupils blown wide, skin a sticky patchwork of blood and bruises. There’s a jagged bite mark on its hand, flesh ragged and dark around the edges like it’s already rotting.
+                The thing on top of Carlos is all motion and sound — wet snarls, teeth snapping. You see a flash of its face and your stomach twists. It was a person, but now its eyes are unfocused and wild, pupils blown wide, skin a sticky patchwork of blood and bruises. There’s a jagged bite mark on its hand, flesh ragged and dark around the edges like it’s already rotting.
 
                 Carlos is screaming. High, panicked, animal.
 
-                The infected man—because what else can you call him now?—shoves at Carlos’s forearms, trying to get to his neck, his face, anything soft. Carlos throws his head back, yelling for help that isn’t coming.
+                The infected man, because what else can you call him now? — shoves at Carlos’s forearms, trying to get to his neck, his face, anything soft. Carlos throws his head back, yelling for help that isn’t coming.
 
                 You try to push yourself up and pain flares in your arm where it scraped. When you look down, the skin is torn and bleeding in a thin, stinging line. Concrete burn. You know that. You know that.
 
@@ -375,11 +375,11 @@ struct SurviveStoryBranch01 {
 
                 For just a heartbeat, the whole world narrows to the stairwell: dim light, your own ragged breathing, Carlos’s choked screams, the wet rasp of that thing’s breath.
 
-                Then it lunges again—not at you, but back down toward Carlos, who’d tried to scoot away.
+                Then it lunges again — not at you, but back down toward Carlos, who’d tried to scoot away.
 
                 You move.
 
-                You slam your shoulder into the struggling heap, shoving the infected man sideways with everything you’ve got. Your scraped arm explodes in pain as it scrapes the concrete again. The three of you spill apart—infected one way, you and Carlos the other.
+                You slam your shoulder into the struggling heap, shoving the infected man sideways with everything you’ve got. Your scraped arm explodes in pain as it scrapes the concrete again. The three of you spill apart — infected one way, you and Carlos the other.
 
                 The man hits the base of the stairs, skull thudding against metal. He barely reacts.
 
@@ -409,11 +409,11 @@ struct SurviveStoryBranch01 {
 
                 You realize you’re still empty-handed.
 
-                The broom handle lies a few steps above you on the stairs. The heavy kitchen knife is zipped into the side pocket of your backpack, which is still on your shoulders. You could grab either—if you move closer. If you get within reach.
+                The broom handle lies a few steps above you on the stairs. The heavy kitchen knife is zipped into the side pocket of your backpack, which is still on your shoulders. You could grab either — if you move closer. If you get within reach.
 
                 Your scraped arm throbs in time with your heartbeat.
 
-                You are three floors and one courtyard away from any chance of finding your family. And you are one decision away from whether you make it that far at all.    
+                You are three floors and one courtyard away from any chance of escaping. And you are one decision away from whether you make it that far at all.    
                 """,
             chapterDecisions: [
                 ChapterDecision(
@@ -467,19 +467,19 @@ struct SurviveStoryBranch01 {
 
                 Then a sedan barrels through the intersection from the cross street, horn blaring. There’s no time, no room, no anything.
 
-                The impact is a sideways hammer blow—metal smashing metal with a sickening crunch. The SUV spins, one wheel lifting off the ground. The guy on the roof goes flying, his body tumbling across the pavement like a rag doll. The sound of shattering glass rolls down the block.
+                The impact is a sideways hammer blow — metal smashing metal with a sickening crunch. The SUV spins, one wheel lifting off the ground. The guy on the roof goes flying, his body tumbling across the pavement like a rag doll. The sound of shattering glass rolls down the block.
 
                 You flinch so hard your backpack digs into your shoulders. Your stomach turns over.
 
                 This isn’t a disaster movie. This is your street.
 
-                Someone shoves past you from behind, muttering an apology you barely hear. People are pouring out of the building now, streaming around the wrecked cars like water finding a new path. There’s no plan, no order—just motion. Running, stumbling, clutching whatever they managed to grab.
+                Someone shoves past you from behind, muttering an apology you barely hear. People are pouring out of the building now, streaming around the wrecked cars like water finding a new path. There’s no plan, no order — just motion. Running, stumbling, clutching whatever they managed to grab.
 
                 You move because they move.
 
                 Your legs pick a direction and your brain follows a second later. You jog with the crowd down the side of the lot, past the smashed cars, past a crying kid being dragged by the hand. Someone shouts, “High school! Go to the high school!” and others echo it, like if they repeat it enough it will become a guarantee.
 
-                The main road ahead is a mess—cars jammed in both directions, some angled on the sidewalk, others dead in the middle of the lane. People weave between them, yelling, pounding on hoods. A delivery truck has jackknifed across half the street, hazard lights blinking like it’s just another breakdown.
+                The main road ahead is a mess, cars jammed in both directions, some angled on the sidewalk, others dead in the middle of the lane. People weave between them, yelling, pounding on hoods. A delivery truck has jackknifed across half the street, hazard lights blinking like it’s just another breakdown.
 
                 Instinct kicks in. You don’t want any part of that.
 
@@ -491,25 +491,25 @@ struct SurviveStoryBranch01 {
 
                 You adjust your grip on the backpack straps and follow.
 
-                The neighborhood looks almost normal in flashes. Lawns. Garden gnomes. Mailboxes. But there are cracks in the picture—literal ones in the pavement, and figurative ones everywhere else. A front door stands wide open, TV blaring news inside to an empty living room. A stroller lies on its side by a driveway, one wheel still spinning. A smear of something dark streaks across a white picket fence at knee height.
+                The neighborhood looks almost normal in flashes. Lawns. Garden gnomes. Mailboxes. But there are cracks in the picture — literal ones in the pavement, and figurative ones everywhere else. A front door stands wide open, TV blaring news inside to an empty living room. A stroller lies on its side by a driveway, one wheel still spinning. A smear of something dark streaks across a white picket fence at knee height.
 
                 You try not to think about what left it.
 
-                Every few blocks, you hear something that makes everyone stop breathing at once—distant screaming, a gunshot, a shriek that might be an animal or might not. Each time, the group ducks behind parked cars or squeezes behind hedges, trying to become part of the scenery.
+                Every few blocks, you hear something that makes everyone stop breathing at once — distant screaming, a gunshot, a shriek that might be an animal or might not. Each time, the group ducks behind parked cars or squeezes behind hedges, trying to become part of the scenery.
 
                 You press your back to a rough brick wall at one point, your scraped arm whining in protest. You count your breaths. In, out. In, out. Your phone feels like a stone in your pocket.
 
                 “Keep moving,” the man in the cap whispers when the noises fade. “We’ve got to keep moving.”
 
-                The sun crawls higher. Time smears. Every house you pass looks like it could be yours if you squint—same siding, same porch light, different lives evaporated into thin air.
+                The sun crawls higher. Time smears. Every house you pass looks like it could be yours if you squint. Same siding, same porch light, different lives evaporated into thin air.
 
-                You don’t have a clear heading, not really. You know the stadium is roughly southeast—ten, maybe twelve blocks in that direction if you cut through the right streets. But you keep following the cap guy and the others because they look like they know where they’re going, and right now “not alone” feels like the bare minimum.
+                You don’t have a clear heading, not really. You know the stadium is roughly southeast — ten, maybe twelve blocks in that direction if you cut through the right streets. But you keep following the cap guy and the others because they look like they know where they’re going, and right now “not alone” feels like the bare minimum.
 
                 By the time you hit what you think is the fifth or sixth block from home, the group has swelled to maybe a dozen people. A woman in scrubs. A teenager with headphones still around his neck. An older man in slippers and a bathrobe, clutching a leash with no dog at the end of it.
 
                 You’re catching your breath behind a tall hedge, peeking toward a slightly wider cross street, when you hear raised voices.
 
-                Another cluster of people is there—ten, maybe fifteen—huddled near a cul-de-sac entrance. Some are sitting on the curb, some pacing. A couple of them carry duffel bags with military patches. One woman has a walkie-talkie clipped to her belt.
+                Another cluster of people is there, ten, maybe fifteen — huddled near a cul-de-sac entrance. Some are sitting on the curb, some pacing. A couple of them carry duffel bags with military patches. One woman has a walkie-talkie clipped to her belt.
 
                 The man in the cap calls out, “You all heading to the high school?”
 
@@ -521,7 +521,7 @@ struct SurviveStoryBranch01 {
 
                 “What do you mean, ‘done’?” someone from your group asks.
 
-                “They never opened it,” another guy says, stepping forward. He’s got a bandanna tied around his arm, not like a wound, more like a makeshift team badge. “Or they did and it went bad. I’ve got family on the other side of town—said people showed up and there was no real setup, just chaos. They’re shutting it down. They’re not evacuating from there. They’re redirecting everyone to the big site by the bay, down by the water.”
+                “They never opened it,” another guy says, stepping forward. He’s got a bandanna tied around his arm, not like a wound, more like a makeshift team badge. “Or they did and it went bad. I’ve got family on the other side of town — said people showed up and there was no real setup, just chaos. They’re shutting it down. They’re not evacuating from there. They’re redirecting everyone to the big site by the bay, down by the water.”
 
                 “Not the CDC place?” the man in the cap says, voice tight.
 
@@ -529,15 +529,15 @@ struct SurviveStoryBranch01 {
 
                 You pull your phone out with numb fingers.
 
-                No new alerts. No new texts from your mom.
+                No new alerts. No new texts from your family.
 
                 You open the map app again. The blue dot of you pulses on a grid of familiar streets that feels like a game board now. The high school stadium is still marked as an evacuation checkpoint, a little red triangle sitting not that far away, relatively speaking.
 
-                But now, near the bay, another symbol blinks—the larger evacuation center by the bay, near the shoreline you used to drive past without thinking about it.
+                But now, near the bay, another symbol blinks — the larger evacuation center by the bay, near the shoreline you used to drive past without thinking about it.
                 
                 Your thumb hovers over the screen.
 
-                “If the stadium’s shut down,” the messy-bun woman says, “they’re not going to keep sending people there. They’ll redirect. Your folks—if they got there and it was bad—they’d move them to the main site. Or the military would take them. That’s what they’re saying on the scanner.”
+                “If the stadium’s shut down,” the messy-bun woman says, “they’re not going to keep sending people there. They’ll redirect. Your folks, if they got there and it was bad — they’d move them to the main site. Or the military would take them. That’s what they’re saying on the scanner.”
 
                 “Or they’re trapped there and we’re walking away from them,” someone mutters.
 
@@ -551,7 +551,7 @@ struct SurviveStoryBranch01 {
 
                 Or maybe they’re still there, waiting.
 
-                If you go to the stadium and it’s bad—empty, closed, or crawling with infected—you’ll have to backtrack or detour again to reach the bay. Every extra block is more time out in this exposed, broken world.
+                If you go to the stadium and it’s bad, empty, closed, or crawling with infected — you’ll have to backtrack or detour again to reach the bay. Every extra block is more time out in this exposed, broken world.
 
                 But if you skip it and go straight with this group to the bay, trusting the rumor, you might be walking away from the last place your family actually is.
 
@@ -591,7 +591,7 @@ struct SurviveStoryBranch01 {
                 """
                 You can feel the moment the group realizes you’re serious.
 
-                The others keep talking—arguing, whispering, trying to convince themselves they’re choosing the “smart” route—but you step back from the circle, adjust your backpack straps, and point at the bright stadium marker on your phone like it’s a promise you can still hold.
+                The others keep talking, arguing, whispering, trying to convince themselves they’re choosing the “smart” route but you step back from the circle, adjust your backpack straps, and point at the bright stadium marker on your phone like it’s a promise you can still hold.
 
                 “I’m not skipping it,” you say, voice low. “Not if my family is going there.”
 
@@ -609,7 +609,7 @@ struct SurviveStoryBranch01 {
 
                 You nod. “I’m—” you almost say your name, then stop. Names feel like a luxury right now, like something you could lose. But he offered his first. “Yeah. Okay. Let’s go.”
 
-                Behind you, the larger group starts moving again—toward the bay, toward whatever feels safest when safety doesn’t exist. Their footsteps fade down the street. For a moment you’re alone with Nicolas and the sound of distant sirens.
+                Behind you, the larger group starts moving again — toward the bay, toward whatever feels safest when safety doesn’t exist. Their footsteps fade down the street. For a moment you’re alone with Nicolas and the sound of distant sirens.
 
                 And your own heartbeat.
 
@@ -617,13 +617,13 @@ struct SurviveStoryBranch01 {
 
                 Not on the main road. Never the main road.
 
-                You cut behind houses first, slipping through side gates and along fences, using trees and hedges like cover. Sometimes you move fast, sometimes you freeze for minutes at a time—crouched behind a parked car, listening for footsteps that don’t sound human, watching shadows slide across windows.
+                You cut behind houses first, slipping through side gates and along fences, using trees and hedges like cover. Sometimes you move fast, sometimes you freeze for minutes at a time, crouched behind a parked car, listening for footsteps that don’t sound human, watching shadows slide across windows.
 
                 It doesn’t feel like escaping. It feels like sneaking through a world that’s already decided you don’t belong in it anymore.
 
                 As the day drags on, the chaos changes shape.
 
-                Earlier, the town was loud—sirens, helicopters, shouting, engines. Now the sky is emptier. No helicopters thumping overhead. No low-flying medical choppers. Just a distant roar of jet fighters somewhere beyond the rooftops, way out toward the bay.
+                Earlier, the town was loud — sirens, helicopters, shouting, engines. Now the sky is emptier. No helicopters thumping overhead. No low-flying medical choppers. Just a distant roar of jet fighters somewhere beyond the rooftops, way out toward the bay.
 
                 The silence between sounds is the worst part.
 
@@ -639,21 +639,21 @@ struct SurviveStoryBranch01 {
 
                 He looks away quickly. “Yeah. Yeah, I know. Just… everything is—”
 
-                “I know,” you cut in, softer. “It’s from the stairs. Not a bite.”
+                “I know,” you cut in, softer. “It’s from a fall. Not a bite.”
 
                 He nods, but the fear stays in his eyes.
 
                 A few streets later, you see why.
 
-                You spot them before they spot you: a tougher-looking group moving down a wider side street toward the bay. They’re not running like everyone else. They’re walking with purpose, spread out, scanning corners. They have weapons—real ones. A shotgun carried like the guy knows how to use it. A pistol tucked into a waistband. A baseball bat wrapped in tape. One man has a hunting rifle slung over his shoulder like this is what he’s been waiting for his whole life.
+                You spot them before they spot you: a tougher-looking group moving down a wider side street toward the bay. They’re not running like everyone else. They’re walking with purpose, spread out, scanning corners. They have weapons— real ones. A shotgun carried like the guy knows how to use it. A pistol tucked into a waistband. A baseball bat wrapped in tape. One man has a hunting rifle slung over his shoulder like this is what he’s been waiting for his whole life.
 
                 You and Nicolas duck behind a minivan with a cracked windshield, peering through the gap between the hood and the curb.
 
                 “They look… organized,” Nicolas whispers.
 
-                “Yeah,” you murmur. “Not good.”
+                “Yeah,” you murmur. “Let's hang tight.”
 
-                A smaller group appears from the opposite direction—three people, stumbling, hands up, desperate. A woman is crying. One guy is supporting another who’s limping hard, his sleeve dark with something wet.
+                A smaller group appears from the opposite direction — three people, stumbling, hands up, desperate. A woman is crying. One guy is supporting another who’s limping hard, his sleeve dark with something wet.
 
                 They meet in the middle of the street.
 
@@ -675,7 +675,7 @@ struct SurviveStoryBranch01 {
 
                 A voice from the back, quieter than the rest, cuts through like a blade. You can’t see the speaker clearly, but the others look toward him the way people look toward someone whose opinion matters.
 
-                “We take no chances,” the quiet voice says. Calm. Almost bored. “End them.”
+                “We take no chances,” the quiet voice says. Calm. Too calm for this situation.
 
                 Your stomach drops.
 
@@ -697,7 +697,7 @@ struct SurviveStoryBranch01 {
 
                 Nicolas’s eyes slide to your forearm again, and this time you don’t even get angry. You just give him a look that says you know. He swallows hard and nods once, like he’s accepting a rule of this new world.
 
-                Don’t bleed. Don’t look weak. Don’t trust anyone with a gun.
+                Don’t bleed. Don’t look weak. Don’t trust everyone.
 
                 A distant scream rises somewhere behind you, answering the gunshots like the city itself is reacting.
 
@@ -707,7 +707,7 @@ struct SurviveStoryBranch01 {
 
                 You move.
 
-                You don’t run—running makes noise, running makes you visible—but you walk faster, weaving between houses, cutting through backyards and side alleys until the street with the bodies is gone behind you.
+                You don’t run — running makes noise, running makes you visible but you walk faster, weaving between houses, cutting through backyards and side alleys until the street with the bodies is gone behind you.
 
                 Time slides again.
 
@@ -727,9 +727,9 @@ struct SurviveStoryBranch01 {
 
                 You follow his gaze.
 
-                A few blocks down, the silhouette of a church rises above the houses—dark windows, no lights, a heavy front entrance set back from the street. A place that used to mean potlucks and baptisms and quiet Sundays. Now it looks like a shape that might hold anything.
+                A few blocks down, the silhouette of a church rises above the houses — dark windows, no lights, a heavy front entrance set back from the street. A place that used to mean potlucks and baptisms and quiet Sundays. Now it looks like a shape that might hold anything.
 
-                “My family…” Nicolas swallows. “We used to go there. Sundays. My mom—she’ll go there if she’s scared. That’s… that’s where she’d take them.”
+                “My family…” Nicolas swallows. “We used to go there. Sundays. My mom — she’ll go there if she’s scared. That’s… that’s where she’d take our family first.”
 
                 Hope flickers on his face. Real hope. It’s almost painful to see.
 
@@ -745,19 +745,19 @@ struct SurviveStoryBranch01 {
 
                 You reach a crossroad.
 
-                Straight ahead, the neighborhood slopes toward the stadium direction—more open streets, fewer trees, more exposure but also progress.
+                Straight ahead, the neighborhood slopes toward the stadium direction — more open streets, fewer trees, more exposure but also progress.
 
                 Left, a narrower road curves toward the church, its dark shape waiting like a mouth.
 
                 The sky deepens into orange and gray. Somewhere far away, a burst of gunfire rattles, followed by distant screams. The town is losing daylight, and you can feel the night coming like a weight.
 
-                If you go with Nicolas, you might find his family—and if you do, you gain an ally group, warmth, more hands, more eyes. But it pulls you away from the stadium, away from your own family, away from your primary goal.
+                If you go with Nicolas, you might find his family, and if you do, you gain an ally group, warmth, more hands, more eyes. But it pulls you away from the stadium, away from your own family, away from your primary goal.
 
-                If you leave him, you push forward toward the stadium alone, faster, cleaner—closer to your mom and dad. But you might be abandoning the first person you’ve met who doesn’t feel like a threat.
+                If you leave him, you push forward toward the stadium alone, faster, cleaner. But you might be abandoning the first person you’ve met who doesn’t feel like a threat.
 
                 And you already know what it feels like to run and leave someone behind.
 
-                Nicolas’s eyes search your face. “I’m going,” he says quietly. Not a demand. A truth. “Are you coming with me?”
+                Nicolas’s eyes search your face. “I’m going,” he says quietly. "You don't have to come, but I'm going."
 
                 The wind shifts. Smoke rides it. Your scraped arm stings under the cooling air.
 
@@ -791,17 +791,13 @@ struct SurviveStoryBranch01 {
 
                 You hold his gaze anyway. 
                 
-                “It’s concrete. Not teeth.”
+                “The least I can do is help you check. First sign of trouble — we leave. No questions.”
 
-                He nods, jaw tight. 
-                
-                “The least I can do is help you check. First sign of trouble—we leave. No questions.”
-
-                “Deal,” you say.
+                “Deal?” you say.
 
                 “Deal.”
 
-                You inch forward through the neighborhood as the last of the sun drains out of the sky. You move with purpose now—less wandering, more targeting. The church sits back from the road, squat and heavy, its stained-glass windows dark except for a faint, intermittent flicker that makes your skin crawl.
+                You inch forward through the neighborhood as the last of the sun drains out of the sky. You move with purpose now, less wandering, more targeting. The church sits back from the road, squat and heavy, its stained-glass windows dark except for a faint, intermittent flicker that makes your skin crawl.
 
                 Firelight.
 
@@ -821,7 +817,7 @@ struct SurviveStoryBranch01 {
 
                 You follow his gaze.
 
-                That faint flicker pulses again behind the stained glass. Not bright—more like a candle struggling in a room that doesn’t want light. Proof of life. Proof of someone inside.
+                That faint flicker pulses again behind the stained glass. Not bright — more like a candle struggling in a room that doesn’t want light. Proof of life. Proof of someone inside.
 
                 Nicolas swallows hard. “If my mom got here… if she made it this far… she’d go inside. She’d—”
 
@@ -837,17 +833,17 @@ struct SurviveStoryBranch01 {
 
                 “Are you crazy?”
 
-                He lifts a hand, not defensive—just… accepting. “If you want to switch, I’m all for it.”
+                He lifts a hand, not defensive, just… accepting. “If you want to switch, I’m all for it.”
 
                 You hesitate. Deep breath. A long exhale that trembles at the end.
 
-                “Fine,” you whisper. “I run. But if those doors don’t open, that’s it—we go. Okay?”
+                “Fine,” you whisper. “I run. But if those doors don’t open, that’s it, we go. Okay?”
 
                 His eyes shine in the dying light. “Yes. Deal.”
 
                 “Deal,” you say again, because saying it twice makes it feel like a contract with the universe.
 
-                You both split around the car—him to one end, you to the other. Nicolas looks back once.
+                You both split around the car, him to one end, you to the other. Nicolas looks back once.
 
                 You nod. He nods.
 
@@ -881,13 +877,13 @@ struct SurviveStoryBranch01 {
 
                 Your shoes slap pavement, louder than you want, but the alarm is louder. It swallows everything. You cut toward the church steps, hugging the shadow of the wall, lungs already burning like you’ve been sprinting for miles instead of seconds.
 
-                Out of the corner of your eye, you see Nicolas bolt away—drawing the pack with him, peeling them off like a magnet.
+                Out of the corner of your eye, you see Nicolas bolt away, drawing the pack with him, peeling them off like a magnet.
 
                 “I’ll circle around!” he shouts, voice cracking as he disappears between parked cars.
 
                 You hit the church steps hard, nearly tripping, catching yourself on the cold stone.
 
-                The doors are massive up close—dark wood, iron bands, handles worn smooth by hands that believed in safety.
+                The doors are massive up close - dark wood, iron bands, handles worn smooth by hands that believed in safety.
 
                 You grab the handle and pull.
 
@@ -899,19 +895,19 @@ struct SurviveStoryBranch01 {
 
                 “Come on,” you hiss, bracing a foot against the step and hauling with your whole body. The doors don’t give even a fraction. They’re locked. Bolted. Or barred from the inside.
                 
-                You realize not all of them chased the alarm.
+                You suddenly realize not all of them chased the alarm.
 
                 A wet breath rasps behind you.
 
                 Not Nicolas.
 
-                You turn—and one of them is already airborne, launching from the shadows like a spring.
+                You turn and one of them is already airborne, launching from the shadows like a spring.
 
                 You barely get your arms up before the impact slams you back into the door. Pain flashes through your scraped forearm as it bangs the wood. The thing’s hands claw at your chest, its mouth working, teeth clicking, trying to find the soft part of you.
 
-                You shove, but it’s heavy in that wrong way—dead weight powered by pure instinct.
+                You shove, but it’s heavy in that wrong way - dead weight powered by pure instinct.
 
-                “Help!” you scream, voice tearing. “If there’s anyone inside—HELP!”
+                “Help!” you scream, voice tearing. “If there’s anyone inside — HELP!”
 
                 The creature’s face is inches from yours. Its eyes are dull and fever-bright at the same time. Its breath reeks of copper and rot.
 
@@ -925,7 +921,7 @@ struct SurviveStoryBranch01 {
 
                 A fire extinguisher.
 
-                The thing stumbles, and you see the chance—just a sliver of space where you can breathe.
+                The thing stumbles, and you see the chance — just a sliver of space where you can breathe.
 
                 “NOW!” someone shouts from behind the door.
 
@@ -937,13 +933,13 @@ struct SurviveStoryBranch01 {
 
                 A bench scrapes. Wood grinds. Something heavy slams into place.
 
-                They’re barricading it—fast, practiced.
+                They’re barricading it — fast, practiced.
 
                 The first bang hits the door almost immediately.
 
                 Then another.
 
-                Then a flurry—fists, bodies, teeth, whatever they have.
+                Then a flurry — fists, bodies, teeth, whatever they have.
 
                 “Shhh,” a woman whispers sharply, as if quiet can keep the door solid. “No noise. No screaming. They’ll linger.”
 
@@ -965,9 +961,9 @@ struct SurviveStoryBranch01 {
 
                 “Name?” an older man asks, voice careful.
 
-                You hesitate—then give it. Something about being pulled out of a death-snap makes honesty spill out.
+                You hesitate - then give it. Something about being pulled out of a death-snap makes honesty spill out.
 
-                “Nicolas,” Nicolas croaks. “And my mom—Marisol. My sister—Elena. They might’ve come here.”
+                “Nicolas,” Nicolas croaks. “And my mom, Marisol. My sister, Elena. They might’ve come here.”
 
                 A woman in scrubs shakes her head, eyes apologetic. “No one by those names. We’ve been here since afternoon.”
 
@@ -995,7 +991,7 @@ struct SurviveStoryBranch01 {
 
                 A younger woman near the fire rubs her hands together for warmth. “All I know is… people are turning on people. Families. Friends. It’s not just the infected. It’s panic. It’s guns. It’s—” She trails off, eyes glossy. “It’s everything breaking at once.”
 
-                Nicolas drags a hand down his face. You watch him try to hold himself together and fail in tiny ways—his shoulders sinking, his breathing shallow, the way he keeps glancing at the stained-glass windows as if his mom might appear there like a miracle.
+                Nicolas drags a hand down his face. You watch him try to hold himself together and fail in tiny way - his shoulders sinking, his breathing shallow, the way he keeps glancing at the stained-glass windows as if his family might appear there like a miracle.
 
                 You pull your phone out, mostly out of habit.
 
@@ -1007,7 +1003,7 @@ struct SurviveStoryBranch01 {
 
                 Nicolas looks at you, voice thin. “So… what now?”
 
-                The church feels safer than the street, but safety isn’t the same as progress. Your family is still out there—somewhere between the stadium, the bay, the unknown. Every minute you sit by this fire is another minute you aren’t closing the distance.
+                The church feels safer than the street, but safety isn’t the same as progress. Your family is still out there, somewhere between the stadium, the bay, the unknown. Every minute you sit by this fire is another minute you aren’t closing the distance.
 
                 But outside is darkness. Outside is risk. Outside is that door and what waits beyond it.
 
@@ -1019,7 +1015,7 @@ struct SurviveStoryBranch01 {
 
                 Nicolas’s eyes search your face.
 
-                You feel your own exhaustion like a weight in your bones, but you also feel the pull of momentum—because once you stop moving, fear has room to grow.
+                You feel your own exhaustion like a weight in your bones, but you also feel the pull of momentum because once you stop moving, fear has room to grow.
 
                 And you’re starting to understand something simple and brutal:
 
@@ -1052,16 +1048,151 @@ struct SurviveStoryBranch01 {
             chapterImages: ["survive-21-survivors-image"],
             chapterText:
                 """
+                Dawn doesn’t arrive like relief.
+
+                It arrives like a slow reveal. Morning again. Somehow. 
+
+                The church is cold in the early morning, the kind of cold that sinks into your joints and makes every movement feel loud. The little fire is down to a sullen glow inside the metal basin, smoke clinging to the air and your clothes. You can taste it on the back of your tongue.
+
+                You realize you barely slept.
+
+                Not really.
+
+                You remember dozing in shallow drops, head tipped against the wall, your body jerking awake at every sound. Distant screams. The occasional heavy bang against the doors like something testing the wood. Whispers that cut off the moment you opened your eyes. Someone praying under their breath. Someone quietly sobbing in the dark with a child’s hair in their fist.
+
+                Every time the church creaked, your muscles tensed like it was a footstep.
+
+                Every time you heard the word scratch, your eyes drifted to your forearm.
+
+                Concrete. Not teeth.
+
+                You repeat it like a spell until it loses meaning.
+
+                When the first gray light slides through the stained glass, it paints the floor in broken colors — reds and blues and sickly gold. In the daylight, you can finally see what last night hid.
+
+                The pews aren’t just pushed around. They’ve been ripped free and stacked like barricades, splintered wood and torn hymnals shoved into gaps. There are dark smears on the stone near one side door. A trail that was wiped, badly. A handprint halfway up a pillar like someone tried to climb the wall to get away from something that didn’t care about walls. They didn't just hide here - they fought to keep it. 
+
+                The damage isn’t just outside.
+
+                It’s everywhere.
+
+                You push yourself up, joints stiff, backpack strap biting your shoulder. Nicolas is already awake. He’s standing near the side room where the fire was, speaking low with a small cluster of survivors - people who look less like they’re waiting to die and more like they’re deciding how to stay alive.
+
+                You cross the room slowly, keeping your steps soft out of habit even though the daylight makes everything feel less haunted.
+
+                Less haunted. Not safe.
+
+                The cluster shifts when you arrive.
+
+                The first is a man in his late thirties or early forties, calm in a way that feels unnatural, like fear tried to grab him and he refused to let it. He has a rolled-up sleeve showing an old tattoo on his forearm, and he carries himself like someone who’s been the one to make decisions before.
+
+                When his eyes flick to your scrape, you expect suspicion.
+
+                Instead, you get something worse: calculation.
+
+                Marcus doesn't need to announce himself - you can feel it in the way the others angle toward him when they speak.
+
+                Next to him is a woman with a little boy pressed to her side. The kid can’t be more than six. He’s too quiet in the way kids get when they’re trying to be invisible. His cheeks are streaked with dried tears, and one of his shoelaces is missing. The woman’s hands won’t stop moving - straightening the child’s collar, rubbing his shoulders, checking his face like she’s afraid he’ll disappear if she blinks.
+
+                She catches you looking and lifts her chin, defensive and exhausted.
+
+                "Talia, breathe" Marcus utters. She seems panicked - held together by pure love and no sleep.
+
+                On the edge of the group is a younger guy, maybe early twenties - hood up, face drawn, eyes always tracking the corners of the room like he expects the walls to move. He doesn’t speak unless someone speaks directly to him. He flinches at sudden sounds like his body learned a new reflex overnight.
+
+                Nervous, quiet. The kind of person you’d normally overlook. The kind of person who might surprise you. "Owen," Marcus says, "eyes on the side door."
+
+                And then there’s the older man you spoke to last night - the one who shushed you, who knew how to barricade fast. He’s here too, close enough to listen, far enough not to be pulled into the argument. His eyes keep going to the front doors like he’s memorized every crack in the wood.
+
+                The debate is already in progress when you step in.
+
+                “We can’t stay,” Marcus says, voice low but steady. “Not with what we have. Not with the noise. This place buys time, nothing else.”
+
+                Talia shakes her head hard, clutching her kid closer. “Staying is safer. It has walls. Doors. We made it through the night.”
+
+                “And what happens tomorrow?” Marcus asks. “Or the day after? What happens when the water runs out? When we’re down to crumbs? When someone gets sick? When they decide to test the doors again and we don’t get lucky?”
+
+                Owen swallows. “They were banging last night. Like… like they knew we were in here.”
+
+                The words land heavy.
+
+                Talia’s voice rises, thin and sharp. “The stadium. The soldiers. If there’s one place we’ll be protected, it’s there. They have guns. Tents. Medics. My son—” She stops, breath hitching, and you see her bite back something that might’ve been a plea.
+
+                A man behind her mutters, “Or we show up and it’s nothing. And we just walked into an open field with nowhere to hide.”
+
+                Marcus nods toward the stained glass, toward the faint, distant smoke outside. “The bay is the best bet. Water. Open space. Boats. If evacuation is real, it ends there. If the stadium was real and it failed, they’ll redirect people there anyway.”
+
+                Your hands curl into fists at your sides.
+
+                “The stadium is the last place my parents said they were going,” you say, voice tight but controlled. “So that’s where I’m going.”
+
+                Marcus studies you. “And if it’s shut down? Overrun? Empty?”
+
+                “Then we pivot,” you cut in, surprising yourself with how certain you sound. “But we don’t skip it without confirming. Not when people we love might still be there. And it is technically closer.”
+
+                Talia’s eyes flash toward you - hope and fear colliding. “So you’ll go? You’ll go to the stadium?”
+
+                Nicolas looks at you, searching your face.
+
+                You see it in him, the exhaustion, the fear, the raw need for the world to make sense again. But underneath it is something else.
+
+                Momentum.
+
+                The only thing keeping you both from turning into statues in a burning town.
+
+                “We’re not staying,” Nicolas says quietly. “The answer isn’t hiding until we rot or get rescued.”
+
+                Marcus exhales through his nose like he expected this. “Fine. Then here’s my line in the sand.” He points with two fingers, not aggressive - just final. “I’m taking whoever wants to come and heading for the bay. We move smart. We keep to side streets. We scavenge what we can. If we get separated, we don’t stop in the open to be heroes.”
+
+                The older man near the edge finally speaks, voice softer than you expect. “You’ll split. That’s what always happens. People think they can make it alone until they can’t.”
+
+                A new voice joins from behind, calm and worn.
+
+                “I’ll go with you.”
+
+                Heads turn.
+
+                A priest steps forward from the shadows of a side aisle, collar visible now in daylight. He looks tired in a way that goes beyond lack of sleep - tired like he’s carried other people’s grief for years and last night just snapped the strap.
+
+                “I’m Father Reyes,” he says quietly. “This is my church. These are my people.” His gaze flicks to the barricaded doors, the piled pews, the small trembling boy. “But he’s right.” He nods toward Marcus. “We don’t have enough to hold out. Not if this continues.”
+
+                Talia’s mouth opens. “You’re leaving?”
+
+                “I’m scouting,” Father Reyes corrects gently. “I’ll move with you as long as I can. Gather supplies. Information. And if… if I find a way to bring help back here, I will.”
+
+                Marcus’s jaw tightens, but he nods once like he respects the choice even if he hates it.
+
+                Father Reyes looks at you and Nicolas. “If you go to the stadium… and it still stands… tell them there are people here. Tell them we held through the night. Tell them—” He pauses, voice catching for a split second. “Tell them we’re still here.”
+
+                Nicolas swallows. You can see him fighting to keep hope from turning into something fragile.
+
+                Then he leans in toward you, low enough that it’s just for you.
+
+                “So,” he murmurs. “Do we go alone… or do we go with them?”
+
+                He doesn’t say it, but you hear it anyway:
+
+                Safety in numbers. But numbers can slow you down. Numbers can turn into noise.
+
+                Across the room, Talia adjusts her son on her hip and watches you like your answer decides whether she lives. Owen stares at the floor like he’s afraid of being chosen for anything. Marcus stands still, waiting, ready to move the second you commit.
+
+                You feel the weight of the day ahead settle onto your shoulders like a second backpack.
+
+                And for the first time since the sirens woke you, you understand something else:
+
+                This isn’t just about where you go.
+
+                It’s about who you become, and who you’re willing to carry with you.
 
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "",
+                    decisionText: "Break off with Nicolas and head for the stadium immediately - move faster, quieter, and more direct, but accept that you’re exposed and outnumbered if anything goes wrong.",
                     nextChapterID: 9, // Death Chapter
                     HPChange: 0,
                     EPChange: 0),
                 ChapterDecision(
-                    decisionText: "",
+                    decisionText: "Travel with Marcus’s group at least for now - strength in numbers, shared scavenging, and a clearer plan toward the bay, even if it slows your push to the stadium.",
                     nextChapterID: 20801,
                     HPChange: 0,
                     EPChange: 0)
