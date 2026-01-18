@@ -1329,24 +1329,166 @@ struct SurviveStoryBranch01 {
             isFinalChapter: false
         ),
         
-        // MARK: ChapterID: 20901 - A Desperate Plea
+        // MARK: ChapterID: 20901 - THE COST OF NOISE
         StoryContent(
             chapterID: 20901,
             storyDay: 2,
-            chapterTitle: "A Desperate Plea",
+            chapterTitle: "THE COST OF NOISE",
             chapterImages: ["survive-23-runAway-image"],
             chapterText:
                 """
+                The vote isn’t loud.
+
+                It doesn’t need to be.
+
+                Talia speaks first, voice tight. “Gas station. Smaller. Faster. My son—” She doesn’t finish the sentence. She doesn’t have to.
+
+                Owen nods, barely lifting his eyes. “Gas station,” he echoes. Quiet. Automatic.
+
+                Father Reyes clears his throat. “The grocery store,” he says gently. “And the pharmacy inside it. If I’m going back to the church, that’s where the supplies are. I can’t return empty-handed.”
+
+                Marcus doesn’t hesitate. “Same. Bigger risk, better return.”
+
+                The air tightens.
+
+                Nicolas looks at you, searching. “I’m with you,” he says simply.
+
+                The decision settles on your shoulders like a weight you didn’t ask for. You picture dry mouths. Empty hands. The people still waiting behind barricades.
+
+                “Grocery store,” you say.
+
+                Talia exhales sharply and turns away, jaw clenched. Owen swallows and falls in line anyway. Marcus nods once, already moving.
+
+                By the time you reach the edge of the parking lot, the sun is high and mean. Smoke hangs low, thinning visibility into a gray veil that makes distance hard to judge. Heat shimmers off broken glass.
+
+                The lot looks like a panicked thought made solid.
+
+                Cars are abandoned at wild angles, some nose-first over curbs, others smashed into each other like they tried to become one. Doors hang open. Trunks gape. Headlights and hazards glow weakly through smoke, casting orange halos that make everything look like it’s burning even when it’s not.
+
+                Shopping carts lie scattered and overturned, some bent like they were used as shields. Blood smears streak across asphalt, across door frames, across windshields where hands pressed and slid. Torn clothes snag on side mirrors. A child’s shoe sits alone near a median.
+
+                It’s quiet.
+
+                Not empty.
+
+                Just… waiting.
+
+                “There’s no way we get through that quietly,” someone whispers.
+
+                Marcus studies the lot, eyes calculating paths between wrecks. “We have to try. If this looks like this, the gas station’s already picked clean. This place is big. There has to be something left.”
+
+                Father Reyes nods, resolve set. “Not just for us. For the people waiting. I can’t go back with nothing.”
+
+                Talia’s voice breaks. “This is exactly why I didn’t want to come.”
+
+                “We’re almost there,” Father Reyes says. “Slow. Careful.”
+
+                You move.
+
+                Every step is deliberate. You place your feet where rubber meets asphalt, where shadows hide glass. You stay low, pass signals hand to hand. The silence feels fragile, like it might crack if you breathe wrong.
+
+                Crunch.
+
+                Someone steps on glass.
+
+                Marcus spins. “Shhh, watch your footing,” he hisses.
+
+                Talia snaps back under her breath, fear sharpening her words. “This is too much risk.”
+
+                You keep moving.
+
+                Paths close unexpectedly, forcing you to crawl over hoods slick with grime. Inside some cars, bodies slump against windows, faces frozen mid-plea, hands clawed into useless fists. You realize they probably thought the same thing you did.
+
+                We’re safe in here.
+
+                Safety never came.
+
+                You’re almost across when Owen slips.
+
+                His foot skids on oil or coolant. He stumbles forward into a metal cart.
+
+                It tips.
+
+                Rattles.
+
+                Clatters.
+
+                The sound explodes in the quiet.
+
+                “Shit,” Marcus breathes.
+
+                Then you hear it.
+
+                Movement.
+
+                Not one place - everywhere.
+
+                Doors slam open. Heads snap up. Hands punch through glass. Figures spill from between cars, from beneath trucks, from the far edges of the lot like the ground itself is giving birth to them.
+
+                “RUN!” Marcus shouts. “TO THE STORE!”
+
+                The group surges forward.
+
+                “Board the front!” Marcus yells to Nicolas. “Use the carts!”
+
+                “Go!” you shout back. “Help him!”
+
+                You turn to Owen. He’s scrambling, panic stealing coordination. You grab his arm and haul him upright.
+
+                “Come on — move!” you shout.
+
+                They’re close now. Too close. Arms reach. Glass shatters. A windshield caves inward with a wet crack as something forces itself through.
+
+                You take one step to run—
+
+                —and something clamps around your ankle.
+
+                Cold fingers. Weak. Desperate.
+
+                Your heart slams into your throat.
+
+                You look down.
+
+                It’s not one of them.
+
+                It’s a man.
+
+                Human. Filthy. Sunken-eyed. His face is streaked with soot and tears, lips cracked and bleeding. He’s wedged between two cars, pinned, legs trapped beneath a collapsed cart rack.
+
+                “Please,” he rasps. “I’m not infected. I’m not bitten.” His grip tightens. “I was hiding. I got stuck. Please, don’t leave me.”
+
+                Behind him, the parking lot comes alive.
+
+                Glass bursts outward. Bodies spill free. The distance closes with terrifying speed.
+
+                Marcus is already shouting from ahead. Talia screams your name. Nicolas turns back, eyes wide.
+
+                The man’s fingers dig into your leg.
+
+                “Please,” he says again. “I’ve been here all night.”
+
+                You feel the pull in your chest - sharp and unbearable.
+
+                This moment will follow you.
+
+                No matter what you choose.
 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Help the stranger", nextChapterID: 9,
-                                HPChange: -1, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Run away alone", nextChapterID: 24,
-                                HPChange: -1, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "Try to free the trapped man",
+                    nextChapterID: 21001,
+                    HPChange: 0,
+                    EPChange: 0), // Death Chapter
+                ChapterDecision(
+                    decisionText: "Break free and run for the store",
+                    nextChapterID: 9,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
+        
         // MARK: ChapterID: 21001 - No Hope
         StoryContent(
             chapterID: 21001,
@@ -1358,10 +1500,16 @@ struct SurviveStoryBranch01 {
 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Search the store thoroughly for supplies", nextChapterID: 9,
-                                HPChange: +2, EPChange: -3), // Death Chapter
-                ChapterDecision(decisionText: "Make a quick entry and grab essentials near the exit", nextChapterID: 25,
-                                HPChange: +1, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "Search the store thoroughly for supplies",
+                    nextChapterID: 9,
+                    HPChange: 0,
+                    EPChange: 0), // Death Chapter
+                ChapterDecision(
+                    decisionText: "Make a quick entry and grab essentials near the exit",
+                    nextChapterID: 25,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
