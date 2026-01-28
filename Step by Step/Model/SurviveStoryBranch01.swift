@@ -1351,7 +1351,7 @@ struct SurviveStoryBranch01 {
 
                 The air tightens.
 
-                Nicolas looks at you, searching. “I’m with you,” he says simply.
+                Nicolas looks at you, searching. “You know I’m with you,” he says simply.
 
                 The decision settles on your shoulders like a weight you didn’t ask for. You picture dry mouths. Empty hands. The people still waiting behind barricades.
 
@@ -1373,7 +1373,7 @@ struct SurviveStoryBranch01 {
 
                 Just… waiting.
 
-                “There’s no way we get through that quietly,” someone whispers.
+                “There’s no way we get through that quietly,” Owen whispers.
 
                 Marcus studies the lot, eyes calculating paths between wrecks. “We have to try. If this looks like this, the gas station’s already picked clean. This place is big. There has to be something left.”
 
@@ -1429,7 +1429,7 @@ struct SurviveStoryBranch01 {
 
                 The group surges forward.
 
-                “Board the front!” Marcus yells to Nicolas. “Use the carts!”
+                “Block the front!” Marcus yells to Nicolas. “Use the carts!”
 
                 “Go!” you shout back. “Help him!”
 
