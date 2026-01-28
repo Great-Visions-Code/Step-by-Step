@@ -1489,25 +1489,196 @@ struct SurviveStoryBranch01 {
             isFinalChapter: false
         ),
         
-        // MARK: ChapterID: 21001 - No Hope
+        // MARK: ChapterID: 21001 - WHEN THE WALLS GIVE WAY
         StoryContent(
             chapterID: 21001,
             storyDay: 2,
-            chapterTitle: "No Hope",
+            chapterTitle: "WHEN THE WALLS GIVE WAY",
             chapterImages: ["survive-24-lootedStore-image"],
             chapterText:
                 """
+                You don’t think.
+
+                You just move.
+
+                You grab the man’s arms and pull.
+
+                He screams—sharp, animal pain—and for a split second you think you’ve made a mistake. His body doesn’t move. The metal bites deeper into his leg. The sound draws everything closer.
+
+                You hear them now. Everywhere.
+
+                “Pull!” you shout, planting your feet, muscles screaming as you yank again.
+
+                Glass explodes behind you.
+
+                Hands punch through windows. Heads slam against windshields. Faces appear where there were none a second ago.
+
+                You pull once more—harder than you think you can—
+
+                —and the man tears free.
+
+                You both fall backward onto the asphalt.
+
+                “No time,” you gasp, hauling him up. His arm hooks around your shoulders, dead weight and desperation combined.
+
+                You run.
+
+                Your lungs burn instantly. Your legs feel like they’re full of sand. Ahead, the store’s automatic doors loom—and Nicolas is there with Marcus, waving you forward, panic carved into his face.
+
+                “Hurry!” Nicolas shouts.
+
+                You’re not going to make it.
+
+                The doors start to close.
+
+                Then Nicolas turns back.
+
+                He leaves the store.
+
+                He runs straight at you.
+
+                “I’ve got him,” he says, grabbing the stranger’s other side. “Move!”
+
+                Together, you stagger forward. The doors groan. Marcus slams his hands against the sensor, yelling something you don’t hear.
+
+                You dive.
+
+                The doors snap shut inches behind you.
+
+                The sound is deafening.
+
+                Inside, there’s no relief—only chaos.
+
+                The store is wrecked. Shelves stripped bare. Blood smeared across tile and checkout counters. Fluorescent lights flicker like they’re deciding whether to give up entirely.
+
+                The front windows—floor to ceiling—are already cracking.
+
+                They slam into the glass almost immediately.
+
+                Talia is crouched behind a counter, her son pressed into her chest, whispering frantic nonsense meant to sound like comfort. Marcus grips a snapped broom handle, turning in slow circles, eyes wild.
+
+                Reyes is already scanning, calculating exits that don’t exist.
+
+                Owen stands off to the side.
+
+                Watching.
+
+                Something inside you snaps.
+
+                “What the hell was that?” you shout, crossing the floor in three strides. You slam him back against a counter. “I go back for you—and you run?”
+
+                Owen doesn’t fight back. Fear floods his face. Shame too.
+
+                “Enough,” Marcus growls, stepping in. He shoves you back, eyes locked on Owen. “We look out for each other—but don’t mistake that for guarantees. Next time, no one comes back for you.”
+
+                Owen swallows. “I… I’m sorry,” he mutters, barely audible.
+
+                The windows crack again.
+
+                Reyes raises his voice. “We need to move. They’ll get in. Those windows won’t hold.”
+
+                “Split up,” Marcus says fast. “Talia—Owen—find food, water. Anything. We’ll check the back.”
+
+                You, Nicolas, and Reyes move toward the pharmacy.
+
+                The gate is down.
+
+                Shelves outside are stripped, but inside—behind the bars—everything looks untouched.
+
+                “They closed it early,” you breathe. “Or never opened.”
+
+                “Try to lift it,” Nicolas says.
+
+                You all strain. It doesn’t budge.
+
+                “It’s locked,” Reyes says grimly. “Shoot it.”
+
+                A gun appears in your peripheral vision.
+
+                “Here.”
+
+                The stranger—finally upright—holds it out.
+
+                “Name’s Ethan,” he says quickly. “Thank you… for not leaving me.”
+
+                Silence.
+
+                Nicolas takes it. “I know how.”
+
+                “Why do you have it?” Nicolas asks.
+
+                “No time,” Ethan says. “Go. I’ll keep watch.”
+
+                The front windows shatter.
+
+                The noise floods in—screams, growls, glass raining like hail.
+
+                “They’re in!” Ethan shouts, running toward you.
+
+                Bang.
+
+                The lock explodes.
+
+                “Open!” Reyes yells as the gate lifts.
+
+                From across the store, Marcus’s group appears, sprinting between aisles as shapes pour out behind them.
+
+                “RUN!” you scream.
+
+                Another infected lunges—
+
+                Bang. Bang.
+
+                It drops.
+
+                You all pile into a storage room and slam the door shut.
+
+                Silence crashes down.
+
+                Shelves topple outside. Glass keeps breaking. Something heavy slams into the counters.
+
+                Marcus drags a hand down his face. “Why would you call us back here? We’re trapped.”
+
+                “It was this or the floor,” Reyes says.
+
+                Ethan nods. “Front’s gone. No exit that way.”
+
+                Time stretches.
+
+                You inventory what you have. Canned food. Gauze. A few basics.
+
+                Talia’s son steps forward and holds out gauze to Ethan. “For you.”
+
+                Ethan’s face softens. “Thank you.”
+
+                Minutes pass. Maybe longer.
+
+                Finally, Ethan speaks.
+
+                “I’m National Guard,” he says quietly. “We had protocols. If containment fails…” He hesitates. “They stop saving. They start sterilizing.”
+
+                The words hang.
+
+                “You’re saying they’ll kill everyone?” Marcus asks.
+
+                “I’m saying I don’t want to be here to find out.”
+
+                Outside, it’s quiet now.
+
+                Too quiet.
+
+                Ethan looks at you. “What do we do?”
 
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "Search the store thoroughly for supplies",
-                    nextChapterID: 9,
+                    decisionText: "Wait until full night—rest, recover, and conserve energy before attempting escape.",
+                    nextChapterID: 21101,
                     HPChange: 0,
-                    EPChange: 0), // Death Chapter
+                    EPChange: 0),
                 ChapterDecision(
-                    decisionText: "Make a quick entry and grab essentials near the exit",
-                    nextChapterID: 25,
+                    decisionText: "Leave now—while it’s quiet—trusting Ethan’s warning and risking the unknown outside.",
+                    nextChapterID: 9, // Death Chapter
                     HPChange: 0,
                     EPChange: 0)
             ],
