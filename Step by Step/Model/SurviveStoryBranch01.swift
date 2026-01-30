@@ -1453,7 +1453,7 @@ struct SurviveStoryBranch01 {
 
                 It’s a man.
 
-                Human. His face is streaked with soot. He’s wedged between two cars, pinned, legs trapped beneath a collapsed cart rack.
+                Human. His face is streaked with soot. He’s wedged under a car, pinned, legs trapped.
 
                 “Please,” he rasps. “I’m not infected. I’m not bitten.” His grip tightens. “I was hiding. I got stuck. Please, I just need help.”
 
@@ -1479,10 +1479,10 @@ struct SurviveStoryBranch01 {
                     decisionText: "Try to free the trapped man",
                     nextChapterID: 21001,
                     HPChange: 0,
-                    EPChange: 0), // Death Chapter
+                    EPChange: 0),
                 ChapterDecision(
                     decisionText: "Break free and run for the store",
-                    nextChapterID: 9,
+                    nextChapterID: 9, // Death Chapter
                     HPChange: 0,
                     EPChange: 0)
             ],
@@ -1501,7 +1501,7 @@ struct SurviveStoryBranch01 {
                 
                 For half a second, you think he might come back.
 
-                Instead, he meets your eyes—fear and shame tangled together—then turns and runs for the store.
+                Instead, he meets your eyes, fear and shame tangled together - then turns and runs for the store.
 
                 “OWEN—!” you shout.
 
@@ -1537,13 +1537,9 @@ struct SurviveStoryBranch01 {
 
                 Ahead, the automatic doors of the grocery store slide open. Marcus is waving frantically. Nicolas is there too, panic etched into his face.
 
-                “You’re not gonna make it!” Marcus shouts.
-
-                The doors start to close.
-
-                Then Nicolas turns around.
-
-                He runs back out.
+                “You need to hurry!” Marcus shouts, as he prepares to close the doors.
+                
+                Then Nicolas runs out.
 
                 “What are you doing?” Marcus yells.
 
@@ -1561,13 +1557,13 @@ struct SurviveStoryBranch01 {
 
                 Shelves stripped bare. Checkout lanes smeared with blood. Abandoned carts tipped over like barricades that failed. Fluorescent lights flicker overhead, buzzing like dying insects.
 
-                The windows—too big. Floor to ceiling. Several already cracked near the top.
+                The windows - too big. Floor to ceiling. Several already cracked near the top.
 
                 They start hitting them immediately.
 
                 Glass spiderwebs.
 
-                Talia crouches behind a counter, clutching her son, whispering to him like her voice alone might keep the world from collapsing. Marcus grips a snapped broom handle, turning in tight circles. Father Reyes scans the space like he’s already counting the seconds.
+                Talia crouches behind a counter, clutching her son, whispering to him like her voice alone might keep the world from collapsing. Marcus grips a snapped broom handle he found, turning in tight circles. Father Reyes scans the space like he’s already counting the seconds.
 
                 Owen stands off to the side.
 
@@ -1577,25 +1573,27 @@ struct SurviveStoryBranch01 {
 
                 Owen can’t meet your eyes.
 
-                “Enough,” Marcus growls, shoving you back. He stares Owen down, hard. “We do our best—but don’t confuse that with guarantees. Next time, no one comes back.”
+                “Enough,” Marcus growls, shoving you back. He stares Owen down, hard. “We do our best, but don’t confuse that with guarantees. Next time, no one might come back for you.”
 
                 Owen nods once. “I’m… sorry.”
 
                 A window cracks.
 
-                Reyes raises his voice. “We need to move. These windows won’t hold.”
+                Father Reyes raises his voice. “We need to move. These windows won’t hold.”
 
-                “Split up,” Marcus says. “Talia, Owen—food, water. Anything. We’ll hit the back.”
+                “Let's split up,” Marcus says. “Talia, Owen - with me, search for food, water. Anything. We’ll make our way towards the back.”
 
                 The stranger steps forward, holding out a handgun.
 
                 “My name’s Ethan,” he says. “Thank you… for not leaving me.”
 
                 Silence.
+                
+                "Anyone know how to use this?" Ethan asks. 
 
-                “I can use it,” Nicolas says. “Range back home.”
+                “I can use it,” Nicolas says. “There's a range back home, but…"
 
-                “No time to explain,” Ethan says. “Take it. I’ll watch the front.”
+                “No time to explain,” Ethan says. “Take it. I’ll watch the front for now and catch up.”
 
                 “You can move?” you ask.
 
@@ -1609,7 +1607,7 @@ struct SurviveStoryBranch01 {
 
                 The metal gate is down.
 
-                Outside shelves are gutted—but behind the gate, it looks untouched.
+                Outside shelves are gutted, but behind the gate, it looks untouched.
 
                 “They shut it early,” you whisper.
 
@@ -1619,7 +1617,7 @@ struct SurviveStoryBranch01 {
 
                 Nothing.
 
-                “It’s locked,” Reyes pants, fingers rattling the metal gate. “Try—try shooting it!”
+                “It’s locked,” Father Reyes pants, fingers rattling the metal padlock. “Try, try shooting it!”
                 
                 The words barely leave his mouth before Nicolas raises the gun.
 
@@ -1627,7 +1625,7 @@ struct SurviveStoryBranch01 {
 
                 The sound echoes like a siren.
 
-                For a heartbeat, the store holds its breath—then the front of the building erupts in noise. Something slams the glass from outside. One of the massive windows finally gives way, collapsing inward in a shower of shards. Screams, snarls, the wet slap of bodies hitting tile.
+                For a heartbeat, the store holds its breath, then the front of the building erupts in noise. Something slams the glass from outside. One of the massive windows finally gives way, collapsing inward in a shower of shards. Screams, snarls, the wet slap of bodies hitting tile.
                 
                 “They’re in!” Ethan shouts, limping hard toward you, his injured leg dragging, breath already breaking.
 
@@ -1643,11 +1641,13 @@ struct SurviveStoryBranch01 {
 
                 BANG. BANG.
 
-                Nicolas fires again. Clean. Controlled. The body folds.
+                Nicolas fires again. The body folds.
+                
+                "Shoot it again!" Father Reyes shouts.
 
                 The padlock on the pharmacy gate shatters.
                 
-                “It’s open!” Reyes shouts as he heaves the gate upward.
+                “It’s open!” Father Reyes shouts as he heaves the gate upward.
 
                 “OVER HERE!” you yell to Marcus’s group.
 
@@ -1655,9 +1655,9 @@ struct SurviveStoryBranch01 {
 
                 Too fast. Too loud.
 
-                “They’re coming from inside too!” Nicolas shouts.
+                “They’re coming from the back too!” Nicolas shouts.
                 
-                Shapes spill from aisles now—drawn by the gunshots, your voices, the chaos.
+                Shapes spill from aisles now, drawn by the gunshots, your voices, the chaos.
 
                 “Storage room!” Ethan yells, pointing down a side corridor. “There!”
 
@@ -1679,19 +1679,21 @@ struct SurviveStoryBranch01 {
                 
                 Marcus breathes hard. “Why would you call us back here? We’re trapped.”
 
-                “It was this or the floor,” Reyes says.
+                “They were everywhere,” Father Reyes says.
 
-                Ethan nods. “Front’s gone. No exit there.”
+                Ethan nods. “Front’s gone. No exit there.” He turns to Nicolas, "Good shooting out there."
+                
+                Nicolas stays silent, eyes glued to the floor.
 
                 Time stretches.
 
-                The noise outside fades in uneven waves—first frantic, then distant, then almost gone. The fluorescent lights hum overhead, flickering now and then like they’re struggling to stay alive.
+                The noises outside fade in uneven waves, first frantic, then distant, then almost gone. The fluorescent lights hum overhead, flickering now and then like they’re struggling to stay alive.
 
-                The sun must be setting. You can feel it—not see it—but the air feels heavier. Thicker. Like the day has run out.
+                The sun must be setting. You can feel it, not see it — but the air feels heavier. Thicker. Like the day has run out.
 
-                You take inventory: canned food. Gauze. Some basics. Not much.
+                You take inventory. Canned food. Gauze. Some basics. Not much.
 
-                Talia’s son walks over to Ethan and holds out gauze. “For you.”
+                Talia’s son walks over to Ethan and holds out a gauze. “For you.”
 
                 Ethan blinks. “Thank you.”
                 
@@ -1705,29 +1707,29 @@ struct SurviveStoryBranch01 {
 
                 Then Ethan exhales slowly.
 
-                “I owe you my life,” he says. “So I’m not going to lie to you.”
+                “I owe you my life,” he says. “For that, I am grateful. So I’m not going to lie to you.”
 
-                Everyone looks at him.
+                Everyone looks at him. Unsure of what he means.
 
-                “I’m National Guard. I got the call when this started. Was supposed to report north—CDC site. Never made it. Roads locked. No coordination. We got separated.”
+                “I’m with the National Guard. I got the call when this started. Was supposed to report north—CDC site. Never made it. Roads locked. No coordination. We got separated.”
 
-                He pauses.
+                He pauses. "There was 6 of us at first-" 
+                
+                Pauses again.
 
-                “There are protocols for this kind of outbreak.”
-
-                Talia shakes her head weakly. “We can wait. We can ration. Just—just stay here. We have walls. A door. Time.” She clutches her son tighter. “That has to mean something.”
+                Talia shakes her head weakly. Like she already know what comes next. “We can wait. We can ration. Just, just stay here. We have walls. A door. Time.” She clutches her son tighter. “That has to mean something.”
 
                 Ethan looks at her gently.
-
-                “No. We can’t.”
+                
+                “There are protocols for these types of scenarios.
 
                 He shifts, voice lower now.
 
-                “First comes containment. This town should already be quarantined. Then search and rescue. Evacuations. Checkpoints.”
+                “First comes containment. This town and any others around the country should already be quarantined. Then search and rescue. Evacuations. Checkpoints. Get civilians to safe locations.”
 
                 Marcus nods. “That’s what we’ve been trying to reach.”
 
-                “And if that fails?” Ethan continues.
+                “But if that fails-” Ethan continues.
 
                 He doesn’t raise his voice.
 
@@ -1739,13 +1741,13 @@ struct SurviveStoryBranch01 {
 
                 Marcus explodes. “What? You’re telling me if we wait, they won’t even ask questions?”
 
-                “I’m saying they won’t take chances,” Ethan replies. “They can’t. If this spreads, it’s over.”
+                “I’m saying they won’t take chances,” Ethan replies. “They can’t. If this spreads beyond what they think they can control, it’s over.”
 
                 Fear ripples through the room.
 
                 Owen whispers, “It’s been quiet outside for hours.”
 
-                “That doesn’t mean they’re gone,” Talia snaps. “It means they’re waiting. Ethan can barely walk. If we run again—”
+                “That doesn’t mean they’re gone,” Talia snaps. “It means they’re waiting. Ethan, Ethan can barely walk. If we run again—”
 
                 “I’ll manage,” Ethan says quickly. “I can move.”
 
@@ -1757,7 +1759,7 @@ struct SurviveStoryBranch01 {
 
                 You feel it.
 
-                Everyone watching you.
+                Everyone watching.
 
                 Waiting to see which way the group breaks.
 
@@ -1769,7 +1771,7 @@ struct SurviveStoryBranch01 {
             chapterDecisions: [
                 ChapterDecision(
                     decisionText: "Call for rest — convince the group to recover and leave deeper into the night.",
-                    nextChapterID: 21101,
+                    nextChapterID: 31101,
                     HPChange: 0,
                     EPChange: 0),
                 ChapterDecision(
@@ -1780,27 +1782,34 @@ struct SurviveStoryBranch01 {
             ],
             isFinalChapter: false
         ),
-        // MARK: ChapterID: 21101 - Shelter
+        
+        // MARK: DAY 3 - chapterIDs: 31101 ->
+
+        // MARK: ChapterID: 31101 - DAY 3
         StoryContent(
-            chapterID: 21101,
-            storyDay: 2,
-            chapterTitle: "Shelter",
+            chapterID: 31101,
+            storyDay: 3,
+            chapterTitle: "DAY 3",
             chapterImages: ["survive-25-church-image"],
             chapterText:
                 """
 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Take shelter in the house", nextChapterID: 9,
-                                HPChange: +1, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Continue to the church", nextChapterID: 31,
-                                HPChange: +1, EPChange: -2)
+                ChapterDecision(
+                    decisionText: "",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: +1,
+                    EPChange: -2),
+                ChapterDecision(
+                    decisionText: "",
+                    nextChapterID: 31,
+                    HPChange: +1,
+                    EPChange: -2)
             ],
             isFinalChapter: false
         ),
         
-        // MARK: DAY 3 - chapterIDs: 31-34
-
         // MARK: ChapterID: 31 - DAY 3
         StoryContent(
             chapterID: 31,
