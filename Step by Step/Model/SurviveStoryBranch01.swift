@@ -1793,73 +1793,185 @@ struct SurviveStoryBranch01 {
             chapterImages: ["survive-25-church-image"],
             chapterText:
                 """
+                You don’t argue loudly.
+
+                You don’t shout.
+
+                You just say it—soft, steady, like a hand held out instead of a fist.
+
+                “Please,” you say. “Just for a few hours.”
+
+                No one moves.
+
+                The storage room feels smaller now. The shelves press in. The single bulb hums overhead, casting shadows that seem to breathe when no one’s looking. Sweat dries on your skin and leaves you cold.
+
+                “We’re not thinking straight,” you continue. “Not after today. Not after… all of this.”
+
+                Marcus paces once, then again, boots scraping concrete. “You heard Ethan. We’re running out of time.”
+
+                “I know,” you say. “But right now, we’re sealed in. One door. No windows. No blind corners.”
+
+                You gesture toward the metal door. The bar. The lock.
+
+                “For the first time since this started,” you say, “nothing can rush us from behind.”
+
+                Talia looks up at you, eyes red and hollow, her son curled against her chest like he might disappear if she loosens her grip.
+
+                “If we leave now,” you say, “we leave tired. Shaky. We leave like prey.”
+
+                Silence.
+
+                Ethan sits against a shelf, his leg stretched out awkwardly, jaw tight. He’s pale now—shock finally catching up.
+
+                “A few hours,” he says at last. “Then we move.”
+
+                Marcus stops pacing. He exhales through his nose, sharp and frustrated. “Fine. A few hours.”
+
+                No one cheers.
+
+                ⸻
+
+                Sleep comes in fragments.
+
+                You drift, then snap awake. Drift, then freeze.
+
+                Every sound feels like a warning.
+
+                Metal groans somewhere deep in the store. Something scrapes across tile—slow, uneven. Once, there’s a sharp knock against the storage room door and every single body locks up, weapons raised, breath held.
+
+                Nothing follows.
+
+                Minutes stretch. Hours blur.
+
+                Someone whispers prayers. Someone sobs quietly and then stops. You never see who.
+
+                Your body rests, but your mind doesn’t. Every time your eyes close, you see hands on glass. Faces slamming forward. Owen running.
+
+                You wake again when the silence changes.
+
+                Not louder.
+
+                Quieter.
+
+                The kind of quiet that feels intentional.
+
+                Dawn leaks in through cracks you can’t see.
+
+                ⸻
+
+                When Marcus finally slides the bar free and cracks the door, the grocery store greets you like a crime scene frozen mid-scream.
+
+                Blood streaks across the floor in wide arcs—drag marks, handprints, smears that stop abruptly. Broken glass crunches underfoot. The front windows are gone entirely, the frames twisted inward like ribs snapped open.
+
+                Shelves lie gutted, toppled, stripped bare. Abandoned carts sit wedged at odd angles, failed barricades left behind by people who thought they had more time.
+
+                The fluorescent lights flicker overhead, buzzing unevenly, like they’re deciding whether to stay alive.
+
+                Father Reyes moves first. Quiet. Purposeful. He gathers what he can—bandages, canned food, sealed bottles—stacking them carefully, reverently, like offerings.
+
+                “If I go back,” he murmurs, “I can’t go empty-handed.”
+
+                Talia sits on the floor with her son, rocking slightly. He doesn’t cry. He just stares at the ceiling, eyes too old for his face.
+
+                “I just want him out,” she whispers to no one. “I don’t care where. I just want this to stop.”
+
+                Ethan kneels, testing weight on his injured leg. He winces, but forces himself steady.
+
+                “Checkpoints,” he says again. Calm. Grounded. Like it’s not a hope but a fact. “They should be active.”
+
+                Marcus scoffs. “The checkpoints are gone. The stadium’s gone. Everything’s gone.”
+
+                Ethan looks up sharply. “Gone?”
+
+                “We came down from the north,” Owen says, arms crossed tight against his chest. “There was nothing. No soldiers. No control. Just people turning on each other.”
+
+                Ethan frowns. He doesn’t dismiss it. He thinks.
+
+                “That doesn’t line up,” he says.
+
+                You pull your phone out. The screen lights weakly.
+
+                Battery: 47%.
+
+                “No new alerts,” you say. “But this was the map they sent.”
+
+                You show him.
+
+                Ethan studies it for a long moment. Then he nods once.
+
+                “Yes,” he says quietly. “Exactly.”
+
+                Marcus stares at him. “Then why didn’t we see anything?”
+
+                “They’d have set up fast,” Ethan replies. “Medical tents. Processing lanes. Armed perimeters. The stadium is one of the city’s primary evacuation hubs. Protocol demands it.”
+
+                “If containment had completely failed,” he adds, “we wouldn’t still be standing here talking.”
+
+                The room shifts.
+
+                Not relief.
+
+                But possibility.
+
+                Nicolas steps closer to you, voice low. “If my family went anywhere… it was the stadium.”
+
+                His hands tremble slightly. “If they’re not there, I don’t know what I do next.”
+
+                Marcus shakes his head. “The bay is still the best exit. Open water. No choke points.”
+
+                “But checkpoints mean structure,” Reyes says. “Information.”
+
+                “And guns,” Marcus snaps. “Guns pointed at us.”
+
+                “Or protecting us,” Talia says quietly.
+
+                No one answers her.
+
+                The group fractures without moving.
+
+                You feel eyes on you.
+
+                Waiting.
+
+                You step forward.
+
+                “If Ethan’s right,” you say, “then the checkpoint gives us options. Talia and her son get protection. Father Reyes can get help back to the church. Marcus gets order. Firepower.”
+
+                You glance at Nicolas.
+
+                “And we get closer to the stadium.”
+
+                Ethan meets your eyes. “I’ll go where you go.”
+
+                The silence thickens.
+
+                Whatever you choose, someone will walk away.
 
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "",
+                    decisionText: "Split up now while you still can.",
                     nextChapterID: 9, // Death Chapter
-                    HPChange: +1,
-                    EPChange: -2),
+                    HPChange: 0,
+                    EPChange: 0),
                 ChapterDecision(
-                    decisionText: "",
-                    nextChapterID: 31,
-                    HPChange: +1,
-                    EPChange: -2)
+                    decisionText: "Stay together and head for the checkpoint.",
+                    nextChapterID: 31201,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
         
-        // MARK: ChapterID: 31 - DAY 3
+        // MARK: ChapterID: 31201 - DAY 3
         StoryContent(
-            chapterID: 31,
+            chapterID: 31201,
             storyDay: 3,
             chapterTitle: "DAY 3",
             chapterImages: ["survive-31-insideChurch-image"],
-            chapterText: """
-                    You take one last look at the house behind you, its door ajar and its shadowy interior beckoning with uncertainty. But the thought of the church—the sturdy doors, the promise of security—pulls you forward. Your legs ache with every step, your body screaming for rest, but you keep moving.
+            chapterText:
+                """
 
-                    The street ahead is quiet, save for the faint rustle of leaves and the occasional distant noise that makes your heart race. Each shadow feels like it’s watching, waiting.
-
-                    When the church finally comes into view, its silhouette framed by the last light of the day, a wave of relief washes over you. The heavy wooden doors stand closed, their presence a symbol of hope—or a barrier to it.
-
-                    You climb the steps and press your hand against the door, pushing with all your weight. Nothing.
-
-                    Your knees buckle as you collapse against the door, tears streaming down your face. “Please,” you whisper hoarsely, your voice barely audible. “Please. Help me.”
-
-                    For a moment, there’s only silence. Then, the sound of a bolt sliding back.
-
-                    The door creaks open, and a hand reaches out, gripping your arm. “Hurry, come in,” a voice urges.
-
-                    You’re pulled inside, the heavy door slamming shut behind you. The dim light inside reveals a handful of survivors, each keeping to themselves. Some lie curled on the floor, their faces pale and drawn. Others sit quietly, their eyes vacant, staring into the darkness.
-
-                    The air is thick with the smell of sweat and fear. A cough breaks the silence, followed by the shuffle of someone shifting in their makeshift bedding.
-
-                    You find an empty corner and collapse onto the floor, too exhausted to think. The cold stone beneath you feels like a reprieve, and before you can process anything, your eyes close.
-                
-                    You wake to the sound of hushed voices. The faint light of dawn filters through the high windows, casting long shadows across the room.
-
-                    A group of survivors is gathered in the center of the room, their whispers sharp and urgent. You push yourself up, your body stiff and aching, and make your way over.
-
-                    As you approach, the group glances at you briefly but offers no introductions. Their attention is focused on the conversation.
-
-                    “They’re still evacuating people,” one man insists, his voice low but firm. “I heard it on the news before the power went out. Military checkpoints, evacuating to a safe zone. It’s not far—we can make it if we stick together.”
-
-                    Another survivor shakes his head, his arms crossed tightly. “That was yesterday. You think those checkpoints are still standing? They’re probably overrun or abandoned. We stay here, fortify the place, and keep quiet. That’s how we survive.”
-
-                    The group splits into murmurs, some nodding in agreement, others shaking their heads.
-
-                    “We’ll run out of food,” a woman says sharply. “Staying here is a slow death. We have to try.”
-
-                    “And going out there isn’t?” another snaps. “The streets are crawling with infected. You’d die before you got halfway to the checkpoint.”
-
-                    The argument grows louder, tension thick in the air.
-
-                    Finally, one man steps forward, his expression resolute. “I’m not staying here. I’d rather die trying than waste away hiding in this place. I’m heading for the checkpoint. Who’s coming with me?”
-
-                    His words cut through the noise, and silence falls over the group. He looks around, his gaze landing on you.
-
-                    “Well?” he asks, his voice steady. “What’s it going to be?”
                 """,
             chapterDecisions: [
                 ChapterDecision(decisionText: "Stay with the group in the church:", nextChapterID: 9,
