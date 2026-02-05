@@ -1797,7 +1797,7 @@ struct SurviveStoryBranch01 {
 
                 You don’t shout.
 
-                You just say it—soft, steady, like a hand held out instead of a fist.
+                You just say it, soft, steady, like a hand held out instead of a fist.
 
                 “Please,” you say. “Just for a few hours.”
 
@@ -1819,25 +1819,23 @@ struct SurviveStoryBranch01 {
 
                 “If we leave now,” you say, “we leave tired. Shaky. We leave like prey.”
 
-                Silence.
+                Silence stretches.
 
-                Ethan sits against a shelf, his leg stretched out awkwardly, jaw tight. He’s pale now—shock finally catching up.
+                Ethan sits against a shelf, his leg stretched out awkwardly, jaw tight. He’s pale now - shock finally catching up.
 
                 “A few hours,” he says at last. “Then we move.”
 
                 Marcus stops pacing. He exhales through his nose, sharp and frustrated. “Fine. A few hours.”
 
-                No one cheers.
+                No one celebrates.
 
-                ⸻
-
-                Sleep comes in fragments.
+                Rest comes in fragments.
 
                 You drift, then snap awake. Drift, then freeze.
 
                 Every sound feels like a warning.
 
-                Metal groans somewhere deep in the store. Something scrapes across tile—slow, uneven. Once, there’s a sharp knock against the storage room door and every single body locks up, weapons raised, breath held.
+                Metal groans somewhere deep in the store. Something scrapes across tile, slow, uneven. Once, there’s a sharp knock against the storage room door and every single body locks up, makeshift weapons raised, breath held.
 
                 Nothing follows.
 
@@ -1845,7 +1843,9 @@ struct SurviveStoryBranch01 {
 
                 Someone whispers prayers. Someone sobs quietly and then stops. You never see who.
 
-                Your body rests, but your mind doesn’t. Every time your eyes close, you see hands on glass. Faces slamming forward. Owen running.
+                Your body rests, but your mind doesn’t. Every time your eyes close, you see hands on glass. Faces slamming forward.
+
+                Owen running.
 
                 You wake again when the silence changes.
 
@@ -1857,33 +1857,35 @@ struct SurviveStoryBranch01 {
 
                 Dawn leaks in through cracks you can’t see.
 
-                ⸻
+                “Time to move,” Marcus says.
 
-                When Marcus finally slides the bar free and cracks the door, the grocery store greets you like a crime scene frozen mid-scream.
+                He slides the bar free and cracks the door.
 
-                Blood streaks across the floor in wide arcs—drag marks, handprints, smears that stop abruptly. Broken glass crunches underfoot. The front windows are gone entirely, the frames twisted inward like ribs snapped open.
+                The grocery store greets you like a crime scene frozen mid-scream.
+
+                Blood streaks across the floor in wide arcs, drag marks, handprints, smears that stop abruptly. Broken glass crunches underfoot. The front windows are gone entirely, the frames twisted inward like ribs snapped open.
 
                 Shelves lie gutted, toppled, stripped bare. Abandoned carts sit wedged at odd angles, failed barricades left behind by people who thought they had more time.
 
-                The fluorescent lights flicker overhead, buzzing unevenly, like they’re deciding whether to stay alive.
+                Fluorescent lights flicker overhead, buzzing unevenly, like they’re deciding whether to stay alive.
 
-                Father Reyes moves first. Quiet. Purposeful. He gathers what he can—bandages, canned food, sealed bottles—stacking them carefully, reverently, like offerings.
-
-                “If I go back,” he murmurs, “I can’t go empty-handed.”
+                Father Reyes moves first. Quiet. Purposeful. He gathers what he can - bandages, canned food, sealed bottles, and stuffs it all into a bag he found.
+                
+                “When I go back,” he murmurs, “I can’t go empty-handed.”
 
                 Talia sits on the floor with her son, rocking slightly. He doesn’t cry. He just stares at the ceiling, eyes too old for his face.
 
-                “I just want him out,” she whispers to no one. “I don’t care where. I just want this to stop.”
+                “I just want him out,” she whispers. “I don’t care where. I just want this to stop.”
 
                 Ethan kneels, testing weight on his injured leg. He winces, but forces himself steady.
 
-                “Checkpoints,” he says again. Calm. Grounded. Like it’s not a hope but a fact. “They should be active.”
+                “The checkpoints,” he says again. Calm. Grounded. Like it’s not a hope but a fact. “They should be active.”
 
                 Marcus scoffs. “The checkpoints are gone. The stadium’s gone. Everything’s gone.”
 
                 Ethan looks up sharply. “Gone?”
 
-                “We came down from the north,” Owen says, arms crossed tight against his chest. “There was nothing. No soldiers. No control. Just people turning on each other.”
+                “We came down from the north,” Owen says, arms crossed tight against his chest. “There was nothing. No soldiers. No control. Just people turning on people.”
 
                 Ethan frowns. He doesn’t dismiss it. He thinks.
 
@@ -1903,23 +1905,23 @@ struct SurviveStoryBranch01 {
 
                 Marcus stares at him. “Then why didn’t we see anything?”
 
-                “They’d have set up fast,” Ethan replies. “Medical tents. Processing lanes. Armed perimeters. The stadium is one of the city’s primary evacuation hubs. Protocol demands it.”
+                “They’d have set up fast,” Ethan replies. “Medical tents. Processing lanes. Armed perimeters. The stadium is one of the city’s primary evacuation hubs. Protocol demands it. I know people in my unit that would have been assigned there.”
 
                 “If containment had completely failed,” he adds, “we wouldn’t still be standing here talking.”
 
-                The room shifts.
+                The air shifts.
 
                 Not relief.
 
                 But possibility.
 
-                Nicolas steps closer to you, voice low. “If my family went anywhere… it was the stadium.”
+                Nicolas steps closer to you, voice low. “If my family…”
 
                 His hands tremble slightly. “If they’re not there, I don’t know what I do next.”
 
                 Marcus shakes his head. “The bay is still the best exit. Open water. No choke points.”
 
-                “But checkpoints mean structure,” Reyes says. “Information.”
+                “But checkpoints mean structure,” Father Reyes says. “Information.”
 
                 “And guns,” Marcus snaps. “Guns pointed at us.”
 
@@ -1927,35 +1929,57 @@ struct SurviveStoryBranch01 {
 
                 No one answers her.
 
-                The group fractures without moving.
+                The group doesn’t argue.
 
-                You feel eyes on you.
+                That’s what scares you.
 
-                Waiting.
+                They stand there instead, each of them already somewhere else in their head.
 
-                You step forward.
+                Father Reyes tightens the straps on the bag he found, eyes lowered. He’s thinking about the church. About the people who stayed behind. About walking back alone with whatever little help he can carry and the promise that maybe, maybe, he’ll return with something better.
 
-                “If Ethan’s right,” you say, “then the checkpoint gives us options. Talia and her son get protection. Father Reyes can get help back to the church. Marcus gets order. Firepower.”
+                Talia rocks gently on her heels, her son’s face buried in her shoulder. She doesn’t care about maps or plans or protocols. She just wants walls. Distance. Somewhere a child can sleep without fear.
 
-                You glance at Nicolas.
+                Owen hovers near the edge of the group. He keeps glancing toward you and then away again, shame still hanging off him like smoke. He wants the stadium. He wants escape. He wants a reset. But whatever trust once existed now lives on thin ice.
 
-                “And we get closer to the stadium.”
+                Marcus stands apart, arms crossed, jaw set. The bay is already decided in his mind. Open space. No choke points. No fences that can turn into cages. He doesn’t believe in the checkpoints, not anymore. Not after what he’s seen.
 
-                Ethan meets your eyes. “I’ll go where you go.”
+                Ethan watches all of it quietly.
 
-                The silence thickens.
+                Nicolas steps closer to you. Low. Just for you.
 
-                Whatever you choose, someone will walk away.
+                His voice cracks, just slightly. “What's the plan?”
+
+                You feel it then.
+
+                This isn’t one decision.
+
+                It’s two paths pulling apart.
+
+                One where you try to force everyone into the same direction again, one goal, one fragile hope that the checkpoint still exists and still means safety, and maybe a faster way to the stadium.
+
+                And one where you accept the truth forming in front of you: that no matter what you choose, not everyone survives the same way.
+
+                Marcus exhales hard. “If we’re splitting, we do it now. Before it gets harder.”
+
+                Talia looks up at you, eyes wide, wet.
+
+                The store hums around you.
+
+                The day is moving whether you are or not.
+
+                You take a breath.
+
+                And step into the space where the group is already breaking.
 
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "Split up now while you still can.",
+                    decisionText: "Split up as Marcus suggests.",
                     nextChapterID: 9, // Death Chapter
                     HPChange: 0,
                     EPChange: 0),
                 ChapterDecision(
-                    decisionText: "Stay together and head for the checkpoint.",
+                    decisionText: "Talk everyone to stay together and head for the checkpoint.",
                     nextChapterID: 31201,
                     HPChange: 0,
                     EPChange: 0)
