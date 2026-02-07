@@ -1854,18 +1854,20 @@ struct SurviveStoryBranch01 {
                 Quieter.
 
                 The kind of quiet that feels intentional.
-
-                Dawn leaks in through cracks you can’t see.
-
+                
+                Somewhere beyond the door, the store brightens - gray light filtering in from the blown-out front.
+                
                 “Time to move,” Marcus says.
 
                 He slides the bar free and cracks the door.
 
                 The grocery store greets you like a crime scene frozen mid-scream.
+                
+                The pharmacy shelves are gutted - toppled boxes, broken vials. 
 
                 Blood streaks across the floor in wide arcs, drag marks, handprints, smears that stop abruptly. Broken glass crunches underfoot. The front windows are gone entirely, the frames twisted inward like ribs snapped open.
-
-                Shelves lie gutted, toppled, stripped bare. Abandoned carts sit wedged at odd angles, failed barricades left behind by people who thought they had more time.
+                
+                Abandoned carts sit wedged at odd angles, failed barricades left behind by people who thought they had more time.
 
                 Fluorescent lights flicker overhead, buzzing unevenly, like they’re deciding whether to stay alive.
 
@@ -1873,7 +1875,7 @@ struct SurviveStoryBranch01 {
                 
                 “When I go back,” he murmurs, “I can’t go empty-handed.”
 
-                Talia sits on the floor with her son, rocking slightly. He doesn’t cry. He just stares at the ceiling, eyes too old for his face.
+                Talia moves slowly with her son, tightly gripping his hand. He doesn’t cry. He just stares at the ceiling, eyes too old for his face.
 
                 “I just want him out,” she whispers. “I don’t care where. I just want this to stop.”
 
@@ -1885,7 +1887,7 @@ struct SurviveStoryBranch01 {
 
                 Ethan looks up sharply. “Gone?”
 
-                “We came down from the north,” Owen says, arms crossed tight against his chest. “There was nothing. No soldiers. No control. Just people turning on people.”
+                “We came down from the north side of town,” Owen says, arms crossed tight against his chest. “There was nothing. No soldiers. No control. Just people turning on people.”
 
                 Ethan frowns. He doesn’t dismiss it. He thinks.
 
@@ -1905,19 +1907,15 @@ struct SurviveStoryBranch01 {
 
                 Marcus stares at him. “Then why didn’t we see anything?”
 
-                “They’d have set up fast,” Ethan replies. “Medical tents. Processing lanes. Armed perimeters. The stadium is one of the city’s primary evacuation hubs. Protocol demands it. I know people in my unit that would have been assigned there.”
-
-                “If containment had completely failed,” he adds, “we wouldn’t still be standing here talking.”
+                “They don’t start everywhere at once,” Ethan replies. “They claim safe ground, lock it down, then expand the perimeter—block by block, like pushing pieces across a board. A stadium is the kind of anchor they build around. Triage. Processing. Guns on the fence. That’s protocol. If you saw nothing up north, it’s because the perimeter hadn’t pushed that far yet… or it got pulled back. I’ve got people in my unit who’d be on that detail.”
+                
+                “If containment had fully failed,” he adds, “we wouldn’t still be standing here talking.”
 
                 The air shifts.
 
                 Not relief.
 
                 But possibility.
-
-                Nicolas steps closer to you, voice low. “If my family…”
-
-                His hands tremble slightly. “If they’re not there, I don’t know what I do next.”
 
                 Marcus shakes his head. “The bay is still the best exit. Open water. No choke points.”
 
@@ -1945,9 +1943,9 @@ struct SurviveStoryBranch01 {
 
                 Ethan watches all of it quietly.
 
-                Nicolas steps closer to you. Low. Just for you.
-
-                His voice cracks, just slightly. “What's the plan?”
+                Nicolas steps closer, low - just for you. His hands tremble. "If they're not there… I don't know what I do next."
+                
+                His voice  cracks. "So what's the plan?"
 
                 You feel it then.
 
@@ -1987,21 +1985,27 @@ struct SurviveStoryBranch01 {
             isFinalChapter: false
         ),
         
-        // MARK: ChapterID: 31201 - DAY 3
+        // MARK: ChapterID: 31201 - THE FIRST LINE BREAKS
         StoryContent(
             chapterID: 31201,
             storyDay: 3,
-            chapterTitle: "DAY 3",
+            chapterTitle: "THE FIRST LINE BREAKS",
             chapterImages: ["survive-31-insideChurch-image"],
             chapterText:
                 """
 
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Stay with the group in the church:", nextChapterID: 9,
-                                HPChange: +1, EPChange: 0), // Death Chapter
-                ChapterDecision(decisionText: "Join the group heading for the military checkpoint", nextChapterID: 32,
-                                HPChange: 0, EPChange: 0)
+                ChapterDecision(
+                    decisionText: "Stay with the group in the church:",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Join the group heading for the military checkpoint",
+                    nextChapterID: 32,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
@@ -2011,57 +2015,21 @@ struct SurviveStoryBranch01 {
             storyDay: 3,
             chapterTitle: "The Group",
             chapterImages: ["survive-32-group-image"],
-            chapterText: """
-                    The decision to join the group weighs heavily on your mind as you stand in the dim light of the church. Around you, hushed whispers fill the air as those staying behind speak in quiet tones with loved ones, debating whether they’re making the right choice.
+            chapterText:
+                """
 
-                    “I think it’s safer here,” one woman murmurs to her partner.
-                    “And starve to death?” he replies, shaking his head.
-
-                    In the end, only a handful of others decide to join. Their faces are a mix of determination and fear, mirroring your own.
-                
-                    As you prepare to leave, one of the group members—a man in his early 30s with a rough, no-nonsense demeanor—glances at the broomstick in your hands. He lets out a short laugh.
-
-                    “You planning to watch my back with that?” he says, shaking his head. Before you can respond, he reaches into his pack and pulls out a crowbar. “Here, take this. You’ll need it.”
-
-                    You take it, the cold steel heavier than you expected. It feels solid in your hands, a real weapon for the first time.
-
-                    “Thanks,” you manage to say, your voice uncertain. He nods and turns back to the group.
-                
-                    The group moves out cautiously, the church doors closing behind you with a final, heavy thud.
-
-                    The streets are quieter than you expected, the chaos of the previous days now replaced with an oppressive stillness. Each step is measured, deliberate, the group weaving through alleyways and side streets to avoid open areas.
-                
-                Then it happens.
-
-                    An infected appears from nowhere, its guttural snarl breaking the silence. Before you can react, it lunges at you, its hands reaching for your throat.
-
-                    You stumble backward, your heart pounding as you hit the ground. The crowbar slips from your grasp, clattering to the pavement.
-
-                    This is it, you think, your breath caught in your chest.
-
-                    But just as the infected lunges, a sharp crack echoes through the air. You flinch as the creature collapses, its skull caved in.
-
-                    “Get up!” a voice snaps, and you look up to see the same man who gave you the crowbar standing over you, his weapon dripping with blood.
-
-                    He holds out a hand, yanking you to your feet. “Keep your head on straight,” he says gruffly, already turning back to the group.
-
-                    You nod, swallowing hard, and grip the crowbar tightly.
-                
-                    Time passes, and the group moves cautiously through the streets. The tension is palpable, every shadow a potential threat.
-
-                    Suddenly, another snarl cuts through the air. This time, the infected targets someone else—a younger woman near the back of the group.
-
-                    She screams, struggling as the creature grabs her arm. The rest of the group hesitates, frozen in fear.
-
-                    Your heart pounds as you grip the crowbar, your knuckles white. Images flash through your mind—the man who saved you, the infected collapsing at his feet.
-
-                This time, it’s your turn to decide.
                 """,
             chapterDecisions: [
-                ChapterDecision(decisionText: "Step back and let someone else handle it", nextChapterID: 9,
-                                HPChange: 0, EPChange: -2), // Death Chapter
-                ChapterDecision(decisionText: "Help the group member and kill the infected", nextChapterID: 33,
-                                HPChange: -1, EPChange: -4)
+                ChapterDecision(
+                    decisionText: "Step back and let someone else handle it",
+                    nextChapterID: 9, // Death Chapter
+                    HPChange: 0,
+                    EPChange: 0),
+                ChapterDecision(
+                    decisionText: "Help the group member and kill the infected",
+                    nextChapterID: 33,
+                    HPChange: 0,
+                    EPChange: 0)
             ],
             isFinalChapter: false
         ),
