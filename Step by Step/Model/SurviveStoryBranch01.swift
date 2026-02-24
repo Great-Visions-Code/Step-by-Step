@@ -2005,23 +2005,25 @@ struct SurviveStoryBranch01 {
 
                 You gesture around the room.
 
-                “Talia gets protection. Her son gets doctors—real ones.”
-                You look at Father Reyes. “You get answers. And a way to get help back to the church.”
-                Your eyes settle on Marcus. “You get structure. Guns. Information. Something solid instead of running blind.”
+                “Talia gets protection. Her son gets doctors, real ones.”
+                
+                You look at Father Reyes. “You get supplies and a way to get help back to the church.”
+                
+                Your eyes settle on Marcus. “You get support. Guns. Information. Something solid instead of running blind.”
 
                 Then Nicolas.
 
-                “And if the stadium’s still standing,” you say quietly, “this gets us there faster than anything else.”
+                “And if the stadium’s still standing,” you say quietly, “this gets us there faster than anything else and hopefully safer.”
 
-                Ethan nods once. “They’ll route evac from there. If it exists, that’s where it leads.”
+                Ethan nods once. “They’ll route evacuations from there. If it exists, that’s where the checkpoint leads.”
 
-                The room goes quiet again—but this time, it’s listening.
+                The room goes quiet again, but this time, it’s listening.
 
                 You take a breath.
 
                 “We go to the checkpoint,” you say. “Together. If it’s gone… then we reassess. But we don’t split until we know.”
 
-                Marcus exhales sharply. “Fine. But first sign of trouble—we move.”
+                Marcus exhales sharply. “Fine. But first sign of trouble, we move.”
 
                 You nod. “Agreed. Sticking together got us here. But it can’t be our crutch.”
 
@@ -2035,37 +2037,37 @@ struct SurviveStoryBranch01 {
 
                 Battery: 43%.
 
-                The map loads slowly, stuttering. A few checkpoint icons glow faintly—north of here.
+                The map loads slowly, stuttering. Checkpoint icons glow in clusters, some north, some closer to the stadium side.
+                
+                Marcus taps the screen. “Those ones. We came from there. Nothing was there but chaos.”
 
-                Marcus taps the screen. “Those. We came from there. Nothing but chaos.”
-
-                “That’s north,” Ethan says. “I wouldn’t have made it either with my unit. Too much spillover. Too much panic.”
-
-                He drags his finger south. “Here. Smaller perimeter. Fewer access roads. If they set anything up, it’d be here first.”
+                “That’s the north cluster,” Ethan says. “We never made it that far.”
+                
+                He drags his finger closer to your position, then down toward the smaller icon set. “Here. Smaller perimeter. Fewer access roads. If they set anything up, it’d be here first, and then expand street by street.”
 
                 “There’s no promise,” Marcus mutters.
 
-                “There hasn’t been a promise yet,” you reply. “We’ve just been surviving. This—this is the first real direction we’ve had.”
+                “There hasn’t been a promise yet,” you reply. “We’ve just been surviving. This—this is the first real direction we’ve had besides just going towards the bay.”
 
                 Ethan nods. “Low and quick.”
+                
+                You don’t move again until the light comes back, after hours of waiting, after a half-sleep that feels like drowning.
 
-                You leave the store.
+                When you finally leave the store, Day 3 feels wrong.
 
-                Day 3 feels wrong.
-
-                Not dramatic—just heavy.
+                Not dramatic — just heavy.
 
                 Like time didn’t explode or collapse… it just kept going after everyone expected it to stop.
 
                 You never thought crossing the city would take days. Not like this. Not block by block, street by street, every step earned. What used to be a ten-minute drive now feels like a migration.
 
-                Your legs ache in a dull, constant way. Your shoulders feel permanently hunched, like they forgot how to relax. Hunger isn’t sharp anymore—it’s distant, muted, replaced by something colder.
+                Your legs ache in a dull, constant way. Your shoulders feel permanently hunched, like they forgot how to relax. Hunger isn’t sharp anymore, it’s distant, muted, replaced by something colder.
 
                 Everyone moves differently now.
 
                 Quieter. Slower. More deliberate.
 
-                The city hasn’t gone silent—but it’s learned how to whisper.
+                The city hasn’t gone silent, but it’s learned how to whisper.
 
                 You still see other groups from time to time. Small clusters moving with purpose, eyes forward, weapons close. No one calls out. No one signals. Whatever they survived together matters more than whatever you might offer them now.
 
@@ -2075,7 +2077,7 @@ struct SurviveStoryBranch01 {
 
                 You run when you have to. Walk when you can. Cut through back streets. Avoid open intersections. Avoid anything that feels too still.
 
-                Then gunfire cracks nearby—sharp, controlled.
+                Then gunfire cracks nearby — sharp, controlled.
 
                 You see it happen from half a block away.
 
@@ -2091,10 +2093,8 @@ struct SurviveStoryBranch01 {
 
                 Noise only feeds the city now.
 
-                By the time Ethan signals to slow, your lungs burn and your mouth tastes like metal.
-
-                The checkpoint should be close.
-
+                You're three blocks from the checkpoint when Ethan signals to slow. 
+                
                 Then—
 
                 You turn a blind corner.
@@ -2103,17 +2103,15 @@ struct SurviveStoryBranch01 {
 
                 Not wandering.
 
-                Not confused.
+                But confused.
 
-                Waiting.
-
-                For half a second, nobody moves. Eyes lock. Recognition flashes—human meeting something that used to be human.
+                For half a second, nobody moves. Eyes lock. Recognition flashes, human meeting something that used to be human.
 
                 Then everything breaks at once.
 
                 They surge forward, limbs jerking, mouths open, bodies moving too fast for their weight.
 
-                “CONTACT!” Marcus shouts.
+                “Shit!” Marcus shouts.
 
                 He and Ethan take the hit first.
 
@@ -2121,13 +2119,13 @@ struct SurviveStoryBranch01 {
 
                 “Ethan!” Father Reyes yells, dropping to his knees beside him.
 
-                Nicolas brings the gun up—but it’s chaos. Too close. Too many bodies crossing his line of fire.
+                Nicolas brings the gun up, but it’s chaos. Too close. Too tangled.
 
                 You pull your knife.
 
                 One of them latches onto Marcus, clawing at his jacket, snapping inches from his face. He shoves it back with both hands, muscles straining, boots skidding on pavement slick with old grime.
 
-                The second veers suddenly—straight for Nicolas.
+                The second veers suddenly — straight for Nicolas.
 
                 It crashes into him, knocking him flat.
 
@@ -2151,59 +2149,103 @@ struct SurviveStoryBranch01 {
 
                 At the same time, the other infected tears free and barrels toward Ethan.
 
-                Father Reyes throws himself between them, hands out, trying to shove it back—but it slams into him, knocking him sideways.
+                Father Reyes throws himself between them, hands out, trying to shove it back, but it slams into him, knocking him sideways.
 
                 Ethan tries to rise. Fails. His leg gives again.
 
-                “Go—don’t—!” Ethan gasps, dragging himself backward.
+                Ethan drags himself backward, teeth clenched against the pain in his leg.
 
-                Talia is already gone—she and her son crouched behind a car, her body curved over him like a shield, whispering urgently in his ear.
+                “Don’t let it get behind us!” he shouts instead. “Keep them in front!”
 
-                Marcus grunts as the weight shifts—he’s losing his grip.
+                It’s not fear in his voice.
 
-                Nicolas scrambles for the gun, fingers closing around it just as the infected snaps toward Marcus’s throat.
+                It’s training.
 
-                Owen stands frozen.
+                The infected lunges for him anyway.
 
-                Watching.
+                Father Reyes throws himself between them, slamming his shoulder into the creature’s chest. They both crash to the pavement. The infected twists unnaturally fast, snapping toward Reyes’ neck. Ethan grabs at its arm, trying to pull it off with one good leg and pure stubborn force.
 
-                Breathing hard.
+                On the other side, Marcus is losing ground.
 
-                His eyes flick to you.
+                The infected he’s grappling with is stronger than it looks. It slams him back against the wall, skull cracking against brick. He grunts, barely keeping its jaw away from his face. Its teeth snap inches from his cheek.
 
-                To the knife in your hand.
+                “Nicolas!” Marcus roars.
 
-                Everything overlaps—shouting, growling, scraping boots, the wet sound of bodies colliding.
+                Nicolas scrambles up with the gun, but they’re too close. Too tangled. One wrong shot and Marcus takes it.
 
-                There’s no clean angle.
+                Instead, Nicolas lunges in barehanded, grabbing the infected’s shoulder and wrenching it sideways. The thing spins on him instantly, clawing. Nicolas stumbles back, trying to keep distance, trying to find an angle.
 
-                No clear hero moment.
+                “Run!” someone shouts.
 
-                Just choices piling up faster than you can think.
+                It’s Marcus.
 
-                Time stretches thin.
+                “Take the kid and run!”
 
-                You can help them.
+                Talia hesitates.
 
-                You can step in—protect Marcus, pull the infected off Ethan, gamble everything on keeping this group intact.
+                For half a second.
 
-                Or you can remember the stairwell.
+                Then she sets him down, grabs his hand and bolts across the street, ducking behind a parked SUV.
 
-                The running.
+                Owen doesn’t move.
 
-                The way hesitation almost killed you last time.
+                He’s rooted to the pavement.
 
-                The city holds its breath.
+                His chest heaves. His eyes dart from Marcus to Ethan to you.
 
+                “Move,” he utters, but he doesn’t.
+
+                Everything overlaps.
+
+                Ethan is down again, wrestling with the infected as it claws toward Father Reyes, who is trying to hold its head back with trembling arms.
+
+                Marcus is slipping.
+
+                Nicolas is trying to help him, but the infected keeps snapping at both of them, forcing them apart.
+
+                You are in the middle.
+
+                Knife in hand.
+
+                Close enough to reach one.
+
+                Too far to reach both.
+
+                If you go to Ethan and Father Reyes, you might lose Marcus.
+
+                If you go to Marcus and Nicolas, Ethan may not get back up.
+
+                There is no time.
+
+                There is no perfect move.
+
+                Just weight.
+
+                Just consequence.
+
+                Marcus’ head slams against the wall again.
+
+                Ethan’s grip falters.
+
+                Nicolas shouts your name.
+
+                Father Reyes cries out in pain.
+
+                Owen still hasn’t moved.
+
+                Someone is about to die.
+
+                And you cannot save them all.
+                
                 """,
             chapterDecisions: [
                 ChapterDecision(
-                    decisionText: "Swing - Help them.",
+                    decisionText: "Help Ethan and Father Reyes.",
                     nextChapterID: 31301,
                     HPChange: 0,
                     EPChange: 0),
                 ChapterDecision(
-                    decisionText: "Look around - Go for the gun.",
+                    decisionText: "Help Marcus and Nicolas.",
                     nextChapterID: 9, // Death Chapter
                     HPChange: 0,
                     EPChange: 0)
