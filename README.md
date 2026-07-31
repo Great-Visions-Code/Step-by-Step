@@ -180,7 +180,7 @@ The project’s long-term value is not limited to a finished app. It is also a p
 
 ## License
 
-No license file is currently included in this repository.
+Apache License 2.0
 
 ## Contact
 
