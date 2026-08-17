@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Step By Step is a fitness-powered iOS RPG by Gustavo Vazquez. HealthKit activity becomes energy for branching stories, achievements, and persistent progress."
+    />
+    <meta name="theme-color" content="#f4f2ec" />
+    <link
+      rel="canonical"
+      href="https://great-visions-code.github.io/Step-by-Step/"
+    />
+    <link
+      rel="icon"
+      href="./Step%20by%20Step/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.jpg"
+    />
+    <link rel="stylesheet" href="./step-by-step.css" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://great-visions-code.github.io/Step-by-Step/"
+    />
+    <meta property="og:site_name" content="Great-Visions" />
+    <meta
+      property="og:title"
+      content="Step By Step | A Fitness-Powered iOS RPG"
+    />
+    <meta
+      property="og:description"
+      content="Walk in real life, turn steps into energy, and spend that energy on choices inside a branching SwiftUI story."
+    />
+    <meta
+      property="og:image"
+      content="https://great-visions-code.github.io/Step-by-Step/og-step-by-step.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
+    <meta
+      property="og:image:alt"
+      content="Step By Step: Walk. Convert. Decide."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Step By Step | A Fitness-Powered iOS RPG"
+    />
+    <meta
+      name="twitter:description"
+      content="Walk in real life, turn steps into energy, and spend that energy on choices inside a branching SwiftUI story."
+    />
+    <meta
+      name="twitter:image"
+      content="https://great-visions-code.github.io/Step-by-Step/og-step-by-step.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Step By Step: Walk. Convert. Decide."
+    />
+
+    <title>Step By Step | A Fitness-Powered iOS RPG</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Step By Step",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "iOS",
+        "description": "A fitness-powered text RPG that turns HealthKit activity into energy for branching stories.",
+        "softwareVersion": "0.1.0",
+        "url": "https://great-visions-code.github.io/Step-by-Step/",
+        "codeRepository": "https://github.com/Great-Visions-Code/Step-by-Step",
+        "author": {
+          "@type": "Person",
+          "name": "Gustavo Vazquez",
+          "url": "https://great-visions-code.github.io/"
+        }
+      }
+    </script>
+    <script src="./project.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner shell">
+        <a
+          class="wordmark"
+          href="https://great-visions-code.github.io/"
+          aria-label="Great-Visions portfolio home"
+        >
+          <span aria-hidden="true">GV</span>
+          <span class="wordmark-copy">
+            <span class="wordmark-title">Great-Visions</span>
+            <span class="wordmark-byline">Software by Gustavo Vazquez</span>
+          </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#overview">Overview</a>
+          <a href="#loop">Core loop</a>
+          <a href="#features">Features</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#build">Build</a>
+          <a href="https://great-visions-code.github.io/">
+            Portfolio <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            class="nav-github"
+            href="https://github.com/Great-Visions-Code/Step-by-Step"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+
+        <details class="mobile-navigation">
+          <summary class="menu-button">
+            <span class="menu-label">Menu</span>
+            <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
+          </summary>
+          <nav class="mobile-menu" aria-label="Mobile navigation">
+            <a href="#overview">Overview</a>
+            <a href="#loop">Core loop</a>
+            <a href="#features">Features</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#build">Build</a>
+            <a href="https://great-visions-code.github.io/">
+              Portfolio <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="https://github.com/Great-Visions-Code/Step-by-Step"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Fitness-powered iOS RPG · In development</p>
+          <h1 id="hero-title">
+            Your daily steps become the energy
+            <span>that moves the story forward.</span>
+          </h1>
+          <p class="hero-summary">
+            Step By Step connects HealthKit activity to a choice-driven RPG.
+            Walk in real life, convert movement into energy, and spend it on
+            decisions inside Survive.
+          </p>
+          <div class="action-row" aria-label="Project actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/Great-Visions-Code/Step-by-Step"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View source on GitHub
+            </a>
+            <a class="button button-secondary" href="#overview">
+              Explore the case study
+            </a>
+          </div>
+          <p class="scope-note">
+            Current build: HealthKit tracking, energy conversion, fitness and
+            story achievements, and a five-day Survive adventure.
+          </p>
+        </div>
+
+        <figure class="hero-visual">
+          <div class="device-frame">
+            <img
+              src="./ReadMe%20Images/IMG_4096.jpg"
+              alt="Step By Step home screen showing step conversion, current energy, and available stories"
+              width="1284"
+              height="2778"
+              fetchpriority="high"
+            />
+          </div>
+          <figcaption>
+            <span>Step By Step</span>
+            <span>SwiftUI · HealthKit · MVVM</span>
+          </figcaption>
+        </figure>
+
+        <dl class="hero-meta" aria-label="Project summary">
+          <div>
+            <dt>Platform</dt>
+            <dd>iOS</dd>
+          </div>
+          <div>
+            <dt>Core technology</dt>
+            <dd>HealthKit + SwiftUI</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Active development</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="section shell" id="overview" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <p class="section-number" aria-hidden="true">01</p>
+          <div>
+            <p class="eyebrow">Project overview</p>
+            <h2 id="overview-title">
+              Making movement part of the game—not a metric beside it.
+            </h2>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <div class="overview-copy">
+            <p class="overview-lede">
+              Step By Step asks a simple product question: what if progress in
+              a mobile story depended on progress away from the screen?
+            </p>
+            <p>
+              The app turns real activity into a game resource. HealthKit
+              supplies step and walking-distance data, a conversion system
+              translates steps into energy, and story decisions consume that
+              energy alongside health. The result is one connected loop rather
+              than separate fitness and storytelling features.
+            </p>
+            <div class="status-note">
+              <span>Project origin</span>
+              <p>
+                Step By Step expands the original Survive project into a deeper
+                system with fitness data, persistent progress, achievements,
+                checkpoints, and replayable outcomes.
+              </p>
+            </div>
+          </div>
+
+          <dl class="project-details">
+            <div>
+              <dt>Project purpose</dt>
+              <dd>
+                Encourage everyday movement by making physical activity useful
+                inside a narrative game.
+              </dd>
+            </div>
+            <div>
+              <dt>My role</dt>
+              <dd>
+                Independent product designer, iOS developer, systems designer,
+                and story creator.
+              </dd>
+            </div>
+            <div>
+              <dt>Technology</dt>
+              <dd>
+                Swift, SwiftUI, HealthKit, Swift Charts, MVVM, Combine, and
+                UserDefaults.
+              </dd>
+            </div>
+            <div>
+              <dt>Fitness system</dt>
+              <dd>
+                Daily goals, step and distance history, streaks, seven-day
+                averages, trend comparisons, and achievements.
+              </dd>
+            </div>
+            <div>
+              <dt>Story system</dt>
+              <dd>
+                Five playable days, 28 chapter records, energy and health
+                costs, saved progress, attempts, one completion ending, and a
+                replayable failure state.
+              </dd>
+            </div>
+            <div>
+              <dt>Privacy approach</dt>
+              <dd>
+                The app requests read access for steps and walking or running
+                distance; project progress is stored on the device.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section loop-section" id="loop" aria-labelledby="loop-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number" aria-hidden="true">02</p>
+            <div>
+              <p class="eyebrow">The core loop</p>
+              <h2 id="loop-title">Walk. Convert. Decide.</h2>
+            </div>
+          </div>
+
+          <ol class="loop-grid">
+            <li class="loop-card">
+              <span class="loop-number">01</span>
+              <div class="loop-symbol" aria-hidden="true">●</div>
+              <h3>Move in the real world</h3>
+              <p>
+                HealthKit brings daily steps and walking distance into the app
+                while progress is measured against a personal step goal.
+              </p>
+            </li>
+            <li class="loop-card">
+              <span class="loop-number">02</span>
+              <div class="loop-symbol" aria-hidden="true">→</div>
+              <h3>Turn steps into energy</h3>
+              <p>
+                The daily goal is divided into ten energy segments. Completed
+                segments can be converted into points for the player.
+              </p>
+            </li>
+            <li class="loop-card">
+              <span class="loop-number">03</span>
+              <div class="loop-symbol" aria-hidden="true">◆</div>
+              <h3>Spend energy on choices</h3>
+              <p>
+                Story decisions carry energy and health consequences, linking
+                activity directly to survival and progression.
+              </p>
+            </li>
+          </ol>
+
+          <aside class="formula-card" aria-label="Step conversion example">
+            <div>
+              <p class="eyebrow">Example conversion</p>
+              <p class="formula">10,000-step goal ÷ 10 = 1,000 steps per energy</p>
+            </div>
+            <p>
+              The conversion scales with the player’s chosen daily goal, so the
+              system rewards consistent progress instead of one fixed number.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        class="section shell"
+        id="features"
+        aria-labelledby="features-title"
+      >
+        <div class="section-heading">
+          <p class="section-number" aria-hidden="true">03</p>
+          <div>
+            <p class="eyebrow">Built into the current project</p>
+            <h2 id="features-title">One app, four connected systems.</h2>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <p class="feature-number" aria-hidden="true">01</p>
+            <h3>Activity dashboard</h3>
+            <p>
+              Daily goal progress, distance, best day, current and longest
+              streaks, seven-day averages, and scrollable step history.
+            </p>
+          </article>
+          <article class="feature-card">
+            <p class="feature-number" aria-hidden="true">02</p>
+            <h3>Energy-based gameplay</h3>
+            <p>
+              Steps become a capped game resource that is spent on story
+              choices and reset as part of the daily activity loop.
+            </p>
+          </article>
+          <article class="feature-card">
+            <p class="feature-number" aria-hidden="true">03</p>
+            <h3>Persistent story progress</h3>
+            <p>
+              Players can resume or restart Survive, follow chapter progress,
+              track attempts, and reach completion or failure states.
+            </p>
+          </article>
+          <article class="feature-card">
+            <p class="feature-number" aria-hidden="true">04</p>
+            <h3>Achievement milestones</h3>
+            <p>
+              On-device milestones cover steps in a day, total steps, total
+              distance, and completed story days—with earned dates retained.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section gallery-section" id="gallery" aria-labelledby="gallery-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number" aria-hidden="true">04</p>
+            <div>
+              <p class="eyebrow">In-development build</p>
+              <h2 id="gallery-title">The fitness loop, seen through the story.</h2>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-card gallery-card-wide">
+              <div class="gallery-device">
+                <img
+                  src="./ReadMe%20Images/IMG_4096.jpg"
+                  alt="Step conversion and story selection on the Step By Step home screen"
+                  width="1284"
+                  height="2778"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>
+                <span>Convert movement</span>
+                <p>Daily steps become energy before the next story session begins.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-card">
+              <div class="gallery-device">
+                <img
+                  src="./ReadMe%20Images/IMG_4093.jpg"
+                  alt="An illustrated Survive chapter inside Step By Step"
+                  width="1284"
+                  height="2778"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>
+                <span>Enter the story</span>
+                <p>Illustrated chapters combine long-form narrative with player status.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-card">
+              <div class="gallery-device">
+                <img
+                  src="./ReadMe%20Images/IMG_4094.jpg"
+                  alt="Two Survive decisions showing their health and energy costs"
+                  width="1284"
+                  height="2778"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>
+                <span>Choose with consequences</span>
+                <p>Each action makes its health and energy cost visible before selection.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-card">
+              <div class="gallery-device">
+                <img
+                  src="./ReadMe%20Images/IMG_4095.jpg"
+                  alt="Survive story home showing health, energy, progress, and replay controls"
+                  width="1284"
+                  height="2778"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>
+                <span>Return and continue</span>
+                <p>Story progress, attempts, resume, restart, and achievements stay together.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section build-section" id="build" aria-labelledby="build-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number" aria-hidden="true">05</p>
+            <div>
+              <p class="eyebrow">Building the product</p>
+              <h2 id="build-title">Turning two data worlds into one experience.</h2>
+            </div>
+          </div>
+
+          <div class="build-grid">
+            <div class="build-intro">
+              <p>
+                The central design challenge is keeping fitness data, player
+                state, and branching story progress independent enough to test
+                and evolve—while making them feel inseparable to the player.
+              </p>
+              <ul class="tech-tags" aria-label="Project technologies">
+                <li>Swift</li>
+                <li>SwiftUI</li>
+                <li>HealthKit</li>
+                <li>Swift Charts</li>
+                <li>MVVM</li>
+                <li>Combine</li>
+              </ul>
+            </div>
+
+            <ol class="lesson-list">
+              <li>
+                <span>01</span>
+                <div>
+                  <h3>Make activity part of the core mechanic.</h3>
+                  <p>
+                    The fitness layer has meaning because it changes what the
+                    player can do, not simply what the dashboard displays.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  <h3>Keep HealthKit behind focused boundaries.</h3>
+                  <p>
+                    Health data retrieval, step calculations, achievements, and
+                    story state live in separate models and view models.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <h3>Translate history into useful signals.</h3>
+                  <p>
+                    Best days, streaks, averages, trends, and milestones make
+                    raw activity data easier to understand.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span>04</span>
+                <div>
+                  <h3>Design persistence around returning players.</h3>
+                  <p>
+                    Saved chapters, health, energy, goals, attempts, and earned
+                    achievements support short sessions across multiple days.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section status-section" aria-labelledby="status-title">
+        <div class="shell status-grid">
+          <div>
+            <p class="eyebrow">Current status</p>
+            <h2 id="status-title">Playable now. Still growing.</h2>
+          </div>
+          <div class="status-columns">
+            <div>
+              <h3>Present in the build</h3>
+              <ul>
+                <li>HealthKit steps and walking-distance access</li>
+                <li>Goal-based step-to-energy conversion</li>
+                <li>Fitness history, trends, streaks, and achievements</li>
+                <li>Five-day Survive story with saved progress</li>
+                <li>Completion and replayable failure outcomes</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Next areas to explore</h3>
+              <ul>
+                <li>Additional Survive branches and alternate endings</li>
+                <li>Deeper story-specific achievements</li>
+                <li>More adventure cards beyond Survive</li>
+                <li>Interface polish, accessibility, and localization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section lineage-section" aria-labelledby="lineage-title">
+        <div class="shell lineage-grid">
+          <div>
+            <p class="eyebrow">Project lineage</p>
+            <h2 id="lineage-title">Survive supplied the story. Step By Step built the system.</h2>
+          </div>
+          <div class="lineage-copy">
+            <p>
+              The original Survive app was my first Swift project and taught me
+              the foundations of navigation and state. Step By Step carries
+              that story forward with real-world movement, resources,
+              checkpoints, achievements, and a larger replay loop.
+            </p>
+            <div class="action-row">
+              <a
+                class="button button-light"
+                href="https://great-visions-code.github.io/Survive/"
+              >
+                Read the original Survive case study
+              </a>
+              <a
+                class="button button-outline-light"
+                href="https://github.com/Great-Visions-Code/Survive"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View original source
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" aria-labelledby="contact-title">
+        <div class="shell contact-grid">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Want to talk about the build?</h2>
+          </div>
+          <div>
+            <p class="contact-copy">
+              I’m always glad to discuss SwiftUI, HealthKit, gamified fitness,
+              or the product decisions behind Step By Step.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:great.visions@icloud.com">
+                Email Gustavo
+                <span>great.visions@icloud.com</span>
+              </a>
+              <a
+                href="https://github.com/Great-Visions-Code"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub profile
+                <span>Great-Visions-Code ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell">
+        <p>© 2026 Great-Visions Software by Gustavo Vazquez</p>
+        <a href="#main-content">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+  </body>
+</html>
